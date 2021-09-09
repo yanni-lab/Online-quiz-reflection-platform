@@ -20,80 +20,80 @@ https://dbdiagram.io/d/6139cf89825b5b0146fa5e75
 **users**
 
 ```
-user_id 							int, PK 
-username 							varchar
-password 							varchar
-email 								varchar
+user_id               int, PK 
+username              varchar
+password              varchar
+email                 varchar
 ```
 
 **supervisor** 
 
 ```
-user_id 							int, PK 
-username 							varchar
-password 							varchar
-email 								varchar
+user_id               int, PK 
+username              varchar
+password              varchar
+email                 varchar
 ```
 
 **question** 
 
 ```
-question_id						int, PK
-question 							varchar
-quiz_id 							int, quiz.quiz_id
+question_id           int, PK
+question              varchar
+quiz_id               int, quiz.quiz_id
 ```
 
 **question_choices** 
 
 ```
-choice_id 						int, PK 
-mark 									int
-choice 								varchar
-question_id 					int, question.question_id
+choice_id             int, PK 
+mark                  int
+choice                varchar
+question_id           int, question.question_id
 ```
 
 **uesr_question_answers** 
 
 ```
-attempt_id 						int, PK 
-user_id 							int, PK
-quiz_id 							int, quiz.quiz_id
-question_id 					int, question.question_id
-choice_id 						int, question_choice.choice_id
-attempt_time 					datetime
+attempt_id            int, PK 
+user_id               int, PK
+quiz_id               int, quiz.quiz_id
+question_id           int, question.question_id
+choice_id             int, question_choice.choice_id
+attempt_time          datetime
 ```
 
 **quiz** 
 
 ```
-quiz_id 							int, PK 
-quiz_title 						varchar
-quiz_background 			varchar
-created_by 						supervisor.user_id
-is_public 						boolean
+quiz_id               int, PK 
+quiz_title            varchar
+quiz_background       varchar
+created_by            supervisor.user_id
+is_public             boolean
 ```
 
 **feedback**
 
 ```
-feedback_id 					int, PK 
-mark_range_min 				int
-mark_range_max 				int
-feedback_content 			varchar
-quiz_id 							int, quiz.quiz_id
+feedback_id           int, PK 
+mark_range_min        int
+mark_range_max        int
+feedback_content      varchar
+quiz_id               int, quiz.quiz_id
 ```
 
 **user_reflection** 
 
 ```
-reflection_id 				int, PK 
-user_id 							int, user.user_id, PK
-quiz_id 							int, quiz.quiz_id
-feedback_id 					int, feedback.feedback_id
-reflection 						varchar
-share_email 					varchar
-ux_comment 						varchar
-reflection_time 			datetime
+reflection_id         int, PK 
+user_id               int, user.user_id, PK
+quiz_id               int, quiz.quiz_id
+feedback_id           int, feedback.feedback_id
+reflection            varchar
+share_email           varchar
+ux_comment            varchar
+reflection_time       datetime
 ```
 
 
