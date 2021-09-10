@@ -1,5 +1,5 @@
 CREATE DATABASE `berry_street`;
-USE `berry_street`;
+USE `berry_street`; 
 
 /*Table structure for table `user` */
 DROP TABLE IF EXISTS `user`;
