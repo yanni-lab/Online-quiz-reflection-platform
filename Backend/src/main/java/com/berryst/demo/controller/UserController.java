@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping(value="user")
+@RequestMapping(value="/user")
 public class UserController {
     @Resource
     private UserService userService;
@@ -20,8 +20,13 @@ public class UserController {
     private SupervisorService supervisorService;
 
 
-    @RequestMapping(value="register",method= RequestMethod.POST)
-    public int register(boolean isSupervisor, String username, String password, String email){
+    @RequestMapping(value="/register",method= RequestMethod.GET)
+    public int register(){
+        //boolean isSupervisor, String username, String password, String email
+        boolean isSupervisor = false;
+        String username = "aaa";
+        String password = "111";
+        String email = "aaa@gmail.com";
         if (!isSupervisor){
             User user = new User(1, username, password, email);
             User exist_u = userService.queryUserByEmail(email);

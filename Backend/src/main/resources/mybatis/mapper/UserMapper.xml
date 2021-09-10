@@ -9,23 +9,23 @@
         <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
     </resultMap>
-    <select id="queryUserList" resultType= "BaseResultMap">
+    <select id="queryUserList" resultMap= "BaseResultMap">
         select * from user
     </select>
 
-    <select id="queryUserById" parameterType="int" resultType="BaseResultMap">
+    <select id="queryUserById" parameterType="int" resultMap="BaseResultMap">
         select * from user where user_id = #{user_id}
     </select>
 
-    <select id="queryUserByEmail" parameterType="String" resultType="BaseResultMap">
+    <select id="queryUserByEmail" parameterType="String" resultMap="BaseResultMap">
         select * from user where email = #{email}
     </select>
 
-    <insert id="addUser" parameterType="BaseResultMap">
+    <insert id="addUser" parameterType="com.berryst.demo.module.User">
         insert into user (username, password, email) values (#{username}, #{password}, #{email})
     </insert>
 
-    <update id="updateUser" parameterType="BaseResultMap">
+    <update id="updateUser" parameterType="com.berryst.demo.module.User">
         update user set username = #{username}, password = #{password}, email = #{email} where user_id = #{user_id}
     </update>
 

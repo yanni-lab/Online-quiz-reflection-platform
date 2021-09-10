@@ -9,23 +9,23 @@
         <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
     </resultMap>
-    <select id="querySupervisorList" resultType="BaseResultMap">
+    <select id="querySupervisorList" resultMap="BaseResultMap">
         select * from supervisor
     </select>
 
-    <select id="querySupervisorById" parameterType="int" resultType="BaseResultMap">
+    <select id="querySupervisorById" parameterType="int" resultMap="BaseResultMap">
         select * from supervisor where user_id = #{user_id}
     </select>
 
-    <select id="querySupervisorByEmail" parameterType="String" resultType="BaseResultMap">
+    <select id="querySupervisorByEmail" parameterType="String" resultMap="BaseResultMap">
         select * from supervisor where email = #{email}
     </select>
 
-    <insert id="addSupervisor" parameterType="BaseResultMap">
+    <insert id="addSupervisor" parameterType="com.berryst.demo.module.Supervisor">
         insert into supervisor (username, password, email) values (#{username}, #{password}, #{email})
     </insert>
 
-    <update id="updateSupervisor" parameterType="BaseResultMap">
+    <update id="updateSupervisor" parameterType="com.berryst.demo.module.Supervisor">
         update supervisor set username = #{username}, password = #{password}, email = #{email} where user_id = #{user_id}
     </update>
 
