@@ -1,16 +1,10 @@
-package com.berryst.demo.mapper;
+package com.berryst.demo.service;
 
 import com.berryst.demo.module.Supervisor;
-import com.berryst.demo.module.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-// Dao for CRUD
-@Mapper
-@Repository
-public interface SupervisorMapper {
+public interface SupervisorService {
     List<Supervisor> querySupervisorList();
 
     Supervisor querySupervisorById(int user_id);

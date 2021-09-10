@@ -1,48 +1,51 @@
 package com.berryst.demo.controller;
 
-import com.berryst.demo.mapper.UserMapper;
-import com.berryst.demo.pojo.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.berryst.demo.module.Supervisor;
+import com.berryst.demo.module.User;
+import com.berryst.demo.service.SupervisorService;
+import com.berryst.demo.service.UserService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import javax.annotation.Resource;
 
 @RestController
+@RequestMapping(value="user")
 public class UserController {
-    @Autowired
-    private UserMapper userMapper;
+    @Resource
+    private UserService userService;
 
-    @GetMapping(value = "/queryUserList", produces = {"application/json;charset=utf-8"})
-    public List<User> queryUserList() {
-        List<User> userList = userMapper.queryUserList();
-        for (User user: userList) {
-            System.out.println(user);
+    @Resource
+    private SupervisorService supervisorService;
+
+
+    @RequestMapping(value="register",method= RequestMethod.POST)
+    public int register(boolean isSupervisor, String username, String password, String email){
+        if (!isSupervisor){
+            User user = new User(1, username, password, email);
+            User exist_u = userService.queryUserByEmail(email);
+            if (exist_u == null){
+                int result = userService.addUser(user);
+                return 1;//succeed
+            }
+            else{
+                return 0;//user's email already exist
+            }
         }
-        return userList;
+        else{
+            Supervisor supervisor = new Supervisor(1,username,password,email);
+            Supervisor exist_s = supervisorService.querySupervisorByEmail(email);
+            if (exist_s == null){
+                int result = supervisorService.addSupervisor(supervisor);
+                return 1;//succeed
+            }
+            else{
+                return 0;//supervisor's email already exist
+            }
+        }
+
     }
 
-    @GetMapping(value = "/queryUserById", produces = {"application/json;charset=utf-8"})
-    public User queryUserById() {
-        User user = userMapper.queryUserById(1);
-        return user;
-    }
-
-    @GetMapping(value = "/addUser", produces = {"application/json;charset=utf-8"})
-    public int addUser() {
-        User user = new User(2, "test", "test123", "test@xxx.com");
-        return userMapper.addUser(user);
-    }
-
-    @GetMapping(value = "/updateUser", produces = {"application/json;charset=utf-8"})
-    public int updateUser() {
-        User user = new User(2, "updated", "update123", "update@xxx.com");
-        return userMapper.updateUser(user);
-    }
-
-    @GetMapping(value = "/deleteUser", produces = {"application/json;charset=utf-8"})
-    public int deleteUser() {
-        return userMapper.deleteUser(2);
-    }
 
 }

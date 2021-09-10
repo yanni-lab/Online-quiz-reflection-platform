@@ -1,15 +1,11 @@
-package com.berryst.demo.mapper;
+package com.berryst.demo.service;
 
 import com.berryst.demo.module.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-// Dao for CRUD
-@Mapper
-@Repository
-public interface UserMapper {
+public interface UserService {
+
     List<User> queryUserList();
 
     User queryUserById(int user_id);

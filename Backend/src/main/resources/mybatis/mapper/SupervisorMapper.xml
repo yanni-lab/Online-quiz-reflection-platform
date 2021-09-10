@@ -3,19 +3,29 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.berryst.demo.mapper.SupervisorMapper">
-    <select id="querySupervisorList" resultType="Supervisor">
+    <resultMap id="BaseResultMap" type="com.berryst.demo.module.Supervisor" >
+        <id column="user_id" property="user_id" jdbcType="INTEGER" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="querySupervisorList" resultType="BaseResultMap">
         select * from supervisor
     </select>
 
-    <select id="querySupervisorById" resultType="Supervisor">
+    <select id="querySupervisorById" parameterType="int" resultType="BaseResultMap">
         select * from supervisor where user_id = #{user_id}
     </select>
 
-    <insert id="addSupervisor" parameterType="Supervisor">
-        insert into supervisor (user_id, username, password, email) values (#{user_id}, #{username}, #{password}, #{email})
+    <select id="querySupervisorByEmail" parameterType="String" resultType="BaseResultMap">
+        select * from supervisor where email = #{email}
+    </select>
+
+    <insert id="addSupervisor" parameterType="BaseResultMap">
+        insert into supervisor (username, password, email) values (#{username}, #{password}, #{email})
     </insert>
 
-    <update id="updateSupervisor" parameterType="Supervisor">
+    <update id="updateSupervisor" parameterType="BaseResultMap">
         update supervisor set username = #{username}, password = #{password}, email = #{email} where user_id = #{user_id}
     </update>
 
