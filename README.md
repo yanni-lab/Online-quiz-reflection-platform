@@ -230,6 +230,27 @@ update user_reflection set ux_comment = 'Really nice user interface!'
 update user_reflection set share_email = 'sth@gmail.com'
 ```
 
+##Edit
+1. Add question order and choice order
+2. Combine user_question_answer, user_reflection
+tables to result table. Filter by attempt_id.
+
+**quiz_result**
+   choices-> list of choice order
+```
+attempt_id            int, PK 
+user_id               int
+quiz_id               int
+choices               varchar
+attempt_times         int
+score                 int
+reflection            varchar
+```
+
+Feedback table to quiz table
+feedback-> ArrayList<String> 
+
+
 
 
 

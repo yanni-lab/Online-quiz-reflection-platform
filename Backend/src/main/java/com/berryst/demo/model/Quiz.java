@@ -14,6 +14,7 @@ public class Quiz {
     private int supervisorId;
     private boolean isPublic;
     private ArrayList questions;
+    private String feedback;
 
     public Quiz(int quizId, String quizTitle, String quizBackground, int supervisorId, boolean isPublic, ArrayList questions) {
         this.quizId = quizId;
