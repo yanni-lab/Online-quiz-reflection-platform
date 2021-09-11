@@ -1,0 +1,29 @@
+#background{
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+}
+.text{
+    color: white;
+}
+.container{
+    margin: auto;
+    width: 40%;
+
+}
+
+.header{
+    font-family: "Arial Black", sans-serif;
+    font-size: 4.5em;
+    text-align: center;
+    letter-spacing: -1px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+.paragraph{
+    width:100px;
+    height:30px;
+    font-size: 1.5em;
+    text-align: center;
+    margin: 0 auto;
+}
