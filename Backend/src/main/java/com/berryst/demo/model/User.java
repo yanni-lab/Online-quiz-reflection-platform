@@ -1,6 +1,5 @@
-package com.berryst.demo.module;
+package com.berryst.demo.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

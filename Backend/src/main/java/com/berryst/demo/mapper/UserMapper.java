@@ -1,6 +1,6 @@
 package com.berryst.demo.mapper;
 
-import com.berryst.demo.module.User;
+import com.berryst.demo.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

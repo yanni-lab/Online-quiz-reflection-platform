@@ -1,8 +1,7 @@
 package com.berryst.demo.mapper.impl;
 
 import com.berryst.demo.mapper.SupervisorMapper;
-import com.berryst.demo.module.Supervisor;
-import com.berryst.demo.module.User;
+import com.berryst.demo.model.Supervisor;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 

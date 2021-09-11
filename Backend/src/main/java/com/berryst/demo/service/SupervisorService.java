@@ -1,6 +1,6 @@
 package com.berryst.demo.service;
 
-import com.berryst.demo.module.Supervisor;
+import com.berryst.demo.model.Supervisor;
 
 import java.util.List;
 

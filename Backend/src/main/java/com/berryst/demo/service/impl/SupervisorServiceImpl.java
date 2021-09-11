@@ -1,10 +1,8 @@
 package com.berryst.demo.service.impl;
 
 import com.berryst.demo.mapper.SupervisorMapper;
-import com.berryst.demo.module.Supervisor;
+import com.berryst.demo.model.Supervisor;
 import com.berryst.demo.service.SupervisorService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;

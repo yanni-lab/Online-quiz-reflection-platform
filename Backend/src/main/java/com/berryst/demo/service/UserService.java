@@ -1,6 +1,6 @@
 package com.berryst.demo.service;
 
-import com.berryst.demo.module.User;
+import com.berryst.demo.model.User;
 
 import java.util.List;
 

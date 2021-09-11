@@ -1,7 +1,7 @@
 package com.berryst.demo.controller;
 
-import com.berryst.demo.module.Supervisor;
-import com.berryst.demo.module.User;
+import com.berryst.demo.model.Supervisor;
+import com.berryst.demo.model.User;
 import com.berryst.demo.service.SupervisorService;
 import com.berryst.demo.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -2,7 +2,7 @@ package com.berryst.demo.mapper.impl;
 
 import javax.annotation.Resource;
 import com.berryst.demo.mapper.UserMapper;
-import com.berryst.demo.module.User;
+import com.berryst.demo.model.User;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 

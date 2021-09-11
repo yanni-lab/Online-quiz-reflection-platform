@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.berryst.demo.mapper.SupervisorMapper">
-    <resultMap id="BaseResultMap" type="com.berryst.demo.module.Supervisor" >
+    <resultMap id="BaseResultMap" type="com.berryst.demo.model.Supervisor" >
         <id column="user_id" property="user_id" jdbcType="INTEGER" />
         <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
@@ -21,11 +21,11 @@
         select * from supervisor where email = #{email}
     </select>
 
-    <insert id="addSupervisor" parameterType="com.berryst.demo.module.Supervisor">
+    <insert id="addSupervisor" parameterType="com.berryst.demo.model.Supervisor">
         insert into supervisor (username, password, email) values (#{username}, #{password}, #{email})
     </insert>
 
-    <update id="updateSupervisor" parameterType="com.berryst.demo.module.Supervisor">
+    <update id="updateSupervisor" parameterType="com.berryst.demo.model.Supervisor">
         update supervisor set username = #{username}, password = #{password}, email = #{email} where user_id = #{user_id}
     </update>
 
