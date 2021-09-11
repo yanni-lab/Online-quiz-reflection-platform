@@ -33,6 +33,8 @@
 
 .loginButton{
     text-align: center;
+    width: 95%;
+    text-align-all: center;
     light-height: heightValue;
     border-radius: 10px;
     background-color: #e7effc;
