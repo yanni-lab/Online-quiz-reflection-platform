@@ -13,10 +13,10 @@ public class Quiz {
     private String quizBackground;
     private int supervisorId;
     private boolean isPublic;
-    private ArrayList questions;
+    private ArrayList<Question> questions;
     private String feedback;
 
-    public Quiz(int quizId, String quizTitle, String quizBackground, int supervisorId, boolean isPublic, ArrayList questions) {
+    public Quiz(int quizId, String quizTitle, String quizBackground, int supervisorId, boolean isPublic, ArrayList<Question> questions) {
         this.quizId = quizId;
         this.quizTitle = quizTitle;
         this.quizBackground = quizBackground;

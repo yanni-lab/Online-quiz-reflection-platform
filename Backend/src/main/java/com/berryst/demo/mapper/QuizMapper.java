@@ -1,5 +1,7 @@
 package com.berryst.demo.mapper;
 
+import com.berryst.demo.model.Question;
+import com.berryst.demo.model.QuestionChoice;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.javassist.compiler.ast.Pair;
 import org.springframework.stereotype.Repository;
@@ -21,6 +23,10 @@ public interface QuizMapper {
     int deleteQuiz(int quizId);
 
     Quiz getQuizContent(int quizId);
+
+    ArrayList<Question> getQuestionList(int quizId);
+
+    ArrayList<QuestionChoice> getChoiceList(int questionId);
 
     int makeQuizPublic(int quizId);
 

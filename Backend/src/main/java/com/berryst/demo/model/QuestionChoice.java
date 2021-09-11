@@ -7,14 +7,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QuestionChoice {
     private int choiceId;
-    private int mark;
+    private int score;
     private String choice;
     private int questionId;
+    private int questionChoiceOrder;
 
-    public QuestionChoice(int choiceId, int mark, String choice, int questionId) {
+    public QuestionChoice(int choiceId, int score, String choice, int questionId, int questionChoiceOrder) {
         this.choiceId = choiceId;
-        this.mark = mark;
+        this.score = score;
         this.choice = choice;
         this.questionId = questionId;
+        this.questionChoiceOrder = questionChoiceOrder;
     }
 }
