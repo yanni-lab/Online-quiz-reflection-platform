@@ -8,9 +8,9 @@ const NavBar = () => {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="me-auto">
-                      <Nav.Link href="#home">Home</Nav.Link>
-                      <Nav.Link href="#link">Register</Nav.Link>
-                      <Nav.Link href="#login">Login</Nav.Link>
+                      <Nav.Link href='/'>Home</Nav.Link>
+                      <Nav.Link href="/register">Register</Nav.Link>
+                      <Nav.Link href="/login">Login</Nav.Link>
                       <NavDropdown title="Quiz Series" id="basic-nav-dropdown">
                           <NavDropdown.Item href="#action/3.1">Quiz 1</NavDropdown.Item>
                           <NavDropdown.Item href="#action/3.2">Quiz 2</NavDropdown.Item>

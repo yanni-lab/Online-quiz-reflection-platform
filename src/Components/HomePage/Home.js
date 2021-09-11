@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../NavBar/NavBar';
+// import NavBar from '../NavBar/NavBar';
 import logo from '../images/Welcome.png';
 import {Row, Col }from 'react-bootstrap';
 import './Home.css';
@@ -7,7 +7,7 @@ import './Home.css';
 const Home = () => {
     return(
         <div className="HomePage">
-            <NavBar />
+
             <div id="background" style={headerStyle}>
                 <div className="container">
                     <div className="text">
