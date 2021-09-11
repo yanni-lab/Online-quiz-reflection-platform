@@ -245,10 +245,14 @@ choices               varchar
 attempt_times         int
 score                 int
 reflection            varchar
+reflection_time       datetime
+supervisor_id         int
 ```
 
 Feedback table to quiz table
 feedback-> ArrayList<String> 
+3. Combine User and supervisor table
+add isSupervisor parameter.
 
 
 
