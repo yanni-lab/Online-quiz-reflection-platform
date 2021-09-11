@@ -1,0 +1,18 @@
+package com.berryst.demo.mapper;
+
+import java.util.ArrayList;
+
+import com.berryst.demo.model.QuizResult;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
+
+@Mapper
+@Repository
+public interface ResultMapper {
+    ArrayList<QuizResult> getResultUser(int userId);
+
+    ArrayList<QuizResult> getResultSupervisor(int quizId, int userId);
+
+    int saveResult(QuizResult quizResult);
+}

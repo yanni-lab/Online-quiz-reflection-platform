@@ -2,17 +2,19 @@ package com.berryst.demo.mapper.impl;
 
 import com.berryst.demo.mapper.QuizMapper;
 import com.berryst.demo.model.Quiz;
+import org.apache.ibatis.javassist.compiler.ast.Pair;
 
 import java.util.ArrayList;
 
 public class QuizMapperImpl implements QuizMapper {
     @Override
-    public ArrayList getPublicQuiz() {
+    public ArrayList<Pair> getPublicQuiz() {
+
         return null;
     }
 
     @Override
-    public ArrayList getSupervisorQuiz(int userID) {
+    public ArrayList<Pair> getSupervisorQuiz(int supervisorId) {
         return null;
     }
 

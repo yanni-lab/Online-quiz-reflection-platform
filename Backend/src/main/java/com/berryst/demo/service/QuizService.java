@@ -1,14 +1,16 @@
 package com.berryst.demo.service;
 
 import com.berryst.demo.model.Quiz;
+import org.apache.ibatis.javassist.compiler.ast.Pair;
+
 import java.util.ArrayList;
 
 public interface QuizService {
-    ArrayList getPublicQuizList();
+    ArrayList<Pair> getPublicQuizList();
 
     Quiz getQuizContent(int quizId);
 
-    ArrayList getSuvervisorQuiz(int quizId, int supervisorId);
+    ArrayList<Pair> getSuvervisorQuiz(int supervisorId);
 
     int setQuiz(Quiz quiz);
 
@@ -18,7 +20,6 @@ public interface QuizService {
 
     int makeQuizPrivate(int quizId);
 
-    ArrayList getUserFeedback(int userId);
 
-    ArrayList getSupervisorFeedback(int userId);
+
 }

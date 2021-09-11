@@ -1,7 +1,7 @@
 package com.berryst.demo.mapper;
 
-import com.berryst.demo.model.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.javassist.compiler.ast.Pair;
 import org.springframework.stereotype.Repository;
 import com.berryst.demo.model.Quiz;
 
@@ -10,9 +10,9 @@ import java.util.ArrayList;
 @Mapper
 @Repository
 public interface QuizMapper {
-    ArrayList getPublicQuiz();
+    ArrayList<Pair> getPublicQuiz();
 
-    ArrayList getSupervisorQuiz(int userID);
+    ArrayList<Pair> getSupervisorQuiz(int supervisorid);
 
     int addQuiz(Quiz quiz);
 
