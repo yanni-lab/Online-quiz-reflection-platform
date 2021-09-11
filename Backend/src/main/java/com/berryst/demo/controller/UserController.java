@@ -21,18 +21,13 @@ public class UserController {
 
 
     @RequestMapping(value="/register",method= RequestMethod.GET)
-    public int register(){
-        //boolean isSupervisor, String username, String password, String email
-        boolean isSupervisor = false;
-        String username = "aaa";
-        String password = "111";
-        String email = "aaa@gmail.com";
+    public int register(boolean isSupervisor, String username, String password, String email){
         if (!isSupervisor){
             User user = new User(1, username, password, email);
             User exist_u = userService.queryUserByEmail(email);
             if (exist_u == null){
                 int result = userService.addUser(user);
-                return 1;//succeed
+                return result;//succeed
             }
             else{
                 return 0;//user's email already exist
