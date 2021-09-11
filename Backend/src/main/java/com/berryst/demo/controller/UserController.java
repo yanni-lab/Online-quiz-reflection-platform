@@ -1,14 +1,15 @@
 package com.berryst.demo.controller;
 
-import com.berryst.demo.model.Supervisor;
+import com.berryst.demo.DemoApplication;
 import com.berryst.demo.model.User;
-import com.berryst.demo.service.SupervisorService;
 import com.berryst.demo.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @RestController
 @RequestMapping(value="/user")
@@ -16,36 +17,36 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @Resource
-    private SupervisorService supervisorService;
-
 
     @RequestMapping(value="/register",method= RequestMethod.GET)
-    public int register(boolean isSupervisor, String username, String password, String email){
-        if (!isSupervisor){
-            User user = new User(1, username, password, email);
-            User exist_u = userService.queryUserByEmail(email);
-            if (exist_u == null){
-                int result = userService.addUser(user);
-                return result;//succeed
-            }
-            else{
-                return 0;//user's email already exist
-            }
+    public String register(boolean isSupervisor, String username, String password, String email){
+        User user = new User(1, username, password, email,isSupervisor);
+        User exist_u = userService.queryUserByEmail(email);
+        if (exist_u == null){
+            userService.addUser(user);
+            User curUser = userService.queryUserByEmail(email);
+            Timestamp curTime = new Timestamp(new Date().getTime());
+            String token = curUser.getUserId()+":"+curTime.getTime();
+            DemoApplication.tokenList.put(curUser.getUserId(), curTime.getTime());
+            return token;//succeed
         }
         else{
-            Supervisor supervisor = new Supervisor(1,username,password,email);
-            Supervisor exist_s = supervisorService.querySupervisorByEmail(email);
-            if (exist_s == null){
-                int result = supervisorService.addSupervisor(supervisor);
-                return 1;//succeed
-            }
-            else{
-                return 0;//supervisor's email already exist
-            }
+            return "User already exist!";//user's email already exist
         }
-
     }
 
-
+    @RequestMapping(value="/login",method= RequestMethod.GET)
+    public String login(String username, String password){
+        User exist_u = userService.queryUserByUsername(username);
+        if (exist_u.getPassword().equals(password)){
+            Timestamp curTime = new Timestamp(new Date().getTime());
+            String token = exist_u.getUserId()+":"+curTime.getTime();
+            DemoApplication.tokenList.remove(exist_u.getUserId());
+            DemoApplication.tokenList.put(exist_u.getUserId(), curTime.getTime());
+            return token;//succeed
+        }
+        else{
+            return "Wrong username or password!";//log in failed
+        }
+    }
 }

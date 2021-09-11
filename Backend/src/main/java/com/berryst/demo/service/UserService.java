@@ -5,16 +5,19 @@ import com.berryst.demo.model.User;
 import java.util.List;
 
 public interface UserService {
-
     List<User> queryUserList();
 
-    User queryUserById(int user_id);
+    User queryUserById(int userId);
 
     User queryUserByEmail(String email);
+
+    User queryUserByUsername(String username);
 
     int addUser(User user);
 
     int updateUser(User user);
 
-    int deleteUser(int user_id);
+    int deleteUser(int userId);
+
+    boolean checkToken(int userId);
 }
