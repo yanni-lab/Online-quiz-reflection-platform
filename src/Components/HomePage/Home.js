@@ -1,7 +1,6 @@
 import React from 'react';
-// import NavBar from '../NavBar/NavBar';
 import logo from '../images/Welcome.png';
-import {Row, Col }from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import './Home.css';
 
 const Home = () => {
@@ -17,7 +16,10 @@ const Home = () => {
                                 Y-Change is a social and systemic change platform for young people aged 18 to 30 with lived experiences of socioeconomic disadvantage. As Lived Experience Consultants, the team work to challenge the thinking and practices of social systems through advocacy and leadership.
                             </p>
                         </Row>
+
+
                     </div>
+
                 </div>
             </div>
 

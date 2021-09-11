@@ -1,10 +1,20 @@
 import React from 'react';
-import {Navbar,Container,Nav,NavDropdown} from 'react-bootstrap'
+import {Navbar,Container,Nav,NavDropdown} from 'react-bootstrap';
+import Logo from '../images/logo.png';
+import "./NavBar.css";
+
+
 const NavBar = () => {
   return(
       <Navbar bg="light" expand="lg">
           <Container>
-              <Navbar.Brand href="#home">Y-Change</Navbar.Brand>
+              <img href="/"
+                  src={Logo}
+                  alt="Logo"
+                  className="icon-img"
+              />
+              <Navbar.Brand href="/" className="brand"> LEx mirror </Navbar.Brand>
+
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="me-auto">
@@ -18,6 +28,7 @@ const NavBar = () => {
                           <NavDropdown.Divider />
                           <NavDropdown.Item href="#action/3.4">Quiz Report</NavDropdown.Item>
                       </NavDropdown>
+                      <Nav.Link href="/logout">Log out</Nav.Link>
                   </Nav>
               </Navbar.Collapse>
           </Container>
