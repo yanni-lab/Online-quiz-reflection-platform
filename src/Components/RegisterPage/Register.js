@@ -10,7 +10,7 @@ class Register extends React.Component {
             password: '',
             repassword:'',
             email:'',
-            isSupervisor:'false'
+            isSupervisor:false
         };
 
     this.handleUserChange = this.handleUserChange.bind(this);
