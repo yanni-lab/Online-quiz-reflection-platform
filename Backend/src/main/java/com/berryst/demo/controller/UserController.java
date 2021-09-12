@@ -3,18 +3,15 @@ package com.berryst.demo.controller;
 import com.berryst.demo.DemoApplication;
 import com.berryst.demo.model.User;
 import com.berryst.demo.service.UserService;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value="/user")
