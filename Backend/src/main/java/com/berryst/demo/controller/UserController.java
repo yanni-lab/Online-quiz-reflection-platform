@@ -3,6 +3,8 @@ package com.berryst.demo.controller;
 import com.berryst.demo.DemoApplication;
 import com.berryst.demo.model.User;
 import com.berryst.demo.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
@@ -22,14 +24,16 @@ public class UserController {
 
 
     @RequestMapping(value="/register",method= RequestMethod.POST)
-    public HashMap<String, String> register(@RequestBody String data, HttpServletResponse response) throws JSONException {
+    public ObjectNode register(@RequestBody String data, HttpServletResponse response) throws JSONException {
         JSONObject receivedData = new JSONObject(data);
         String username = receivedData.getString("username");
         String password = receivedData.getString("password");
         String email = receivedData.getString("email");
         boolean isSupervisor = receivedData.getBoolean("isSupervisor");
 
-        HashMap<String, String> resultMap = new HashMap<String, String>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode node = objectMapper.createObjectNode();
+
         User user = new User(1, username, password, email,isSupervisor);
         User exist_u = userService.queryUserByEmail(email);
         if (exist_u == null){
@@ -38,35 +42,41 @@ public class UserController {
             Timestamp curTime = new Timestamp(new Date().getTime());
             String token = curUser.getUserId()+":"+curTime.getTime();
             DemoApplication.tokenList.put(curUser.getUserId(), curTime.getTime());
-            resultMap.put("token",token);
-            return resultMap;//succeed
+            node.put("token",token);
+            node.put("errorCode",1);
+            return node;//succeed
         }
         else{
-            resultMap.put("token",null);
-            return resultMap;//user's email already exist
+            node.put("token","");
+            node.put("errorCode",2);
+            return node;//user's email already exist
         }
     }
 
     @RequestMapping(value="/login",method= RequestMethod.POST)
-    public HashMap<String, String> login(@RequestBody String data, HttpServletResponse response) throws JSONException {
+    public ObjectNode login(@RequestBody String data, HttpServletResponse response) throws JSONException {
         JSONObject receivedData = new JSONObject(data);
 
         String username = receivedData.getString("username");
         String password = receivedData.getString("password");
 
-        HashMap<String, String> resultMap = new HashMap<String, String>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode node = objectMapper.createObjectNode();
+
         User exist_u = userService.queryUserByUsername(username);
-        if (exist_u != null && exist_u.getPassword().equals(password)){
+        if (exist_u.getPassword().equals(password)){
             Timestamp curTime = new Timestamp(new Date().getTime());
             String token = exist_u.getUserId()+":"+curTime.getTime();
             DemoApplication.tokenList.remove(exist_u.getUserId());
             DemoApplication.tokenList.put(exist_u.getUserId(), curTime.getTime());
-            resultMap.put("token",token);
-            return resultMap;//succeed
+            node.put("token",token);
+            node.put("errorCode",1);
+            return node;//succeed
         }
         else{
-            resultMap.put("token",null);
-            return resultMap;//log in failed
+            node.put("token","");
+            node.put("errorCode",2);
+            return node;//log in failed
         }
     }
 }

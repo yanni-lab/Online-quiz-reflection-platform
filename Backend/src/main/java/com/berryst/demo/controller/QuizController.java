@@ -2,6 +2,9 @@ package com.berryst.demo.controller;
 
 import com.berryst.demo.model.Quiz;
 import com.berryst.demo.service.QuizService;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.ibatis.javassist.compiler.ast.Pair;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,16 +22,23 @@ public class QuizController {
     private QuizService quizService;
 
     @RequestMapping(value="/available_quiz",method= RequestMethod.POST)
-    public ArrayList<Pair> getPublicQuiz(@RequestBody String data, HttpServletResponse response) throws JSONException {
-        return quizService.getPublicQuizList();
+    public ObjectNode getPublicQuiz(@RequestBody String data, HttpServletResponse response) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode node = objectMapper.createObjectNode();
+        node.put("quizList", quizService.getPublicQuizList().toString());
+        node.put("errorCode",1);
+        return node;
     }
 
     @RequestMapping(value="/quiz_content",method= RequestMethod.POST)
-    public Quiz getQuizContent(@RequestBody String data, HttpServletResponse response) throws JSONException {
+    public ObjectNode getQuizContent(@RequestBody String data, HttpServletResponse response) throws JSONException {
         JSONObject receivedData = new JSONObject(data);
-
         int quizId = receivedData.getInt("quizId");
 
-        return quizService.getQuizContent(quizId);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode node = objectMapper.convertValue(quizService.getQuizContent(quizId), ObjectNode.class);
+        node.put("errorCode",1);
+
+        return node;
     }
 }
