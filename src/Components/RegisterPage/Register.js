@@ -8,13 +8,18 @@ class Register extends React.Component {
         this.state = {
             username: '',
             password: '',
-            repassword:''
+            repassword:'',
+            email:'',
+            isSupervisor:''
         };
 
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
     this.handleRePassChange = this.handleRePassChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleIsSupervisorChange = this.handleIsSupervisorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
     // this.validateForm = this.validateForm.bind(this);
     };
     // validateForm() {
@@ -38,6 +43,16 @@ class Register extends React.Component {
     handleRePassChange(evt) {
         this.setState({
             repassword: evt.target.value,
+        });
+    }
+    handleEmailChange(evt) {
+        this.setState({
+            email: evt.target.value,
+        });
+    }
+    handleIsSupervisorChange(evt) {
+        this.setState({
+            isSupervisor: evt.target.value,
         });
     }
 
@@ -64,7 +79,7 @@ class Register extends React.Component {
         return (
             <div className="Register">
                 <div className="box justify-content-center align-items-center">
-                    <Form className="registerForm" onSubmit={this.handleThisSubmit}>
+                    <Form className="registerForm" onSubmit={this.handleSubmit}>
                         <div className = "heading">
                             Register Account
                         </div>
@@ -74,7 +89,9 @@ class Register extends React.Component {
                                           autoFocus
                                           type="text"
                                           value={this.state.username}
-                                          onChange={this.handleUserChange}                            />
+                                          onChange={this.handleUserChange}
+                                          placeholder="Username"
+                            />
                         </Form.Group>
                         <Form.Group size="lg" controlId="password">
                             <Form.Label className = "label">Password</Form.Label>
@@ -82,6 +99,7 @@ class Register extends React.Component {
                                           type="password"
                                           value={this.state.password}
                                           onChange={this.handlePassChange}
+                                          placeholder="******"
                             />
                         </Form.Group>
                         <Form.Group size="lg" controlId="repassword">
@@ -89,7 +107,26 @@ class Register extends React.Component {
                             <Form.Control className = "input"
                                           type="password"
                                           value={this.state.repassword}
-                                          onChange={this.handleRePassChange}                            />
+                                          onChange={this.handleRePassChange}
+                                          placeholder="******"
+                            />
+                        </Form.Group>
+                        <Form.Group size="lg" controlId="email">
+                            <Form.Label className = "label">Email</Form.Label>
+                            <Form.Control className = "input"
+                                          type="email"
+                                          value={this.state.email}
+                                          onChange={this.handleEmailChange}
+                                          placeholder="xxx@xxx.com"
+                            />
+                        </Form.Group>
+                        <Form.Group size="lg" className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Check type="checkbox"
+                                        label="As supervisor"
+                                        value={this.state.handleIsSupervisorChange}
+                                        onChange={this.handleIsSupervisorChange}
+                                        
+                            />
                         </Form.Group>
                         <Row>
                             <Button className="button"

@@ -14,13 +14,15 @@ const Home = () => {
             <div id="background" style={headerStyle}>
                 <div className="container">
                     <div className="text" >
-                        <h2 className="header">Welcome</h2>
+                        <Row className="header">
+                            <div >Welcome</div>
+                        </Row>
                         <Row className="paragraph">
                             <p >
                                 Y-Change is a social and systemic change platform for young people aged 18 to 30 with lived experiences of socioeconomic disadvantage. As Lived Experience Consultants, the team work to challenge the thinking and practices of social systems through advocacy and leadership.
                             </p>
                         </Row>
-                        <Row>
+                        <Row className="roleContent">
                             <CardGroup>
                                 <Card className="cardRole" style={{ width: '18rem'}}>
                                     <Card.Img className="cardimg" variant="top" src={supervisor}/>
