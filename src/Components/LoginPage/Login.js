@@ -1,18 +1,43 @@
-import React, { useState } from "react";
+import React, {Component} from "react";
 import {Button,Form,Row,Col,InputGroup} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css"
 
-export default function Register () {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+class Login extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
 
+        };
 
-    function validateForm() {
-        return username.length > 0 && password.length > 0;
+        this.handleUserChange = this.handleUserChange.bind(this);
+        this.handlePassChange = this.handlePassChange.bind(this);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.validateForm = this.validateForm.bind(this);
+    };
+    // validateForm() {
+    //     return !this.state.username ||
+    //         ! this.state.password ||
+    //         || !this.state.repassword.length > 0;
+    // }
+
+    handleUserChange(evt) {
+        this.setState({
+            username: evt.target.value,
+        });
+    };
+
+    handlePassChange(evt) {
+        this.setState({
+            password: evt.target.value,
+        });
     }
 
-    function handleSubmit(event) {
+    handleSubmit(event) {
+        console.log(this.state);
         event.preventDefault();
         fetch('http://localhost:8080/user/login',{
             method:'post',
@@ -26,48 +51,46 @@ export default function Register () {
             console.log(error)
         })
     }
+    render(){
+        return (
+            <div className="Register">
+                <div className="box justify-content-center align-items-center">
+                    <Form className="registerForm" onSubmit={this.handleSubmit}>
+                        <div className = "heading">
+                            Register Account
+                        </div>
+                        <Form.Group size="lg" controlId="username">
+                            <Form.Label className = "label">Username</Form.Label>
+                            <Form.Control className = "input"
+                                          autoFocus
+                                          type="text"
+                                          value={this.state.username}
+                                          onChange={this.handleUserChange}                            />
+                        </Form.Group>
+                        <Form.Group size="lg" controlId="password">
+                            <Form.Label className = "label">Password</Form.Label>
+                            <Form.Control className = "input"
+                                          type="password"
+                                          value={this.state.password}
+                                          onChange={this.handlePassChange}
+                            />
+                        </Form.Group>
 
-    return (
-        <div className="Register">
-            <div className="box justify-content-center align-items-center">
-                <Form className="registerForm" onSubmit={handleSubmit}>
-                    <div className = "heading">
-                        Login
-                    </div>
-                    <Form.Group size="lg" controlId="username">
-                        <Form.Label className = "label">Username</Form.Label>
-                        <Form.Control className = "input"
-                                      autoFocus
-                                      type="text"
-                                      value={username}
-                                      onChange={(e) => setUsername(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group size="lg" controlId="password">
-                        <Form.Label className = "label">Password</Form.Label>
-                        <Form.Control className = "input"
-                                      type="password"
-                                      value={password}
-                                      onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </Form.Group>
-
-                    <Row className="d-grid gap-2">
-                        <Col >
-                            <Button className="loginButton"
+                        <Row>
+                            <Button className="button"
                                     size="lg"
-                                    variant="outline-primary"
                                     type="submit"
-                                     disabled={!validateForm()}
+                                // disabled={this.validateForm()}
                             >
-                                Login
+                                Create account
                             </Button>
-                        </Col>
-                    </Row>
-
-                </Form>
+                        </Row>
+                    </Form>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
+
+export default Login
