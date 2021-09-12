@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Button,Form,Row,Col,InputGroup} from "react-bootstrap";
+import React from "react";
+import {Button,Form,Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css"
 
@@ -14,7 +14,6 @@ class Login extends React.Component {
 
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handlePassChange = this.handlePassChange.bind(this);
-
         this.handleSubmit = this.handleSubmit.bind(this);
         // this.validateForm = this.validateForm.bind(this);
     };

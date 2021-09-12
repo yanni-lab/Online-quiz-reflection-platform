@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from '../images/Welcome.png';
 import supervisor from '../images/supervisor.png';
-import lex from '../images/Lex.png';
-import {Row, Col, Button,CardGroup,Card} from 'react-bootstrap';
+// import lex from '../images/Lex.png';
+import {Row,  Button,CardGroup,Card} from 'react-bootstrap';
 import './Home.css';
 
 const Home = () => {

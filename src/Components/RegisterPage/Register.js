@@ -1,4 +1,4 @@
-import React, { useState,Component } from "react";
+import React from "react";
 import {Button,Form,Row} from "react-bootstrap";
 import "./Register.css";
 
@@ -14,7 +14,7 @@ class Register extends React.Component {
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
     this.handleRePassChange = this.handleRePassChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleThisSubmit = this.handleThisSubmit.bind(this);
     // this.validateForm = this.validateForm.bind(this);
     };
     // validateForm() {
@@ -41,9 +41,9 @@ class Register extends React.Component {
         });
     }
 
-    handleSubmit(event) {
+    handleThisSubmit(evt) {
         console.log(this.state);
-        event.preventDefault();
+        evt.preventDefault();
         fetch('http://localhost:8080/user/login',{
             method:'post',
             headers:{},
@@ -60,7 +60,7 @@ class Register extends React.Component {
         return (
             <div className="Register">
                 <div className="box justify-content-center align-items-center">
-                    <Form className="registerForm" onSubmit={this.handleSubmit}>
+                    <Form className="registerForm" onSubmit={this.handleThisSubmit}>
                         <div className = "heading">
                             Register Account
                         </div>
