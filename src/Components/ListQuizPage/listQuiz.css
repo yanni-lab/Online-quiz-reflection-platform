@@ -1,0 +1,34 @@
+.backButton {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.feedbackButton{
+    float:right ;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+.listQuizPage{
+    background-color: white;
+}
+
+.myQuiz{
+    margin-left: 50px;
+    margin-top: 50px;
+    font-family: "Arial Black", sans-serif;
+    font-size: 2.0em;
+}
+
+.QuizZone{
+    width: 150px;
+    margin: 50px;
+    height:150px;
+    padding: 45px 0;
+    background-color: #e7effc;
+    text-align: center;
+}
+.quizName{
+    font-family: "Arial Black", sans-serif;
+    font-size: 1.5em;
+}

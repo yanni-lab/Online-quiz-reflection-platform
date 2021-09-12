@@ -4,7 +4,6 @@ import supervisor from '../images/supervisor.png';
 // import lex from '../images/Lex.png';
 import {Row,  Button,CardGroup,Card} from 'react-bootstrap';
 import './Home.css';
-import Login from '../LoginPage/Login';
 import {Link} from 'react-router-dom'
 
 
@@ -32,8 +31,12 @@ const Home = () => {
                                         </Card.Text>
                                     </Card.Body>
                                     <Card.Footer>
-                                        <Button className="homeButton" size="lg" variant="outline-primary">Click here</Button>
-                                    </Card.Footer>
+                                        <Link to='/listQuiz'>
+                                            <Button className="homeButton"
+                                                    size="lg"
+                                                    variant="outline-primary"
+                                            >Click here</Button>
+                                        </Link>                                    </Card.Footer>
                                 </Card>
                                 <Card className="cardRole" style={{ width: '18rem'}}>
                                     <Card.Img className="cardimg" variant="top" src={supervisor} />
@@ -69,8 +72,5 @@ const headerStyle ={
     height: '100vh'
 }
 
-const LoginPage = () => (
-    <Login />
-);
 
 export default Home;
