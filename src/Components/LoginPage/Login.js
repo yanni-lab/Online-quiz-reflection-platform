@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Button,Form,Row,Col} from "react-bootstrap";
+import {Button,Form,Row,Col,InputGroup} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css"
 
@@ -9,8 +9,7 @@ export default function Register () {
 
 
     function validateForm() {
-        return username.length > 0 && password.length > 0
-            ;
+        return username.length > 0 && password.length > 0;
     }
 
     function handleSubmit(event) {
