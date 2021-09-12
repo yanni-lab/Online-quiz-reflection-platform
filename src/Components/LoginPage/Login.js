@@ -9,7 +9,6 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
-
         };
 
         this.handleUserChange = this.handleUserChange.bind(this);
@@ -56,7 +55,7 @@ class Login extends React.Component {
                 <div className="box justify-content-center align-items-center">
                     <Form className="registerForm" onSubmit={this.handleSubmit}>
                         <div className = "heading">
-                            Register Account
+                            Login
                         </div>
                         <Form.Group size="lg" controlId="username">
                             <Form.Label className = "label">Username</Form.Label>
@@ -81,7 +80,7 @@ class Login extends React.Component {
                                     type="submit"
                                 // disabled={this.validateForm()}
                             >
-                                Create account
+                                Login
                             </Button>
                         </Row>
                     </Form>
