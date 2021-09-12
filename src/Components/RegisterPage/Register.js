@@ -14,6 +14,17 @@ export default function Register () {
 
     function handleSubmit(event) {
         event.preventDefault();
+        fetch('http://localhost:8080/user/login',{
+            method:'post',
+            headers:{},
+            body:'username=${this.state.username}&password=${this.state.passward}'
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            console.log(data)
+        }).catch(function(error){
+            console.log(error)
+        })
     }
 
     return (
@@ -50,7 +61,7 @@ export default function Register () {
                     </Form.Group>
                     <Row>
                         <Button className="button"  size="lg" type="submit" disabled={!validateForm()}>
-                            Login
+                            Create account
                         </Button>
                     </Row>
 
