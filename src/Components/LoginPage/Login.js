@@ -36,11 +36,12 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         console.log(this.state);
+        var dataSent = JSON.stringify({"username": this.state.username,"password": this.state.password});
         event.preventDefault();
         fetch('http://localhost:8080/user/login',{
             method:'post',
-            headers:{},
-            body:'username=${this.state.username}&password=${this.state.passward}'
+            headers:{"Content-Type":"application/json"},
+            body:dataSent
         }).then((response)=>{
             return response.json()
         }).then((data)=>{

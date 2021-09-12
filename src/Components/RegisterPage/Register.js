@@ -14,7 +14,7 @@ class Register extends React.Component {
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
     this.handleRePassChange = this.handleRePassChange.bind(this);
-    this.handleThisSubmit = this.handleThisSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     // this.validateForm = this.validateForm.bind(this);
     };
     // validateForm() {
@@ -41,13 +41,17 @@ class Register extends React.Component {
         });
     }
 
-    handleThisSubmit(evt) {
+    handleSubmit(event) {
         console.log(this.state);
-        evt.preventDefault();
-        fetch('http://localhost:8080/user/login',{
+        var dataSent = JSON.stringify({
+            "username": this.state.username,
+            "password": this.state.password
+        });
+        event.preventDefault();
+        fetch('http://localhost:8080/user/register',{
             method:'post',
-            headers:{},
-            body:'username=${this.state.username}&password=${this.state.passward}'
+            headers:{"Content-Type":"application/json"},
+            body:dataSent
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
