@@ -25,14 +25,14 @@ public class UserController {
 
 
     @RequestMapping(value="/register",method= RequestMethod.POST)
-    public String register(@RequestBody String data, HttpServletResponse response) throws JSONException {
+    public HashMap<String, String> register(@RequestBody String data, HttpServletResponse response) throws JSONException {
         JSONObject receivedData = new JSONObject(data);
         String username = receivedData.getString("username");
         String password = receivedData.getString("password");
         String email = receivedData.getString("email");
         boolean isSupervisor = receivedData.getBoolean("isSupervisor");
 
-
+        HashMap<String, String> resultMap = new HashMap<String, String>();
         User user = new User(1, username, password, email,isSupervisor);
         User exist_u = userService.queryUserByEmail(email);
         if (exist_u == null){
@@ -41,11 +41,12 @@ public class UserController {
             Timestamp curTime = new Timestamp(new Date().getTime());
             String token = curUser.getUserId()+":"+curTime.getTime();
             DemoApplication.tokenList.put(curUser.getUserId(), curTime.getTime());
-            System.out.println(token);
-            return token;//succeed
+            resultMap.put("token",token);
+            return resultMap;//succeed
         }
         else{
-            return "User already exist!";//user's email already exist
+            resultMap.put("token",null);
+            return resultMap;//user's email already exist
         }
     }
 
