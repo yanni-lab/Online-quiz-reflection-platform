@@ -46,6 +46,7 @@ class Login extends React.Component {
             return response.json()
         }).then((data)=>{
             console.log(data)
+            //data from backend
         }).catch(function(error){
             console.log(error)
         })

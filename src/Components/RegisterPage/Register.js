@@ -10,7 +10,7 @@ class Register extends React.Component {
             password: '',
             repassword:'',
             email:'',
-            isSupervisor:''
+            isSupervisor:'false'
         };
 
     this.handleUserChange = this.handleUserChange.bind(this);
@@ -52,7 +52,7 @@ class Register extends React.Component {
     }
     handleIsSupervisorChange(evt) {
         this.setState({
-            isSupervisor: evt.target.value,
+            isSupervisor: evt.target.checked,
         });
     }
 
@@ -60,7 +60,10 @@ class Register extends React.Component {
         console.log(this.state);
         var dataSent = JSON.stringify({
             "username": this.state.username,
-            "password": this.state.password
+            "password": this.state.password,
+            "email":this.state.email,
+            "isSupervisor":this.state.isSupervisor
+            //
         });
         event.preventDefault();
         fetch('http://localhost:8080/user/register',{
@@ -124,8 +127,9 @@ class Register extends React.Component {
                             <Form.Check type="checkbox"
                                         label="As supervisor"
                                         value={this.state.handleIsSupervisorChange}
+                                        cheked={this.state.isSupervisor}
                                         onChange={this.handleIsSupervisorChange}
-                                        
+
                             />
                         </Form.Group>
                         <Row>
