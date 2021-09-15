@@ -1,0 +1,58 @@
+.quizPage{
+    height:680px
+}
+
+.backButton {
+
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.formerNextButtonRow
+
+.formerButton {
+    font-size: 50px;
+    margin-left: 100px;
+    margin-top: 50px;
+    border:None;
+}
+
+.nextButton {
+    font-size: 50px;
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-right: 100px;
+    border:None;
+    float:right;
+}
+
+
+.option{
+    padding-bottom:20px;
+    padding-top:20px
+}
+
+.optionButton {
+    width: 400px;
+}
+
+
+
+.quizPage{
+    background-color: white;
+}
+
+.question{
+    padding: 30px 10px 30px 10px ;
+    text-align: center;
+    color: black;
+    font-size: 30px;
+}
+
+.quizForm{
+    padding: 30px 10px 30px 10px ;
+    text-align: center;
+
+}
+
+

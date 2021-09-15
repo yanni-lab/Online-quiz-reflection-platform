@@ -21,14 +21,22 @@
 }
 
 .QuizZone{
-    width: 150px;
+    width: 350px;
     margin: 50px;
     height:150px;
-    padding: 45px 0;
+    padding: 30px;
     background-color: #e7effc;
-    text-align: center;
+
+    color: black;
+    border: 0;
+    font-size: 25px;
+
+    display: inline-flex;
+    flex-direction:column;
+    justify-content: space-around;
 }
 .quizName{
     font-family: "Arial Black", sans-serif;
     font-size: 1.5em;
+    width:100%
 }

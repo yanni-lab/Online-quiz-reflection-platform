@@ -23,9 +23,9 @@ const NavBar = () => {
                       <Nav.Link href="/login">Login</Nav.Link>
                       <Nav.Link href="/listQuiz">ListQuiz</Nav.Link>
                       <NavDropdown title="Quiz Series" id="basic-nav-dropdown">
-                          <NavDropdown.Item href="#action/3.1">Quiz 1</NavDropdown.Item>
-                          <NavDropdown.Item href="#action/3.2">Quiz 2</NavDropdown.Item>
-                          <NavDropdown.Item href="#action/3.3">Quiz 3</NavDropdown.Item>
+                          <NavDropdown.Item href="#action/3.1">Collaborative learning</NavDropdown.Item>
+                          <NavDropdown.Item href="#action/3.2">Leadership</NavDropdown.Item>
+                          <NavDropdown.Item href="#action/3.3">Resilience</NavDropdown.Item>
                           <NavDropdown.Divider />
                           <NavDropdown.Item href="#action/3.4">Quiz Report</NavDropdown.Item>
                       </NavDropdown>

@@ -1,0 +1,43 @@
+.backButton {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.feedbackButton{
+    float:right ;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+
+.communicationPage{
+    background-color: white;
+}
+
+.text-container{
+    padding: 20px 50px;
+}
+
+.title{
+    font-family: "Arial Black", sans-serif;
+    font-size: 2.0em;
+}
+
+.sub-title{
+
+    font-size: 30px;
+}
+
+.content{
+    font-size: 25px;
+}
+
+.start-btn{
+    padding: 10px 50px;
+    font-size: 28px;
+}
+
+.box{
+    padding: 20px 0;
+    text-align: center;
+}
