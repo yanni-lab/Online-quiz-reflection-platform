@@ -21,15 +21,15 @@ const NavBar = () => {
                       <Nav.Link href='/'>Home</Nav.Link>
                       <Nav.Link href="/register">Register</Nav.Link>
                       <Nav.Link href="/login">Login</Nav.Link>
-                      <Nav.Link href="/listQuiz">ListQuiz</Nav.Link>
-                      <NavDropdown title="Quiz Series" id="basic-nav-dropdown">
-                          <NavDropdown.Item href="#action/3.1">Collaborative learning</NavDropdown.Item>
-                          <NavDropdown.Item href="#action/3.2">Leadership</NavDropdown.Item>
-                          <NavDropdown.Item href="#action/3.3">Resilience</NavDropdown.Item>
-                          <NavDropdown.Divider />
-                          <NavDropdown.Item href="#action/3.4">Quiz Report</NavDropdown.Item>
-                      </NavDropdown>
-                      <Nav.Link href="/logout">Log out</Nav.Link>
+                      {/*<Nav.Link href="/listQuiz">ListQuiz</Nav.Link>*/}
+                      {/*<NavDropdown title="Quiz Series" id="basic-nav-dropdown">*/}
+                      {/*    <NavDropdown.Item href="#action/3.1">Collaborative learning</NavDropdown.Item>*/}
+                      {/*    <NavDropdown.Item href="#action/3.2">Leadership</NavDropdown.Item>*/}
+                      {/*    <NavDropdown.Item href="#action/3.3">Resilience</NavDropdown.Item>*/}
+                      {/*    <NavDropdown.Divider />*/}
+                      {/*    <NavDropdown.Item href="#action/3.4">Quiz Report</NavDropdown.Item>*/}
+                      {/*</NavDropdown>*/}
+                      {/*<Nav.Link href="/logout">Log out</Nav.Link>*/}
                   </Nav>
               </Navbar.Collapse>
           </Container>

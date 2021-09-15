@@ -1,7 +1,9 @@
 import React from "react";
 import {Button,Form,Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./Login.css"
+import "./Login.css";
+import {Link} from 'react-router-dom';
+
 
 class Login extends React.Component {
     constructor(props){
@@ -84,6 +86,18 @@ class Login extends React.Component {
                             >
                                 Login
                             </Button>
+                        </Row>
+
+                        <Row>
+                            <Link to='/register'>
+                                <Button className="button"
+                                        size="lg"
+                                        type="submit"
+                                    // disabled={this.validateForm()}
+                                >
+                                   Create Account
+                                </Button>
+                            </Link>
                         </Row>
                     </Form>
                 </div>

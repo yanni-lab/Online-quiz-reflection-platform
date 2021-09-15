@@ -4,7 +4,7 @@ import supervisor from '../images/supervisor.png';
 // import lex from '../images/Lex.png';
 import {Row,  Button,CardGroup,Card} from 'react-bootstrap';
 import './Home.css';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 
 const Home = () => {
