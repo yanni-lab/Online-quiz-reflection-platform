@@ -7,6 +7,19 @@ import {Link} from "react-router-dom";
 class ListQuiz extends React.Component {
     constructor(props){
         super(props);
+        fetch('http://localhost:8080/service/available_quiz',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({"username": "111"})//this is just to send sth, meaningless
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            this.quizList = JSON.parse(data["quizList"]);
+            console.log(this.quizList);
+            //data from backend
+        }).catch(function(error){
+            console.log(error)
+        })
         //this.history = {this.props.history}
         // this.selectQuiz = function (selectQuizNum){
         //     //this.props.history.push({ pathname: "/communication", state: {param:selectQuizNum} });
@@ -50,7 +63,7 @@ class ListQuiz extends React.Component {
                     <div className="myQuiz">My Quizes</div>
                 </Row>
                 <Row className="quizName">
-                    <div className="box justify-content-center align-items-center">
+                    <div className="box justify-content-center align-items-center" ref={this.myRef}>
                         <Button className="QuizZone" href = "/communication">
                             Collaborative Learning
                         </Button>

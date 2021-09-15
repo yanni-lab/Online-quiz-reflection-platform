@@ -13,6 +13,21 @@ class Communication extends React.Component {
 
 
         };
+        fetch('http://localhost:8080/service/quiz_content',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({"quizId": "1"})//这个要从listQuiz页面传过来
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            this.quizData = data;
+            console.log(this.quizData);
+            this.feedback = JSON.parse(this.quizData["feedback"])
+            console.log(this.feedback["13-18"]);
+            //data from backend
+        }).catch(function(error){
+            console.log(error)
+        })
 
     };
 
