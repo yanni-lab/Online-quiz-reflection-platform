@@ -1,0 +1,47 @@
+{
+  "quizId": 1,
+  "quizTitle": "Collaborative Learning",
+  "quizBackground": "Collaborative learning is the educational approach of using groups to enhance learning through working together. Groups of two or more learners work together to solve problems, complete tasks, or learn new concepts.\nTake this quiz now to find out how well you do in collaborative learning!",
+  "supervisorId": 0,
+  "questions": [
+    {
+      "questionId": 1,
+      "question": "When the group needs suggestions, I...",
+      "choices": [
+        {
+          "choiceId": 1,
+          "score": 1,
+          "choice": "Do not make suggestions",
+          "questionId": 0,
+          "questionChoiceOrder": 1
+        },
+        {
+          "choiceId": 2,
+          "score": 2,
+          "choice": "Tell the group what to do",
+          "questionId": 0,
+          "questionChoiceOrder": 2
+        },
+        {
+          "choiceId": 3,
+          "score": 3,
+          "choice": "Discuss my suggestions with the group",
+          "questionId": 0,
+          "questionChoiceOrder": 3
+        },
+        {
+          "choiceId": 4,
+          "score": 5,
+          "choice": "Make sure everyone's suggestions are heard",
+          "questionId": 0,
+          "questionChoiceOrder": 4
+        }
+      ],
+      "quizId": 0,
+      "questionOrder": 1
+    }
+  ],
+  "feedback": "[{\"1-10\":\"feedback1\"},{\"11-20\":\"feedback2\"},{\"21-30\":\"feedback3\"}]",
+  "public": false,
+  "errorCode": 1
+}
