@@ -41,7 +41,6 @@ public class QuizController {
 
         ObjectMapper objectMapper = new ObjectMapper();
         Quiz thequiz = quizService.getQuizContent(quizId);
-        System.out.println(Arrays.toString(thequiz.getFeedback().split("\n")));
         ObjectNode node = objectMapper.convertValue(thequiz, ObjectNode.class);
 
         node.put("feedback", thequiz.getFeedback().replace("###","\\n"));
