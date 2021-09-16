@@ -7,6 +7,15 @@ import {Link} from "react-router-dom";
 class ListQuiz extends React.Component {
     constructor(props){
         super(props);
+        this.state = {
+            quizList:[]
+        };
+        //this.history = {this.props.history}
+        // this.selectQuiz = function (selectQuizNum){
+        //     //this.props.history.push({ pathname: "/communication", state: {param:selectQuizNum} });
+        //     alert(selectQuizNum)
+        // }
+
         fetch('http://localhost:8080/service/available_quiz',{
             method:'post',
             headers:{"Content-Type":"application/json"},
@@ -14,36 +23,27 @@ class ListQuiz extends React.Component {
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            //this.quizList = JSON.parse(data["quizList"]);
-
-            console.log(this.quizList);
+            //this.state.quizList = JSON.parse(data["quizList"]);
+            this.setState({quizList:JSON.parse(data["quizList"])});
+            console.log("back");
+            console.log(this.state.quizList);
             //data from backend
         }).catch(function(error){
             console.log(error)
         })
-        //this.history = {this.props.history}
-        // this.selectQuiz = function (selectQuizNum){
-        //     //this.props.history.push({ pathname: "/communication", state: {param:selectQuizNum} });
-        //     alert(selectQuizNum)
-        // }
 
         //测试用数据
-        this.quizList=[
+        /**this.quizList=[
             {quiz_id:1, quiz_title:"Collaborative Learning"},
             {quiz_id:2, quiz_title:"Leadership"},
             {quiz_id:3, quiz_title:"Resilience"}
 
-        ]
+        ]**/
+        //this.quizList = this.getQuizList();
 
 
 
     };
-
-
-
-
-
-
 
 
     render(){
@@ -71,13 +71,13 @@ class ListQuiz extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <div className="myQuiz">My Quizes</div>
+                    <div className="myQuiz">My Quizzes</div>
                 </Row>
                 <Row className="quizName">
-                    <div className="box justify-content-center align-items-center" ref={this.myRef}>
+                    <div className="box justify-content-center align-items-center">
 
                         {
-                            this.quizList.map((quiz) =>
+                            this.state.quizList.map((quiz) =>
                                 <Link
                                     to={{
                                         pathname:"/communication",
