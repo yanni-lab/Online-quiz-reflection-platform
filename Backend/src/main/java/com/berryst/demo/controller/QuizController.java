@@ -44,6 +44,7 @@ public class QuizController {
         ObjectNode node = objectMapper.convertValue(thequiz, ObjectNode.class);
 
         node.put("feedback", thequiz.getFeedback().replace("###","\\n"));
+        node.put("quizBackground", thequiz.getQuizBackground().replace("###","\\n"));
         node.put("errorCode",1);
 
         return node;
