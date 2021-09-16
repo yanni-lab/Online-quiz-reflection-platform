@@ -43,6 +43,7 @@ class Login extends React.Component {
     handleSubmit(event) {
         console.log(this.state);
         var dataSent = JSON.stringify({"username": this.state.username,"password": this.state.password});
+        this.token = "";
         event.preventDefault();
         fetch('http://localhost:8080/user/login',{
             method:'post',
@@ -51,14 +52,27 @@ class Login extends React.Component {
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            console.log(data)
+            console.log(data["token"]);
+            if (data["token"] != ""){
+                this.token = data["token"].split(":")[1];
+            }
+            else{
+                this.token = "";
+            }
+            if(this.token == ""){
+                this.setState({
+                        showModal:true
+                    }
+                )
+            }
+            console.log(this.token)
             //data from backend
         }).catch(function(error){
             console.log(error)
         })
 
-        const token = "111"
-        if(token==""){
+        //const token = "111"
+        if(this.token==""){
             this.setState({
                 showModal:true
                 }
@@ -134,7 +148,7 @@ class Login extends React.Component {
                 >
 
                     <Modal.Body>
-                        The email has already been registered. Please use another one.
+                        Incorrect username or password.
                     </Modal.Body>
                     <Modal.Footer>
                         {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}

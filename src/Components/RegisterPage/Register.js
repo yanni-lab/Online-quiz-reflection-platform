@@ -75,19 +75,22 @@ class Register extends React.Component {
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            console.log(data)
+            if (data["token"] != ""){
+                this.token = data["token"].split(":")[1];
+            }
+            else{
+                this.token = "";
+            }
+            if(this.token == ""){
+                this.setState({
+                        showModal:true
+                    }
+                )
+            }
+            console.log(this.token)
         }).catch(function(error){
             console.log(error)
         })
-
-        const token = ""
-
-        if(token == ""){
-            this.setState({
-                showModal: true,
-
-            })
-        }
     }
 
     handleCancelModal(){
