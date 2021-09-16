@@ -64,7 +64,7 @@ public class UserController {
         ObjectNode node = objectMapper.createObjectNode();
 
         User exist_u = userService.queryUserByUsername(username);
-        if (exist_u.getPassword().equals(password)){
+        if (exist_u != null && exist_u.getPassword().equals(password)){
             Timestamp curTime = new Timestamp(new Date().getTime());
             String token = exist_u.getUserId()+":"+curTime.getTime();
             DemoApplication.tokenList.remove(exist_u.getUserId());
