@@ -10,7 +10,7 @@ class FeedBack extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            feedback: props.location.state.feedback,
+            feedbackContent: props.location.state.feedback,
             leave:false,
             save:false
         };
@@ -55,6 +55,7 @@ class FeedBack extends React.Component {
 
     render() {
 
+        console.log(this.state.feedbackContent)
         return (
             <div className="feedbackPage">
                 <Row>
@@ -77,7 +78,7 @@ class FeedBack extends React.Component {
                     </div>
 
                     <div className="text-container">
-                        <span className="feedbackContent">Feedback 1</span>
+                        <span className="feedbackContent">{this.state.feedbackContent}</span>
                     </div>
                     <div className="text-container">
                         <span className="title">Reflection Diary</span>

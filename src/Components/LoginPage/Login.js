@@ -3,6 +3,8 @@ import {Button,Form,Row,Modal} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css";
 import {Link} from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+
 
 
 class Login extends React.Component {
@@ -55,12 +57,15 @@ class Login extends React.Component {
             console.log(error)
         })
 
-        const token = ""
+        const token = "111"
         if(token==""){
             this.setState({
                 showModal:true
                 }
             )
+        }
+        else{
+            this.props.history.push("./listQuiz")
         }
     }
 
@@ -144,4 +149,4 @@ class Login extends React.Component {
 }
 
 
-export default Login
+export default withRouter(Login)

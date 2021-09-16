@@ -25,6 +25,8 @@ class Quiz extends React.Component {
         this.sum = 0
 
         //feedback内容
+        this.feedback = JSON.parse(data.feedback)
+
         this.feedbackContent = ''
 
 
@@ -45,8 +47,12 @@ class Quiz extends React.Component {
         this.leaveQuiz = this.leaveQuiz.bind(this);
         this.cancelLeaveQuiz = this.cancelLeaveQuiz.bind(this);
 
+        console.log(data)
+
+
 
     };
+
 
 
     handleChange(event) {
@@ -72,7 +78,18 @@ class Quiz extends React.Component {
             for(let i = 0; i<this.score.length;i++){
                 this.sum+=this.score[i]
             }
-            this.feedbackContent = parseInt(this.sum)
+            //console.log(this.feedback)
+            for(let interval in this.feedback){
+                let l = parseInt(Object.keys(this.feedback[interval])[0].split("-")[0])
+                let r = parseInt(Object.keys(this.feedback[interval])[0].split("-")[1])
+                //console.log(Object.keys(this.feedback[interval])[0],l,r,this.sum)
+                if(l<=this.sum<=r){
+                    this.feedbackContent = Object.values(this.feedback[interval])[0]
+                    break;
+                }
+
+            }
+            console.log(this.feedbackContent)
 
         }
 
@@ -213,7 +230,7 @@ class Quiz extends React.Component {
                                 to={{
                                 pathname:'/feedback',
                                 state:{
-                                    feedback: this.sum
+                                    feedback: this.feedbackContent
                                 }
                             }}>
                                 <Button className = "seeFeedback" >

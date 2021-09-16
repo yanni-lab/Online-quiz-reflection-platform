@@ -89,13 +89,5 @@ class Communication extends React.Component {
     }
 }
 
-//
-// const Communication = () =>{
-//
-//
-//
-//
-//
-// };
 
 export default withRouter(Communication);
