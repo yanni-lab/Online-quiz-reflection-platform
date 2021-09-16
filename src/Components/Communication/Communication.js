@@ -75,7 +75,10 @@ class Communication extends React.Component {
                     </div>
 
                     <div className="box">
-                        <Button className = "start-btn" href = "/quiz">Start this quiz !</Button>
+                        <Link to={{pathname: "/quiz",
+                            state:{quizId:this.state.quizId}}}>
+                            <Button className = "start-btn">Start this quiz !</Button>
+                        </Link>
                     </div>
                 </form>
 

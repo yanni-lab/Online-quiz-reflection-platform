@@ -3,6 +3,8 @@ import './Quiz.css';
 import data from "../../quiz.json"
 import {Row, Col, Button,Form,Modal} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+
 
 
 
@@ -31,6 +33,7 @@ class Quiz extends React.Component {
 
 
         this.state = {
+            quizId :props.location.state.quizId,
             currQuestion:0,
             //score:,
             options:[],
@@ -311,4 +314,4 @@ class Quiz extends React.Component {
 
 
 
-export default Quiz;
+export default withRouter(Quiz);
