@@ -13,13 +13,15 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
-            showModal: false
+            showModal: false,
+            successModal:false
         };
 
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handlePassChange = this.handlePassChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancelModal = this.handleCancelModal.bind(this);
+        this.handleSuccessCancelModal = this.handleSuccessCancelModal.bind(this);
         // this.validateForm = this.validateForm.bind(this);
     };
     // validateForm() {
@@ -65,22 +67,25 @@ class Login extends React.Component {
                     }
                 )
             }
-            console.log(this.token)
+            console.log(this.token);
+            if(this.token==""){
+                this.setState({
+                        showModal:true
+                    }
+                )
+            }
+            else{
+                this.setState({
+                    successModal:true
+                })
+            }
             //data from backend
         }).catch(function(error){
             console.log(error)
         })
 
         //const token = "111"
-        if(this.token==""){
-            this.setState({
-                showModal:true
-                }
-            )
-        }
-        else{
-            this.props.history.push("./listQuiz")
-        }
+
     }
 
     handleCancelModal(){
@@ -88,6 +93,13 @@ class Login extends React.Component {
                 showModal:false
             }
         )
+    }
+
+    handleSuccessCancelModal(){
+        this.setState({
+            successModal:false,
+        })
+        this.props.history.push("./ListQuiz")
     }
 
 
@@ -157,6 +169,22 @@ class Login extends React.Component {
 
 
                 </Modal>
+
+                <Modal  show = {this.state.successModal}
+                        onClick =  {this.handleSuccessCancelModal}
+                >
+
+                    <Modal.Body>
+                        Successfully logged in. You will be directed to quiz Page.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
+                        <Button onClick = {this.cancelModal} className = "cancelSuccessExit">OK</Button>
+                    </Modal.Footer>
+
+
+                </Modal>
+
             </div>
         );
     }

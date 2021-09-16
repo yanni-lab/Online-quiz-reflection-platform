@@ -11,27 +11,6 @@ import { withRouter } from "react-router-dom";
 class Quiz extends React.Component {
     constructor(props){
         super(props);
-        //获取题目详情
-        this.quizList = data.questions
-        this.quizList.push(
-            {
-                "question":'Congrats! You have reached the end!',
-                "choices": [
-                ]
-            }
-        )
-        //得分列表
-        this.score = new Array(this.quizList.length-1).fill(0)
-
-        //总得分
-        this.sum = 0
-
-        //feedback内容
-        this.feedback = JSON.parse(data.feedback)
-
-        this.feedbackContent = ''
-
-
         this.state = {
             quizId :props.location.state.quizId,
             currQuestion:0,
@@ -41,18 +20,38 @@ class Quiz extends React.Component {
             displayFormer : 'none',
             displayNext: 'none',
             showFeedbackButton: 'none',
-            leave:false
+            leave:false,
+            quizList:props.location.state.quizList,
+            feedback:props.location.state.feedback
         };
+        //获取题目详情
+        /** = data.questions
+        this.state.quizList.push(
+            {
+                "question":'Congrats! You have reached the end!',
+                "choices": [
+                ]
+            }
+        )**/
+        //得分列表
+        this.score = new Array(this.state.quizList.length-1).fill(0)
+
+        //总得分
+        this.sum = 0
+
+        //feedback内容
+        //this.feedback = JSON.parse(data.feedback)
+        console.log(this.state.feedback)
+        this.feedbackContent = ''
+
+
+
 
         this.handleChange = this.handleChange.bind(this);
         this.nextClick = this.nextClick.bind(this);
         this.formerClick = this.formerClick.bind(this);
         this.leaveQuiz = this.leaveQuiz.bind(this);
         this.cancelLeaveQuiz = this.cancelLeaveQuiz.bind(this);
-
-        console.log(data)
-
-
 
     };
 
@@ -77,23 +76,20 @@ class Quiz extends React.Component {
 
 
         //计算总得分并匹配feedback
-        if(this.state.currQuestion== this.quizList.length-1){
+        if(this.state.currQuestion== this.state.quizList.length-1){
             for(let i = 0; i<this.score.length;i++){
                 this.sum+=this.score[i]
             }
-            //console.log(this.feedback)
-            for(let interval in this.feedback){
-                let l = parseInt(Object.keys(this.feedback[interval])[0].split("-")[0])
-                let r = parseInt(Object.keys(this.feedback[interval])[0].split("-")[1])
-                //console.log(Object.keys(this.feedback[interval])[0],l,r,this.sum)
-                if(l<=this.sum<=r){
-                    this.feedbackContent = Object.values(this.feedback[interval])[0]
+            console.log("sum:"+this.sum)
+            for(let interval in this.state.feedback){
+                let l = parseInt(interval.split("-")[0])
+                let r = parseInt(interval.split("-")[1])
+                //console.log(Object.keys(this.state.feedback[interval])[0],l,r,this.sum)
+                if(l<=this.sum && this.sum<=r){
+                    this.feedbackContent = this.state.feedback[interval]
                     break;
                 }
-
             }
-            console.log(this.feedbackContent)
-
         }
 
 
@@ -103,11 +99,11 @@ class Quiz extends React.Component {
             //currQuestion:this.state.currQuestion+1,
             displayFormer: this.state.currQuestion>0 ? 'block': 'none',
             displayNext: 'none',
-            showFeedbackButton: this.state.currQuestion== this.quizList.length-1? 'block': 'none'
+            showFeedbackButton: this.state.currQuestion== this.state.quizList.length-1? 'block': 'none'
 
         })
         console.log(this.state)
-        //console.log(this.quizList)
+        //console.log(this.state.quizList)
 
 
     }
@@ -118,7 +114,7 @@ class Quiz extends React.Component {
         this.setState({
 
             displayFormer: this.state.currQuestion>0 ? 'block': 'none',
-            showFeedbackButton: this.state.currQuestion== this.quizList.length-1? 'block': 'none'
+            showFeedbackButton: this.state.currQuestion== this.state.quizList.length-1? 'block': 'none'
 
 
         })
@@ -213,13 +209,13 @@ class Quiz extends React.Component {
                 <div className="box justify-content-center align-items-center">
                     <Form className="quizForm">
                         <div className = "question">
-                            {this.quizList[this.state.currQuestion].question}
+                            {this.state.quizList[this.state.currQuestion].question}
                         </div>
 
 
                         <form>
                             {
-                                this.quizList[this.state.currQuestion].choices.map((option) =>
+                                this.state.quizList[this.state.currQuestion].choices.map((option) =>
                                     <div className="option">
                                         <Button className="optionButton" value={option.score} onClick={this.handleChange}>{option.choice}</Button>
                                     </div>)

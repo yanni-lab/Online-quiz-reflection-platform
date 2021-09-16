@@ -24,9 +24,21 @@ class Communication extends React.Component {
         }).then((data)=>{
             this.quizData = data;
             console.log(this.quizData);
-            this.feedback = JSON.parse(this.quizData["feedback"])
-            this.setState({title:this.quizData["quizTitle"]})
-            this.setState({content:this.quizData["quizBackground"]})
+            this.feedback = JSON.parse(this.quizData["feedback"]);
+            this.quizList = this.quizData["questions"];
+            this.quesNum = this.quizList.length;
+            console.log(this.quesNum);
+            this.quizList.push(
+                {
+                    "question":'Congrats! You have reached the end!',
+                    "choices": [
+                    ]
+                }
+            );
+
+            this.setState({title:this.quizData["quizTitle"]});
+            this.setState({content:this.quizData["quizBackground"].replace("\\n","\n")});
+            console.log(this.state.content);
             //data from backend
         }).catch(function(error){
             console.log(error)
@@ -71,12 +83,17 @@ class Communication extends React.Component {
                     <div>
                         <div className="text-container"><span className="title">{this.state.title}</span></div>
                         <div className="text-container"><span className="sub-title">Overview</span></div>
-                        <div className="text-container"><span className="content">{this.state.content}</span></div>
+                        <div className="text-container"><span style={{"white-space": "pre-line"}} className="content">{this.state.content}</span></div>
                     </div>
 
                     <div className="box">
                         <Link to={{pathname: "/quiz",
-                            state:{quizId:this.state.quizId}}}>
+                            state:{
+                                quizId:this.state.quizId,
+                                quizList:this.quizList,
+                                feedback: this.feedback
+                            }
+                            }}>
                             <Button className = "start-btn">Start this quiz !</Button>
                         </Link>
                     </div>

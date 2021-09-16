@@ -1,6 +1,7 @@
 import React from "react";
 import {Button,Form,Row,Modal} from "react-bootstrap";
 import "./Register.css";
+import { withRouter } from "react-router-dom";
 
 class Register extends React.Component {
     constructor(props){
@@ -11,7 +12,8 @@ class Register extends React.Component {
             repassword:'',
             email:'',
             isSupervisor:false,
-            showModal:false
+            showModal:false,
+            successModal:false
         };
 
     this.handleUserChange = this.handleUserChange.bind(this);
@@ -21,6 +23,7 @@ class Register extends React.Component {
     this.handleIsSupervisorChange = this.handleIsSupervisorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancelModal = this.handleCancelModal.bind(this);
+    this.handleSuccessCancelModal = this.handleSuccessCancelModal.bind(this);
 
     // this.validateForm = this.validateForm.bind(this);
     };
@@ -87,6 +90,11 @@ class Register extends React.Component {
                     }
                 )
             }
+            else{
+                this.setState({
+                    successModal:true
+                })
+            }
             console.log(this.token)
         }).catch(function(error){
             console.log(error)
@@ -95,10 +103,16 @@ class Register extends React.Component {
 
     handleCancelModal(){
         this.setState({
-            showModal:false,
+            showModal:false
         })
     }
 
+    handleSuccessCancelModal(){
+        this.setState({
+            successModal:false,
+        })
+        this.props.history.push("./ListQuiz")
+    }
 
 
 
@@ -184,6 +198,21 @@ class Register extends React.Component {
 
                 </Modal>
 
+                <Modal  show = {this.state.successModal}
+                        onClick =  {this.handleSuccessCancelModal}
+                >
+
+                    <Modal.Body>
+                        Successfully Registered. You will be directed to quiz Page.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
+                        <Button onClick = {this.cancelModal} className = "cancelSuccessExit">OK</Button>
+                    </Modal.Footer>
+
+
+                </Modal>
+
 
             </div>
         );
@@ -191,4 +220,4 @@ class Register extends React.Component {
 }
 
 
-export default Register
+export default withRouter(Register)
