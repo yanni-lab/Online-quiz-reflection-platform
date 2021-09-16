@@ -14,7 +14,8 @@ class ListQuiz extends React.Component {
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            this.quizList = JSON.parse(data["quizList"]);
+            //this.quizList = JSON.parse(data["quizList"]);
+
             console.log(this.quizList);
             //data from backend
         }).catch(function(error){
@@ -25,6 +26,16 @@ class ListQuiz extends React.Component {
         //     //this.props.history.push({ pathname: "/communication", state: {param:selectQuizNum} });
         //     alert(selectQuizNum)
         // }
+
+        //测试用数据
+        this.quizList=[
+            {quiz_id:1, quiz_title:"Collaborative Learning"},
+            {quiz_id:2, quiz_title:"Leadership"},
+            {quiz_id:3, quiz_title:"Resilience"}
+
+        ]
+
+
 
     };
 
@@ -64,15 +75,34 @@ class ListQuiz extends React.Component {
                 </Row>
                 <Row className="quizName">
                     <div className="box justify-content-center align-items-center" ref={this.myRef}>
-                        <Button className="QuizZone" href = "/communication">
-                            Collaborative Learning
-                        </Button>
-                        <Button className="QuizZone" href = "/communication">
-                            Leadership
-                        </Button>
-                        <Button className="QuizZone" href = "/communication">
-                            Resilience
-                        </Button>
+
+                        {
+                            this.quizList.map((quiz) =>
+                                <Link
+                                    to={{
+                                        pathname:"/communication",
+                                        state:{
+                                            quizId: parseInt(quiz.quiz_id)
+                                        }
+                                    }}>
+                                    <Button className="QuizZone">
+                                        {quiz.quiz_title}
+                                    </Button>
+                                </Link>
+
+
+                            )
+
+                        }
+                        {/*<Button className="QuizZone" href = "/communication">*/}
+                        {/*    Collaborative Learning*/}
+                        {/*</Button>*/}
+                        {/*<Button className="QuizZone" href = "/communication">*/}
+                        {/*    Leadership*/}
+                        {/*</Button>*/}
+                        {/*<Button className="QuizZone" href = "/communication">*/}
+                        {/*    Resilience*/}
+                        {/*</Button>*/}
                     </div>
 
 

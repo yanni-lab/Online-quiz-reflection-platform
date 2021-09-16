@@ -1,5 +1,5 @@
 import React from "react";
-import {Button,Form,Row} from "react-bootstrap";
+import {Button,Form,Row,Modal} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css";
 import {Link} from 'react-router-dom';
@@ -11,11 +11,13 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
+            showModal: false
         };
 
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handlePassChange = this.handlePassChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCancelModal = this.handleCancelModal.bind(this);
         // this.validateForm = this.validateForm.bind(this);
     };
     // validateForm() {
@@ -52,7 +54,24 @@ class Login extends React.Component {
         }).catch(function(error){
             console.log(error)
         })
+
+        const token = ""
+        if(token==""){
+            this.setState({
+                showModal:true
+                }
+            )
+        }
     }
+
+    handleCancelModal(){
+        this.setState({
+                showModal:false
+            }
+        )
+    }
+
+
     render(){
         return (
             <div className="Register">
@@ -79,13 +98,16 @@ class Login extends React.Component {
                         </Form.Group>
 
                         <Row>
-                            <Button className="button"
-                                    size="lg"
-                                    type="submit"
-                                // disabled={this.validateForm()}
-                            >
-                                Login
-                            </Button>
+                            {/*<Link>*/}
+                                <Button className="button"
+                                        size="lg"
+                                        type="submit"
+                                    // disabled={this.validateForm()}
+                                >
+                                    Login
+                                </Button>
+                            {/*</Link>*/}
+
                         </Row>
 
                         <Row>
@@ -101,6 +123,21 @@ class Login extends React.Component {
                         </Row>
                     </Form>
                 </div>
+
+                <Modal  show = {this.state.showModal}
+                        onClick =  {this.handleCancelModal}
+                >
+
+                    <Modal.Body>
+                        The email has already been registered. Please use another one.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
+                        <Button onClick = {this.cancelModal} className = "cancelExit">Yes</Button>
+                    </Modal.Footer>
+
+
+                </Modal>
             </div>
         );
     }

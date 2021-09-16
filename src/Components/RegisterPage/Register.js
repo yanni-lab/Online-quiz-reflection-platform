@@ -1,5 +1,5 @@
 import React from "react";
-import {Button,Form,Row} from "react-bootstrap";
+import {Button,Form,Row,Modal} from "react-bootstrap";
 import "./Register.css";
 
 class Register extends React.Component {
@@ -10,7 +10,8 @@ class Register extends React.Component {
             password: '',
             repassword:'',
             email:'',
-            isSupervisor:false
+            isSupervisor:false,
+            showModal:false
         };
 
     this.handleUserChange = this.handleUserChange.bind(this);
@@ -19,6 +20,7 @@ class Register extends React.Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleIsSupervisorChange = this.handleIsSupervisorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCancelModal = this.handleCancelModal.bind(this);
 
     // this.validateForm = this.validateForm.bind(this);
     };
@@ -77,7 +79,26 @@ class Register extends React.Component {
         }).catch(function(error){
             console.log(error)
         })
+
+        const token = ""
+
+        if(token == ""){
+            this.setState({
+                showModal: true,
+
+            })
+        }
     }
+
+    handleCancelModal(){
+        this.setState({
+            showModal:false,
+        })
+    }
+
+
+
+
     render(){
         return (
             <div className="Register">
@@ -143,6 +164,24 @@ class Register extends React.Component {
                         </Row>
                     </Form>
                 </div>
+
+
+                <Modal  show = {this.state.showModal}
+                        onClick =  {this.handleCancelModal}
+                >
+
+                    <Modal.Body>
+                        The email has already been registered. Please use another one.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
+                        <Button onClick = {this.cancelModal} className = "cancelExit">Yes</Button>
+                    </Modal.Footer>
+
+
+                </Modal>
+
+
             </div>
         );
     }

@@ -3,13 +3,15 @@ import './Communication.css';
 import {Row, Col, Button,FormText} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import data from "../../quiz.json"
+
 
 
 class Communication extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            //quizId :
+            quizId:props.location.state.quizId
 
 
         };
@@ -29,19 +31,25 @@ class Communication extends React.Component {
             console.log(error)
         })
 
+        console.log(this.state.quizId)
+
     };
 
 
 
     render() {
 
-        console.log(this.props.location.state)
         const title="Collaborative Learning"
         const content="Collaborative Learning is the educational approach of using groups to enhance" +
             "learning through working together. Groups of two or more learners work together to solve problems" +
             ", complete tasks, or learn new concepts." +
             "\n " +
             "\n Take this quiz now to find out how well you do in collaborative Learning!"
+
+        // const title=this.quizData.quizTitle
+        // const content=this.quizData.quizBackground +
+        //     "\n " +
+        //     "\n Take this quiz now to find out how well you do in "+this.quizData.quizTitle+"!"
 
 
         return(

@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import './Quiz.css';
 import data from "../../quiz.json"
 import {Row, Col, Button,Form,Modal} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 
 
@@ -17,10 +18,19 @@ class Quiz extends React.Component {
                 ]
             }
         )
+        //得分列表
+        this.score = new Array(this.quizList.length-1).fill(0)
+
+        //总得分
+        this.sum = 0
+
+        //feedback内容
+        this.feedbackContent = ''
+
 
         this.state = {
             currQuestion:0,
-            value:0,
+            //score:,
             options:[],
             question:'',
             displayFormer : 'none',
@@ -40,8 +50,12 @@ class Quiz extends React.Component {
 
 
     handleChange(event) {
-        this.state.value = event.target.value;
-        console.log('该选项得分为'+this.state.value);
+        const option_score =  parseInt(event.target.value)
+        this.score[this.state.currQuestion] = option_score;
+
+        console.log('该选项得分为'+option_score+";"+'当前总得分为'+this.score);
+
+
         this.setState({
             displayNext: 'block',
 
@@ -53,6 +67,18 @@ class Quiz extends React.Component {
         this.state.currQuestion+=1
 
 
+        //计算总得分并匹配feedback
+        if(this.state.currQuestion== this.quizList.length-1){
+            for(let i = 0; i<this.score.length;i++){
+                this.sum+=this.score[i]
+            }
+            this.feedbackContent = parseInt(this.sum)
+
+        }
+
+
+
+
         this.setState({
             //currQuestion:this.state.currQuestion+1,
             displayFormer: this.state.currQuestion>0 ? 'block': 'none',
@@ -61,7 +87,8 @@ class Quiz extends React.Component {
 
         })
         console.log(this.state)
-        console.log(this.quizList)
+        //console.log(this.quizList)
+
 
     }
 
@@ -93,6 +120,8 @@ class Quiz extends React.Component {
         })
 
     }
+
+
 
 
 
@@ -179,9 +208,19 @@ class Quiz extends React.Component {
                         </form>
 
                         <div style={{display: this.state.showFeedbackButton}}>
-                            <Button className = "seeFeedback">
-                                Click here to see feedback
-                            </Button>
+                            <Link
+                                //onClick = {this.calculateFeedback}
+                                to={{
+                                pathname:'/feedback',
+                                state:{
+                                    feedback: this.sum
+                                }
+                            }}>
+                                <Button className = "seeFeedback" >
+                                    Click here to see feedback
+                                </Button>
+                            </Link>
+
                         </div>
 
 
