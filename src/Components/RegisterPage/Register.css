@@ -1,16 +1,32 @@
 .Register{
-
     justify-content: center;
-    background-color: #e8effc;
+    background: url('../images/registerbackground.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
+.registerbox{
+    width: 50%;
+    height: 80%;
+    background-color: whitesmoke;
+    margin: 100px auto;
+    padding: 50px 70px;
+    box-shadow: 5px 5px #ddd;
+    border-radius: 5px;
+}
+.login-img{
+    height:60px;
+    width:60px;
+}
 .registerForm{
     margin:auto;
-    width: 50%;
-    padding: 100px 50px 100px 50px;
+    padding: 20px 20px 20px 20px;
     border-radius:10px;
     border: 3px;
-    border-color: bisque;
+
 }
 .heading{
     padding: 30px 10px 30px 10px ;
@@ -21,7 +37,6 @@
 
 .label{
     display: inline-block;
-
     test-align:right;
 }
 .input{
@@ -34,10 +49,10 @@
 
 .button{
     border-radius: 10px;
-    background-color: #e7effc;
+    /*background-color: #e7effc;*/
     justify-content: center;
     width: 95%;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 30px;

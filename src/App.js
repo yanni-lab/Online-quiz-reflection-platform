@@ -4,6 +4,7 @@ import Register from './Components/RegisterPage/Register';
 import ListQuiz from './Components/ListQuizPage/listQuiz';
 import Communication from './Components/Communication/Communication';
 import Quiz from './Components/Quiz/quiz';
+import FeedBack from './Components/FeedBack/FeedBack';
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,6 +21,8 @@ function App() {
                 <Route path='/listQuiz' component={ListQuizPage}/>
                 <Route path='/communication' component={CommunicationPage}/>
                 <Route path='/quiz' component={QuizPage}/>
+                <Route path='/feedback' component={FeedBackPage}/>
+
                 <Route exact path='/' component={HomePage}/>
             </Switch>
         </div>
@@ -45,6 +48,10 @@ const CommunicationPage = () => (
 
 const QuizPage = () => (
     <Quiz />
+);
+
+const FeedBackPage = () => (
+    <FeedBack />
 );
 
 export default App;

@@ -8,19 +8,21 @@
     margin-top: 50px;
 }
 
-.formerNextButtonRow
+
 
 .formerButton {
-    font-size: 50px;
+    font-size: 40px;
     margin-left: 100px;
-    margin-top: 50px;
+    margin-top: 10px;
+    font-weight: bold;
     border:None;
 }
 
 .nextButton {
-    font-size: 50px;
+    font-size: 40px;
+    font-weight: bold;
     margin-left: 50px;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-right: 100px;
     border:None;
     float:right;
@@ -28,12 +30,14 @@
 
 
 .option{
-    padding-bottom:20px;
-    padding-top:20px
+    padding-bottom:15px;
+    padding-top:15px
 }
 
 .optionButton {
     width: 400px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 
@@ -52,7 +56,40 @@
 .quizForm{
     padding: 30px 10px 30px 10px ;
     text-align: center;
+    height: 476px;
 
 }
+
+.seeFeedback{
+    padding: 20px 30px 20px 30px;
+    margin: 60px 0;
+    font-size: 20px;
+
+}
+
+.modal-body{
+    padding: 40px;
+    font-size: 20px;
+}
+
+.modal-content{
+    margin-top: 300px;
+
+}
+
+.modal-footer{
+    justify-content: space-evenly;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.ensureExit{
+    padding: 5px 25px;
+}
+
+.cancelExit{
+    padding: 5px 25px;
+}
+
 
 

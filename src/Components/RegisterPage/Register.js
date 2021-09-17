@@ -1,7 +1,9 @@
 import React from "react";
-import {Button,Form,Row} from "react-bootstrap";
+import {Button,Form,Row,Modal} from "react-bootstrap";
 import "./Register.css";
-
+import { withRouter } from "react-router-dom";
+import background from '../images/registerbackground.jpg';
+import LoginLogo from '../images/loginLogo.png';
 class Register extends React.Component {
     constructor(props){
         super(props);
@@ -10,7 +12,9 @@ class Register extends React.Component {
             password: '',
             repassword:'',
             email:'',
-            isSupervisor:false
+            isSupervisor:false,
+            showModal:false,
+            successModal:false
         };
 
     this.handleUserChange = this.handleUserChange.bind(this);
@@ -19,6 +23,8 @@ class Register extends React.Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleIsSupervisorChange = this.handleIsSupervisorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCancelModal = this.handleCancelModal.bind(this);
+    this.handleSuccessCancelModal = this.handleSuccessCancelModal.bind(this);
 
     // this.validateForm = this.validateForm.bind(this);
     };
@@ -73,80 +79,165 @@ class Register extends React.Component {
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            console.log(data)
+            if (data["token"] != ""){
+                this.token = data["token"].split(":")[1];
+            }
+            else{
+                this.token = "";
+            }
+            if(this.token == ""){
+                this.setState({
+                        showModal:true
+                    }
+                )
+            }
+            else{
+                this.setState({
+                    successModal:true
+                })
+            }
+            console.log(this.token)
         }).catch(function(error){
             console.log(error)
         })
     }
+
+    handleCancelModal(){
+        this.setState({
+            showModal:false
+        })
+    }
+
+    handleSuccessCancelModal(){
+        this.setState({
+            successModal:false,
+        })
+        this.props.history.push("./ListQuiz")
+    }
+
+
+
     render(){
         return (
-            <div className="Register">
+            <div className="Register" style={backgroundStyle}>
                 <div className="box justify-content-center align-items-center">
-                    <Form className="registerForm" onSubmit={this.handleSubmit}>
-                        <div className = "heading">
-                            Register Account
-                        </div>
-                        <Form.Group size="lg" controlId="username">
-                            <Form.Label className = "label">Username</Form.Label>
-                            <Form.Control className = "input"
-                                          autoFocus
-                                          type="text"
-                                          value={this.state.username}
-                                          onChange={this.handleUserChange}
-                                          placeholder="Username"
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="password">
-                            <Form.Label className = "label">Password</Form.Label>
-                            <Form.Control className = "input"
-                                          type="password"
-                                          value={this.state.password}
-                                          onChange={this.handlePassChange}
-                                          placeholder="******"
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="repassword">
-                            <Form.Label className = "label">Repeat Password</Form.Label>
-                            <Form.Control className = "input"
-                                          type="password"
-                                          value={this.state.repassword}
-                                          onChange={this.handleRePassChange}
-                                          placeholder="******"
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="email">
-                            <Form.Label className = "label">Email</Form.Label>
-                            <Form.Control className = "input"
-                                          type="email"
-                                          value={this.state.email}
-                                          onChange={this.handleEmailChange}
-                                          placeholder="xxx@xxx.com"
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox"
-                                        label="As supervisor"
-                                        value={this.state.handleIsSupervisorChange}
-                                        cheked={this.state.isSupervisor}
-                                        onChange={this.handleIsSupervisorChange}
+                    <div className="registerbox">
+                        <Form className="registerForm" onSubmit={this.handleSubmit}>
+                            <div className="registerlogo">
+                                <img href="/"
+                                     src={LoginLogo}
+                                     alt="Logo"
+                                     className="login-img"
+                                />
+                            </div>
+                            <div className = "heading">
+                                Register Account
+                            </div>
+                            <Form.Group size="lg" controlId="username">
+                                <Form.Label className = "label">Username</Form.Label>
+                                <Form.Control className = "input"
+                                              autoFocus
+                                              type="text"
+                                              value={this.state.username}
+                                              onChange={this.handleUserChange}
+                                              placeholder="Username"
+                                />
+                            </Form.Group>
+                            <Form.Group size="lg" controlId="password">
+                                <Form.Label className = "label">Password</Form.Label>
+                                <Form.Control className = "input"
+                                              type="password"
+                                              value={this.state.password}
+                                              onChange={this.handlePassChange}
+                                              placeholder="******"
+                                />
+                            </Form.Group>
+                            <Form.Group size="lg" controlId="repassword">
+                                <Form.Label className = "label">Repeat Password</Form.Label>
+                                <Form.Control className = "input"
+                                              type="password"
+                                              value={this.state.repassword}
+                                              onChange={this.handleRePassChange}
+                                              placeholder="******"
+                                />
+                            </Form.Group>
+                            <Form.Group size="lg" controlId="email">
+                                <Form.Label className = "label">Email</Form.Label>
+                                <Form.Control className = "input"
+                                              type="email"
+                                              value={this.state.email}
+                                              onChange={this.handleEmailChange}
+                                              placeholder="xxx@xxx.com"
+                                />
+                            </Form.Group>
+                            <Row>
+                                <Form.Group size="lg" className="mb-3" controlId="formBasicCheckbox">
+                                    <Form.Check type="checkbox"
+                                                label="As supervisor"
+                                                value={this.state.handleIsSupervisorChange}
+                                                cheked={this.state.isSupervisor}
+                                                onChange={this.handleIsSupervisorChange}
 
-                            />
-                        </Form.Group>
-                        <Row>
-                            <Button className="button"
-                                    size="lg"
-                                    type="submit"
+                                    />
+                                </Form.Group>
+                            </Row>
+                            <Row>
+                                <Button className="button"
+                                        size="lg"
+                                        type="submit"
                                     // disabled={this.validateForm()}
-                            >
-                                Create account
-                            </Button>
-                        </Row>
-                    </Form>
+                                >
+                                    Create account
+                                </Button>
+                            </Row>
+
+                        </Form>
+                    </div>
                 </div>
+
+
+                <Modal  show = {this.state.showModal}
+                        onClick =  {this.handleCancelModal}
+                >
+
+                    <Modal.Body>
+                        The email has already been registered. Please use another one.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
+                        <Button onClick = {this.cancelModal} className = "cancelExit">Yes</Button>
+                    </Modal.Footer>
+
+
+                </Modal>
+
+                <Modal  show = {this.state.successModal}
+                        onClick =  {this.handleSuccessCancelModal}
+                >
+
+                    <Modal.Body>
+                        Successfully Registered. You will be directed to quiz Page.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
+                        <Button onClick = {this.cancelModal} className = "cancelSuccessExit">OK</Button>
+                    </Modal.Footer>
+
+
+                </Modal>
+
+
             </div>
         );
     }
 }
 
+const backgroundStyle ={
+    backgroundImage: `url(${background})`,
+    position: 'absolute',
+    width: '100vw',
+    height: '150vh'
+}
 
-export default Register
+
+export default withRouter(Register)

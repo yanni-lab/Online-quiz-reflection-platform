@@ -1,0 +1,50 @@
+
+.feedbackPage{
+    background-color: white;
+}
+
+.backButton {
+
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.text-container{
+    padding: 5px 80px;
+
+}
+
+.reflectionInput{
+
+    height: 200px;
+}
+
+.title{
+    font-size: 30px;
+}
+
+.feedbackContent{
+    height: 200px;
+    font-size: 20px;
+
+}
+
+.content{
+    font-size: 20px;
+}
+
+.feedbackFormCol{
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+.feedbackFormButton{
+    width: 120px;
+}
+
+.saveModal{
+
+    /*width: 400px;*/
+}
+
