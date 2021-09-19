@@ -1,5 +1,6 @@
 package com.berryst.demo.service.impl;
 
+import com.berryst.demo.model.User;
 import com.berryst.demo.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,35 +21,42 @@ public class UserServiceImplTest {
 
     @Test
     public void queryUserList() {
-//        System.out.println(userService.queryUserList());
-        Assert.assertThat(userService.queryUserList().toString(), is("[User(userId=1, username=supervisor, password=123456, email=supervisor@gmail.com, isSupervisor=true), User(userId=2, username=user, password=123456, email=user@gmail.com, isSupervisor=false), User(userId=3, username=, password=, email=, isSupervisor=false), User(userId=4, username=, password=, email=, isSupervisor=false), User(userId=5, username=, password=, email=, isSupervisor=false), User(userId=6, username=a, password=123, email=abc@gmail.com, isSupervisor=false)]"));
+        Assert.assertThat(userService.queryUserList().toString(),
+                is("[User(userId=1, username=EmmaW, password=123456, email=emmaw@gmail.com, isSupervisor=true), User(userId=2, username=jasonwork, password=123456, email=jasonx@firefox.com, isSupervisor=true), User(userId=3, username=mario35, password=123456, email=mario35@gmail.com, isSupervisor=false), User(userId=4, username=nordpass, password=123456, email=nordpass@qq.com, isSupervisor=false)]"));
     }
 
 //    @Test
-//    void queryUserById() {
+//    public void queryUserById() {
 //    }
-//
-//    @Test
-//    void queryUserByEmail() {
-//    }
-//
-//    @Test
-//    void queryUserByUsername() {
-//    }
-//
-//    @Test
-//    void addUser() {
-//    }
-//
-//    @Test
-//    void updateUser() {
-//    }
-//
-//    @Test
-//    void deleteUser() {
-//    }
-//
-//    @Test
-//    void checkToken() {
-//    }
+
+    @Test
+    public void queryUserByEmail() {
+        Assert.assertThat(userService.queryUserByEmail("emmaw@gmail.com").toString(),
+                is("User(userId=1, username=EmmaW, password=123456, email=emmaw@gmail.com, isSupervisor=true)"));
+        Assert.assertNull(userService.queryUserByEmail("notexist@gmail.com"));
+    }
+
+    @Test
+    public void queryUserByUsername() {
+        Assert.assertThat(userService.queryUserByEmail("EmmaW").toString(),
+                is("User(userId=1, username=EmmaW, password=123456, email=emmaw@gmail.com, isSupervisor=true)"));
+        Assert.assertNull(userService.queryUserByEmail("notexist"));
+    }
+
+    @Test
+    public void addUser() {
+        User u = new User();
+    }
+
+    @Test
+    public void updateUser() {
+    }
+
+    @Test
+    public void deleteUser() {
+    }
+
+    @Test
+    public void checkToken() {
+    }
 }
