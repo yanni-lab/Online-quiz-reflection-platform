@@ -16,14 +16,14 @@ import java.util.Date;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping(value="/user")
+@RequestMapping(value = "/user")
 @CrossOrigin
 public class UserController {
     @Resource
     private UserService userService;
 
 
-    @RequestMapping(value="/register",method= RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ObjectNode register(@RequestBody String data, HttpServletResponse response) throws JSONException {
         JSONObject receivedData = new JSONObject(data);
         String username = receivedData.getString("username");
@@ -34,26 +34,25 @@ public class UserController {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode node = objectMapper.createObjectNode();
 
-        User user = new User(1, username, password, email,isSupervisor);
+        User user = new User(1, username, password, email, isSupervisor);
         User exist_u = userService.queryUserByEmail(email);
-        if (exist_u == null){
+        if (exist_u == null) {
             userService.addUser(user);
             User curUser = userService.queryUserByEmail(email);
             Timestamp curTime = new Timestamp(new Date().getTime());
-            String token = curUser.getUserId()+":"+curTime.getTime();
+            String token = curUser.getUserId() + ":" + curTime.getTime();
             DemoApplication.tokenList.put(curUser.getUserId(), curTime.getTime());
-            node.put("token",token);
-            node.put("errorCode",1);
+            node.put("token", token);
+            node.put("errorCode", 1);
             return node;//succeed
-        }
-        else{
-            node.put("token","");
-            node.put("errorCode",2);
+        } else {
+            node.put("token", "");
+            node.put("errorCode", 2);
             return node;//user's email already exist
         }
     }
 
-    @RequestMapping(value="/login",method= RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ObjectNode login(@RequestBody String data, HttpServletResponse response) throws JSONException {
         JSONObject receivedData = new JSONObject(data);
 
@@ -63,20 +62,49 @@ public class UserController {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode node = objectMapper.createObjectNode();
 
+        //TODO: Verify multiple user with same username
         User exist_u = userService.queryUserByUsername(username);
-        if (exist_u != null && exist_u.getPassword().equals(password)){
+        if (exist_u != null && exist_u.getPassword().equals(password)) {
             Timestamp curTime = new Timestamp(new Date().getTime());
-            String token = exist_u.getUserId()+":"+curTime.getTime();
+            String token = exist_u.getUserId() + ":" + curTime.getTime();
             DemoApplication.tokenList.remove(exist_u.getUserId());
             DemoApplication.tokenList.put(exist_u.getUserId(), curTime.getTime());
-            node.put("token",token);
-            node.put("errorCode",1);
+            node.put("token", token);
+            node.put("errorCode", 1);
             return node;//succeed
-        }
-        else{
-            node.put("token","");
-            node.put("errorCode",2);
+        } else {
+            node.put("token", "");
+            node.put("errorCode", 2);
             return node;//log in failed
         }
+    }
+
+    @RequestMapping(value = "/reset_password", method = RequestMethod.POST)
+    public ObjectNode resetPassword(@RequestBody String data, HttpServletResponse response) throws JSONException {
+        JSONObject receivedData = new JSONObject(data);
+
+        String username = receivedData.getString("username");
+        String email = receivedData.getString("email");
+        String password = receivedData.getString("email");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode node = objectMapper.createObjectNode();
+
+        User user = userService.queryUserByEmail(email);
+        if (user != null && user.getUsername().equals(username)){
+            int error = userService.resetPassword(user.getUserId(), password);
+            if(error == 1){
+                node.put("errorCode", "00000");
+
+            }else{
+                //Database error
+                node.put("errorCode", "00001");
+            }
+        }else{
+            //Incorrect username or email address
+            node.put("errorCode", "00001");
+        }
+
+        return node;
     }
 }

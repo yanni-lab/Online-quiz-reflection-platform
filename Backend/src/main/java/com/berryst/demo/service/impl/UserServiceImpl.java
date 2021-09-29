@@ -68,4 +68,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    //TODO: Implement resetPassword Function
+    @Override
+    public int resetPassword(int userId, String password) {
+        return userMapper.resetPassword(userId, password);
+    }
 }

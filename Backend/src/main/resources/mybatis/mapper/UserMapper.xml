@@ -37,4 +37,8 @@
     <delete id="deleteUser" parameterType="int">
         delete from user where user_id = #{userId}
     </delete>
+
+    <update id="resetPassword" >
+        update user set password = #{password} where user_id = #{userId}
+    </update>
 </mapper>

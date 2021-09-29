@@ -20,4 +20,6 @@ public interface UserService {
     int deleteUser(int userId);
 
     boolean checkToken(int userId);
+
+    int resetPassword(int userId, String password);
 }
