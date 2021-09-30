@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="fix(*):duplicate username in DB">
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/TestController.java" afterDir="false" />
+    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="feat(exp):add GlobalExceptionHandler">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/TestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/service/impl/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/service/impl/UserServiceImplTest.java" afterDir="false" />
     </list>
     <list id="a20238c2-33c1-4e91-a2da-980c23180045" name="Add Quiz model" comment="Add Quiz model" />
@@ -175,7 +178,7 @@
       <workItem from="1631694246808" duration="702000" />
       <workItem from="1632051171062" duration="4720000" />
       <workItem from="1632900270026" duration="6034000" />
-      <workItem from="1632919674455" duration="17834000" />
+      <workItem from="1632919674455" duration="22724000" />
     </task>
     <task id="LOCAL-00001" summary="Add Quiz model">
       <created>1631323516021</created>
@@ -282,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633008620020</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat(exp):add GlobalExceptionHandler">
+      <created>1633009023830</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1633009023830</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,7 +336,8 @@
     <MESSAGE value="add unit test templet" />
     <MESSAGE value="feat(*):add reset password function" />
     <MESSAGE value="fix(*):duplicate username in DB" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(*):duplicate username in DB" />
+    <MESSAGE value="feat(exp):add GlobalExceptionHandler" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(exp):add GlobalExceptionHandler" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

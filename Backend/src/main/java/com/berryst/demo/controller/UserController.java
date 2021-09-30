@@ -37,40 +37,46 @@ public class UserController {
             String email = receivedData.getString("email");
             boolean isSupervisor = receivedData.getBoolean("isSupervisor");
 
-            User user = new User(1, username, password, email, isSupervisor);
-            User exist_u = userService.queryUserByEmail(email);
+            log.info("Receive register request: "+ receivedData.toString());
 
-            //user's email already exist
-            if (exist_u == null) {
+            User user = new User(1, username, password, email, isSupervisor);
+            User existUser = userService.queryUserByEmail(email);
+
+            if (existUser == null) {
                 userService.addUser(user);
                 User curUser = userService.queryUserByEmail(email);
                 Timestamp curTime = new Timestamp(new Date().getTime());
                 String token = curUser.getUserId() + ":" + curTime.getTime();
                 DemoApplication.tokenList.put(curUser.getUserId(), curTime.getTime());
+
                 node.put("token", token);
-                node.put("errorCode", 1);
+                node.put("errorCode", "00000");
+                node.put("errorMessage", "Success");
+
+                log.info("Successfully registered - User: "+ username);
             } else {
+                //user's email already exist
                 node.put("token", "");
-                node.put("errorCode", 2);
+                node.put("errorCode", "10002");
+                node.put("errorMessage", "User email already registered");
 
+                log.warn("User email already registered - Email: "+email);
             }
-            return node;//succeed
 
+            return node;
     }
 
+    //TODO: Login when user has same username and password?
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ObjectNode login(@RequestBody String data, HttpServletResponse response) throws JSONException {
-        JSONObject receivedData = new JSONObject(data);
-
-        String username = receivedData.getString("username");
-        String password = receivedData.getString("password");
-
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode node = objectMapper.createObjectNode();
 
-        //TODO: Verify multiple user with same username
-        List<User> existUsers = userService.queryUserByUsername(username);
+        JSONObject receivedData = new JSONObject(data);
+        String username = receivedData.getString("username");
+        String password = receivedData.getString("password");
 
+        List<User> existUsers = userService.queryUserByUsername(username);
 
         if (existUsers != null) {
             User matchUser = null;
@@ -82,7 +88,11 @@ public class UserController {
             if (matchUser == null) {
                 //Incorrect Password
                 node.put("token", "");
-                node.put("errorCode", 2);
+                node.put("errorCode", "10004");
+                node.put("errorMessage", "Incorrect Password");
+
+                log.warn("Login password not match - User: " + username);
+
                 return node;
             }
 
@@ -90,41 +100,53 @@ public class UserController {
             String token = matchUser.getUserId() + ":" + curTime.getTime();
             DemoApplication.tokenList.remove(matchUser.getUserId());
             DemoApplication.tokenList.put(matchUser.getUserId(), curTime.getTime());
+
             node.put("token", token);
-            node.put("errorCode", 1);
-            return node;//succeed
+            node.put("errorCode", "00000");
+            node.put("errorMessage", "Success");
+
+            log.info("Successfully login - User: " + username);
+
+
         } else {
             //Username not found
             node.put("token", "");
-            node.put("errorCode", 2);
-            return node;//log in failed
+            node.put("errorCode", "10003");
+            node.put("errorMessage", "Fail to find user when login");
+
+            log.warn("Fail to find user when login with username - User: " + username);
         }
+        return node;
     }
 
     @RequestMapping(value = "/reset_password", method = RequestMethod.POST)
     public ObjectNode resetPassword(@RequestBody String data, HttpServletResponse response) throws JSONException {
-        JSONObject receivedData = new JSONObject(data);
-
-        String username = receivedData.getString("username");
-        String email = receivedData.getString("email");
-        String password = receivedData.getString("email");
-
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode node = objectMapper.createObjectNode();
 
+        JSONObject receivedData = new JSONObject(data);
+        String username = receivedData.getString("username");
+        String email = receivedData.getString("email");
+        String password = receivedData.getString("password");
+
         User user = userService.queryUserByEmail(email);
         if (user != null && user.getUsername().equals(username)) {
-            int error = userService.resetPassword(user.getUserId(), password);
-            if (error == 1) {
+            if (userService.resetPassword(user.getUserId(), password) == 1) {
                 node.put("errorCode", "00000");
-
+                node.put("errorMessage", "Success");
+                log.info("Successfully reset password - Email: " + email);
             } else {
                 //Database error
-                node.put("errorCode", "00001");
+                node.put("errorCode", "20000");
+                node.put("errorMessage", "Database CRUD failed");
+                log.error("Database CRUD failed - reset password - Email: "+email);
             }
         } else {
             //Incorrect username or email address
-            node.put("errorCode", "00001");
+            node.put("errorCode", "00005");
+            node.put("errorMessage", "Incorrect username or email address");
+
+            log.warn("Reset password failed: username and email not match - Email: "+email);
         }
 
         return node;
