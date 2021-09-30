@@ -27,5 +27,4 @@ public interface QuizService {
     int makeQuizPrivate(int quizId);
 
 
-
 }

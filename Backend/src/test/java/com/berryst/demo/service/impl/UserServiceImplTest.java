@@ -65,4 +65,14 @@ public class UserServiceImplTest {
         Assert.assertThat(userService.resetPassword(10,"reset"),
                 is(1));
     }
+
+    @Test
+    public void duplicateUserName(){
+        User user1 = new User(1, "Test", "123456", "test1@gmail.com", true);
+        userService.addUser(user1);
+        User user2 = new User(1, "Test", "123456", "test2@gmail.com", true);
+        userService.addUser(user2);
+        System.out.println(userService.queryUserByUsername("Test").toString());
+
+    }
 }

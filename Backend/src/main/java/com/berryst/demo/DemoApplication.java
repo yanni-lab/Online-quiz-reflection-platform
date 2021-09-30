@@ -8,11 +8,11 @@ import java.util.HashMap;
 @SpringBootApplication
 public class DemoApplication {
 
-	public static HashMap<Integer, Long> tokenList = new HashMap<>();
+    public static HashMap<Integer, Long> tokenList = new HashMap<>();
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		SpringApplication.run(DemoApplication.class, args);
-	}
+        SpringApplication.run(DemoApplication.class, args);
+    }
 
 }

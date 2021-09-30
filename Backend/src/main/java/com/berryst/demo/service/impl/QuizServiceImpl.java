@@ -28,7 +28,7 @@ public class QuizServiceImpl implements QuizService {
     public Quiz getQuizContent(int quizId) {
         System.out.println("getQuizContent");
         Quiz quiz = quizMapper.getQuizContent(quizId);
-        if(quiz!=null){
+        if (quiz != null) {
             quiz.setQuestions(getQuestionList(quizId));
         }
         return quiz;
@@ -37,7 +37,7 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public ArrayList<Question> getQuestionList(int quizId) {
         ArrayList<Question> questionList = quizMapper.getQuestionList(quizId);
-        for(Question q:questionList){
+        for (Question q : questionList) {
             q.setChoices(getChoiceList(q.getQuestionId()));
         }
         return questionList;

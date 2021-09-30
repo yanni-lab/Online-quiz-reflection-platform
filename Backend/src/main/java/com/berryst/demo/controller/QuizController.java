@@ -18,23 +18,23 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping(value="/service")
+@RequestMapping(value = "/service")
 @CrossOrigin
 public class QuizController {
     @Resource
     private QuizService quizService;
 
-    @RequestMapping(value="/available_quiz",method= RequestMethod.POST)
+    @RequestMapping(value = "/available_quiz", method = RequestMethod.POST)
     public ObjectNode getPublicQuiz(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode node = objectMapper.createObjectNode();
         String quizList = objectMapper.writeValueAsString(quizService.getPublicQuizList());
         node.put("quizList", quizList);
-        node.put("errorCode",1);
+        node.put("errorCode", 1);
         return node;
     }
 
-    @RequestMapping(value="/quiz_content",method= RequestMethod.POST)
+    @RequestMapping(value = "/quiz_content", method = RequestMethod.POST)
     public ObjectNode getQuizContent(@RequestBody String data, HttpServletResponse response) throws JSONException, JsonProcessingException {
         JSONObject receivedData = new JSONObject(data);
         int quizId = receivedData.getInt("quizId");
@@ -43,9 +43,9 @@ public class QuizController {
         Quiz thequiz = quizService.getQuizContent(quizId);
         ObjectNode node = objectMapper.convertValue(thequiz, ObjectNode.class);
 
-        node.put("feedback", thequiz.getFeedback().replace("###","\\n"));
-        node.put("quizBackground", thequiz.getQuizBackground().replace("###","\\n"));
-        node.put("errorCode",1);
+        node.put("feedback", thequiz.getFeedback().replace("###", "\\n"));
+        node.put("quizBackground", thequiz.getQuizBackground().replace("###", "\\n"));
+        node.put("errorCode", 1);
 
         return node;
     }

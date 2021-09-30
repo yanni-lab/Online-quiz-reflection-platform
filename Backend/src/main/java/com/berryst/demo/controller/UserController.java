@@ -27,43 +27,43 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ObjectNode register(@RequestBody String data, HttpServletResponse response) throws JSONException {
-            ObjectMapper objectMapper = new ObjectMapper();
-            ObjectNode node = objectMapper.createObjectNode();
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode node = objectMapper.createObjectNode();
 
 
-            JSONObject receivedData = new JSONObject(data);
-            String username = receivedData.getString("username");
-            String password = receivedData.getString("password");
-            String email = receivedData.getString("email");
-            boolean isSupervisor = receivedData.getBoolean("isSupervisor");
+        JSONObject receivedData = new JSONObject(data);
+        String username = receivedData.getString("username");
+        String password = receivedData.getString("password");
+        String email = receivedData.getString("email");
+        boolean isSupervisor = receivedData.getBoolean("isSupervisor");
 
-            log.info("Receive register request: "+ receivedData.toString());
+        log.info("Receive register request: " + receivedData);
 
-            User user = new User(1, username, password, email, isSupervisor);
-            User existUser = userService.queryUserByEmail(email);
+        User user = new User(1, username, password, email, isSupervisor);
+        User existUser = userService.queryUserByEmail(email);
 
-            if (existUser == null) {
-                userService.addUser(user);
-                User curUser = userService.queryUserByEmail(email);
-                Timestamp curTime = new Timestamp(new Date().getTime());
-                String token = curUser.getUserId() + ":" + curTime.getTime();
-                DemoApplication.tokenList.put(curUser.getUserId(), curTime.getTime());
+        if (existUser == null) {
+            userService.addUser(user);
+            User curUser = userService.queryUserByEmail(email);
+            Timestamp curTime = new Timestamp(new Date().getTime());
+            String token = curUser.getUserId() + ":" + curTime.getTime();
+            DemoApplication.tokenList.put(curUser.getUserId(), curTime.getTime());
 
-                node.put("token", token);
-                node.put("errorCode", "00000");
-                node.put("errorMessage", "Success");
+            node.put("token", token);
+            node.put("errorCode", "00000");
+            node.put("errorMessage", "Success");
 
-                log.info("Successfully registered - User: "+ username);
-            } else {
-                //user's email already exist
-                node.put("token", "");
-                node.put("errorCode", "10002");
-                node.put("errorMessage", "User email already registered");
+            log.info("Successfully registered - User: " + username);
+        } else {
+            //user's email already exist
+            node.put("token", "");
+            node.put("errorCode", "10002");
+            node.put("errorMessage", "User email already registered");
 
-                log.warn("User email already registered - Email: "+email);
-            }
+            log.warn("User email already registered - Email: " + email);
+        }
 
-            return node;
+        return node;
     }
 
     //TODO: Login when user has same username and password?
@@ -81,9 +81,10 @@ public class UserController {
         if (existUsers != null) {
             User matchUser = null;
             for (User user : existUsers) {
-                user.getPassword().equals(password);
-                matchUser = user;
-                break;
+                if(user.getPassword().equals(password)){
+                    matchUser = user;
+                    break;
+                }
             }
             if (matchUser == null) {
                 //Incorrect Password
@@ -139,14 +140,14 @@ public class UserController {
                 //Database error
                 node.put("errorCode", "20000");
                 node.put("errorMessage", "Database CRUD failed");
-                log.error("Database CRUD failed - reset password - Email: "+email);
+                log.error("Database CRUD failed - reset password - Email: " + email);
             }
         } else {
             //Incorrect username or email address
             node.put("errorCode", "00005");
             node.put("errorMessage", "Incorrect username or email address");
 
-            log.warn("Reset password failed: username and email not match - Email: "+email);
+            log.warn("Reset password failed: username and email not match - Email: " + email);
         }
 
         return node;

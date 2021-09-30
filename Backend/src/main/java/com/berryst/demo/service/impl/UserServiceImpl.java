@@ -53,22 +53,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkToken(int userId) {
-        if (!DemoApplication.tokenList.containsKey(userId)){
+        if (!DemoApplication.tokenList.containsKey(userId)) {
             return false;
         }
         long timestamp = DemoApplication.tokenList.get(userId);
         Timestamp curTime = new Timestamp(new Date().getTime());
-        long interval = curTime.getTime()-timestamp;
-        if (interval < 3600000){
+        long interval = curTime.getTime() - timestamp;
+        if (interval < 3600000) {
             return true;
-        }
-        else{
+        } else {
             DemoApplication.tokenList.remove(userId);
             return false;
         }
     }
 
-    //TODO: Implement resetPassword Function
     @Override
     public int resetPassword(int userId, String password) {
         return userMapper.resetPassword(userId, password);

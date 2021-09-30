@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="feat(exp):add GlobalExceptionHandler">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/TestController.java" beforeDir="false" />
+    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="style(*):format code">
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/DemoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/QuizController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/QuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/QuizService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/QuizServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/QuizServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/service/impl/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/service/impl/UserServiceImplTest.java" afterDir="false" />
     </list>
@@ -40,6 +41,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1xfNkmlmBeo3q9sUXALT47sRSfW" />
   <component name="ProjectViewState">
@@ -178,7 +182,7 @@
       <workItem from="1631694246808" duration="702000" />
       <workItem from="1632051171062" duration="4720000" />
       <workItem from="1632900270026" duration="6034000" />
-      <workItem from="1632919674455" duration="22724000" />
+      <workItem from="1632919674455" duration="23097000" />
     </task>
     <task id="LOCAL-00001" summary="Add Quiz model">
       <created>1631323516021</created>
@@ -292,7 +296,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633009023830</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="chore(Controller+Exp):add log">
+      <created>1633016625882</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1633016625882</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,7 +348,9 @@
     <MESSAGE value="feat(*):add reset password function" />
     <MESSAGE value="fix(*):duplicate username in DB" />
     <MESSAGE value="feat(exp):add GlobalExceptionHandler" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(exp):add GlobalExceptionHandler" />
+    <MESSAGE value="chore(Controller+Exp):add log" />
+    <MESSAGE value="style(*):format code" />
+    <option name="LAST_COMMIT_MESSAGE" value="style(*):format code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
