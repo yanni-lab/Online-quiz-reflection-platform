@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User queryUserByUsername(String username) {
+    public List<User> queryUserByUsername(String username) {
         return userMapper.queryUserByUsername(username);
     }
 

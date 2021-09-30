@@ -5,6 +5,7 @@ import com.berryst.demo.model.User;
 import com.berryst.demo.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 
 @RestController
+@Slf4j
 @RequestMapping(value = "/user")
 @CrossOrigin
 public class UserController {
@@ -25,31 +27,35 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ObjectNode register(@RequestBody String data, HttpServletResponse response) throws JSONException {
-        JSONObject receivedData = new JSONObject(data);
-        String username = receivedData.getString("username");
-        String password = receivedData.getString("password");
-        String email = receivedData.getString("email");
-        boolean isSupervisor = receivedData.getBoolean("isSupervisor");
+            ObjectMapper objectMapper = new ObjectMapper();
+            ObjectNode node = objectMapper.createObjectNode();
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        ObjectNode node = objectMapper.createObjectNode();
 
-        User user = new User(1, username, password, email, isSupervisor);
-        User exist_u = userService.queryUserByEmail(email);
-        if (exist_u == null) {
-            userService.addUser(user);
-            User curUser = userService.queryUserByEmail(email);
-            Timestamp curTime = new Timestamp(new Date().getTime());
-            String token = curUser.getUserId() + ":" + curTime.getTime();
-            DemoApplication.tokenList.put(curUser.getUserId(), curTime.getTime());
-            node.put("token", token);
-            node.put("errorCode", 1);
+            JSONObject receivedData = new JSONObject(data);
+            String username = receivedData.getString("username");
+            String password = receivedData.getString("password");
+            String email = receivedData.getString("email");
+            boolean isSupervisor = receivedData.getBoolean("isSupervisor");
+
+            User user = new User(1, username, password, email, isSupervisor);
+            User exist_u = userService.queryUserByEmail(email);
+
+            //user's email already exist
+            if (exist_u == null) {
+                userService.addUser(user);
+                User curUser = userService.queryUserByEmail(email);
+                Timestamp curTime = new Timestamp(new Date().getTime());
+                String token = curUser.getUserId() + ":" + curTime.getTime();
+                DemoApplication.tokenList.put(curUser.getUserId(), curTime.getTime());
+                node.put("token", token);
+                node.put("errorCode", 1);
+            } else {
+                node.put("token", "");
+                node.put("errorCode", 2);
+
+            }
             return node;//succeed
-        } else {
-            node.put("token", "");
-            node.put("errorCode", 2);
-            return node;//user's email already exist
-        }
+
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -63,16 +69,32 @@ public class UserController {
         ObjectNode node = objectMapper.createObjectNode();
 
         //TODO: Verify multiple user with same username
-        User exist_u = userService.queryUserByUsername(username);
-        if (exist_u != null && exist_u.getPassword().equals(password)) {
+        List<User> existUsers = userService.queryUserByUsername(username);
+
+
+        if (existUsers != null) {
+            User matchUser = null;
+            for (User user : existUsers) {
+                user.getPassword().equals(password);
+                matchUser = user;
+                break;
+            }
+            if (matchUser == null) {
+                //Incorrect Password
+                node.put("token", "");
+                node.put("errorCode", 2);
+                return node;
+            }
+
             Timestamp curTime = new Timestamp(new Date().getTime());
-            String token = exist_u.getUserId() + ":" + curTime.getTime();
-            DemoApplication.tokenList.remove(exist_u.getUserId());
-            DemoApplication.tokenList.put(exist_u.getUserId(), curTime.getTime());
+            String token = matchUser.getUserId() + ":" + curTime.getTime();
+            DemoApplication.tokenList.remove(matchUser.getUserId());
+            DemoApplication.tokenList.put(matchUser.getUserId(), curTime.getTime());
             node.put("token", token);
             node.put("errorCode", 1);
             return node;//succeed
         } else {
+            //Username not found
             node.put("token", "");
             node.put("errorCode", 2);
             return node;//log in failed
@@ -91,16 +113,16 @@ public class UserController {
         ObjectNode node = objectMapper.createObjectNode();
 
         User user = userService.queryUserByEmail(email);
-        if (user != null && user.getUsername().equals(username)){
+        if (user != null && user.getUsername().equals(username)) {
             int error = userService.resetPassword(user.getUserId(), password);
-            if(error == 1){
+            if (error == 1) {
                 node.put("errorCode", "00000");
 
-            }else{
+            } else {
                 //Database error
                 node.put("errorCode", "00001");
             }
-        }else{
+        } else {
             //Incorrect username or email address
             node.put("errorCode", "00001");
         }

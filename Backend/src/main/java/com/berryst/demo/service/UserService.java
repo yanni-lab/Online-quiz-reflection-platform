@@ -11,7 +11,7 @@ public interface UserService {
 
     User queryUserByEmail(String email);
 
-    User queryUserByUsername(String username);
+    List<User> queryUserByUsername(String username);
 
     int addUser(User user);
 
