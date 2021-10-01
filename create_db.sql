@@ -12,6 +12,17 @@ CREATE TABLE `user` (
 PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*Table structure for table `quiz` */
+DROP TABLE IF EXISTS `quiz`;
+CREATE TABLE `quiz` (
+`quiz_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique quiz id',
+`quiz_title` varchar(30) NOT NULL COMMENT 'quiz title',
+`quiz_background` varchar(300) NOT NULL COMMENT 'quiz background',
+`created_by` int(10) NOT NULL COMMENT 'user_id from `supervisor` table',
+`is_public` boolean COMMENT 'whether the quiz is public',
+`feedback` varchar(10000) NOT NULL COMMENT 'feedback of the quiz',
+PRIMARY KEY (`quiz_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `question` */
 DROP TABLE IF EXISTS `question`;
@@ -20,7 +31,8 @@ CREATE TABLE `question` (
 `question` varchar(100) NOT NULL COMMENT 'question content',
 `quiz_id` int(10) NOT NULL COMMENT 'quiz_id from `quiz` table',
 `question_order` int(10) NOT NULL COMMENT 'question order',
-PRIMARY KEY (`question_id`)
+PRIMARY KEY (`question_id`),
+FOREIGN KEY (quiz_id) REFERENCES quiz(quiz_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -32,7 +44,8 @@ CREATE TABLE `question_choices` (
 `choice` varchar(100) NOT NULL COMMENT 'choice content',
 `question_id` int(10) NOT NULL COMMENT 'question_id from `question` table',
 `question_choice_order` int(10) NOT NULL COMMENT 'question choice order',
-PRIMARY KEY (`choice_id`)
+PRIMARY KEY (`choice_id`),
+FOREIGN KEY (question_id) REFERENCES question(question_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -49,17 +62,4 @@ CREATE TABLE `user_result` (
 `reflection_time` datetime DEFAULT NULL COMMENT 'reflection time',
 `supervisor_id` int(10) NOT NULL COMMENT 'supervisor''s user_id from `user` table',
 PRIMARY KEY (`attempt_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-/*Table structure for table `quiz` */
-DROP TABLE IF EXISTS `quiz`;
-CREATE TABLE `quiz` (
-`quiz_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique quiz id',
-`quiz_title` varchar(30) NOT NULL COMMENT 'quiz title',
-`quiz_background` varchar(300) NOT NULL COMMENT 'quiz background',
-`created_by` int(10) NOT NULL COMMENT 'user_id from `supervisor` table',
-`is_public` boolean COMMENT 'whether the quiz is public',
-`feedback` varchar(10000) NOT NULL COMMENT 'feedback of the quiz',
-PRIMARY KEY (`quiz_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
