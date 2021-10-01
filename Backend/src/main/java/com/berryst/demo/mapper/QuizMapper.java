@@ -3,22 +3,24 @@ package com.berryst.demo.mapper;
 import com.berryst.demo.model.Question;
 import com.berryst.demo.model.QuestionChoice;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.javassist.compiler.ast.Pair;
 import org.springframework.stereotype.Repository;
 import com.berryst.demo.model.Quiz;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 @Mapper
 @Repository
 public interface QuizMapper {
-    ArrayList<Pair> getPublicQuiz();
+    ArrayList<Map> getPublicQuiz();
 
-    ArrayList<Pair> getSupervisorQuiz(int supervisorid);
+    ArrayList<Map> getSupervisorQuiz(int supervisorid);
 
-    int addQuiz(Quiz quiz);
+    int setQuiz(Quiz quiz);
 
-    int editQuiz(Quiz quiz);
+    int setQuestion(Question question);
+
+    int setChoice(QuestionChoice choice);
 
     int deleteQuiz(int quizId);
 
@@ -28,9 +30,9 @@ public interface QuizMapper {
 
     ArrayList<QuestionChoice> getChoiceList(int questionId);
 
-    int makeQuizPublic(int quizId);
+    int setQuizPublic(int quizId);
 
-    int makeQuizPrivate(int quizId);
+    int setQuizPrivate(int quizId);
 
 
 }

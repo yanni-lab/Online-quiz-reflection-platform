@@ -5,28 +5,26 @@ import com.berryst.demo.model.Question;
 import com.berryst.demo.model.QuestionChoice;
 import com.berryst.demo.model.Quiz;
 import com.berryst.demo.service.QuizService;
-import org.apache.ibatis.javassist.compiler.ast.Pair;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-
+import java.util.Map;
+@Slf4j
 @Service
 public class QuizServiceImpl implements QuizService {
     @Resource
     private QuizMapper quizMapper;
 
     @Override
-    public ArrayList<Pair> getPublicQuizList() {
-        ArrayList<Pair> quizList = quizMapper.getPublicQuiz();
-        System.out.println("Result");
-        System.out.println(quizList.toString());
+    public ArrayList<Map> getPublicQuizList() {
+        ArrayList<Map> quizList = quizMapper.getPublicQuiz();
         return quizList;
     }
 
     @Override
     public Quiz getQuizContent(int quizId) {
-        System.out.println("getQuizContent");
         Quiz quiz = quizMapper.getQuizContent(quizId);
         if (quiz != null) {
             quiz.setQuestions(getQuestionList(quizId));
@@ -49,15 +47,37 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public ArrayList<Pair> getSuvervisorQuiz(int supervisorId) {
+    public ArrayList<Map> getSupervisorQuiz(int supervisorId) {
         return quizMapper.getSupervisorQuiz(supervisorId);
     }
 
     @Override
     public int setQuiz(Quiz quiz) {
+        //Return quizId
         int quizId = quiz.getQuizId();
         quizMapper.deleteQuiz(quizId);
-        return quizMapper.addQuiz(quiz);
+        quizMapper.setQuiz(quiz);
+        log.debug("Quiz ID is "+quiz.getQuizId());
+        for(Question question:quiz.getQuestions()){
+            question.setQuizId(quiz.getQuizId());
+            setQuestion(question);
+        }
+        return quiz.getQuizId();
+    }
+
+    @Override
+    public int setQuestion(Question question) {
+        int result = quizMapper.setQuestion(question);
+        for(QuestionChoice choice: question.getChoices()){
+            choice.setQuestionId(question.getQuestionId());
+            setChoice(choice);
+        }
+        return result;
+    }
+
+    @Override
+    public int setChoice(QuestionChoice choice) {
+        return quizMapper.setChoice(choice);
     }
 
     @Override
@@ -66,13 +86,13 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public int makeQuizPublic(int quizId) {
-        return quizMapper.makeQuizPublic(quizId);
+    public int setQuizPublic(int quizId) {
+        return quizMapper.setQuizPublic(quizId);
     }
 
     @Override
-    public int makeQuizPrivate(int quizId) {
-        return quizMapper.makeQuizPrivate(quizId);
+    public int setQuizPrivate(int quizId) {
+        return quizMapper.setQuizPrivate(quizId);
     }
 
 

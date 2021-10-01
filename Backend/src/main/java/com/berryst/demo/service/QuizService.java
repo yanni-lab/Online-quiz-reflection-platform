@@ -3,12 +3,11 @@ package com.berryst.demo.service;
 import com.berryst.demo.model.Question;
 import com.berryst.demo.model.QuestionChoice;
 import com.berryst.demo.model.Quiz;
-import org.apache.ibatis.javassist.compiler.ast.Pair;
-
 import java.util.ArrayList;
+import java.util.Map;
 
 public interface QuizService {
-    ArrayList<Pair> getPublicQuizList();
+    ArrayList<Map> getPublicQuizList();
 
     Quiz getQuizContent(int quizId);
 
@@ -16,15 +15,19 @@ public interface QuizService {
 
     ArrayList<QuestionChoice> getChoiceList(int questionId);
 
-    ArrayList<Pair> getSuvervisorQuiz(int supervisorId);
+    ArrayList<Map> getSupervisorQuiz(int supervisorId);
 
     int setQuiz(Quiz quiz);
 
+    int setQuestion(Question question);
+
+    int setChoice(QuestionChoice choice);
+
     int deleteQuiz(int quizId);
 
-    int makeQuizPublic(int quizId);
+    int setQuizPublic(int quizId);
 
-    int makeQuizPrivate(int quizId);
+    int setQuizPrivate(int quizId);
 
 
 }

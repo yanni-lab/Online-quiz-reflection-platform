@@ -10,6 +10,7 @@
         <result column="quiz_title" property="quizTitle" jdbcType="VARCHAR" />
         <result column="quiz_background" property="quizBackground" jdbcType="VARCHAR" />
         <result column="feedback" property="feedback" jdbcType="VARCHAR" />
+        <result column="is_public" property="isPublic" jdbcType="BOOLEAN" />
     </resultMap>
 
     <resultMap id="Question" type="com.berryst.demo.model.Question" >
@@ -31,7 +32,7 @@
     </select>
 
     <select id="getQuizContent" parameterType="int" resultMap="Quiz">
-        select quiz_id, quiz_title, quiz_background, feedback from quiz where quiz_id = #{quizId}
+        select quiz_id, quiz_title, quiz_background, feedback, is_public from quiz where quiz_id = #{quizId}
     </select>
 
     <select id="getQuestionList" parameterType="int" resultMap="Question">
@@ -42,4 +43,31 @@
         select * from question_choices where question_id = #{questionId} order by question_choice_order ASC
     </select>
 
+    <select id="getSupervisorQuiz" parameterType="int" resultType="map" >
+        select quiz_id, quiz_title, is_public from quiz where created_by = #{supervisorId}
+    </select>
+
+    <delete id="deleteQuiz" parameterType="int">
+        delete from quiz where quiz_id = #{quizId}
+    </delete>
+
+    <update id="setQuizPublic" >
+        update quiz set is_public = true where quiz_id = #{quizId}
+    </update>
+
+    <update id="setQuizPrivate" >
+        update quiz set is_public = false where quiz_id = #{quizId}
+    </update>
+
+    <insert id="setQuiz" parameterType="com.berryst.demo.model.Quiz" useGeneratedKeys="true" keyProperty="quizId">
+        insert into quiz (quiz_title,quiz_background,created_by,is_public,feedback) values (#{quizTitle}, #{quizBackground}, #{supervisorId}, #{isPublic}, #{feedback})
+    </insert>
+
+    <insert id="setQuestion" parameterType="com.berryst.demo.model.Question" useGeneratedKeys="true" keyProperty="questionId">
+        insert into question (question,quiz_id,question_order) values (#{question}, #{quizId}, #{questionOrder})
+    </insert>
+
+    <insert id="setChoice" parameterType="com.berryst.demo.model.QuestionChoice">
+        insert into question_choices (score,choice,question_id,question_choice_order) values (#{score}, #{choice}, #{questionId}, #{questionChoiceOrder})
+    </insert>
 </mapper>
