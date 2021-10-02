@@ -9,7 +9,6 @@ import java.util.HashMap;
 public class DemoApplication {
 
     public static HashMap<Integer, Long> tokenList = new HashMap<>();
-
     public static void main(String[] args) {
 
         SpringApplication.run(DemoApplication.class, args);

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.berryst.demo.mapper.ResultMapper">
+    <resultMap id="QuizResult" type="com.berryst.demo.model.QuizResult" >
+        <id column="attempt_id" property="attemptId" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="quiz_id" property="quizId" jdbcType="INTEGER" />
+        <result column="choices" property="choices" jdbcType="VARCHAR" />
+        <result column="attempt_times" property="numberOfAttempt" jdbcType="INTEGER" />
+        <result column="score" property="score" jdbcType="INTEGER" />
+        <result column="reflection" property="reflection" jdbcType="VARCHAR" />
+        <result column="reflection_time" property="attemptTime" jdbcType="TIMESTAMP" />
+        <result column="supervisor_id" property="supervisorId" jdbcType="INTEGER" />
+
+    </resultMap>
+
+    <insert id="saveResult" parameterType="com.berryst.demo.model.QuizResult">
+        insert into user_result (user_id,quiz_id,choices,attempt_times,score,reflection,reflection_time, supervisor_id) values (#{userId}, #{quizId}, #{choices}, #{numberOfAttempt}, #{score}, #{reflection}, sysdate(), #{supervisorId})
+    </insert>
+
+    <select id="getUserFeedback" parameterType="int" resultMap="QuizResult">
+        select * from user_result where user_id = #{userId} order by reflection_time desc
+    </select>
+
+    <select id="getSupervisorFeedback" parameterType="int" resultMap="QuizResult">
+        select * from user_result where supervisor_id = #{userId} order by reflection_time desc
+    </select>
+
+    <select id="getLatestAttempt" parameterType="int" resultMap="QuizResult">
+        select * from user_result where user_id = #{userId} and quiz_id = #{quizId} order by attempt_times desc limit 1
+    </select>
+</mapper>

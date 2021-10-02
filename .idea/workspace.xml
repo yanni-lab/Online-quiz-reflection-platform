@@ -5,15 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="feat(*):add all features related to QuizController">
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/configuration/JacksonConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_jakarta_mail_1_6_72.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_mail_mail_1_4_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_mail_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/configuration/EmailConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/utils/DataProcessing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/utils/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/resources/application .yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/resources/mybatis/mapper/ResultMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_12_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_jakarta_mail_1_6_7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/quiz.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/quiz.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/DemoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/QuizController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/mapper/QuizMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/mapper/QuizMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/QuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/QuizService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/QuizServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/QuizServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/mybatis/mapper/QuizMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/mybatis/mapper/QuizMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/service/impl/QuizServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/service/impl/QuizServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/mapper/ResultMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/mapper/ResultMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/QuizResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/QuizResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/ResultServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/ResultServiceImpl.java" afterDir="false" />
     </list>
     <list id="a20238c2-33c1-4e91-a2da-980c23180045" name="Add Quiz model" comment="Add Quiz model" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +37,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Tag Library Descriptor" />
         <option value="JUnit5 Test Class" />
+        <option value="spring-beans.schema" />
+        <option value="Tag Library Descriptor" />
         <option value="Class" />
       </list>
     </option>
@@ -49,9 +62,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
-  </component>
   <component name="ProjectId" id="1xfNkmlmBeo3q9sUXALT47sRSfW" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -67,6 +77,7 @@
     <property name="RunConfigurationTargetLRU" value="c92dc71a-4833-4bc8-a70f-38f59850961f&#10;c92dc71a-4833-4bc8-a70f-38f59850961f/schema/&quot;berry_street&quot;" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
@@ -76,7 +87,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.5176887" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -114,7 +125,7 @@
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.berryst.demo.service.impl.*" />
+          <option name="PATTERN" value="com.berryst.demo.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -129,7 +140,7 @@
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.berryst.demo.service.impl.*" />
+          <option name="PATTERN" value="com.berryst.demo.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -145,7 +156,7 @@
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.berryst.demo.service.impl.*" />
+          <option name="PATTERN" value="com.berryst.demo.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -190,6 +201,8 @@
       <workItem from="1632051171062" duration="4720000" />
       <workItem from="1632900270026" duration="6034000" />
       <workItem from="1632919674455" duration="23097000" />
+      <workItem from="1633160175751" duration="9980000" />
+      <workItem from="1633186660730" duration="2087000" />
     </task>
     <task id="LOCAL-00001" summary="Add Quiz model">
       <created>1631323516021</created>
@@ -317,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633091240317</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="feat(*):add all features related to QuizController">
+      <created>1633105029228</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1633105029228</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

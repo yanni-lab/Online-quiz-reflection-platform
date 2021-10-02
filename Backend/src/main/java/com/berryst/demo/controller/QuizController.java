@@ -3,6 +3,7 @@ package com.berryst.demo.controller;
 import com.berryst.demo.model.Quiz;
 import com.berryst.demo.service.QuizService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/service")
+@RequestMapping(value = "/quiz")
 @CrossOrigin
 public class QuizController {
     @Resource
@@ -147,12 +148,12 @@ public class QuizController {
 
         return node;
     }
-
     @RequestMapping(value = "/set_quiz", method = RequestMethod.POST)
     public ObjectNode setQuiz(@RequestBody String data, HttpServletResponse response) throws JSONException, JsonProcessingException {
 
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ObjectNode node = objectMapper.createObjectNode();
 
         JSONObject receivedData = new JSONObject(data);

@@ -12,10 +12,10 @@ public class QuizResult {
     int attemptId;
     int userId;
     int quizId;
-    ArrayList choices;
+    String choices;
     int numberOfAttempt;
     int score;
-    String Reflection;
+    String reflection;
     Date attemptTime;
     int supervisorId;
 

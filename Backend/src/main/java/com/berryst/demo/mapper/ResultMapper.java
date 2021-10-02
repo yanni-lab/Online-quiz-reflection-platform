@@ -15,4 +15,10 @@ public interface ResultMapper {
     ArrayList<QuizResult> getResultSupervisor(int quizId, int userId);
 
     int saveResult(QuizResult quizResult);
+
+    ArrayList<String> getUserFeedback(int userId);
+
+    ArrayList<String> getSupervisorFeedback(int userId);
+
+    QuizResult getLatestAttempt (int userId, int quizId);
 }
