@@ -35,6 +35,10 @@ class EditQuiz extends React.Component {
             ]
         };
 
+
+
+
+
         this.handleCancel = this.handleCancel.bind(this);
         this.cancelLeave = this.cancelLeave.bind(this);
         this.handleContinue = this.handleContinue.bind(this);
@@ -182,6 +186,31 @@ class EditQuiz extends React.Component {
             state.feedbacks.splice(event.target.value,1);
             return state;
         });
+    }
+
+    handleSubmit(event) {
+        console.log(1)
+        console.log(this.state.title);
+        var dataSent = JSON.stringify({
+            "quizTitle": this.state.title,
+            "quizBackground":this.state.overview,
+            "choices":this.state.questions,
+            "feedback":this.state.feedbacks
+        });
+        this.token = "";
+        event.preventDefault();
+        fetch('http://localhost:8080/quiz/set_quiz',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body:dataSent
+        }).then((response)=>{
+            return response.json()
+        }).catch(function(error){
+            console.log(error)
+        })
+
+        //const token = "111"
+
     }
 
 
@@ -408,19 +437,19 @@ class EditQuiz extends React.Component {
                         </Col>
 
                         <Col className = "button-col">
-                            <Link to = {{
-                                pathname:'/createQuiz',
-                                state:{
-                                    newQuiz: this.state.title
-                                }
-                            }}>
+                            {/*<Link to = {{*/}
+                            {/*    pathname:'/createQuiz',*/}
+                            {/*    state:{*/}
+                            {/*        newQuiz: this.state.title*/}
+                            {/*    }*/}
+                            {/*}}>*/}
                                 <Button className="loginButton"
                                         size="lg"
-                                        onClick = {this.handleContinue}
+                                        onClick = {this.handleSubmit}
                                 >
                                     Save
                                 </Button>
-                            </Link>
+                            {/*</Link>*/}
                         </Col>
 
 
