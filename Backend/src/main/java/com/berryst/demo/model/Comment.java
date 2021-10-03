@@ -11,7 +11,6 @@ import java.util.Date;
 @AllArgsConstructor
 public class Comment {
     private int commentId;
-    private int userId;
     private String comment;
     Date commentTime;
 }

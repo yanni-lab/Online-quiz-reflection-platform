@@ -34,10 +34,10 @@
     </select>
 
     <insert id="saveComment" parameterType="com.berryst.demo.model.Comment">
-        insert into comment (user_id,comment,comment_time) values (#{userId}, #{comment},  sysdate())
+        insert into comment (comment,comment_time) values (#{comment},  sysdate())
     </insert>
 
     <select id="getComment" resultType="map">
-        select * from comment left join user on comment.user_id = user.user_id order by comment_time desc
+        select comment, comment_time from comment order by comment_time desc
     </select>
 </mapper>

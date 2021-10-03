@@ -12,7 +12,7 @@ public class QuizResult {
     int attemptId;
     int userId;
     int quizId;
-    String choices;
+    Integer[] choices;
     int numberOfAttempt;
     int score;
     String reflection;

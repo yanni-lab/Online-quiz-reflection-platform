@@ -159,6 +159,8 @@ public class QuizController {
         ObjectNode node = objectMapper.createObjectNode();
 
         Quiz quiz = objectMapper.readValue(data, Quiz.class);
+        log.info(data);
+        log.info(quiz.toString());
         int questionCount = 1;
         for(Question q: quiz.getQuestions()){
             q.setQuestionOrder(questionCount);

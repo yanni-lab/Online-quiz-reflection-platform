@@ -81,7 +81,6 @@ PRIMARY KEY (`attempt_id`)
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
 `comment_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique comment id',
-`user_id` int(10) NOT NULL COMMENT 'user_id from `user` table',
 `comment` varchar(3000) COMMENT 'user''s comment on website',
 `comment_time` datetime DEFAULT NULL COMMENT 'comment time',
 PRIMARY KEY (`comment_id`)
