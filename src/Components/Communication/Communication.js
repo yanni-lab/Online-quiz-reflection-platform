@@ -1,6 +1,6 @@
 import React from 'react';
 import './Communication.css';
-import {Row, Col, Button,FormText} from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import data from "../../quiz.json"
@@ -30,7 +30,7 @@ class Communication extends React.Component {
         this.feedback = data.feedback
 
 
-        fetch('http://localhost:8080/service/quiz_content',{
+        fetch('http://localhost:8080/quiz/quiz_content',{
             method:'post',
             headers:{"Content-Type":"application/json"},
             body: JSON.stringify({"quizId": this.state.quizId})//这个要从listQuiz页面传过来
@@ -70,19 +70,6 @@ class Communication extends React.Component {
 
 
     render() {
-
-        //const title="Collaborative Learning"
-        //const content="Collaborative Learning is the educational approach of using groups to enhance" +
-        //    "learning through working together. Groups of two or more learners work together to solve problems" +
-        //    ", complete tasks, or learn new concepts." +
-        //    "\n " +
-        //    "\n Take this quiz now to find out how well you do in collaborative Learning!"
-
-        // const title=this.quizData.quizTitle
-        // const content=this.quizData.quizBackground +
-        //     "\n " +
-        //     "\n Take this quiz now to find out how well you do in "+this.quizData.quizTitle+"!"
-
 
         return(
             <div className="communicationPage">
