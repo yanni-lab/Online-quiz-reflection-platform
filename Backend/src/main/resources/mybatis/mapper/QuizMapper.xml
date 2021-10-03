@@ -9,7 +9,6 @@
         <id column="quiz_id" property="quizId" jdbcType="INTEGER" />
         <result column="quiz_title" property="quizTitle" jdbcType="VARCHAR" />
         <result column="quiz_background" property="quizBackground" jdbcType="VARCHAR" />
-        <result column="feedback" property="feedback" jdbcType="VARCHAR" />
         <result column="is_public" property="isPublic" jdbcType="BOOLEAN" />
     </resultMap>
 
@@ -26,13 +25,21 @@
         <result column="question_choice_order" property="questionChoiceOrder" jdbcType="INTEGER" />
     </resultMap>
 
+    <resultMap id="Feedback" type="com.berryst.demo.model.Feedback" >
+        <id column="feedback_id" property="feedbackId" jdbcType="INTEGER" />
+        <result column="lower_bound" property="lowerBound" jdbcType="INTEGER" />
+        <result column="upper_bound" property="upperBound" jdbcType="INTEGER" />
+        <result column="feedback_content" property="feedbackContent" jdbcType="VARCHAR" />
+        <result column="feedback_order" property="feedbackOrder" jdbcType="INTEGER" />
+    </resultMap>
+
 
     <select id="getPublicQuiz" resultType="map">
         select quiz_id, quiz_title from quiz where is_public=true and is_available=true
     </select>
 
     <select id="getQuizContent" parameterType="int" resultMap="Quiz">
-        select quiz_id, quiz_title, quiz_background, feedback, is_public from quiz where quiz_id = #{quizId}
+        select quiz_id, quiz_title, quiz_background, is_public from quiz where quiz_id = #{quizId}
     </select>
 
     <select id="getQuestionList" parameterType="int" resultMap="Question">
@@ -41,6 +48,10 @@
 
     <select id="getChoiceList" parameterType="int" resultMap="QuestionChoice">
         select * from question_choices where question_id = #{questionId} order by question_choice_order ASC
+    </select>
+
+    <select id="getFeedbackList" parameterType="int" resultMap="Feedback">
+        select feedback_id, lower_bound, upper_bound, feedback_content, feedback_order from feedback where quiz_id = #{quizId} order by feedback_order ASC
     </select>
 
     <select id="getSupervisorQuiz" parameterType="int" resultType="map" >
@@ -64,7 +75,7 @@
     </update>
 
     <insert id="setQuiz" parameterType="com.berryst.demo.model.Quiz" useGeneratedKeys="true" keyProperty="quizId">
-        insert into quiz (quiz_title,quiz_background,created_by,is_public,feedback,is_available) values (#{quizTitle}, #{quizBackground}, #{supervisorId}, #{isPublic}, #{feedback}, 1)
+        insert into quiz (quiz_title,quiz_background,created_by,is_public,is_available) values (#{quizTitle}, #{quizBackground}, #{supervisorId}, #{isPublic}, 1)
     </insert>
 
     <insert id="setQuestion" parameterType="com.berryst.demo.model.Question" useGeneratedKeys="true" keyProperty="questionId">
@@ -73,5 +84,9 @@
 
     <insert id="setChoice" parameterType="com.berryst.demo.model.QuestionChoice">
         insert into question_choices (score,choice,question_id,question_choice_order) values (#{score}, #{choice}, #{questionId}, #{questionChoiceOrder})
+    </insert>
+
+    <insert id="setFeedback" parameterType="com.berryst.demo.model.Feedback" useGeneratedKeys="true" keyProperty="feedbackId">
+        insert into feedback (lower_bound, upper_bound, feedback_content, feedback_order, quiz_id) values (#{lowerBound}, #{upperBound}, #{feedbackContent}, #{feedbackOrder},#{quizId})
     </insert>
 </mapper>

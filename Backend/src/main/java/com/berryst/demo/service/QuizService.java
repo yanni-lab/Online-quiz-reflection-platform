@@ -1,5 +1,6 @@
 package com.berryst.demo.service;
 
+import com.berryst.demo.model.Feedback;
 import com.berryst.demo.model.Question;
 import com.berryst.demo.model.QuestionChoice;
 import com.berryst.demo.model.Quiz;
@@ -15,6 +16,8 @@ public interface QuizService {
 
     ArrayList<QuestionChoice> getChoiceList(int questionId);
 
+    ArrayList<Feedback> getFeedbackList(int quizId);
+
     ArrayList<Map> getSupervisorQuiz(int supervisorId);
 
     int setQuiz(Quiz quiz);
@@ -22,6 +25,8 @@ public interface QuizService {
     int setQuestion(Question question);
 
     int setChoice(QuestionChoice choice);
+
+    int setFeedback(Feedback feedback);
 
     int deleteQuiz(int quizId);
 

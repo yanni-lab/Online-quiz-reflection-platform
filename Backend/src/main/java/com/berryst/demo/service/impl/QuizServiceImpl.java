@@ -1,6 +1,7 @@
 package com.berryst.demo.service.impl;
 
 import com.berryst.demo.mapper.QuizMapper;
+import com.berryst.demo.model.Feedback;
 import com.berryst.demo.model.Question;
 import com.berryst.demo.model.QuestionChoice;
 import com.berryst.demo.model.Quiz;
@@ -27,6 +28,7 @@ public class QuizServiceImpl implements QuizService {
         Quiz quiz = quizMapper.getQuizContent(quizId);
         if (quiz != null) {
             quiz.setQuestions(getQuestionList(quizId));
+            quiz.setFeedback(getFeedbackList(quizId));
         }
         return quiz;
     }
@@ -46,6 +48,11 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
+    public ArrayList<Feedback> getFeedbackList(int quizId) {
+        return quizMapper.getFeedbackList(quizId);
+    }
+
+    @Override
     public ArrayList<Map> getSupervisorQuiz(int supervisorId) {
         return quizMapper.getSupervisorQuiz(supervisorId);
     }
@@ -60,6 +67,10 @@ public class QuizServiceImpl implements QuizService {
         for(Question question:quiz.getQuestions()){
             question.setQuizId(quiz.getQuizId());
             setQuestion(question);
+        }
+        for(Feedback feedback:quiz.getFeedback()){
+            feedback.setQuizId(quiz.getQuizId());
+            setFeedback(feedback);
         }
         return quiz.getQuizId();
     }
@@ -77,6 +88,11 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public int setChoice(QuestionChoice choice) {
         return quizMapper.setChoice(choice);
+    }
+
+    @Override
+    public int setFeedback(Feedback feedback) {
+        return quizMapper.setFeedback(feedback);
     }
 
     @Override

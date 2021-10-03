@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="feat(*):add is_available field to quiz table for delete">
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/Comment.java" afterDir="false" />
+    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="feat(*):add save and view website comment function">
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/Feedback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/QuizController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/mapper/ResultMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/mapper/ResultMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/ResultService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/ResultService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/ResultServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/ResultServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/mapper/QuizMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/mapper/QuizMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/QuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/QuizService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/QuizServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/QuizServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/mybatis/mapper/QuizMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/mybatis/mapper/QuizMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/mybatis/mapper/ResultMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/mybatis/mapper/ResultMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/create_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/create_db.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/init_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init_db.sql" afterDir="false" />
     </list>
@@ -195,7 +195,7 @@
       <workItem from="1632919674455" duration="23097000" />
       <workItem from="1633160175751" duration="9980000" />
       <workItem from="1633186660730" duration="6088000" />
-      <workItem from="1633253832724" duration="13462000" />
+      <workItem from="1633253832724" duration="18129000" />
     </task>
     <task id="LOCAL-00001" summary="Add Quiz model">
       <created>1631323516021</created>
@@ -344,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633258358611</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="feat(*):add save and view website comment function">
+      <created>1633268801697</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1633268801697</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,7 +403,8 @@
     <MESSAGE value="feat(*):add all features related to QuizController" />
     <MESSAGE value="feat(*):add all features related to ResultController" />
     <MESSAGE value="feat(*):add is_available field to quiz table for delete" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(*):add is_available field to quiz table for delete" />
+    <MESSAGE value="feat(*):add save and view website comment function" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(*):add save and view website comment function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

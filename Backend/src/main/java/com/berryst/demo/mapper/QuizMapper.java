@@ -1,5 +1,6 @@
 package com.berryst.demo.mapper;
 
+import com.berryst.demo.model.Feedback;
 import com.berryst.demo.model.Question;
 import com.berryst.demo.model.QuestionChoice;
 import org.apache.ibatis.annotations.Mapper;
@@ -22,6 +23,8 @@ public interface QuizMapper {
 
     int setChoice(QuestionChoice choice);
 
+    int setFeedback(Feedback feedback);
+
     int deleteQuiz(int quizId);
 
     Quiz getQuizContent(int quizId);
@@ -29,6 +32,8 @@ public interface QuizMapper {
     ArrayList<Question> getQuestionList(int quizId);
 
     ArrayList<QuestionChoice> getChoiceList(int questionId);
+
+    ArrayList<Feedback> getFeedbackList(int quizId);
 
     int setQuizPublic(int quizId);
 

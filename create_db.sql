@@ -20,7 +20,7 @@ CREATE TABLE `quiz` (
 `quiz_background` varchar(300) NOT NULL COMMENT 'quiz background',
 `created_by` int(10) NOT NULL COMMENT 'user_id from `supervisor` table',
 `is_public` boolean COMMENT 'whether the quiz is public',
-`feedback` varchar(10000) NOT NULL COMMENT 'feedback of the quiz',
+# `feedback` varchar(10000) NOT NULL COMMENT 'feedback of the quiz',
 `is_available` boolean COMMENT 'the quiz is deleted or not',
 PRIMARY KEY (`quiz_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -49,6 +49,18 @@ PRIMARY KEY (`choice_id`),
 FOREIGN KEY (question_id) REFERENCES question(question_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*Table structure for table `feedback` */
+DROP TABLE IF EXISTS `feedback`;
+CREATE TABLE `feedback` (
+`feedback_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique feedback id',
+`lower_bound` int(10) NOT NULL COMMENT 'lower bound of feedback',
+`upper_bound` int(10) NOT NULL COMMENT 'upper bound of feedback',
+`feedback_content` varchar(10000) NOT NULL COMMENT 'feedback content',
+`quiz_id` int(10) NOT NULL COMMENT 'quiz_id from `quiz` table',
+`feedback_order` int(10) NOT NULL COMMENT 'feedback order',
+PRIMARY KEY (`feedback_id`),
+FOREIGN KEY (quiz_id) REFERENCES quiz(quiz_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `user_result` */
 DROP TABLE IF EXISTS `user_result`;

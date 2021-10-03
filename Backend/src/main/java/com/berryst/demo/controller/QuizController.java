@@ -1,5 +1,8 @@
 package com.berryst.demo.controller;
 
+import com.berryst.demo.model.Feedback;
+import com.berryst.demo.model.Question;
+import com.berryst.demo.model.QuestionChoice;
 import com.berryst.demo.model.Quiz;
 import com.berryst.demo.service.QuizService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -48,8 +51,8 @@ public class QuizController {
 
         log.info("Successfully retrieved quiz content - quizId: " + quizId);
 
-        node.put("feedback", thequiz.getFeedback().replace("###", "\\n"));
-        node.put("quizBackground", thequiz.getQuizBackground().replace("###", "\\n"));
+//        node.put("feedback", thequiz.getFeedback().replace("###", "\\n"));
+//        node.put("quizBackground", thequiz.getQuizBackground().replace("###", "\\n"));
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
 
@@ -155,8 +158,23 @@ public class QuizController {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ObjectNode node = objectMapper.createObjectNode();
 
-//        JSONObject receivedData = new JSONObject(data);
         Quiz quiz = objectMapper.readValue(data, Quiz.class);
+        int questionCount = 1;
+        for(Question q: quiz.getQuestions()){
+            q.setQuestionOrder(questionCount);
+            questionCount++;
+            int choiceCount = 1;
+            for(QuestionChoice c: q.getChoices()){
+                c.setQuestionChoiceOrder(choiceCount);
+                choiceCount++;
+            }
+        }
+
+        int feedbackCount = 1;
+        for(Feedback f: quiz.getFeedback()){
+            f.setFeedbackOrder(feedbackCount);
+            feedbackCount++;
+        }
         log.info("Receive set quiz request - quizId: "+quiz.getQuizId());
 
         int newQuizId = quizService.setQuiz(quiz);
