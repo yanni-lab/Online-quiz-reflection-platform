@@ -105,66 +105,64 @@ class Login extends React.Component {
 
     render(){
         return (
-            <div className="Register">
+            <div className="Login">
                 <div className="box justify-content-center align-items-center">
-                    <div className="registerbox">
-                        <Form className="registerForm" onSubmit={this.handleSubmit}>
-                            <div className="registerlogo">
-                                <img href="/"
-                                     src={LoginLogo}
-                                     alt="Logo"
-                                     className="login-img"
-                                />
-                            </div>
-                            <div className = "heading">
-                                Login
-                            </div>
-                            <Form.Group size="lg" controlId="username">
-                                <Form.Label className = "label">Username</Form.Label>
-                                <Form.Control className = "input"
-                                              autoFocus
-                                              type="text"
-                                              value={this.state.username}
-                                              onChange={this.handleUserChange}                            />
-                            </Form.Group>
-                            <Form.Group size="lg" controlId="password">
-                                <Form.Label className = "label">Password</Form.Label>
-                                <Form.Control className = "input"
-                                              type="password"
-                                              value={this.state.password}
-                                              onChange={this.handlePassChange}
-                                />
-                            </Form.Group>
+                    <Form className="loginForm" onSubmit={this.handleSubmit}>
+                        <div className="loginlogo">
+                            <img href="/"
+                                 src={LoginLogo}
+                                 alt="Logo"
+                                 className="login-img"
+                            />
+                        </div>
+                        <div className = "heading">
+                            Login
+                        </div>
+                        <Form.Group size="lg" controlId="username">
+                            <Form.Label className = "label">Username</Form.Label>
+                            <Form.Control className = "input"
+                                          autoFocus
+                                          type="text"
+                                          value={this.state.username}
+                                          onChange={this.handleUserChange}                            />
+                        </Form.Group>
+                        <Form.Group size="lg" controlId="password">
+                            <Form.Label className = "label">Password</Form.Label>
+                            <Form.Control className = "input"
+                                          type="password"
+                                          value={this.state.password}
+                                          onChange={this.handlePassChange}
+                            />
+                        </Form.Group>
 
-                            <Row>
-                                {/*<Link>*/}
-                                <Button className="button"
+                        <Row>
+                            {/*<Link>*/}
+                            <Button className="loginButton"
+                                    size="lg"
+                                    type="submit"
+                                // disabled={this.validateForm()}
+                            >
+                                Login
+                            </Button>
+                            {/*</Link>*/}
+
+                        </Row>
+
+                        <Row>
+                            <Link to='/register'>
+                                <Button className="loginButton"
                                         size="lg"
                                         type="submit"
                                     // disabled={this.validateForm()}
                                 >
-                                    Login
+                                    Create Account
                                 </Button>
-                                {/*</Link>*/}
-
-                            </Row>
-
-                            <Row>
-                                <Link to='/register'>
-                                    <Button className="button"
-                                            size="lg"
-                                            type="submit"
-                                        // disabled={this.validateForm()}
-                                    >
-                                        Create Account
-                                    </Button>
-                                </Link>
-                            </Row>
-                            <Row>
-                                <a href='#'>Lost your password ?</a>
-                            </Row>
-                        </Form>
-                    </div>
+                            </Link>
+                        </Row>
+                        <Row>
+                            <a href='#'>Lost your password ?</a>
+                        </Row>
+                    </Form>
                 </div>
 
                 <Modal  show = {this.state.showModal}

@@ -8,7 +8,12 @@ class ListQuiz extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            quizList:[]
+            quizList:[
+                {quiz_id:1, quiz_title:"Collaborative Learning"},
+                {quiz_id:2, quiz_title:"Leadership"},
+                {quiz_id:3, quiz_title:"Resilience"}
+
+            ]
         };
         //this.history = {this.props.history}
         // this.selectQuiz = function (selectQuizNum){
@@ -33,12 +38,12 @@ class ListQuiz extends React.Component {
         })
 
         //测试用数据
-        /**this.quizList=[
+        this.quizList=[
             {quiz_id:1, quiz_title:"Collaborative Learning"},
             {quiz_id:2, quiz_title:"Leadership"},
             {quiz_id:3, quiz_title:"Resilience"}
 
-        ]**/
+        ]
         //this.quizList = this.getQuizList();
 
 

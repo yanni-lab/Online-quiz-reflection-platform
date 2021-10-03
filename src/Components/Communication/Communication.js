@@ -12,9 +12,24 @@ class Communication extends React.Component {
         super(props);
         this.state = {
             quizId:props.location.state.quizId,
-            title:"",
-            content:""
+            // title:"",
+            // content:"",
+            title: data.quizTitle,
+            content: data.quizBackground
         };
+
+        this.quizList = data.questions;
+        this.quesNum = this.quizList.length;
+        this.quizList.push(
+            {
+                "question":'Congrats! You have reached the end!',
+                "choices": [
+                ]
+            }
+        );
+        this.feedback = data.feedback
+
+
         fetch('http://localhost:8080/service/quiz_content',{
             method:'post',
             headers:{"Content-Type":"application/json"},
@@ -36,7 +51,9 @@ class Communication extends React.Component {
                 }
             );
 
-            this.setState({title:this.quizData["quizTitle"]});
+            this.setState({
+                title:this.quizData["quizTitle"]
+            });
             this.setState({content:this.quizData["quizBackground"].replace("\\n","\n")});
             console.log(this.state.content);
             //data from backend
@@ -45,6 +62,8 @@ class Communication extends React.Component {
         })
 
         console.log(this.state.quizId)
+
+
 
     };
 
