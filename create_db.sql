@@ -21,6 +21,7 @@ CREATE TABLE `quiz` (
 `created_by` int(10) NOT NULL COMMENT 'user_id from `supervisor` table',
 `is_public` boolean COMMENT 'whether the quiz is public',
 `feedback` varchar(10000) NOT NULL COMMENT 'feedback of the quiz',
+`is_available` boolean COMMENT 'the quiz is deleted or not',
 PRIMARY KEY (`quiz_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

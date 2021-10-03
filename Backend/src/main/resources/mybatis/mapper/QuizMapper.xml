@@ -28,7 +28,7 @@
 
 
     <select id="getPublicQuiz" resultType="map">
-        select quiz_id, quiz_title from quiz where is_public=1
+        select quiz_id, quiz_title from quiz where is_public=true and is_available=true
     </select>
 
     <select id="getQuizContent" parameterType="int" resultMap="Quiz">
@@ -44,12 +44,16 @@
     </select>
 
     <select id="getSupervisorQuiz" parameterType="int" resultType="map" >
-        select quiz_id, quiz_title, is_public from quiz where created_by = #{supervisorId}
+        select quiz_id, quiz_title, is_public from quiz where created_by = #{supervisorId} and is_available=1
     </select>
 
-    <delete id="deleteQuiz" parameterType="int">
-        delete from quiz where quiz_id = #{quizId}
-    </delete>
+<!--    <delete id="deleteQuiz" parameterType="int">-->
+<!--        delete from quiz where quiz_id = #{quizId}-->
+<!--    </delete>-->
+
+    <update id="deleteQuiz" >
+        update quiz set is_available = false where quiz_id = #{quizId}
+    </update>
 
     <update id="setQuizPublic" >
         update quiz set is_public = true where quiz_id = #{quizId}

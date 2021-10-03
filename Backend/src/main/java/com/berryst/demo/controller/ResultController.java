@@ -61,7 +61,7 @@ public class ResultController {
         node.put("errorMessage", "Success");
 
         //TODO Edit email
-//        emailService.sendMail(email,"Berry Street", "Here is your quiz result");
+//        emailService.sendMail("shiruic@outlook.com","Berry Street", "Here is your quiz result");
         return node;
     }
 

@@ -19,8 +19,7 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public ArrayList<Map> getPublicQuizList() {
-        ArrayList<Map> quizList = quizMapper.getPublicQuiz();
-        return quizList;
+        return quizMapper.getPublicQuiz();
     }
 
     @Override
