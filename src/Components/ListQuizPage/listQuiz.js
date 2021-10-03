@@ -12,7 +12,6 @@ class ListQuiz extends React.Component {
                 {quiz_id:1, quiz_title:"Collaborative Learning"},
                 {quiz_id:2, quiz_title:"Leadership"},
                 {quiz_id:3, quiz_title:"Resilience"}
-
             ]
         };
 

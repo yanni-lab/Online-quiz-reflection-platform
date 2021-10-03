@@ -1,0 +1,73 @@
+
+.editQuizPage{
+    background-color:  #e8effc;
+    /*height:100%;*/
+    margin-top: 0;
+    margin-bottom: 0;
+    left: 0;
+    height: auto;
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+}
+
+.create-quiz-form{
+    padding: 0 150px 15px 150px;
+}
+
+
+.overview{
+    height: 200px;
+    word-break:break-all
+}
+
+.button-col{
+    padding: 10px 100px;
+}
+
+.form-group-custom{
+    border-radius: 5px;
+    background-color: white;
+    padding: 15px 25px;
+    margin-bottom: 15px;
+}
+
+.quiz-row{
+    padding: 10px 10px;
+    /*margin-left: 10%;*/
+    /*margin-right: 10%;*/
+}
+
+.question-input{
+    width: 89%;
+    margin-right: 2%;
+}
+
+.question-cancel-button{
+    width: 9%;
+}
+
+.option-input{
+    width:75%;
+    margin-right: 2%;
+}
+
+.option-score{
+    width:12%;
+    margin-right: 2%;
+}
+
+.option-cancel-button{
+    width:9%;
+
+}
+
+.delete-button{
+    width:100%
+}
+
+.feedback-input{
+    width: 60%;
+    margin-right: 2%;
+    height:auto;
+}
