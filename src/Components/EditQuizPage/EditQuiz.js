@@ -27,7 +27,7 @@ class EditQuiz extends React.Component {
                 {
                     "lowerBound":"",
                     "upperBound":"",
-                    "feedback_content":""
+                    "feedbackContent":""
                 }
             ]
         };
@@ -151,7 +151,7 @@ class EditQuiz extends React.Component {
             {
                 "lowerBound":"",
                 "upperBound":"",
-                "feedback_content":""
+                "feedbackContent":""
             })
     }
 
@@ -171,7 +171,7 @@ class EditQuiz extends React.Component {
 
     handleFeedbackChange = (index,event) => {
         this.setState(state => {
-            state.feedbacks[index].feedback_content = event.target.value;
+            state.feedbacks[index].feedbackContent = event.target.value;
             return state;
         });
     }
@@ -389,7 +389,7 @@ class EditQuiz extends React.Component {
                                         <Col xs = {9}>
                                             <Form.Control as="textarea"
                                                           placeholder ="Feedback"
-                                                          value = {feedback.feedback_content}
+                                                          value = {feedback.feedbackContent}
                                                           onChange= {this.handleFeedbackChange.bind(this, feedback_index)}
                                             />
                                         </Col>
