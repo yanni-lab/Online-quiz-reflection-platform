@@ -12,9 +12,8 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface ResultMapper {
-    ArrayList<QuizResult> getResultUser(int userId);
 
-    ArrayList<QuizResult> getResultSupervisor(int quizId, int userId);
+    QuizResult getResultContent(int attemptId);
 
     int saveResult(QuizResult quizResult);
 
@@ -26,5 +25,8 @@ public interface ResultMapper {
 
     int saveComment(Comment comment);
 
-    ArrayList<Map> getComment();
+    ArrayList<String> getComment();
+
+    String getFeedbackContent(int quizId, int score);
+
 }

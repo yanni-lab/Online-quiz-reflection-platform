@@ -15,7 +15,11 @@ public interface ResultService {
 
     ArrayList<String> getSupervisorFeedback(int userId);
 
+    QuizResult getResultContent(int attemptId);
+
     int saveComment(Comment comment);
 
-    ArrayList<Map> getComment();
+    ArrayList<String> getComment();
+
+    String getFeedbackContent(int quizId, int score);
 }

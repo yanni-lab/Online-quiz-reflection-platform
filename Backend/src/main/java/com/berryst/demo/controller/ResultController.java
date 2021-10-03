@@ -1,12 +1,13 @@
 package com.berryst.demo.controller;
 
-import com.berryst.demo.model.Comment;
-import com.berryst.demo.model.QuizResult;
+import com.berryst.demo.model.*;
+import com.berryst.demo.service.QuizService;
 import com.berryst.demo.service.ResultService;
 import com.berryst.demo.utils.EmailService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @Slf4j
 @RestController
@@ -23,6 +26,9 @@ import javax.servlet.http.HttpServletResponse;
 public class ResultController {
     @Resource
     private ResultService resultService;
+
+    @Resource
+    private QuizService quizService;
 
     @Resource
     private EmailService emailService;
@@ -34,7 +40,8 @@ public class ResultController {
         ObjectNode node = objectMapper.createObjectNode();
 
         QuizResult result = objectMapper.readValue(data, QuizResult.class);
-
+        log.info(data);
+        log.info(result.toString());
         resultService.saveResult(result);
 
         log.info("Successfully save new result");
@@ -97,6 +104,40 @@ public class ResultController {
         node.put("errorMessage", "Success");
         return node;
 
+    }
+
+    @RequestMapping(value = "/get_result_content", method = RequestMethod.POST)
+    public ObjectNode getResultContent(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException, JSONException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        JSONObject receivedData = new JSONObject(data);
+        int attemptId = receivedData.getInt("attemptId");
+
+        QuizResult result = resultService.getResultContent(attemptId);
+        ObjectNode node = objectMapper.convertValue(result, ObjectNode.class);
+
+        node.put("feedback",resultService.getFeedbackContent(result.getQuizId(),result.getScore()));
+
+        ArrayList<HashMap> choices = new ArrayList<>();
+
+        ArrayList<Question> questionList = quizService.getQuestionList(result.getQuizId());
+        for(int i=0;i< result.getChoices().length;i++){
+            Question q = questionList.get(i);
+            QuestionChoice c = q.getChoices().get(result.getChoices()[i]);
+            choices.add(new HashMap<String,String>(){{
+                            put("question",q.getQuestion());
+                            put("choice",c.getChoice());
+                        }}
+                    );
+        }
+
+        node.set("choices",objectMapper.convertValue(choices, ArrayNode.class));
+
+
+        log.info("Successfully retrieved result content - attemptId: "+attemptId);
+        node.put("errorCode", "00000");
+        node.put("errorMessage", "Success");
+        return node;
     }
 
     @RequestMapping(value = "/save_comment", method = RequestMethod.POST)

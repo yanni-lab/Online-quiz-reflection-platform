@@ -30,7 +30,6 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public int shareResult(QuizResult result, String email) {
-        //Send Email to email
         QuizResult preResult = resultMapper.getLatestAttempt(result.getUserId(),result.getQuizId());
         if(preResult==null){
             result.setNumberOfAttempt(1);
@@ -52,12 +51,22 @@ public class ResultServiceImpl implements ResultService {
     }
 
     @Override
+    public QuizResult getResultContent(int attemptId) {
+        return resultMapper.getResultContent(attemptId);
+    }
+
+    @Override
     public int saveComment(Comment comment) {
         return resultMapper.saveComment(comment);
     }
 
     @Override
-    public ArrayList<Map> getComment() {
+    public ArrayList<String> getComment() {
         return resultMapper.getComment();
+    }
+
+    @Override
+    public String getFeedbackContent(int quizId, int score) {
+        return resultMapper.getFeedbackContent(quizId,score);
     }
 }
