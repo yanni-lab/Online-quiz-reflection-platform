@@ -13,23 +13,20 @@ class EditQuiz extends React.Component {
             title:"",
             overview:"",
             questions:[
-                    {
-                        "question_id":1,
-                        "question_name": "",
-                        "options":[
-                            {
-                                "option_id":1,
-                                "option":"",
-                                "score":""
-                            }
-                        ]
-                    }
+                {
+                    "question": "",
+                    "choices":[
+                        {
+                            "score": "",
+                            "choice": ""
+                        }
+                    ]
+                }
             ],
             feedbacks:[
                 {
-                    "feedback_id":1,
-                    "from":"",
-                    "to":"",
+                    "lowerBound":"",
+                    "upperBound":"",
                     "feedback_content":""
                 }
             ]
@@ -94,13 +91,11 @@ class EditQuiz extends React.Component {
         this.setState({})
         this.state.questions.push(
             {
-                "question_id": this.state.questions.length+1,
-                "question_name": "",
-                "options":[
+                "question": "",
+                "choices":[
                     {
-                        "option_id":1,
-                        "option":"",
-                        "score":""
+                        "score": "",
+                        "choice": "",
                     }
                 ]
             })
@@ -115,38 +110,37 @@ class EditQuiz extends React.Component {
 
     handleQuestionChange = (index,event) => {
         this.setState(state => {
-            state.questions[index].question_name = event.target.value;
+            state.questions[index].question = event.target.value;
             return state;
         });
     }
 
     handleAddOption(event){
         this.setState({})
-        this.state.questions[event.target.value].options.push(
+        this.state.questions[event.target.value].choices.push(
             {
-                "option_id":this.state.questions[event.target.value].options.length+1,
-                "option":"",
-                "score":""
+                "score": "",
+                "choice": ""
             })
     }
 
     handleDeleteOption(option_index,question_index) {
         this.setState(state => {
-            state.questions[question_index].options.splice(option_index,1);
+            state.questions[question_index].choices.splice(option_index,1);
             return state;
         });
     }
 
     handleOptionChange(option_index,question_index,event) {
         this.setState(state => {
-            state.questions[question_index].options[option_index].option = event.target.value;
+            state.questions[question_index].choices[option_index].choice = event.target.value;
             return state;
         });
     };
 
     handleScoreChange(option_index,question_index,event) {
         this.setState(state => {
-            state.questions[question_index].options[option_index].score = event.target.value;
+            state.questions[question_index].choices[option_index].score = event.target.value;
             return state;
         });
     };
@@ -155,23 +149,22 @@ class EditQuiz extends React.Component {
         this.setState({})
         this.state.feedbacks.push(
             {
-                "feedback_id":this.state.feedbacks.length+1,
-                "from":"",
-                "to":"",
+                "lowerBound":"",
+                "upperBound":"",
                 "feedback_content":""
             })
     }
 
     handleFromChange = (index,event) => {
         this.setState(state => {
-            state.feedbacks[index].from = event.target.value;
+            state.feedbacks[index].lowerBound = event.target.value;
             return state;
         });
     }
 
     handleToChange = (index,event) => {
         this.setState(state => {
-            state.feedbacks[index].to = event.target.value;
+            state.feedbacks[index].upperBound = event.target.value;
             return state;
         });
     }
@@ -196,8 +189,9 @@ class EditQuiz extends React.Component {
         var dataSent = JSON.stringify({
             "quizTitle": this.state.title,
             "quizBackground":this.state.overview,
-            "choices":this.state.questions,
-            "feedback":this.state.feedbacks
+            "questions":this.state.questions,
+            "feedback":this.state.feedbacks,
+            "superviserId":1
         });
         this.token = "";
         event.preventDefault();
@@ -254,7 +248,6 @@ class EditQuiz extends React.Component {
                         <Col className = "button-col">
                             <Button className="loginButton"
                                     size="lg"
-                                    //type="submit"
                                     onClick = {this.handleCancel}
                             >
                                 Cancel
@@ -264,8 +257,6 @@ class EditQuiz extends React.Component {
                         <Col className = "button-col">
                             <Button className="loginButton"
                                     size="lg"
-                                    //type="submit"
-                                // disabled={this.validateForm()}
                                     onClick = {this.handleContinue}
                             >
                                 Continue
@@ -295,7 +286,7 @@ class EditQuiz extends React.Component {
                                                   autoFocus
                                                   type="text"
                                                   placeholder ={"Question"+(question_index+1)}
-                                                  value={question.question_name}
+                                                  value={question.question}
                                                   onChange= {this.handleQuestionChange.bind(this, question_index)}
                                     />
                                     <Button
@@ -307,14 +298,13 @@ class EditQuiz extends React.Component {
                                     </Button>
                                 </Row>
                                 {
-                                    question.options.map((option,option_index) =>
+                                    question.choices.map((option,option_index) =>
                                         <Row className = "quiz-row">
                                             <Form.Control
                                                 className = "option-input"
-                                                autoFocus
                                                 type="text"
                                                 placeholder = {"Option"+(option_index+1)}
-                                                value={option.option}
+                                                value={option.choice}
                                                 onChange={this.handleOptionChange.bind(this, option_index,question_index)}
                                             />
                                             <Form.Control
@@ -384,7 +374,7 @@ class EditQuiz extends React.Component {
                                                 autoFocus
                                                 type="text"
                                                 placeholder ="From"
-                                                value = {feedback.from}
+                                                value = {feedback.lowerBound}
                                                 onChange= {this.handleFromChange.bind(this, feedback_index)}
                                             />
                                         </Col>
@@ -392,7 +382,7 @@ class EditQuiz extends React.Component {
                                             <Form.Control
                                                 type="text"
                                                 placeholder ="To"
-                                                value = {feedback.to}
+                                                value = {feedback.upperBound}
                                                 onChange= {this.handleToChange.bind(this, feedback_index)}
                                             />
                                         </Col>

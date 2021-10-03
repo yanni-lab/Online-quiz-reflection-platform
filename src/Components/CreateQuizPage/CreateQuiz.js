@@ -20,7 +20,7 @@ class CreateQuiz extends React.Component {
         };
 
 
-        fetch('http://localhost:8080/service/available_quiz',{
+        fetch('http://localhost:8080/quiz/available_quiz',{
             method:'post',
             headers:{"Content-Type":"application/json"},
             body: JSON.stringify({"username": "111"})//this is just to send sth, meaningless
@@ -37,41 +37,10 @@ class CreateQuiz extends React.Component {
         })
 
         this.handleCreateClick = this.handleCreateClick.bind(this);
+        this.handelPrivatetoPublic = this.handelPrivatetoPublic.bind(this);
+        this.handelPublictoPrivate = this.handelPublictoPrivate.bind(this);
 
 
-
-        this.publicList = this.state.quizList.map((quiz) =>
-            <Link
-                to={{
-                    pathname:"/communication",
-                    state:{
-                        quizId: parseInt(quiz.quiz_id)
-                    }
-                }}>
-                <Button className="QuizZone">
-                    {quiz.quiz_title}
-                </Button>
-            </Link>
-        )
-        console.log(this.publicList)
-
-        this.privateList=
-            this.state.createList.map((quiz) =>
-                <Button className="QuizZone">
-                    {quiz.quiz_title}
-
-                        <Button className = "transform_button">
-                            Make public
-                        </Button>
-                        <Button className = "edit_button">
-                            Edit
-                        </Button>
-                        <Button className = "delete_button">
-                            X
-                        </Button>
-
-                </Button>
-            )
     };
 
 
@@ -83,9 +52,21 @@ class CreateQuiz extends React.Component {
         })
     }
 
-    handelPrivatetoPublic(){
-        this.setState({})
+    handelPrivatetoPublic(event){
+        this.setState(state => {
+            state.quizList.push(state.createList[event.target.value]);
+            state.createList.splice(event.target.value,1)
+            return state;
+        });
 
+    }
+
+    handelPublictoPrivate(event){
+        this.setState(state => {
+            state.createList.push(state.quizList[event.target.value]);
+            state.quizList.splice(event.target.value,1)
+            return state;
+        });
     }
 
 
@@ -121,21 +102,34 @@ class CreateQuiz extends React.Component {
                     <div className="myQuiz">Public</div>
                 </Row>
                 <Row className="quizName">
-                    <div className="box justify-content-center align-items-center">
+                    <div>
 
                         {
-                            this.state.quizList.map((quiz) =>
-                                <Link
-                                    to={{
-                                        pathname:"/communication",
-                                        state:{
-                                            quizId: parseInt(quiz.quiz_id)
-                                        }
-                                    }}>
+                            this.state.quizList.map((quiz,index) =>
+                                // <Link
+                                //     to={{
+                                //         pathname:"/communication",
+                                //         state:{
+                                //             quizId: parseInt(quiz.quiz_id)
+                                //         }
+                                //     }}>
                                     <Button className="QuizZone">
                                         {quiz.quiz_title}
+                                        <div className="button-onfocus">
+                                            <Button className = "transform-button"
+                                                    value = {index}
+                                                    onClick = {this.handelPublictoPrivate}>
+                                                Make private
+                                            </Button>
+                                            <Button className = "edit-button" >
+                                                Edit
+                                            </Button>
+                                            <Button className = "delete-quiz-button">
+                                                X
+                                            </Button>
+                                        </div>
                                     </Button>
-                                </Link>
+                                // </Link>
                             )
                         }
 
@@ -151,15 +145,17 @@ class CreateQuiz extends React.Component {
                     <div className="no_private" style={{display: this.state.createList.length==0? "block":"none"}}>
                         There are no private quizzes here yet!
                     </div>
-                    <div className="box justify-content-center align-items-center">
+                    <div>
                         <div className="quizName">
                             {
-                                this.state.createList.map((quiz) =>
+                                this.state.createList.map((quiz,index) =>
 
                                         <Button className="QuizZone">
                                             {quiz.quiz_title}
                                             <div className="button-onfocus">
-                                                <Button className = "transform-button" onClick = {this.handelPrivatetoPublic}>
+                                                <Button className = "transform-button"
+                                                        value = {index}
+                                                        onClick = {this.handelPrivatetoPublic}>
                                                     Make public
                                                 </Button>
                                                 <Button className = "edit-button" >
