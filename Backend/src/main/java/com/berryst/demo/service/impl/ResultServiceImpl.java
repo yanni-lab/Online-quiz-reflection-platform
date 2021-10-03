@@ -1,16 +1,16 @@
 package com.berryst.demo.service.impl;
 
-import com.berryst.demo.mapper.QuizMapper;
 import com.berryst.demo.mapper.ResultMapper;
+import com.berryst.demo.model.Comment;
 import com.berryst.demo.model.QuizResult;
 import com.berryst.demo.service.ResultService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Map;
+
 @Slf4j
 @Service
 public class ResultServiceImpl implements ResultService {
@@ -49,5 +49,15 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public ArrayList<String> getSupervisorFeedback(int userId) {
         return resultMapper.getSupervisorFeedback(userId);
+    }
+
+    @Override
+    public int saveComment(Comment comment) {
+        return resultMapper.saveComment(comment);
+    }
+
+    @Override
+    public ArrayList<Map> getComment() {
+        return resultMapper.getComment();
     }
 }

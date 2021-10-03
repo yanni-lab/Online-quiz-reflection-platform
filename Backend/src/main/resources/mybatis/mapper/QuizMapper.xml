@@ -64,7 +64,7 @@
     </update>
 
     <insert id="setQuiz" parameterType="com.berryst.demo.model.Quiz" useGeneratedKeys="true" keyProperty="quizId">
-        insert into quiz (quiz_title,quiz_background,created_by,is_public,feedback) values (#{quizTitle}, #{quizBackground}, #{supervisorId}, #{isPublic}, #{feedback})
+        insert into quiz (quiz_title,quiz_background,created_by,is_public,feedback,is_available) values (#{quizTitle}, #{quizBackground}, #{supervisorId}, #{isPublic}, #{feedback}, 1)
     </insert>
 
     <insert id="setQuestion" parameterType="com.berryst.demo.model.Question" useGeneratedKeys="true" keyProperty="questionId">

@@ -77,3 +77,8 @@ insert into `question_choices`(`choice_id`,`score`,`choice`,`question_id`,`quest
 /*Data for the table `user_result` */
 -- insert into `user_result`(`attempt_id`,`user_id`,`quiz_id`,`choices`,`attempt_times`,`score`,`reflection`,`reflection_time`,`supervisor_id`) values (1, 2, 1, '2', 1, 2, 'I learnt that there is so much more I can do to be better at collaborative learning. I will try to speak up more often and bring my point across confidently next time.', '2021-09-09 01:53:56', 1);
 
+/*Data for the table `comment` */
+insert into `comment`(`user_id`,`comment`,`comment_time`) values (1, '1. This is a test user comment.','2021-09-09 01:53:56');
+insert into `comment`(`user_id`,`comment`,`comment_time`) values (1, '2. This is a test user comment.','2021-09-10 01:53:56');
+insert into `comment`(`user_id`,`comment`,`comment_time`) values (2, '3. This is a test user comment.','2021-09-11 01:53:56');
+insert into `comment`(`user_id`,`comment`,`comment_time`) values (2, '4. This is a test user comment.','2021-09-12 01:53:56');

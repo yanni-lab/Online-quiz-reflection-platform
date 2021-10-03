@@ -64,3 +64,13 @@ CREATE TABLE `user_result` (
 `supervisor_id` int(10) NOT NULL COMMENT 'supervisor''s user_id from `user` table',
 PRIMARY KEY (`attempt_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `comment` */
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+`comment_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique comment id',
+`user_id` int(10) NOT NULL COMMENT 'user_id from `user` table',
+`comment` varchar(3000) COMMENT 'user''s comment on website',
+`comment_time` datetime DEFAULT NULL COMMENT 'comment time',
+PRIMARY KEY (`comment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

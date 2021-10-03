@@ -25,10 +25,9 @@ public class QuizController {
     private QuizService quizService;
 
     @RequestMapping(value = "/available_quiz", method = RequestMethod.POST)
-    public ObjectNode getPublicQuiz(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException {
+    public ObjectNode getPublicQuiz() {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode node = objectMapper.createObjectNode();
-//        String quizList = objectMapper.writeValueAsString(quizService.getPublicQuizList());
 
         log.info("Successfully retrieved public quiz list");
 
@@ -156,10 +155,9 @@ public class QuizController {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ObjectNode node = objectMapper.createObjectNode();
 
-        JSONObject receivedData = new JSONObject(data);
+//        JSONObject receivedData = new JSONObject(data);
         Quiz quiz = objectMapper.readValue(data, Quiz.class);
         log.info("Receive set quiz request - quizId: "+quiz.getQuizId());
-        quizService.setQuiz(quiz);
 
         int newQuizId = quizService.setQuiz(quiz);
         node.put("errorCode", "00000");

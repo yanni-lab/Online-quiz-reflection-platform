@@ -1,5 +1,6 @@
 package com.berryst.demo.controller;
 
+import com.berryst.demo.model.Comment;
 import com.berryst.demo.model.QuizResult;
 import com.berryst.demo.service.ResultService;
 import com.berryst.demo.utils.EmailService;
@@ -98,4 +99,33 @@ public class ResultController {
 
     }
 
+    @RequestMapping(value = "/save_comment", method = RequestMethod.POST)
+    public ObjectNode saveComment(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        ObjectNode node = objectMapper.createObjectNode();
+
+        Comment comment = objectMapper.readValue(data, Comment.class);
+
+        resultService.saveComment(comment);
+
+        log.info("Successfully save new comment");
+        node.put("errorCode", "00000");
+        node.put("errorMessage", "Success");
+
+        return node;
+    }
+
+    @RequestMapping(value = "/view_comment", method = RequestMethod.POST)
+    public ObjectNode getPublicQuiz() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode node = objectMapper.createObjectNode();
+
+        log.info("Successfully retrieved comment list");
+
+        node.put("commentList", resultService.getComment().toString());
+        node.put("errorCode", "00000");
+        node.put("errorMessage", "Success");
+        return node;
+    }
 }
