@@ -15,7 +15,8 @@ class Quiz extends React.Component {
             finishedQuestion:0,
             leave:false,
             quizList:props.location.state.quizList,
-            feedback:JSON.parse(props.location.state.feedback),
+            // feedback:JSON.parse(props.location.state.feedback),
+            feedback:props.location.state.feedback,
             score:new Array(props.location.state.quizList.length-1).fill(0),
             options:new Array(props.location.state.quizList.length-1).fill(0),
         };

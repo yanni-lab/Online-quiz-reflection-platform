@@ -53,6 +53,8 @@ class EditQuiz extends React.Component {
         this.handleAddFeedback = this.handleAddFeedback.bind(this);
         this.handleDeleteFeedback = this.handleDeleteFeedback.bind(this);
 
+        this.handleSave = this.handleSave.bind(this);
+
     };
 
     handleCancel(){
@@ -188,9 +190,9 @@ class EditQuiz extends React.Component {
         });
     }
 
-    handleSubmit(event) {
+    handleSave(event) {
         console.log(1)
-        console.log(this.state.title);
+        console.log(this.state);
         var dataSent = JSON.stringify({
             "quizTitle": this.state.title,
             "quizBackground":this.state.overview,
@@ -445,7 +447,7 @@ class EditQuiz extends React.Component {
                             {/*}}>*/}
                                 <Button className="loginButton"
                                         size="lg"
-                                        onClick = {this.handleSubmit}
+                                        onClick = {this.handleSave}
                                 >
                                     Save
                                 </Button>
