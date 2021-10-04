@@ -3,8 +3,10 @@ package com.berryst.demo.controller;
 import com.berryst.demo.model.*;
 import com.berryst.demo.service.QuizService;
 import com.berryst.demo.service.ResultService;
+import com.berryst.demo.utils.DataProcessing;
 import com.berryst.demo.utils.EmailService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -39,9 +41,8 @@ public class ResultController {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ObjectNode node = objectMapper.createObjectNode();
 
-        QuizResult result = objectMapper.readValue(data, QuizResult.class);
-        log.info(data);
-        log.info(result.toString());
+        QuizResult result = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), QuizResult.class);
+
         resultService.saveResult(result);
 
         log.info("Successfully save new result");
@@ -60,7 +61,7 @@ public class ResultController {
         JSONObject receivedData = new JSONObject(data);
         String email = receivedData.getString("email");
 
-        QuizResult result = objectMapper.readValue(data, QuizResult.class);
+        QuizResult result = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), QuizResult.class);
 
         resultService.shareResult(result,email);
 
@@ -69,6 +70,7 @@ public class ResultController {
         node.put("errorMessage", "Success");
 
         //TODO Edit email
+        //emailAddr, Title, Content
 //        emailService.sendMail("shiruic@outlook.com","Berry Street", "Here is your quiz result");
         return node;
     }
@@ -109,6 +111,10 @@ public class ResultController {
     @RequestMapping(value = "/get_result_content", method = RequestMethod.POST)
     public ObjectNode getResultContent(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException, JSONException {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(
+                JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(),
+                true
+        );
 
         JSONObject receivedData = new JSONObject(data);
         int attemptId = receivedData.getInt("attemptId");
@@ -133,6 +139,7 @@ public class ResultController {
 
         node.set("choices",objectMapper.convertValue(choices, ArrayNode.class));
 
+        node = objectMapper.readTree(DataProcessing.addLineSeparator(objectMapper.writeValueAsString(node))).deepCopy();
 
         log.info("Successfully retrieved result content - attemptId: "+attemptId);
         node.put("errorCode", "00000");
@@ -146,7 +153,7 @@ public class ResultController {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ObjectNode node = objectMapper.createObjectNode();
 
-        Comment comment = objectMapper.readValue(data, Comment.class);
+        Comment comment = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), Comment.class);
 
         resultService.saveComment(comment);
 
@@ -164,7 +171,7 @@ public class ResultController {
 
         log.info("Successfully retrieved comment list");
 
-        node.put("commentList", resultService.getComment().toString());
+        node.put("commentList", DataProcessing.addLineSeparator(resultService.getComment().toString()));
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
         return node;

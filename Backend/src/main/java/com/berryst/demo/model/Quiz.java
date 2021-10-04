@@ -18,12 +18,4 @@ public class Quiz {
     private ArrayList<Question> questions;
     private ArrayList<Feedback> feedback;
 
-//    public Quiz(int quizId, String quizTitle, String quizBackground, int supervisorId, boolean isPublic, ArrayList<Question> questions) {
-//        this.quizId = quizId;
-//        this.quizTitle = quizTitle;
-//        this.quizBackground = quizBackground;
-//        this.supervisorId = supervisorId;
-//        this.isPublic = isPublic;
-//        this.questions = questions;
-//    }
 }

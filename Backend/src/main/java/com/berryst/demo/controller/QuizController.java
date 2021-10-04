@@ -5,10 +5,13 @@ import com.berryst.demo.model.Question;
 import com.berryst.demo.model.QuestionChoice;
 import com.berryst.demo.model.Quiz;
 import com.berryst.demo.service.QuizService;
+import com.berryst.demo.utils.DataProcessing;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,18 +44,21 @@ public class QuizController {
     }
 
     @RequestMapping(value = "/quiz_content", method = RequestMethod.POST)
-    public ObjectNode getQuizContent(@RequestBody String data, HttpServletResponse response) throws JSONException {
+    public ObjectNode getQuizContent(@RequestBody String data, HttpServletResponse response) throws JSONException, JsonProcessingException {
         JSONObject receivedData = new JSONObject(data);
         int quizId = receivedData.getInt("quizId");
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(
+                JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(),
+                true
+        );
         Quiz thequiz = quizService.getQuizContent(quizId);
-        ObjectNode node = objectMapper.convertValue(thequiz, ObjectNode.class);
+
+        ObjectNode node = objectMapper.readTree(DataProcessing.addLineSeparator(objectMapper.writeValueAsString(thequiz))).deepCopy();
 
         log.info("Successfully retrieved quiz content - quizId: " + quizId);
 
-//        node.put("feedback", thequiz.getFeedback().replace("###", "\\n"));
-//        node.put("quizBackground", thequiz.getQuizBackground().replace("###", "\\n"));
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
 
@@ -158,7 +164,7 @@ public class QuizController {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ObjectNode node = objectMapper.createObjectNode();
 
-        Quiz quiz = objectMapper.readValue(data, Quiz.class);
+        Quiz quiz = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), Quiz.class);
         log.info(data);
         log.info(quiz.toString());
         int questionCount = 1;
