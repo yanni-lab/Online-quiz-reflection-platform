@@ -72,6 +72,7 @@ CREATE TABLE `user_result` (
 `attempt_times` int(10) NOT NULL COMMENT 'attempt times',
 `score` int(10) NOT NULL COMMENT 'user score',
 `reflection` varchar(3000) COMMENT 'user''s reflection diary',
+`reflection_available` boolean COMMENT 'supervisor can view reflection',
 `reflection_time` datetime DEFAULT NULL COMMENT 'reflection time',
 `supervisor_id` int(10) NOT NULL COMMENT 'supervisor''s user_id from `user` table',
 PRIMARY KEY (`attempt_id`)

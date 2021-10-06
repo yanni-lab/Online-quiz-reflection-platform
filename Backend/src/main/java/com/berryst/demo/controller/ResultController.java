@@ -52,6 +52,8 @@ public class ResultController {
         return node;
     }
 
+    //TODO Verify share with supervisor
+    //TODO deal with reflection_available parameter
     @RequestMapping(value = "/share_result", method = RequestMethod.POST)
     public ObjectNode shareResult(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException, JSONException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -75,6 +77,7 @@ public class ResultController {
         return node;
     }
 
+    //TODO: username, quiz title, timestamp
     @RequestMapping(value = "/get_user_result", method = RequestMethod.POST)
     public ObjectNode getUserResult(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException, JSONException {
         ObjectMapper objectMapper = new ObjectMapper();
