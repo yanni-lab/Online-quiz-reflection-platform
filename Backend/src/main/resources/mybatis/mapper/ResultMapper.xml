@@ -17,16 +17,16 @@
 
     </resultMap>
 
-    <insert id="saveResult" parameterType="com.berryst.demo.model.QuizResult">
-        insert into user_result (user_id,quiz_id,choices,attempt_times,score,reflection,reflection_time, supervisor_id) values (#{userId}, #{quizId}, #{choices, jdbcType=VARCHAR, typeHandler=com.berryst.demo.utils.StringToIntArrayHandler}, #{numberOfAttempt}, #{score}, #{reflection}, sysdate(), #{supervisorId})
+    <insert id="saveResult" parameterType="com.berryst.demo.model.QuizResult" useGeneratedKeys="true" keyProperty="attemptId">
+        insert into user_result (user_id,quiz_id,choices,attempt_times,score,reflection,reflection_time,reflection_available, supervisor_id) values (#{userId}, #{quizId}, #{choices, jdbcType=VARCHAR, typeHandler=com.berryst.demo.utils.StringToIntArrayHandler}, #{numberOfAttempt}, #{score}, #{reflection}, sysdate(),#{reflectionAvailable}, #{supervisorId})
     </insert>
 
     <select id="getUserFeedback" parameterType="int" resultType="map">
-        select attempt_id, user_result.quiz_id, reflection_time, user_id from user_result left join quiz on user_result.quiz_id=quiz.quiz_id where user_id = #{userId} order by reflection_time desc
+        select attempt_id, user_result.quiz_id, quiz.quiz_title, reflection_time, user_result.user_id, username, reflection_available from user_result left join quiz on user_result.quiz_id=quiz.quiz_id left join user on user_result.user_id = user.user_id where user_result.user_id = #{userId} order by reflection_time desc
     </select>
 
     <select id="getSupervisorFeedback" parameterType="int" resultType="map">
-        select attempt_id, user_result.quiz_id, reflection_time, user_id from user_result left join quiz on user_result.quiz_id=quiz.quiz_id where supervisor_id = #{userId} order by reflection_time desc
+        select attempt_id, user_result.quiz_id, quiz.quiz_title, reflection_time, user_result.user_id, username, reflection_available from user_result left join quiz on user_result.quiz_id=quiz.quiz_id left join user on user_result.user_id = user.user_id where user_result.supervisor_id = #{userId} order by reflection_time desc
     </select>
 
     <select id="getResultContent" parameterType="int" resultMap="QuizResult">

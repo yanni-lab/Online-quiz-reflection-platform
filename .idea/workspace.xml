@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="feat(*):process line separator on input and output">
+    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="fix(*):correct some implementation modify database user_result table">
+      <change afterPath="$PROJECT_DIR$/data/Berry Street.postman_collection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/get_result_content.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/get_supervisor_result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/get_user_result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/view_comment.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/utils/DataProcessing.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/utils/DataProcessing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/create_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/QuizResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/QuizResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/ResultServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/ResultServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/mybatis/mapper/ResultMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/mybatis/mapper/ResultMapper.xml" afterDir="false" />
     </list>
     <list id="a20238c2-33c1-4e91-a2da-980c23180045" name="Add Quiz model" comment="Add Quiz model" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +31,7 @@
         <option value="spring-beans.schema" />
         <option value="Tag Library Descriptor" />
         <option value="Class" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -57,7 +65,7 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunConfigurationTargetLRU" value="c92dc71a-4833-4bc8-a70f-38f59850961f&#10;c92dc71a-4833-4bc8-a70f-38f59850961f/schema/&quot;berry_street&quot;" />
+    <property name="RunConfigurationTargetLRU" value="c92dc71a-4833-4bc8-a70f-38f59850961f&#10;c92dc71a-4833-4bc8-a70f-38f59850961f/schema/&quot;berry_street&quot;&#10;066e0c33-2485-4431-b840-6ad5f34acc7d&#10;066e0c33-2485-4431-b840-6ad5f34acc7d/schema/&quot;berry_street&quot;" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
@@ -75,6 +83,9 @@
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\cyril\IdeaProjects\COMP90082-2021-SM2-ST-Boxjelly\data" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.berryst.demo.service.impl" />
@@ -97,13 +108,13 @@
     <configuration name="create_db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/create_db.sql" />
       <script-mode>FILE</script-mode>
-      <data-source id="c92dc71a-4833-4bc8-a70f-38f59850961f" namespace="schema/&quot;berry_street&quot;" />
+      <data-source id="066e0c33-2485-4431-b840-6ad5f34acc7d" />
       <method v="2" />
     </configuration>
     <configuration name="init_db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/init_db.sql" />
       <script-mode>FILE</script-mode>
-      <data-source id="c92dc71a-4833-4bc8-a70f-38f59850961f" namespace="schema/&quot;berry_street&quot;" />
+      <data-source id="066e0c33-2485-4431-b840-6ad5f34acc7d" namespace="schema/&quot;berry_street&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="UserServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -188,7 +199,7 @@
       <workItem from="1632919674455" duration="23097000" />
       <workItem from="1633160175751" duration="9980000" />
       <workItem from="1633186660730" duration="6088000" />
-      <workItem from="1633253832724" duration="44787000" />
+      <workItem from="1633253832724" duration="53355000" />
     </task>
     <task id="LOCAL-00001" summary="Add Quiz model">
       <created>1631323516021</created>
@@ -372,7 +383,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633340899445</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="fix(*):correct some implementation modify database user_result table">
+      <created>1633505997920</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1633505997920</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,7 +447,8 @@
     <MESSAGE value="feat(*):add StringToIntArrayHandler" />
     <MESSAGE value="feat(*):modify save and view result functions" />
     <MESSAGE value="feat(*):process line separator on input and output" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(*):process line separator on input and output" />
+    <MESSAGE value="fix(*):correct some implementation modify database user_result table" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(*):correct some implementation modify database user_result table" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

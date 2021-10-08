@@ -25,6 +25,7 @@ public class ResultServiceImpl implements ResultService {
         }else{
             result.setNumberOfAttempt(preResult.getNumberOfAttempt()+1);
         }
+        //return attempt id
         return resultMapper.saveResult(result);
     }
 
@@ -36,7 +37,7 @@ public class ResultServiceImpl implements ResultService {
         }else{
             result.setNumberOfAttempt(preResult.getNumberOfAttempt()+1);
         }
-
+        //return attempt id
         return resultMapper.saveResult(result);
     }
 

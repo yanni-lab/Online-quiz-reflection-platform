@@ -53,7 +53,8 @@ public class ResultController {
     }
 
     //TODO Verify share with supervisor
-    //TODO deal with reflection_available parameter
+    //TODO deal with anonymous user
+    //TODO duplicate request in save and share result
     @RequestMapping(value = "/share_result", method = RequestMethod.POST)
     public ObjectNode shareResult(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException, JSONException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -62,22 +63,21 @@ public class ResultController {
 
         JSONObject receivedData = new JSONObject(data);
         String email = receivedData.getString("email");
-
         QuizResult result = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), QuizResult.class);
 
-        resultService.shareResult(result,email);
+        int attemptId = resultService.shareResult(result,email);
+
+        //TODO Edit email
+        //emailAddr, Title, Content
+//        emailService.sendMail("email","Berry Street Quiz Result", "Here is your quiz result");
 
         log.info("Successfully share new result");
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
 
-        //TODO Edit email
-        //emailAddr, Title, Content
-//        emailService.sendMail("shiruic@outlook.com","Berry Street", "Here is your quiz result");
         return node;
     }
 
-    //TODO: username, quiz title, timestamp
     @RequestMapping(value = "/get_user_result", method = RequestMethod.POST)
     public ObjectNode getUserResult(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException, JSONException {
         ObjectMapper objectMapper = new ObjectMapper();

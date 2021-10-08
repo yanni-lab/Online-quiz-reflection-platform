@@ -1,0 +1,5 @@
+{
+  "supervisorResult": "[{quiz_id=1, reflection_time=2021-10-08T12:15:03, user_id=1, attempt_id=2, quiz_title=Collaborative Learning, username=EmmaW}, {quiz_id=1, reflection_time=2021-10-08T12:14:58, user_id=1, attempt_id=1, quiz_title=Collaborative Learning, username=EmmaW}]",
+  "errorCode": "00000",
+  "errorMessage": "Success"
+}

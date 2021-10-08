@@ -16,6 +16,7 @@ public class QuizResult {
     int numberOfAttempt;
     int score;
     String reflection;
+    boolean reflectionAvailable;
     Date attemptTime;
     int supervisorId;
 
