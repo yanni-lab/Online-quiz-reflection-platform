@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="fix(*):correct some implementation modify database user_result table">
-      <change afterPath="$PROJECT_DIR$/data/Berry Street.postman_collection.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/get_result_content.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/get_supervisor_result.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/get_user_result.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/view_comment.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/QuizResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/QuizResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/ResultServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/ResultServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/mybatis/mapper/ResultMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/mybatis/mapper/ResultMapper.xml" afterDir="false" />
     </list>
     <list id="a20238c2-33c1-4e91-a2da-980c23180045" name="Add Quiz model" comment="Add Quiz model" />
     <option name="SHOW_DIALOG" value="false" />
@@ -414,6 +406,11 @@
               <RecentGroup>
                 <option name="FILTER_VALUES">
                   <option value="origin/backend" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
                 </option>
               </RecentGroup>
             </list>

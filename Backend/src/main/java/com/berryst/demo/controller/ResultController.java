@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -81,12 +82,14 @@ public class ResultController {
     @RequestMapping(value = "/get_user_result", method = RequestMethod.POST)
     public ObjectNode getUserResult(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException, JSONException {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         ObjectNode node = objectMapper.createObjectNode();
 
         JSONObject receivedData = new JSONObject(data);
         int userId = receivedData.getInt("userId");
 
         node.put("userResult", resultService.getUserFeedback(userId).toString());
+        node.set("userResult",objectMapper.convertValue(resultService.getUserFeedback(userId), ArrayNode.class));
 
         log.info("Successfully retrieved result on user - UserId: "+userId);
         node.put("errorCode", "00000");
@@ -97,12 +100,13 @@ public class ResultController {
     @RequestMapping(value = "/get_supervisor_result", method = RequestMethod.POST)
     public ObjectNode getSupervisorResult(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException, JSONException {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         ObjectNode node = objectMapper.createObjectNode();
 
         JSONObject receivedData = new JSONObject(data);
         int userId = receivedData.getInt("userId");
 
-        node.put("supervisorResult", resultService.getSupervisorFeedback(userId).toString());
+        node.set("supervisorResult",objectMapper.convertValue(resultService.getSupervisorFeedback(userId), ArrayNode.class));
 
         log.info("Successfully retrieved result on supervisor - SupervisorId: "+userId);
         node.put("errorCode", "00000");
