@@ -174,11 +174,13 @@ public class ResultController {
     @RequestMapping(value = "/view_comment", method = RequestMethod.POST)
     public ObjectNode getPublicQuiz() {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         ObjectNode node = objectMapper.createObjectNode();
 
         log.info("Successfully retrieved comment list");
 
-        node.put("commentList", DataProcessing.addLineSeparator(resultService.getComment().toString()));
+        node.set("commentList",objectMapper.convertValue(resultService.getComment(), ArrayNode.class));
+
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
         return node;
