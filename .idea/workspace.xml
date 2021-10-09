@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="fix(*):correct some implementation modify database user_result table">
+    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="fix(*):correct return type of view comments function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/view_comment.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/view_comment.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/ResultServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/service/impl/ResultServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/QuizControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/QuizControllerTests.java" afterDir="false" />
     </list>
     <list id="a20238c2-33c1-4e91-a2da-980c23180045" name="Add Quiz model" comment="Add Quiz model" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +83,18 @@
       <recent name="com.berryst.demo.service.impl" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.DemoApplication">
+  <component name="RunManager" selected="JUnit.QuizControllerTests">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="create_db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/create_db.sql" />
       <script-mode>FILE</script-mode>
@@ -96,16 +107,16 @@
       <data-source id="066e0c33-2485-4431-b840-6ad5f34acc7d" namespace="schema/&quot;berry_street&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="UserServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="QuizControllerTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.berryst.demo.utils.*" />
+          <option name="PATTERN" value="com.berryst.demo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.berryst.demo.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.berryst.demo.service.impl.UserServiceImplTest" />
+      <option name="PACKAGE_NAME" value="com.berryst.demo" />
+      <option name="MAIN_CLASS_NAME" value="com.berryst.demo.QuizControllerTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -152,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.QuizControllerTests" />
         <item itemvalue="Database Script.init_db.sql" />
         <item itemvalue="Database Script.create_db.sql" />
         <item itemvalue="JUnit.UserServiceImplTest.queryUserList" />
         <item itemvalue="JUnit.UserServiceImplTest.queryUserByEmail" />
-        <item itemvalue="JUnit.UserServiceImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -179,7 +190,7 @@
       <workItem from="1633160175751" duration="9980000" />
       <workItem from="1633186660730" duration="6088000" />
       <workItem from="1633253832724" duration="53355000" />
-      <workItem from="1633766126340" duration="2612000" />
+      <workItem from="1633766126340" duration="6573000" />
     </task>
     <task id="LOCAL-00001" summary="Add Quiz model">
       <created>1631323516021</created>
@@ -370,7 +381,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633505997920</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="fix(*):correct return type of view comments function">
+      <created>1633769075139</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1633769075139</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,7 +451,8 @@
     <MESSAGE value="feat(*):modify save and view result functions" />
     <MESSAGE value="feat(*):process line separator on input and output" />
     <MESSAGE value="fix(*):correct some implementation modify database user_result table" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(*):correct some implementation modify database user_result table" />
+    <MESSAGE value="fix(*):correct return type of view comments function" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(*):correct return type of view comments function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
