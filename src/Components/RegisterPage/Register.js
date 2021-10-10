@@ -2,7 +2,8 @@ import React from "react";
 import {Button,Form,Row,Modal} from "react-bootstrap";
 import "./Register.css";
 import { withRouter } from "react-router-dom";
-
+import background from '../images/registerbackground.jpg';
+import LoginLogo from '../images/loginLogo.png';
 class Register extends React.Component {
     constructor(props){
         super(props);
@@ -118,68 +119,80 @@ class Register extends React.Component {
 
     render(){
         return (
-            <div className="Register">
+            <div className="Register" style={backgroundStyle}>
                 <div className="box justify-content-center align-items-center">
-                    <Form className="registerForm" onSubmit={this.handleSubmit}>
-                        <div className = "heading">
-                            Register Account
-                        </div>
-                        <Form.Group size="lg" controlId="username">
-                            <Form.Label className = "label">Username</Form.Label>
-                            <Form.Control className = "input"
-                                          autoFocus
-                                          type="text"
-                                          value={this.state.username}
-                                          onChange={this.handleUserChange}
-                                          placeholder="Username"
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="password">
-                            <Form.Label className = "label">Password</Form.Label>
-                            <Form.Control className = "input"
-                                          type="password"
-                                          value={this.state.password}
-                                          onChange={this.handlePassChange}
-                                          placeholder="******"
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="repassword">
-                            <Form.Label className = "label">Repeat Password</Form.Label>
-                            <Form.Control className = "input"
-                                          type="password"
-                                          value={this.state.repassword}
-                                          onChange={this.handleRePassChange}
-                                          placeholder="******"
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="email">
-                            <Form.Label className = "label">Email</Form.Label>
-                            <Form.Control className = "input"
-                                          type="email"
-                                          value={this.state.email}
-                                          onChange={this.handleEmailChange}
-                                          placeholder="xxx@xxx.com"
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox"
-                                        label="As supervisor"
-                                        value={this.state.handleIsSupervisorChange}
-                                        cheked={this.state.isSupervisor}
-                                        onChange={this.handleIsSupervisorChange}
+                    <div className="registerbox">
+                        <Form className="registerForm" onSubmit={this.handleSubmit}>
+                            <div className="registerlogo">
+                                <img href="/"
+                                     src={LoginLogo}
+                                     alt="Logo"
+                                     className="login-img"
+                                />
+                            </div>
+                            <div className = "heading">
+                                Register Account
+                            </div>
+                            <Form.Group size="lg" controlId="username">
+                                <Form.Label className = "label">Username</Form.Label>
+                                <Form.Control className = "input"
+                                              autoFocus
+                                              type="text"
+                                              value={this.state.username}
+                                              onChange={this.handleUserChange}
+                                              placeholder="Username"
+                                />
+                            </Form.Group>
+                            <Form.Group size="lg" controlId="password">
+                                <Form.Label className = "label">Password</Form.Label>
+                                <Form.Control className = "input"
+                                              type="password"
+                                              value={this.state.password}
+                                              onChange={this.handlePassChange}
+                                              placeholder="******"
+                                />
+                            </Form.Group>
+                            <Form.Group size="lg" controlId="repassword">
+                                <Form.Label className = "label">Repeat Password</Form.Label>
+                                <Form.Control className = "input"
+                                              type="password"
+                                              value={this.state.repassword}
+                                              onChange={this.handleRePassChange}
+                                              placeholder="******"
+                                />
+                            </Form.Group>
+                            <Form.Group size="lg" controlId="email">
+                                <Form.Label className = "label">Email</Form.Label>
+                                <Form.Control className = "input"
+                                              type="email"
+                                              value={this.state.email}
+                                              onChange={this.handleEmailChange}
+                                              placeholder="xxx@xxx.com"
+                                />
+                            </Form.Group>
+                            <Row>
+                                <Form.Group size="lg" className="mb-3" controlId="formBasicCheckbox">
+                                    <Form.Check type="checkbox"
+                                                label="As supervisor"
+                                                value={this.state.handleIsSupervisorChange}
+                                                cheked={this.state.isSupervisor}
+                                                onChange={this.handleIsSupervisorChange}
 
-                            />
-                        </Form.Group>
-                        <Row>
-                            <Button className="button"
-                                    size="lg"
-                                    type="submit"
+                                    />
+                                </Form.Group>
+                            </Row>
+                            <Row>
+                                <Button className="button"
+                                        size="lg"
+                                        type="submit"
                                     // disabled={this.validateForm()}
-                            >
-                                Create account
-                            </Button>
-                        </Row>
-                    </Form>
+                                >
+                                    Create account
+                                </Button>
+                            </Row>
+
+                        </Form>
+                    </div>
                 </div>
 
 
@@ -217,6 +230,13 @@ class Register extends React.Component {
             </div>
         );
     }
+}
+
+const backgroundStyle ={
+    backgroundImage: `url(${background})`,
+    position: 'absolute',
+    width: '100vw',
+    height: '150vh'
 }
 
 

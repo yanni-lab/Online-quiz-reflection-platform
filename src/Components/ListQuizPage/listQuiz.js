@@ -8,15 +8,17 @@ class ListQuiz extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            quizList:[]
+            quizList:[
+                {quiz_id:1, quiz_title:"Collaborative Learning"},
+                {quiz_id:2, quiz_title:"Leadership"},
+                {quiz_id:3, quiz_title:"Resilience"}
+            ]
         };
-        //this.history = {this.props.history}
-        // this.selectQuiz = function (selectQuizNum){
-        //     //this.props.history.push({ pathname: "/communication", state: {param:selectQuizNum} });
-        //     alert(selectQuizNum)
-        // }
 
-        fetch('http://localhost:8080/service/available_quiz',{
+
+
+
+        fetch('http://localhost:8080/quiz/available_quiz',{
             method:'post',
             headers:{"Content-Type":"application/json"},
             body: JSON.stringify({"username": "111"})//this is just to send sth, meaningless
@@ -32,13 +34,7 @@ class ListQuiz extends React.Component {
             console.log(error)
         })
 
-        //测试用数据
-        /**this.quizList=[
-            {quiz_id:1, quiz_title:"Collaborative Learning"},
-            {quiz_id:2, quiz_title:"Leadership"},
-            {quiz_id:3, quiz_title:"Resilience"}
 
-        ]**/
         //this.quizList = this.getQuizList();
 
 

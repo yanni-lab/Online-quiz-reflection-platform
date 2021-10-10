@@ -3,6 +3,7 @@ import './FeedBack.css';
 import {Row, Col, Button,Form,Modal,InputGroup} from 'react-bootstrap';
 import { withRouter } from "react-router-dom";
 import Login from '../LoginPage/Login';
+import Share from '../SharePage/Share';
 
 
 
@@ -12,13 +13,16 @@ class FeedBack extends React.Component {
         this.state = {
             feedbackContent: props.location.state.feedback,
             leave:false,
-            save:false
+            save:false,
+            share:false
         };
 
         this.leaveQuiz = this.leaveQuiz.bind(this);
         this.cancelLeaveQuiz = this.cancelLeaveQuiz.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.cancelSave = this.cancelSave.bind(this);
+        this.handleShare = this.handleShare.bind(this);
+        this.cancelShare = this.cancelShare.bind(this);
 
     };
 
@@ -51,6 +55,22 @@ class FeedBack extends React.Component {
 
         })
 
+    }
+
+    cancelShare(){
+        this.setState(
+            {
+                share:false
+            }
+        )
+    }
+
+    handleShare(){
+        this.setState(
+            {
+                share:true
+            }
+        )
     }
 
     render() {
@@ -116,7 +136,8 @@ class FeedBack extends React.Component {
                                 <Col className = "feedbackFormCol">
                                     <Button className="feedbackFormButton"
                                             size="lg"
-                                            type="submit"
+                                            //type="submit"
+                                            onClick={this.handleShare}
                                         // disabled={this.validateForm()}
                                     >
                                         Share
@@ -152,7 +173,7 @@ class FeedBack extends React.Component {
 
 
                 <Modal  show = {this.state.save}
-                        onClick =  {this.cancelSave}
+
                         className = "saveModal"
                 >
 
@@ -162,7 +183,24 @@ class FeedBack extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
 
-                        <Button onClick = {this.cancelLeaveQuiz} className = "cancelExit">No</Button>
+                        <Button onClick = {this.cancelSave} className = "cancelExit">No</Button>
+                    </Modal.Footer>
+
+
+                </Modal>
+
+                <Modal  show = {this.state.share}
+
+                        className = "shareModal"
+                >
+
+                    <Modal.Body>
+                        Please enter the recipient's email you would like to share your feedback to!
+                        <Share />
+                    </Modal.Body>
+                    <Modal.Footer>
+
+                        <Button onClick = {this.cancelShare} className = "cancelExit">No</Button>
                     </Modal.Footer>
 
 

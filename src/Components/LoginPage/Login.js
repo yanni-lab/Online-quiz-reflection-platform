@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css";
 import {Link} from 'react-router-dom';
 import { withRouter } from "react-router-dom";
-
+import LoginLogo from '../images/loginLogo.png';
 
 
 class Login extends React.Component {
@@ -105,9 +105,16 @@ class Login extends React.Component {
 
     render(){
         return (
-            <div className="Register">
+            <div className="Login">
                 <div className="box justify-content-center align-items-center">
-                    <Form className="registerForm" onSubmit={this.handleSubmit}>
+                    <Form className="loginForm" onSubmit={this.handleSubmit}>
+                        <div className="loginlogo">
+                            <img href="/"
+                                 src={LoginLogo}
+                                 alt="Logo"
+                                 className="login-img"
+                            />
+                        </div>
                         <div className = "heading">
                             Login
                         </div>
@@ -130,27 +137,30 @@ class Login extends React.Component {
 
                         <Row>
                             {/*<Link>*/}
-                                <Button className="button"
-                                        size="lg"
-                                        type="submit"
-                                    // disabled={this.validateForm()}
-                                >
-                                    Login
-                                </Button>
+                            <Button className="loginButton"
+                                    size="lg"
+                                    type="submit"
+                                // disabled={this.validateForm()}
+                            >
+                                Login
+                            </Button>
                             {/*</Link>*/}
 
                         </Row>
 
                         <Row>
                             <Link to='/register'>
-                                <Button className="button"
+                                <Button className="loginButton"
                                         size="lg"
                                         type="submit"
                                     // disabled={this.validateForm()}
                                 >
-                                   Create Account
+                                    Create Account
                                 </Button>
                             </Link>
+                        </Row>
+                        <Row>
+                            <a href='#'>Lost your password ?</a>
                         </Row>
                     </Form>
                 </div>
