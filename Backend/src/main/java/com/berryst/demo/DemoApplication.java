@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.HashMap;
 
 @SpringBootApplication
+//TODO initiate user table with anonymous user
 public class DemoApplication {
 
     public static HashMap<Integer, Long> tokenList = new HashMap<>();

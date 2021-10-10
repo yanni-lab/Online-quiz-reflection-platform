@@ -1,5 +1,6 @@
 package com.berryst.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,5 +20,4 @@ public class QuizResult {
     boolean reflectionAvailable;
     Date attemptTime;
     int supervisorId;
-
 }

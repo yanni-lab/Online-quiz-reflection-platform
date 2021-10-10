@@ -6,6 +6,170 @@
 	},
 	"item": [
 		{
+			"name": "localhost:8080/user/register",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"testuser\",\r\n  \"password\": \"123456\",\r\n  \"email\": \"test@gmail.com\",\r\n  \"isSupervisor\": true\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"register"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/user/login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"jasonx@firefox.com\",\r\n  \"password\": \"12345\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/user/reset_password",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"testuse\",\r\n  \"password\": \"12345\",\r\n  \"email\": \"test@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/user/reset_password",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"reset_password"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/user/update_user",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 5,\r\n  \"username\": \"testuser\",\r\n  \"password\": \"123456\",\r\n  \"email\": \"test@gmail.com\",\r\n  \"isSupervisor\": true\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/user/update_user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"update_user"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "localhost:8080/quiz/available_quiz",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
@@ -129,47 +293,6 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/quiz/supervisor_quiz",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {
-					"content-type": true
-				}
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"userId\": 1\r\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/quiz/supervisor_quiz",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"quiz",
-						"supervisor_quiz"
-					],
-					"query": [
-						{
-							"key": "quizId",
-							"value": "1",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "localhost:8080/quiz/delete_quiz",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
@@ -198,6 +321,47 @@
 					"path": [
 						"quiz",
 						"delete_quiz"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/quiz/supervisor_quiz",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/quiz/supervisor_quiz",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quiz",
+						"supervisor_quiz"
 					],
 					"query": [
 						{
@@ -310,7 +474,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userId\":1,\r\n  \"quizId\":1,\r\n  \"choices\":[2,3,1,2,1],\r\n  \"score\":10,\r\n  \"reflection\":\"testreflection\\nline2\",\r\n  \"reflectionAvailable\":false,\r\n  \"supervisorId\":1,\r\n  \"isSaved\":true\r\n}"
+					"raw": "{\r\n  \"userId\":-1,\r\n  \"quizId\":1,\r\n  \"choices\":[2,3,1,2,1],\r\n  \"score\":10,\r\n  \"reflection\":\"testreflection\\nline2\",\r\n  \"reflectionAvailable\":false,\r\n  \"supervisorId\":1,\r\n  \"isSaved\":false\r\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/result/save_result",

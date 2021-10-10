@@ -1,0 +1,6 @@
+{
+  "publicQuizList": "[{quiz_id=1, is_public=true, quiz_title=Collaborative Learning}]",
+  "privateQuizList": "[]",
+  "errorCode": "00000",
+  "errorMessage": "Success"
+}

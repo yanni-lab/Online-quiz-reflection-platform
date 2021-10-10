@@ -1,5 +1,6 @@
 package com.berryst.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ public class Quiz {
     private String quizTitle;
     private String quizBackground;
     private int supervisorId;
+    @JsonProperty("isPublic")
     private boolean isPublic;
     private ArrayList<Question> questions;
     private ArrayList<Feedback> feedback;

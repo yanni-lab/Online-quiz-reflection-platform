@@ -1,8 +1,12 @@
 package com.berryst.demo.controller;
 
 import com.berryst.demo.DemoApplication;
+import com.berryst.demo.model.QuizResult;
 import com.berryst.demo.model.User;
 import com.berryst.demo.service.UserService;
+import com.berryst.demo.utils.DataProcessing;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +18,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 
 @RestController
 @Slf4j
@@ -66,48 +69,38 @@ public class UserController {
         return node;
     }
 
-    //TODO: Login when user has same username and password?
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ObjectNode login(@RequestBody String data, HttpServletResponse response) throws JSONException {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode node = objectMapper.createObjectNode();
 
         JSONObject receivedData = new JSONObject(data);
-        String username = receivedData.getString("username");
+//        String username = receivedData.getString("username");
+        String email = receivedData.getString("email");
         String password = receivedData.getString("password");
 
-        List<User> existUsers = userService.queryUserByUsername(username);
+        User existUser = userService.queryUserByEmail(email);
 
-        if (existUsers != null) {
-            User matchUser = null;
-            for (User user : existUsers) {
-                if(user.getPassword().equals(password)){
-                    matchUser = user;
-                    break;
-                }
-            }
-            if (matchUser == null) {
+        if (existUser != null) {
+            if (existUser.getPassword().equals(password)) {
+                Timestamp curTime = new Timestamp(new Date().getTime());
+                String token = existUser.getUserId() + ":" + curTime.getTime();
+                DemoApplication.tokenList.remove(existUser.getUserId());
+                DemoApplication.tokenList.put(existUser.getUserId(), curTime.getTime());
+
+                node.put("token", token);
+                node.put("errorCode", "00000");
+                node.put("errorMessage", "Success");
+
+                log.info("Successfully login - UserEmail: " + email);
+            } else {
                 //Incorrect Password
                 node.put("token", "");
                 node.put("errorCode", "10004");
                 node.put("errorMessage", "Incorrect Password");
 
-                log.warn("Login password not match - User: " + username);
-
-                return node;
+                log.warn("Login password not match - UserEmail: " + email);
             }
-
-            Timestamp curTime = new Timestamp(new Date().getTime());
-            String token = matchUser.getUserId() + ":" + curTime.getTime();
-            DemoApplication.tokenList.remove(matchUser.getUserId());
-            DemoApplication.tokenList.put(matchUser.getUserId(), curTime.getTime());
-
-            node.put("token", token);
-            node.put("errorCode", "00000");
-            node.put("errorMessage", "Success");
-
-            log.info("Successfully login - User: " + username);
-
 
         } else {
             //Username not found
@@ -115,7 +108,7 @@ public class UserController {
             node.put("errorCode", "10003");
             node.put("errorMessage", "Fail to find user when login");
 
-            log.warn("Fail to find user when login with username - User: " + username);
+            log.warn("Fail to find user when login with username - UserEmail: " + email);
         }
         return node;
     }
@@ -149,6 +142,22 @@ public class UserController {
 
             log.warn("Reset password failed: username and email not match - Email: " + email);
         }
+
+        return node;
+    }
+
+
+    @RequestMapping(value = "/update_user", method = RequestMethod.POST)
+    public ObjectNode updateUser(@RequestBody String data, HttpServletResponse response) throws JSONException, JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        ObjectNode node = objectMapper.createObjectNode();
+        User user = objectMapper.readValue(data, User.class);
+        userService.updateUser(user);
+        log.info(String.valueOf(user.isSupervisor()));
+        node.put("errorCode", "00000");
+        node.put("errorMessage", "Success");
+        log.info("Successfully update user - UserId: " + user.getUserId());
 
         return node;
     }

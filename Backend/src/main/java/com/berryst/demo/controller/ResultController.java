@@ -61,9 +61,6 @@ public class ResultController {
         return node;
     }
 
-    //TODO Verify share with supervisor
-    //TODO deal with anonymous user
-    //TODO duplicate request in save and share result
     //userId =-1 represent anonymous user
     @RequestMapping(value = "/share_result", method = RequestMethod.POST)
     public ObjectNode shareResult(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException, JSONException {
