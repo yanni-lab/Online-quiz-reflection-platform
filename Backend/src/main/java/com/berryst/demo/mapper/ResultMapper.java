@@ -29,4 +29,8 @@ public interface ResultMapper {
 
     String getFeedbackContent(int quizId, int score);
 
+    int updateShareWithSupervisor(QuizResult quizResult);
+
+    int saveResultAsAnonymous(QuizResult result);
+
 }

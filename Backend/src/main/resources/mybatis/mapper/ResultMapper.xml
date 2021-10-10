@@ -48,4 +48,12 @@
     <select id="getFeedbackContent" parameterType="int" resultType="string">
         select feedback_content from feedback where quiz_id = #{quizId} and lower_bound &lt;= #{score} and upper_bound &gt;= #{score}
     </select>
+
+    <update id="updateShareWithSupervisor" parameterType="com.berryst.demo.model.QuizResult">
+        update user_result set reflection_available = #{reflectionAvailable} where attempt_id = #{attemptId}
+    </update>
+
+    <insert id="saveResultAsAnonymous" parameterType="com.berryst.demo.model.QuizResult" useGeneratedKeys="true" keyProperty="attemptId">
+        insert into user_result (user_id,quiz_id,choices,attempt_times,score,reflection,reflection_time,reflection_available, supervisor_id) values (-1, #{quizId}, #{choices, jdbcType=VARCHAR, typeHandler=com.berryst.demo.utils.StringToIntArrayHandler}, 1, #{score}, #{reflection}, sysdate(),#{reflectionAvailable}, #{supervisorId})
+    </insert>
 </mapper>

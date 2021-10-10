@@ -18,27 +18,35 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public int saveResult(QuizResult result) {
+        if(result.getUserId()==-1){
+            log.info("Save result as Anonymous user");
+            saveResultAsAnonymous(result);
+        }
         QuizResult preResult = resultMapper.getLatestAttempt(result.getUserId(),result.getQuizId());
         if(preResult==null){
             result.setNumberOfAttempt(1);
         }else{
             result.setNumberOfAttempt(preResult.getNumberOfAttempt()+1);
         }
+        resultMapper.saveResult(result);
         //return attempt id
-        return resultMapper.saveResult(result);
+        return result.getAttemptId();
     }
 
-    @Override
-    public int shareResult(QuizResult result, String email) {
-        QuizResult preResult = resultMapper.getLatestAttempt(result.getUserId(),result.getQuizId());
-        if(preResult==null){
-            result.setNumberOfAttempt(1);
-        }else{
-            result.setNumberOfAttempt(preResult.getNumberOfAttempt()+1);
-        }
-        //return attempt id
-        return resultMapper.saveResult(result);
-    }
+//    @Override
+//    public int shareResult(QuizResult result, String email) {
+//        if(result.getUserId()==-1){
+//            saveResultAsAnonymous(result);
+//        }
+//        QuizResult preResult = resultMapper.getLatestAttempt(result.getUserId(),result.getQuizId());
+//        if(preResult==null){
+//            result.setNumberOfAttempt(1);
+//        }else{
+//            result.setNumberOfAttempt(preResult.getNumberOfAttempt()+1);
+//        }
+//        //return attempt id
+//        return resultMapper.saveResult(result);
+//    }
 
     @Override
     public ArrayList<String> getUserFeedback(int userId) {
@@ -68,5 +76,16 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public String getFeedbackContent(int quizId, int score) {
         return resultMapper.getFeedbackContent(quizId,score);
+    }
+
+    @Override
+    public int updateShareWithSupervisor(QuizResult quizResult) {
+        log.info("update reflection_available field");
+        return resultMapper.updateShareWithSupervisor(quizResult);
+    }
+
+    @Override
+    public int saveResultAsAnonymous(QuizResult result) {
+        return resultMapper.saveResultAsAnonymous(result);
     }
 }

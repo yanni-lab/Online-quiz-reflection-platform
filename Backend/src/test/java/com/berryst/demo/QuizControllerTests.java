@@ -41,7 +41,8 @@ public class QuizControllerTests {
 //        params.put("id", "123456");
 
         JSONObject result = new JSONObject();
-        result.put("quizList","[{quiz_id=1, quiz_title=Collaborative Learning}, {quiz_id=2, quiz_title=Leadership}, {quiz_id=3, quiz_title=Resilience}]");
+//        result.put("quizList","[{quiz_id=1, quiz_title=Collaborative Learning}, {quiz_id=2, quiz_title=Leadership}, {quiz_id=3, quiz_title=Resilience}]");
+        result.put("quizList","[]");
         result.put("errorCode","00000");
         result.put("errorMessage","Success");
 

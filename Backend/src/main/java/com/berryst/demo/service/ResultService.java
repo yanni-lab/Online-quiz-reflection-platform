@@ -9,7 +9,7 @@ import java.util.Map;
 public interface ResultService {
     int saveResult(QuizResult result);
 
-    int shareResult(QuizResult result, String email);
+//    int shareResult(QuizResult result, String email);
 
     ArrayList<String> getUserFeedback(int userId);
 
@@ -22,4 +22,8 @@ public interface ResultService {
     ArrayList<String> getComment();
 
     String getFeedbackContent(int quizId, int score);
+
+    int updateShareWithSupervisor(QuizResult quizResult);
+
+    int saveResultAsAnonymous(QuizResult result);
 }

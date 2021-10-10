@@ -105,7 +105,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"quizId\": 4\r\n}"
+					"raw": "{\r\n  \"quizId\": 1\r\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/quiz/quiz_content",
@@ -146,7 +146,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userId\": 0\r\n}"
+					"raw": "{\r\n  \"userId\": 1\r\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/quiz/supervisor_quiz",
@@ -310,7 +310,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userId\":1,\r\n  \"quizId\":1,\r\n  \"choices\":[2,3,1,2,1],\r\n  \"score\":10,\r\n  \"reflection\":\"testreflection\\nline2\",\r\n  \"reflectionAvailable\":0,\r\n  \"supervisorId\":1\r\n}"
+					"raw": "{\r\n  \"userId\":1,\r\n  \"quizId\":1,\r\n  \"choices\":[2,3,1,2,1],\r\n  \"score\":10,\r\n  \"reflection\":\"testreflection\\nline2\",\r\n  \"reflectionAvailable\":false,\r\n  \"supervisorId\":1,\r\n  \"isSaved\":true\r\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/result/save_result",
@@ -351,7 +351,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userId\":1,\r\n  \"quizId\":1,\r\n  \"choices\":[2,3,1,2,1],\r\n  \"score\":10,\r\n  \"reflection\":\"testreflection\",\r\n  \"supervisor_id\":1,\r\n  \"reflectionAvailable\":1,\r\n  \"email\":\"test@gmail.com\"\r\n}"
+					"raw": "{\r\n  \"userId\":1,\r\n  \"quizId\":1,\r\n  \"choices\":[2,3,1,2,1],\r\n  \"score\":10,\r\n  \"reflection\":\"testreflection\",\r\n  \"supervisor_id\":1,\r\n  \"reflectionAvailable\":true,\r\n  \"email\":\"test@gmail.com\",\r\n  \"isSaved\":false\r\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/result/share_result",

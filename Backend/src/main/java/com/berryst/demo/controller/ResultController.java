@@ -37,14 +37,22 @@ public class ResultController {
     private EmailService emailService;
 
     @RequestMapping(value = "/save_result", method = RequestMethod.POST)
-    public ObjectNode saveResult(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException {
+    public ObjectNode saveResult(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException, JSONException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ObjectNode node = objectMapper.createObjectNode();
+        JSONObject receivedData = new JSONObject(data);
 
         QuizResult result = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), QuizResult.class);
-
-        resultService.saveResult(result);
+        if(receivedData.getBoolean("isSaved")){
+            log.info("Result has already saved with attemptId: "+result.getAttemptId());
+            resultService.updateShareWithSupervisor(result);
+            node.put("errorCode", "00000");
+            node.put("errorMessage", "Success");
+            return node;
+        }
+        int attemptId = resultService.saveResult(result);
+        node.put("attemptId",attemptId);
 
         log.info("Successfully save new result");
         node.put("errorCode", "00000");
@@ -56,6 +64,7 @@ public class ResultController {
     //TODO Verify share with supervisor
     //TODO deal with anonymous user
     //TODO duplicate request in save and share result
+    //userId =-1 represent anonymous user
     @RequestMapping(value = "/share_result", method = RequestMethod.POST)
     public ObjectNode shareResult(@RequestBody String data, HttpServletResponse response) throws JsonProcessingException, JSONException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -64,9 +73,23 @@ public class ResultController {
 
         JSONObject receivedData = new JSONObject(data);
         String email = receivedData.getString("email");
+
         QuizResult result = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), QuizResult.class);
 
-        int attemptId = resultService.shareResult(result,email);
+        if(receivedData.getBoolean("isSaved")){
+            log.info("Result has already saved with attemptId: "+result.getAttemptId());
+            resultService.updateShareWithSupervisor(result);
+            node.put("errorCode", "00000");
+            node.put("errorMessage", "Success");
+            //TODO Edit email
+
+            //emailAddr, Title, Content
+//        emailService.sendMail("email","Berry Street Quiz Result", "Here is your quiz result");
+            return node;
+        }
+
+        int attemptId = resultService.saveResult(result);
+        node.put("attemptId",attemptId);
 
         //TODO Edit email
         //emailAddr, Title, Content
