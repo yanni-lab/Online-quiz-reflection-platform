@@ -1,0 +1,13 @@
+.MyLECs{
+    background-color: white;
+}
+
+.form-label{
+    font-size: 20px;
+}
+
+.LEC-row{
+    font-size: 18px;
+    padding: 15px 20px;
+    border-bottom: black 1px solid;
+}

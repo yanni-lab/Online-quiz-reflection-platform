@@ -12,12 +12,13 @@ import Supervisor from './Components/SupervisorDashboard/SupervisorDashboard';
 import MyLECs from './Components/MyLECsPage/MyLECs';
 import ViewLECs from './Components/ViewLECsPage/ViewLECs';
 import "./App.css";
-import "./NavBar.css";
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import NavBar from './Components/NavBar/NavBar';
 import { Route, Switch } from 'react-router-dom';
 import {Navbar,Container,Nav} from 'react-bootstrap';
+import "./NavBar.css";
 import React from "react";
 import Logo from "./Components/images/logo.png";
 
@@ -26,27 +27,15 @@ class App extends React.Component{
         super(props);
         this.state = {
             identity:0,
-            username:"",
-            login:false
+            username:""
         };
         this.setPare = this.setPare.bind(this);
-        this.handleUserLogin = this.handleUserLogin.bind(this);
     }
 
     setPare(){
         console.log("select LEC!")
-        this.setState({
-            identity:1
-        })
-
-    }
-
-    handleUserLogin(username){
-        this.setState({
-            identity:2,
-            username:username,
-            login:true,
-        })
+        this.setState({})
+        this.state.identity=1
     }
 
 
@@ -80,16 +69,14 @@ class App extends React.Component{
                             </Nav>
                         </Navbar.Collapse>
 
-                        <Navbar.Text style={{display: this.state.login==true? "block":"none"}}>
-                            {"Welcome "+ this.state.username+"!"}
+                        <Navbar.Text style={{display: this.state.identity==0? "none":"block"}}>
+                            Welcome!
                         </Navbar.Text>
                     </Container>
                 </Navbar>
 
-
-
                 <Switch>
-                    <Route path='/login' render={(props) => (<Login handleUserLogin={this.handleUserLogin} {...props}/>)}/>
+                    <Route path='/login' component={LoginPage}/>
                     <Route path='/register' component={RegisterPage}/>
                     <Route path='/listQuiz' component={ListQuizPage}/>
                     <Route path='/createQuiz' component={CreateQuizPage}/>
@@ -105,26 +92,14 @@ class App extends React.Component{
 
                 </Switch>
 
-
-
-                <Navbar bg="light" expand="lg" fixed="bottom" style={{display:this.state.identity==1?"block":"none"}}>
-                    <Container>
-                        <Navbar.Brand>How do you feel about using LEx Mirror? Tell us how you think we can improve!</Navbar.Brand>
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="me-auto">
-
-                                <Nav.Link href="/login">Give Comment</Nav.Link>
-
-                            </Nav>
-                        </Navbar.Collapse>
-                    </Container>
-                </Navbar>
-
             </div>
         );
     }
 }
 
+const HomePage = () => (
+    <Home />
+);
 
 const LoginPage = () => (
     <Login />

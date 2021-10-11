@@ -211,6 +211,7 @@ class EditQuiz extends React.Component {
 
 
     render(){
+        document.title = "Create Quizzes"
         return(
             <div className="editQuizPage">
                 <div className = "heading">

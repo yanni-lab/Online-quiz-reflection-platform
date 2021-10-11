@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './listQuiz.css';
-import {Row, Col, Button} from 'react-bootstrap';
+import {Row, Col, Button,Navbar,Nav,Container} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
 class ListQuiz extends React.Component {
@@ -103,6 +103,7 @@ class ListQuiz extends React.Component {
 
 
                 </Row>
+
 
             </div>
         );

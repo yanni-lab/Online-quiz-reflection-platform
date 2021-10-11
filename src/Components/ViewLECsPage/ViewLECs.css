@@ -1,0 +1,35 @@
+.ViewLECs{
+    background-color: white;
+
+}
+
+.ViewLECs .container{
+    width: 60%;
+}
+
+.ViewLECs .question{
+    text-align: left;
+    padding: 8px 0 0 0;
+    font-size: 20px;
+}
+
+.ViewLECs .optionButton{
+    width:480px
+}
+
+.ViewLECs .option{
+    padding-top: 10px;
+}
+
+.ViewLECs .title{
+    padding-top: 20px;
+    text-align: center;
+}
+
+.ViewLECs .reflection{
+    white-space:pre-line
+}
+
+.default-reflection{
+    text-align: center;
+}

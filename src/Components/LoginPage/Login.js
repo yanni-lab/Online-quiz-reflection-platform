@@ -42,8 +42,13 @@ class Login extends React.Component {
         });
     }
 
-    handleSubmit(event) {
-        console.log(this.state);
+    handleSubmit() {
+        this.setState({
+            successModal:true
+        })
+
+
+        /**console.log(this.state);
         var dataSent = JSON.stringify({"username": this.state.username,"password": this.state.password});
         this.token = "";
         event.preventDefault();
@@ -82,7 +87,7 @@ class Login extends React.Component {
             //data from backend
         }).catch(function(error){
             console.log(error)
-        })
+        })**/
 
         //const token = "111"
 
@@ -99,15 +104,24 @@ class Login extends React.Component {
         this.setState({
             successModal:false,
         })
-        this.props.history.push("./ListQuiz")
+        this.props.handleUserLogin(this.state.username)
+        this.props.history.push({
+            pathname: "/supervisor",
+            state:{
+                username:this.state.username
+            }
+        })
     }
 
 
     render(){
+        document.title = "Login"
         return (
             <div className="Login">
                 <div className="box justify-content-center align-items-center">
-                    <Form className="loginForm" onSubmit={this.handleSubmit}>
+                    <Form className="loginForm"
+                          // onSubmit={this.handleSubmit}
+                    >
                         <div className="loginlogo">
                             <img href="/"
                                  src={LoginLogo}
@@ -139,7 +153,8 @@ class Login extends React.Component {
                             {/*<Link>*/}
                             <Button className="loginButton"
                                     size="lg"
-                                    type="submit"
+                                    // type="submit"
+                                    onClick = {this.handleSubmit}
                                 // disabled={this.validateForm()}
                             >
                                 Login
@@ -152,7 +167,7 @@ class Login extends React.Component {
                             <Link to='/register'>
                                 <Button className="loginButton"
                                         size="lg"
-                                        type="submit"
+                                        // type="submit"
                                     // disabled={this.validateForm()}
                                 >
                                     Create Account
@@ -174,14 +189,14 @@ class Login extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
-                        <Button onClick = {this.cancelModal} className = "cancelExit">Yes</Button>
+                        <Button onClick = {this.handleCancelModal} className = "cancelExit">Yes</Button>
                     </Modal.Footer>
 
 
                 </Modal>
 
                 <Modal  show = {this.state.successModal}
-                        onClick =  {this.handleSuccessCancelModal}
+                        // onClick =  {this.handleSuccessCancelModal}
                 >
 
                     <Modal.Body>
@@ -189,7 +204,7 @@ class Login extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
-                        <Button onClick = {this.cancelModal} className = "cancelSuccessExit">OK</Button>
+                        <Button onClick = {this.handleSuccessCancelModal} className = "cancelSuccessExit">OK</Button>
                     </Modal.Footer>
 
 

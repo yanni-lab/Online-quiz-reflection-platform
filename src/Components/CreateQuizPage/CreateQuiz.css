@@ -89,15 +89,15 @@ a{
     font-size: 25px;
 }
 
-.button-onfocus{
+.createQuizPage .button-onfocus{
     display: none;
 }
 
-.QuizZone:hover .button-onfocus{
+.createQuizPage .QuizZone:hover .button-onfocus{
     display: block;
 }
 
-.QuizZone:hover{
+.createQuizPage .QuizZone:hover{
     background-color: #e7effc;
     color: black;
 }

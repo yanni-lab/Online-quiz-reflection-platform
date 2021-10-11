@@ -9,6 +9,7 @@ class CreateQuiz extends React.Component {
         super(props);
         this.state = {
             // newQuiz:props.location.state.newQuiz,
+            username:props.location.state.username,
             quizList:[
                 {quiz_id:1, quiz_title:"Collaborative Learning"},
                 {quiz_id:2, quiz_title:"Leadership"},
@@ -71,6 +72,7 @@ class CreateQuiz extends React.Component {
 
 
     render(){
+        document.title = "My Quizzes"
 
 
 
@@ -78,12 +80,22 @@ class CreateQuiz extends React.Component {
             <div className="createQuizPage">
                 <Row>
                     <Col>
-                        <Link to='/'>
+                        <Link to={{
+                            pathname:'./supervisor',
+                            state:{
+                                username: this.state.username
+                            }
+                        }}>
                             <Button className="backButton"
                                     size="lg"
                                     variant="outline-primary"
                             >Back</Button>
                         </Link>
+                    </Col>
+                    <Col>
+                        <div className="header">
+                            My Quizzes
+                        </div>
                     </Col>
                     <Col>
                         <Link to='/editQuiz'>

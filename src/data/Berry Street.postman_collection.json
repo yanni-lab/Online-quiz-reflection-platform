@@ -1,0 +1,747 @@
+{
+	"info": {
+		"_postman_id": "2bb3b4c6-3d1a-452e-acb9-b7b9d73f913b",
+		"name": "Berry Street",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/user/register",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"testuser\",\r\n  \"password\": \"123456\",\r\n  \"email\": \"test@gmail.com\",\r\n  \"isSupervisor\": true\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"register"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/user/login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"jasonx@firefox.com\",\r\n  \"password\": \"12345\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/user/reset_password",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"testuse\",\r\n  \"password\": \"12345\",\r\n  \"email\": \"test@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/user/reset_password",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"reset_password"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/user/update_user",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 5,\r\n  \"username\": \"testuser\",\r\n  \"password\": \"123456\",\r\n  \"email\": \"test@gmail.com\",\r\n  \"isSupervisor\": true\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/user/update_user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"update_user"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/quiz/available_quiz",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/quiz/available_quiz",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quiz",
+						"available_quiz"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/quiz/set_quiz",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"quizTitle\": \"Leadership\",\r\n  \"quizBackground\": \"What is your leadership style? This quiz will help you to identify the style that you naturally lean toward, and introduce you to alternative approaches that you might find it helpful to develop, and the occasions when they may be appropriate.\",\r\n  \"supervisorId\": 0,\r\n  \"questions\": [\r\n    {\r\n      \"question\": \"If there is serious conflict within my team...\",\r\n      \"choices\": [\r\n        {\r\n          \"score\": 1,\r\n          \"choice\": \"I remind everyone that we have goals to meet\"\r\n        },\r\n        {\r\n          \"score\": 3,\r\n          \"choice\": \"I bring my people together so that we can talk it through\"\r\n        },\r\n        {\r\n          \"score\": 4,\r\n          \"choice\": \"I let them work by themselves so that they don't have to bother one another\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"question\": \"I trust my team members...\",\r\n      \"choices\": [\r\n        {\r\n          \"score\": 1,\r\n          \"choice\": \"Very much\"\r\n        },\r\n        {\r\n          \"score\": 3,\r\n          \"choice\": \"A fair amount\"\r\n        },\r\n        {\r\n          \"score\": 4,\r\n          \"choice\": \"Not at all\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"question\": \"The best way for me to ensure that my team meets its goals is to...\",\r\n      \"choices\": [\r\n        {\r\n          \"score\": 1,\r\n          \"choice\": \"Lead from the front\"\r\n        },\r\n        {\r\n          \"score\": 3,\r\n          \"choice\": \"Encourage participation from everyone\"\r\n        },\r\n        {\r\n          \"score\": 4,\r\n          \"choice\": \"Delegate often and widely\"\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n    \"feedback\": [\r\n        {\r\n            \"feedbackId\": 6,\r\n            \"quizId\": 0,\r\n            \"lowerBound\": 1,\r\n            \"upperBound\": 8,\r\n            \"feedbackContent\": \"You most commonly adopt an authoritarian or autocratic leadership style. You rarely consult your team members and, instead, tend to tell them what you want, when you want it, and how you want it done.### This style works well in a crisis, when a task must be completed quickly. However, you will likely demoralize, demotivate and aggravate people if you use it all the time. This can translate into high absenteeism and turnover rates. You will also miss out on a wealth of ideas, thereby stifling innovation and creativity.\",\r\n            \"feedbackOrder\": 1\r\n        },\r\n        {\r\n            \"feedbackId\": 7,\r\n            \"quizId\": 0,\r\n            \"lowerBound\": 9,\r\n            \"upperBound\": 16,\r\n            \"feedbackContent\": \"You lean toward a democratic or participative style of leadership. You tend to set the parameters for the work and have the final say on decisions, but you actively involve your team members in the process.### This style can build trust between you and your people, as they will likely feel engaged and valued. But it is not great in a high-pressure situation that requires a fast turnaround, as it will slow you down. And, if you dislike disagreement or conflict, you might struggle with how people respond to consultation.\",\r\n            \"feedbackOrder\": 2\r\n        },\r\n        {\r\n            \"feedbackId\": 8,\r\n            \"quizId\": 0,\r\n            \"lowerBound\": 17,\r\n            \"upperBound\": 25,\r\n            \"feedbackContent\": \"Your default leadership style is probably delegating or laissez faire. You give your team members free rein in how they work toward their goals.### This is an ideal approach when your people are highly skilled and motivated, and when you're working with contractors and freelancers who you trust. But if a team member is inexperienced or untrustworthy, or if you lose sight of what's going on, this approach can backfire catastrophically.\",\r\n            \"feedbackOrder\": 3\r\n        }\r\n    ],\r\n  \"public\": true\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/quiz/set_quiz",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quiz",
+						"set_quiz"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/quiz/quiz_content",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"quizId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/quiz/quiz_content",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quiz",
+						"quiz_content"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/quiz/delete_quiz",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"quizId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/quiz/delete_quiz",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quiz",
+						"delete_quiz"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/quiz/supervisor_quiz",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/quiz/supervisor_quiz",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quiz",
+						"supervisor_quiz"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/quiz/set_public",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"quizId\": 4\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/quiz/set_public",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quiz",
+						"set_public"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/quiz/set_private",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"quizId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/quiz/set_private",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"quiz",
+						"set_private"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/result/save_result",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\":-1,\r\n  \"quizId\":1,\r\n  \"choices\":[2,3,1,2,1],\r\n  \"score\":10,\r\n  \"reflection\":\"testreflection\\nline2\",\r\n  \"reflectionAvailable\":false,\r\n  \"supervisorId\":1,\r\n  \"isSaved\":false\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/result/save_result",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"result",
+						"save_result"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/result/share_result",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\":1,\r\n  \"quizId\":1,\r\n  \"choices\":[2,3,1,2,1],\r\n  \"score\":10,\r\n  \"reflection\":\"testreflection\",\r\n  \"supervisor_id\":1,\r\n  \"reflectionAvailable\":true,\r\n  \"email\":\"test@gmail.com\",\r\n  \"isSaved\":false\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/result/share_result",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"result",
+						"share_result"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/result/get_user_result",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/result/get_user_result",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"result",
+						"get_user_result"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/result/get_supervisor_result",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/result/get_supervisor_result",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"result",
+						"get_supervisor_result"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/result/get_result_content",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"attemptId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/result/get_result_content",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"result",
+						"get_result_content"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/result/save_comment",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"comment\":\"Test comment\\nline2\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/result/save_comment",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"result",
+						"save_comment"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/result/view_comment",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/result/view_comment",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"result",
+						"view_comment"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

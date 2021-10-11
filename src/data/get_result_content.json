@@ -1,0 +1,36 @@
+{
+  "attemptId": 1,
+  "userId": 1,
+  "quizId": 1,
+  "choices": [
+    {
+      "question": "When the group needs suggestions, I...",
+      "choice": "Discuss my suggestions with the group"
+    },
+    {
+      "question": "When the group needs opinions about something, I...",
+      "choice": "Give reasons for and against my opinion using evidence"
+    },
+    {
+      "question": "The way I give support for my opinion is...",
+      "choice": "I give reasons for my opinion"
+    },
+    {
+      "question": "When I give my opinion...",
+      "choice": "I check with others why they think the way they do about my opinion"
+    },
+    {
+      "question": "When I need help when I work in groups...",
+      "choice": "I ask group members that I like"
+    }
+  ],
+  "numberOfAttempt": 1,
+  "score": 10,
+  "reflection": "testreflection \n line2",
+  "reflectionAvailable": true,
+  "attemptTime": 1633695298000,
+  "supervisorId": 1,
+  "feedback": "At this level, you give suggestions to the group and are open to discussion about their opinion. When you give your opinion, you ask others what they think of the opinion. When you need help in groups, you tend to ask group members that you are closer with or who you perceive to be the best group member to help you. You tend not to seek feedback or seek it from someone who you know will give you positive feedback. However, if you do receive feedback, you listen and ask questions.### When you disagree with other's opinions, you provide an explanation for why you disagree. When exploring different opinions, you tend to seek peers who have the same opinion as you.### You would enter a discussion to make a group plan. If the group doesn't do well, you will tell the group what they could have done better.",
+  "errorCode": "00000",
+  "errorMessage": "Success"
+}

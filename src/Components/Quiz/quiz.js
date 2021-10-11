@@ -233,7 +233,10 @@ class Quiz extends React.Component {
                         Are you sure you want to exit the quiz? (Have you saved / shared ?)
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button href = "./listQuiz" className = "ensureExit">Yes</Button>
+                        <Link to="./listQuiz">
+                            <Button className = "ensureExit">Yes</Button>
+                        </Link>
+
                         <Button onClick = {this.cancelLeaveQuiz} className = "cancelExit">No</Button>
                     </Modal.Footer>
 
