@@ -23,7 +23,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"username\": \"testuser\",\r\n  \"password\": \"123456\",\r\n  \"email\": \"test@gmail.com\",\r\n  \"isSupervisor\": true\r\n}"
+					"raw": "{\r\n  \"username\": \"testuser1\",\r\n  \"password\": \"123456\",\r\n  \"email\": \"test2@gmail.com\",\r\n  \"isSupervisor\": true\r\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/user/register",
@@ -64,7 +64,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"jasonx@firefox.com\",\r\n  \"password\": \"12345\"\r\n}"
+					"raw": "{\r\n  \"email\": \"mario35@gmail.com\",\r\n  \"password\": \"123456\"\r\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/user/login",
@@ -157,6 +157,47 @@
 					"path": [
 						"user",
 						"update_user"
+					],
+					"query": [
+						{
+							"key": "quizId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/user/delete_user",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/user/delete_user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"delete_user"
 					],
 					"query": [
 						{

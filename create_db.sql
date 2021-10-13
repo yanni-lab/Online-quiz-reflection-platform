@@ -75,7 +75,8 @@ CREATE TABLE `user_result` (
 `reflection_available` boolean COMMENT 'supervisor can view reflection',
 `reflection_time` datetime DEFAULT NULL COMMENT 'reflection time',
 `supervisor_id` int(10) NOT NULL COMMENT 'supervisor''s user_id from `user` table',
-PRIMARY KEY (`attempt_id`)
+PRIMARY KEY (`attempt_id`),
+FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `comment` */

@@ -166,4 +166,20 @@ public class UserController {
 
         return node;
     }
+
+    @RequestMapping(value = "/delete_user", method = RequestMethod.POST)
+    public ObjectNode deleteUser(@RequestBody String data, HttpServletResponse response) throws JSONException, JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        JSONObject receivedData = new JSONObject(data);
+        ObjectNode node = objectMapper.createObjectNode();
+
+        int userId = receivedData.getInt("userId");
+        userService.deleteUser(userId);
+        node.put("errorCode", "00000");
+        node.put("errorMessage", "Success");
+        log.info("Successfully delete user - UserId:"+userId);
+
+        return node;
+    }
 }
