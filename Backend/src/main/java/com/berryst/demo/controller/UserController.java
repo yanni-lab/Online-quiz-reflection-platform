@@ -52,6 +52,8 @@ public class UserController {
             String token = curUser.getUserId() + ":" + curTime.getTime();
             DemoApplication.tokenList.put(curUser.getUserId(), curTime.getTime());
 
+            node = objectMapper.convertValue(curUser, ObjectNode.class);
+            node.remove("password");
             node.put("token", token);
             node.put("errorCode", "00000");
             node.put("errorMessage", "Success");
@@ -87,6 +89,9 @@ public class UserController {
                 String token = existUser.getUserId() + ":" + curTime.getTime();
                 DemoApplication.tokenList.remove(existUser.getUserId());
                 DemoApplication.tokenList.put(existUser.getUserId(), curTime.getTime());
+
+                node = objectMapper.convertValue(existUser, ObjectNode.class);
+                node.remove("password");
 
                 node.put("token", token);
                 node.put("errorCode", "00000");

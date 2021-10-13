@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="fix(*):deal with duplicate data insert on save and share result, deal with anonymous user">
-      <change afterPath="$PROJECT_DIR$/data/login.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/register.json" afterDir="false" />
+    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="feat(*):add update user information feature">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/DemoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/QuestionChoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/QuestionChoice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/Quiz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/QuizResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/QuizResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Berry Street.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/Berry Street.postman_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/login.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/login.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/register.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/register.json" afterDir="false" />
     </list>
     <list id="a20238c2-33c1-4e91-a2da-980c23180045" name="Add Quiz model" comment="Add Quiz model" />
     <option name="SHOW_DIALOG" value="false" />
@@ -198,7 +191,7 @@
       <workItem from="1633160175751" duration="9980000" />
       <workItem from="1633186660730" duration="6088000" />
       <workItem from="1633253832724" duration="53355000" />
-      <workItem from="1633766126340" duration="23805000" />
+      <workItem from="1633766126340" duration="28640000" />
     </task>
     <task id="LOCAL-00001" summary="Add Quiz model">
       <created>1631323516021</created>
@@ -410,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633867665342</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="feat(*):add update user information feature">
+      <created>1633870778465</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1633870778465</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,7 +449,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modify service interface and database structure" />
     <MESSAGE value="Implement getPublicQuizList and getQuizContent methods" />
     <MESSAGE value="Modify Feedback parameter structure (to JSON)" />
     <MESSAGE value="Modify QuizController" />
@@ -474,7 +473,8 @@
     <MESSAGE value="fix(*):correct return type of view comments function" />
     <MESSAGE value="test(controller):add a controller unit test templet" />
     <MESSAGE value="fix(*):deal with duplicate data insert on save and share result, deal with anonymous user" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(*):deal with duplicate data insert on save and share result, deal with anonymous user" />
+    <MESSAGE value="feat(*):add update user information feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(*):add update user information feature" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
