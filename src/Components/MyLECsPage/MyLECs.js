@@ -10,7 +10,7 @@ class MyLECs extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            username:props.location.state.username,
+            username:props.username,
             results:result.supervisorResult,
             LECs:[
                 {
@@ -41,12 +41,27 @@ class MyLECs extends React.Component {
                 <div className="container">
                     <Row>
                         <Col>
+                            <Link to={{
+                                pathname:'./supervisor',
+                                state:{
+                                    username: this.state.username
+                                }
+                            }}>
+                                <Button className="backButton"
+                                        size="lg"
+                                        variant="outline-primary"
+                                >Back</Button>
+                            </Link>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
                             <div className="header">
                                 My LECs
                             </div>
                         </Col>
                     </Row>
-                    <Form>
+                    <Form className="LEC-form">
                         <Form.Label>
                             All LECs Feedbacks
                         </Form.Label>

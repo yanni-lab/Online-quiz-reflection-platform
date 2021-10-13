@@ -9,7 +9,7 @@ class SupervisorDashboard extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            username:props.location.state.username,
+            username:props.username,
         };
     };
 
@@ -32,7 +32,7 @@ class SupervisorDashboard extends React.Component {
                         <Row className="roleContent">
                             <CardGroup>
                                 <Card className="cardRole">
-                                    <Card.Img className="cardimg" variant="top" src={supervisor}/>
+                                    <Card.Img className="supervisor-img" variant="top" src={supervisor}/>
                                     <Card.Body>
                                         <Card.Title>My Quizzes</Card.Title>
                                     </Card.Body>
@@ -51,7 +51,7 @@ class SupervisorDashboard extends React.Component {
                                     </Card.Footer>
                                 </Card>
                                 <Card className="cardRole">
-                                    <Card.Img className="cardimg" variant="top" src={supervisor} />
+                                    <Card.Img className="supervisor-img" variant="top" src={supervisor} />
                                     <Card.Body>
                                         <Card.Title>My LECs</Card.Title>
                                     </Card.Body>
@@ -71,12 +71,17 @@ class SupervisorDashboard extends React.Component {
                                     </Card.Footer>
                                 </Card>
                                 <Card className="cardRole">
-                                    <Card.Img className="cardimg" variant="top" src={supervisor} />
+                                    <Card.Img className="supervisor-img" variant="top" src={supervisor} />
                                     <Card.Body>
                                         <Card.Title>User Experience Comments</Card.Title>
                                     </Card.Body>
                                     <Card.Footer>
-                                        <Link to='/login'>
+                                        <Link to={{
+                                            pathname:'/viewComments',
+                                            state:{
+                                                username: this.state.username
+                                            }
+                                        }}>
                                             <Button
                                                     size="lg"
                                                     variant="outline-primary"

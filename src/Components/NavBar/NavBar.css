@@ -7,3 +7,11 @@
 .brand{
     font-family: "Arial Black", sans-serif;
 }
+
+aria-labelledby .show{
+    right:80px
+}
+
+.dropdown{
+    margin-right: 100px;
+}

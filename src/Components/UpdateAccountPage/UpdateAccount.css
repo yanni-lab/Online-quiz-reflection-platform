@@ -1,25 +1,26 @@
-/*.App{*/
-/*    width: 100%;*/
-/*    justify-content: center;*/
-/*    background-color: #e8effc;*/
-/*}*/
-
-.Login{
+.UpdateAccount{
     width: 500px;
     /*height: 750px;*/
     background-color: whitesmoke;
-    margin: 20px auto;
+    margin: 10px auto 10px auto;
     /*padding: 50px 70px;*!*/
     box-shadow: 5px 5px #ddd;
     border-radius: 5px;
+
+
 }
 
-.loginForm{
+
+.login-img{
+    height:60px;
+    width:60px;
+}
+.registerForm{
     margin:auto;
-    width: 90%;
-    padding: 80px 50px 80px 50px;
+    padding: 50px 50px 30px 50px;
     border-radius:10px;
-    border: 3px bisque;
+    border: 3px;
+
 }
 .heading{
     padding: 30px 10px 30px 10px ;
@@ -27,10 +28,10 @@
     color: black;
     font-size: 30px;
 }
+
 .label{
     display: inline-block;
-    text-align: left;
-
+    test-align:right;
 }
 .input{
     vertical-align:top;
@@ -40,18 +41,19 @@
     padding: 10px 10px 10px 10px;
 }
 
-.loginButton{
-    text-align: center;
-    width: 95%;
-    text-align-all: center;
-    light-height: heightValue;
+.UpdateAccount .button{
     border-radius: 10px;
     /*background-color: #e7effc;*/
-    margin-top: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    /*margin-bottom: 30px;*/
+    justify-content: center;
+    width: 80%;
+    margin: 10px 10px 30px;
     box-shadow:5px 5px 10px gray;
-    vertical-align:center;
 
+}
+
+.update-button-row{
+    justify-content: space-evenly;
+    margin-right: 0;
+    margin-left: 0;
+    text-align: center;
 }

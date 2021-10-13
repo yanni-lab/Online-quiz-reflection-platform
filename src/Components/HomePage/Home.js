@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../images/Welcome.png';
 import supervisor from '../images/supervisor.png';
+import lec from '../images/Lex.png';
 // import lex from '../images/Lex.png';
 import {Row,  Button,CardGroup,Card} from 'react-bootstrap';
 import './Home.css';
@@ -34,7 +35,7 @@ class Home extends React.Component {
                             <Row className="roleContent">
                                 <CardGroup>
                                     <Card className="cardRole" style={{ width: '18rem'}}>
-                                        <Card.Img className="cardimg" variant="top" src={supervisor}/>
+                                        <Card.Img className="lec-img" variant="top" src={lec}/>
                                         <Card.Body>
                                             <Card.Title>LEC</Card.Title>
                                             <Card.Text>
@@ -53,7 +54,7 @@ class Home extends React.Component {
                                         </Card.Footer>
                                     </Card>
                                     <Card className="cardRole" style={{ width: '18rem'}}>
-                                        <Card.Img className="cardimg" variant="top" src={supervisor} />
+                                        <Card.Img className="supervisor-img" variant="top" src={supervisor} />
                                         <Card.Body>
                                             <Card.Title>Supervisor</Card.Title>
                                             <Card.Text>

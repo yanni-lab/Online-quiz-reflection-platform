@@ -150,7 +150,7 @@ class Quiz extends React.Component {
                     </Col>
                 </Row>
 
-                <div className="box justify-content-center align-items-center">
+
                     <Form className="quizForm">
                         <div className = "question">
                             {this.state.quizList[this.state.currQuestion].question}
@@ -196,7 +196,7 @@ class Quiz extends React.Component {
                         </div>
 
                     </Form>
-                </div>
+
 
 
                 <div  className = "formerNextButtonRow">

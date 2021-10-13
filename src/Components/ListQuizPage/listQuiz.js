@@ -57,8 +57,8 @@ class ListQuiz extends React.Component {
                             >Back</Button>
                         </Link>
                     </Col>
-                    <Col>
-                        <Link to='/listQuiz'>
+                    <Col style={{display:this.props.login==false?"block":"none"}}>
+                        <Link to='/MyLECs'>
                             <Button className="feedbackButton"
                                     size="lg"
                                     variant="outline-primary"
@@ -70,6 +70,7 @@ class ListQuiz extends React.Component {
                     <div className="myQuiz">My Quizzes</div>
                 </Row>
                 <Row className="quizName">
+
                     <div className="box justify-content-center align-items-center">
 
                         {
@@ -86,19 +87,9 @@ class ListQuiz extends React.Component {
                                     </Button>
                                 </Link>
 
-
                             )
-
                         }
-                        {/*<Button className="QuizZone" href = "/communication">*/}
-                        {/*    Collaborative Learning*/}
-                        {/*</Button>*/}
-                        {/*<Button className="QuizZone" href = "/communication">*/}
-                        {/*    Leadership*/}
-                        {/*</Button>*/}
-                        {/*<Button className="QuizZone" href = "/communication">*/}
-                        {/*    Resilience*/}
-                        {/*</Button>*/}
+
                     </div>
 
 

@@ -1,10 +1,16 @@
 .ViewLECs{
     background-color: white;
+    width: 65%;
+    margin: 50px auto;
+    padding: 20px 0 40px 0;
+    border-radius: 5px;
+    box-shadow: 5px 5px #ddd;
+    min-height: 550px;
 
 }
 
 .ViewLECs .container{
-    width: 60%;
+    width: 80%;
 }
 
 .ViewLECs .question{

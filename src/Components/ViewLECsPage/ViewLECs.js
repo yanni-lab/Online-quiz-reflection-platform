@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './ViewLECs.css';
-import {Row, Col, Button,Form} from 'react-bootstrap';
+import {Button,Form} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import result_content from "../../data/get_result_content.json"
 

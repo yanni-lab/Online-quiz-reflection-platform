@@ -7,3 +7,12 @@
 .brand{
     font-family: "Arial Black", sans-serif;
 }
+
+.dropdown-menu{
+    top:50px;
+    right:-40px
+}
+
+.dropdown{
+    margin-right: 50px;
+}

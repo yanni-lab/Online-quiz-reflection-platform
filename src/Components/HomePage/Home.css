@@ -1,10 +1,17 @@
+.HomePage{
+    width: 100vw;
+    height: 100vh;
+}
+
 #background{
-    background-repeat: no-repeat center center fixed;
+    /*background-repeat: no-repeat center center fixed;*/
+    background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
+
 }
 .text{
     color: white;
@@ -45,8 +52,15 @@
     border-radius: .25rem!important;;
 }
 
-.cardimg{
+.supervisor-img{
+    height:130px!important;
     width:100px!important;
+    align-self: center!important;
+}
+
+.lec-img{
+    height:130px!important;
+    width:160px!important;
     align-self: center!important;
 }
 

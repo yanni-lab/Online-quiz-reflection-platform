@@ -1,5 +1,11 @@
 .MyLECs{
     background-color: white;
+    width: 90%;
+    margin: 50px auto;
+    padding: 20px 0;
+    border-radius: 5px;
+    box-shadow: 5px 5px #ddd;
+    min-height: 650px;
 }
 
 .form-label{
@@ -10,4 +16,8 @@
     font-size: 18px;
     padding: 15px 20px;
     border-bottom: black 1px solid;
+}
+
+.LEC-form{
+    padding: 0 80px 40px 80px;
 }

@@ -9,7 +9,7 @@ class CreateQuiz extends React.Component {
         super(props);
         this.state = {
             // newQuiz:props.location.state.newQuiz,
-            username:props.location.state.username,
+            username:props.username,
             quizList:[
                 {quiz_id:1, quiz_title:"Collaborative Learning"},
                 {quiz_id:2, quiz_title:"Leadership"},
@@ -70,6 +70,12 @@ class CreateQuiz extends React.Component {
         });
     }
 
+    handleDeletePrivate = (index) => {
+        this.setState(state => {
+            state.createList.splice(index,1);
+            return state;
+        });
+    }
 
     render(){
         document.title = "My Quizzes"
@@ -98,7 +104,9 @@ class CreateQuiz extends React.Component {
                         </div>
                     </Col>
                     <Col>
-                        <Link to='/editQuiz'>
+                        <Link to={{pathname:"/editQuiz",
+                            state:{action:"create"}
+                        }}>
                             <Button className="createQuizButton"
                                     size="lg"
                                     variant="outline-primary"
@@ -118,13 +126,6 @@ class CreateQuiz extends React.Component {
 
                         {
                             this.state.quizList.map((quiz,index) =>
-                                // <Link
-                                //     to={{
-                                //         pathname:"/communication",
-                                //         state:{
-                                //             quizId: parseInt(quiz.quiz_id)
-                                //         }
-                                //     }}>
                                     <Button className="QuizZone">
                                         {quiz.quiz_title}
                                         <div className="button-onfocus">
@@ -133,10 +134,20 @@ class CreateQuiz extends React.Component {
                                                     onClick = {this.handelPublictoPrivate}>
                                                 Make private
                                             </Button>
-                                            <Button className = "edit-button" >
-                                                Edit
-                                            </Button>
-                                            <Button className = "delete-quiz-button">
+                                            <Link to={{pathname:"/editQuiz",
+                                                state:
+                                                    {
+                                                        quiz_id:quiz.quiz_id,
+                                                        action:"edit"
+                                                    }
+                                            }}>
+                                                <Button className = "edit-button" >
+                                                    Edit
+                                                </Button>
+                                            </Link>
+                                            <Button className = "delete-quiz-button"
+
+                                            >
                                                 X
                                             </Button>
                                         </div>
@@ -170,12 +181,22 @@ class CreateQuiz extends React.Component {
                                                         onClick = {this.handelPrivatetoPublic}>
                                                     Make public
                                                 </Button>
-                                                <Button className = "edit-button" >
-                                                    Edit
-                                                </Button>
-                                                <Button className = "delete-quiz-button">
-                                                    X
-                                                </Button>
+                                                <Link to={{pathname:"/editQuiz",
+                                                    state:
+                                                        {
+                                                            quiz_id:quiz.quiz_id,
+                                                            action:"edit"
+                                                        }
+                                                }}>
+                                                    <Button className = "edit-button" >
+                                                        Edit
+                                                    </Button>
+                                                    <Button className = "delete-quiz-button"
+                                                            onClick={this.handleDeletePrivate.bind(this,index)}
+                                                    >
+                                                        X
+                                                    </Button>
+                                                </Link>
                                             </div>
 
                                         </Button>
