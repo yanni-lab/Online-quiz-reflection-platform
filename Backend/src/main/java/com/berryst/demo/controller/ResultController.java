@@ -109,7 +109,7 @@ public class ResultController {
         int userId = receivedData.getInt("userId");
 
         node.set("userResult",objectMapper.convertValue(resultService.getUserFeedback(userId), ArrayNode.class));
-
+        log.info(resultService.getUserFeedback(userId).toString());
         log.info("Successfully retrieved result on user - UserId: "+userId);
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
@@ -191,7 +191,7 @@ public class ResultController {
     }
 
     @RequestMapping(value = "/view_comment", method = RequestMethod.POST)
-    public ObjectNode getPublicQuiz() {
+    public ObjectNode viewComment() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
         ObjectNode node = objectMapper.createObjectNode();

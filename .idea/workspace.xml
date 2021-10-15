@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="test(*):add automatic test for userController">
+    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="fix(*):unify return type on available_quiz and supervisor_quiz">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/QuizController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/ResultController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/available_quiz.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/available_quiz.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/supervisor_quiz.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/supervisor_quiz.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/controller/QuizControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/controller/QuizControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/controller/ResultControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/controller/ResultControllerTest.java" afterDir="false" />
     </list>
     <list id="a20238c2-33c1-4e91-a2da-980c23180045" name="Add Quiz model" comment="Add Quiz model" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +59,7 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunConfigurationTargetLRU" value="066e0c33-2485-4431-b840-6ad5f34acc7d&#10;066e0c33-2485-4431-b840-6ad5f34acc7d/schema/&quot;berry_street&quot;&#10;3ff4c210-0c6f-49dd-a5ca-e934ac72f133&#10;01f947a2-48c0-4ae4-bcc8-07b72ef1909e&#10;01f947a2-48c0-4ae4-bcc8-07b72ef1909e/schema/&quot;berry_street&quot;" />
+    <property name="RunConfigurationTargetLRU" value="01f947a2-48c0-4ae4-bcc8-07b72ef1909e&#10;01f947a2-48c0-4ae4-bcc8-07b72ef1909e/schema/&quot;berry_street&quot;&#10;86aaf85a-c3fe-4383-a456-89933843d1af&#10;b010b702-fb9c-4224-b823-d6d0439b5029&#10;b010b702-fb9c-4224-b823-d6d0439b5029/schema/&quot;berry_street&quot;" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
@@ -89,7 +89,7 @@
       <recent name="com.berryst.demo.service.impl" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.DemoApplication">
+  <component name="RunManager" selected="JUnit.ResultControllerTest">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -106,13 +106,13 @@
     <configuration name="create_db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/create_db.sql" />
       <script-mode>FILE</script-mode>
-      <data-source id="01f947a2-48c0-4ae4-bcc8-07b72ef1909e" />
+      <data-source id="b010b702-fb9c-4224-b823-d6d0439b5029" />
       <method v="2" />
     </configuration>
     <configuration name="init_db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/init_db.sql" />
       <script-mode>FILE</script-mode>
-      <data-source id="01f947a2-48c0-4ae4-bcc8-07b72ef1909e" namespace="schema/&quot;berry_street&quot;" />
+      <data-source id="b010b702-fb9c-4224-b823-d6d0439b5029" namespace="schema/&quot;berry_street&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="QuizControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -125,6 +125,21 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.berryst.demo.controller" />
       <option name="MAIN_CLASS_NAME" value="com.berryst.demo.controller.QuizControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ResultControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.berryst.demo.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.berryst.demo.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.berryst.demo.controller.ResultControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -145,22 +160,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceImplTest.queryUserList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.berryst.demo.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.berryst.demo.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.berryst.demo.service.impl.UserServiceImplTest" />
-      <option name="METHOD_NAME" value="queryUserList" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="demo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.berryst.demo.DemoApplication" />
@@ -170,11 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserControllerTest" />
+        <item itemvalue="JUnit.ResultControllerTest" />
         <item itemvalue="Database Script.init_db.sql" />
         <item itemvalue="Database Script.create_db.sql" />
         <item itemvalue="JUnit.QuizControllerTests" />
-        <item itemvalue="JUnit.UserServiceImplTest.queryUserList" />
+        <item itemvalue="JUnit.UserControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +197,7 @@
       <workItem from="1633186660730" duration="6088000" />
       <workItem from="1633253832724" duration="53355000" />
       <workItem from="1633766126340" duration="31235000" />
-      <workItem from="1634131606319" duration="7302000" />
+      <workItem from="1634131606319" duration="15720000" />
     </task>
     <task id="LOCAL-00001" summary="Add Quiz model">
       <created>1631323516021</created>
@@ -438,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634299193954</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="fix(*):unify return type on available_quiz and supervisor_quiz">
+      <created>1634299545858</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1634299545859</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +483,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Unify ObjectNode return type" />
     <MESSAGE value="add unit test templet" />
     <MESSAGE value="feat(*):add reset password function" />
     <MESSAGE value="fix(*):duplicate username in DB" />
@@ -502,7 +507,8 @@
     <MESSAGE value="fix(*):return user details from login and register" />
     <MESSAGE value="feat(*):add delete user account feature" />
     <MESSAGE value="test(*):add automatic test for userController" />
-    <option name="LAST_COMMIT_MESSAGE" value="test(*):add automatic test for userController" />
+    <MESSAGE value="fix(*):unify return type on available_quiz and supervisor_quiz" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(*):unify return type on available_quiz and supervisor_quiz" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
