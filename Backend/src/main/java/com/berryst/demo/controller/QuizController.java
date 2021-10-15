@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,8 @@ public class QuizController {
 
         log.info("Successfully retrieved public quiz list");
 
-        node.put("quizList", quizService.getPublicQuizList().toString());
+        node.set("quizList",objectMapper.convertValue(quizService.getPublicQuizList(), ArrayNode.class));
+
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
         return node;
@@ -86,8 +88,9 @@ public class QuizController {
 
         log.info("Successfully retrieved quiz created by supervisor - userId: " + userId);
 
-        node.put("publicQuizList", publicQuizList.toString());
-        node.put("privateQuizList", privateQuizList.toString());
+        node.set("publicQuizList",objectMapper.convertValue(publicQuizList, ArrayNode.class));
+        node.set("privateQuizList",objectMapper.convertValue(privateQuizList, ArrayNode.class));
+
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
 

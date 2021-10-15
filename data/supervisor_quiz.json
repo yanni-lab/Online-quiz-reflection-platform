@@ -1,6 +1,18 @@
 {
-  "publicQuizList": "[{quiz_id=1, is_public=true, quiz_title=Collaborative Learning}]",
-  "privateQuizList": "[]",
+  "publicQuizList": [
+    {
+      "quiz_id": 1,
+      "is_public": true,
+      "quiz_title": "Collaborative Learning"
+    }
+  ],
+  "privateQuizList": [
+    {
+      "quiz_id": 4,
+      "is_public": false,
+      "quiz_title": "Leadership"
+    }
+  ],
   "errorCode": "00000",
   "errorMessage": "Success"
 }

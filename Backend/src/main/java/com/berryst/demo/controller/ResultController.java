@@ -108,7 +108,6 @@ public class ResultController {
         JSONObject receivedData = new JSONObject(data);
         int userId = receivedData.getInt("userId");
 
-        node.put("userResult", resultService.getUserFeedback(userId).toString());
         node.set("userResult",objectMapper.convertValue(resultService.getUserFeedback(userId), ArrayNode.class));
 
         log.info("Successfully retrieved result on user - UserId: "+userId);
