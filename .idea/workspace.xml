@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="fix(*):return user details from login and register">
+    <list default="true" id="3a441e61-e9e4-4f5a-ba4a-88ef18967086" name="Default Changelist" comment="feat(*):add delete user account feature">
+      <change afterPath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/controller/ResultControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/controller/UserControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/berryst/demo/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/create_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/QuizControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/test/java/com/berryst/demo/controller/QuizControllerTest.java" afterDir="false" />
     </list>
     <list id="a20238c2-33c1-4e91-a2da-980c23180045" name="Add Quiz model" comment="Add Quiz model" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,11 +21,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="spring-beans.schema" />
         <option value="Tag Library Descriptor" />
         <option value="Class" />
         <option value="package.json" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -80,18 +81,24 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\cyril\IdeaProjects\COMP90082-2021-SM2-ST-Boxjelly\data" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.berryst.demo.controller" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.berryst.demo.controller" />
       <recent name="com.berryst.demo.service.impl" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.DemoApplication">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.UserControllerTest">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -108,33 +115,32 @@
       <data-source id="01f947a2-48c0-4ae4-bcc8-07b72ef1909e" namespace="schema/&quot;berry_street&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="QuizControllerTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="QuizControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.berryst.demo.*" />
+          <option name="PATTERN" value="com.berryst.demo.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.berryst.demo" />
-      <option name="MAIN_CLASS_NAME" value="com.berryst.demo.QuizControllerTests" />
+      <option name="PACKAGE_NAME" value="com.berryst.demo.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.berryst.demo.controller.QuizControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceImplTest.queryUserByEmail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.berryst.demo.utils.*" />
+          <option name="PATTERN" value="com.berryst.demo.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.berryst.demo.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.berryst.demo.service.impl.UserServiceImplTest" />
-      <option name="METHOD_NAME" value="queryUserByEmail" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.berryst.demo.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.berryst.demo.controller.UserControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,11 +170,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserControllerTest" />
         <item itemvalue="Database Script.init_db.sql" />
         <item itemvalue="Database Script.create_db.sql" />
         <item itemvalue="JUnit.QuizControllerTests" />
         <item itemvalue="JUnit.UserServiceImplTest.queryUserList" />
-        <item itemvalue="JUnit.UserServiceImplTest.queryUserByEmail" />
       </list>
     </recent_temporary>
   </component>
@@ -191,7 +197,8 @@
       <workItem from="1633160175751" duration="9980000" />
       <workItem from="1633186660730" duration="6088000" />
       <workItem from="1633253832724" duration="53355000" />
-      <workItem from="1633766126340" duration="29629000" />
+      <workItem from="1633766126340" duration="31235000" />
+      <workItem from="1634131606319" duration="6827000" />
     </task>
     <task id="LOCAL-00001" summary="Add Quiz model">
       <created>1631323516021</created>
@@ -417,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634109391691</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="feat(*):add delete user account feature">
+      <created>1634110454782</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1634110454782</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,7 +470,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modify Feedback parameter structure (to JSON)" />
     <MESSAGE value="Modify QuizController" />
     <MESSAGE value="Unify ObjectNode return type" />
     <MESSAGE value="add unit test templet" />
@@ -481,7 +494,8 @@
     <MESSAGE value="fix(*):deal with duplicate data insert on save and share result, deal with anonymous user" />
     <MESSAGE value="feat(*):add update user information feature" />
     <MESSAGE value="fix(*):return user details from login and register" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(*):return user details from login and register" />
+    <MESSAGE value="feat(*):add delete user account feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(*):add delete user account feature" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
