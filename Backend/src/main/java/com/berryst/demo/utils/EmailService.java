@@ -1,13 +1,17 @@
 package com.berryst.demo.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-
+/**
+ * @ClassName EmailService
+ * @Author Shirui Cheng
+ * @Description SpringBoot mail service to send email
+ * @version: v1.0.0
+ * @Date 18:21 2021/10/16
+ **/
 @Component
 public class EmailService {
     @Autowired

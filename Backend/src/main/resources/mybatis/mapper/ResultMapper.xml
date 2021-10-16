@@ -4,56 +4,104 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.berryst.demo.mapper.ResultMapper">
-    <resultMap id="QuizResult" type="com.berryst.demo.model.QuizResult" >
-        <id column="attempt_id" property="attemptId" jdbcType="INTEGER" />
-        <result column="user_id" property="userId" jdbcType="INTEGER" />
-        <result column="quiz_id" property="quizId" jdbcType="INTEGER" />
-        <result column="choices" property="choices" typeHandler="com.berryst.demo.utils.StringToIntArrayHandler" />
-        <result column="attempt_times" property="numberOfAttempt" jdbcType="INTEGER" />
-        <result column="score" property="score" jdbcType="INTEGER" />
-        <result column="reflection" property="reflection" jdbcType="VARCHAR" />
-        <result column="reflection_time" property="attemptTime" jdbcType="TIMESTAMP" />
-        <result column="supervisor_id" property="supervisorId" jdbcType="INTEGER" />
+    <resultMap id="QuizResult" type="com.berryst.demo.model.QuizResult">
+        <id column="attempt_id" property="attemptId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="quiz_id" property="quizId" jdbcType="INTEGER"/>
+        <result column="choices" property="choices" typeHandler="com.berryst.demo.utils.StringToIntArrayHandler"/>
+        <result column="attempt_times" property="numberOfAttempt" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+        <result column="reflection" property="reflection" jdbcType="VARCHAR"/>
+        <result column="reflection_time" property="attemptTime" jdbcType="TIMESTAMP"/>
+        <result column="supervisor_id" property="supervisorId" jdbcType="INTEGER"/>
 
     </resultMap>
 
-    <insert id="saveResult" parameterType="com.berryst.demo.model.QuizResult" useGeneratedKeys="true" keyProperty="attemptId">
-        insert into user_result (user_id,quiz_id,choices,attempt_times,score,reflection,reflection_time,reflection_available, supervisor_id) values (#{userId}, #{quizId}, #{choices, jdbcType=VARCHAR, typeHandler=com.berryst.demo.utils.StringToIntArrayHandler}, #{numberOfAttempt}, #{score}, #{reflection}, sysdate(),#{reflectionAvailable}, #{supervisorId})
+    <insert id="saveResult" parameterType="com.berryst.demo.model.QuizResult" useGeneratedKeys="true"
+            keyProperty="attemptId">
+        insert into user_result (user_id, quiz_id, choices, attempt_times, score, reflection, reflection_time,
+                                 reflection_available, supervisor_id)
+        values (#{userId}, #{quizId},
+                #{choices, jdbcType=VARCHAR, typeHandler=com.berryst.demo.utils.StringToIntArrayHandler},
+                #{numberOfAttempt}, #{score}, #{reflection}, sysdate(), #{reflectionAvailable}, #{supervisorId})
     </insert>
 
     <select id="getUserFeedback" parameterType="int" resultType="map">
-        select attempt_id, user_result.quiz_id, quiz.quiz_title, reflection_time, user_result.user_id, username, reflection_available from user_result left join quiz on user_result.quiz_id=quiz.quiz_id left join user on user_result.user_id = user.user_id where user_result.user_id = #{userId} order by reflection_time desc
+        select attempt_id,
+               user_result.quiz_id,
+               quiz.quiz_title,
+               reflection_time,
+               user_result.user_id,
+               username,
+               reflection_available
+        from user_result
+                 left join quiz on user_result.quiz_id = quiz.quiz_id
+                 left join user on user_result.user_id = user.user_id
+        where user_result.user_id = #{userId}
+        order by reflection_time desc
     </select>
 
     <select id="getSupervisorFeedback" parameterType="int" resultType="map">
-        select attempt_id, user_result.quiz_id, quiz.quiz_title, reflection_time, user_result.user_id, username, reflection_available from user_result left join quiz on user_result.quiz_id=quiz.quiz_id left join user on user_result.user_id = user.user_id where user_result.supervisor_id = #{userId} order by reflection_time desc
+        select attempt_id,
+               user_result.quiz_id,
+               quiz.quiz_title,
+               reflection_time,
+               user_result.user_id,
+               username,
+               reflection_available
+        from user_result
+                 left join quiz on user_result.quiz_id = quiz.quiz_id
+                 left join user on user_result.user_id = user.user_id
+        where user_result.supervisor_id = #{userId}
+        order by reflection_time desc
     </select>
 
     <select id="getResultContent" parameterType="int" resultMap="QuizResult">
-        select * from user_result where attempt_id = #{attemptId} order by reflection_time desc
+        select *
+        from user_result
+        where attempt_id = #{attemptId}
+        order by reflection_time desc
     </select>
 
     <select id="getLatestAttempt" parameterType="int" resultMap="QuizResult">
-        select * from user_result where user_id = #{userId} and quiz_id = #{quizId} order by attempt_times desc limit 1
+        select *
+        from user_result
+        where user_id = #{userId}
+          and quiz_id = #{quizId}
+        order by attempt_times desc
+        limit 1
     </select>
 
     <insert id="saveComment" parameterType="com.berryst.demo.model.Comment">
-        insert into comment (comment,comment_time) values (#{comment},  sysdate())
+        insert into comment (comment, comment_time)
+        values (#{comment}, sysdate())
     </insert>
 
     <select id="getComment" resultType="map">
-        select comment, comment_time from comment order by comment_time desc
+        select comment, comment_time
+        from comment
+        order by comment_time desc
     </select>
 
     <select id="getFeedbackContent" parameterType="int" resultType="string">
-        select feedback_content from feedback where quiz_id = #{quizId} and lower_bound &lt;= #{score} and upper_bound &gt;= #{score}
+        select feedback_content
+        from feedback
+        where quiz_id = #{quizId}
+          and lower_bound &lt;= #{score}
+          and upper_bound &gt;= #{score}
     </select>
 
     <update id="updateShareWithSupervisor" parameterType="com.berryst.demo.model.QuizResult">
-        update user_result set reflection_available = #{reflectionAvailable} where attempt_id = #{attemptId}
+        update user_result
+        set reflection_available = #{reflectionAvailable}
+        where attempt_id = #{attemptId}
     </update>
 
-    <insert id="saveResultAsAnonymous" parameterType="com.berryst.demo.model.QuizResult" useGeneratedKeys="true" keyProperty="attemptId">
-        insert into user_result (user_id,quiz_id,choices,attempt_times,score,reflection,reflection_time,reflection_available, supervisor_id) values (-1, #{quizId}, #{choices, jdbcType=VARCHAR, typeHandler=com.berryst.demo.utils.StringToIntArrayHandler}, 1, #{score}, #{reflection}, sysdate(),#{reflectionAvailable}, #{supervisorId})
+    <insert id="saveResultAsAnonymous" parameterType="com.berryst.demo.model.QuizResult" useGeneratedKeys="true"
+            keyProperty="attemptId">
+        insert into user_result (user_id, quiz_id, choices, attempt_times, score, reflection, reflection_time,
+                                 reflection_available, supervisor_id)
+        values (-1, #{quizId}, #{choices, jdbcType=VARCHAR, typeHandler=com.berryst.demo.utils.StringToIntArrayHandler},
+                1, #{score}, #{reflection}, sysdate(), #{reflectionAvailable}, #{supervisorId})
     </insert>
 </mapper>

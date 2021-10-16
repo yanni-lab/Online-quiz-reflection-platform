@@ -1,4 +1,5 @@
 # Database
+
 **Steps to initialise mysql database:**
 
 1. `mysql -u root -p`
@@ -7,9 +8,8 @@
 
 3. run the script in `create_db.sql`  and `init_db.sql`
 4. `cd /Backend`
-5. change the `spring.datasource.username` and `spring.datasource.password` in the top 2 lines in `/Backend/src/main/resources/application.properties`
-
-
+5. change the `spring.datasource.username` and `spring.datasource.password` in the top 2 lines
+   in `/Backend/src/main/resources/application.properties`
 
 **Database Design**
 
@@ -25,7 +25,7 @@ email                 varchar
 is_supervisor         boolean
 ```
 
-**question** 
+**question**
 
 ```
 question_id           int, PK
@@ -34,7 +34,7 @@ quiz_id               int, FK(quiz.quiz_id)
 question_order        int
 ```
 
-**question_choices** 
+**question_choices**
 
 ```
 choice_id             int, PK 
@@ -59,7 +59,7 @@ reflection_time       datetime
 supervisor_id         int
 ```
 
-**quiz** 
+**quiz**
 
 ```
 quiz_id               int, PK 
@@ -81,7 +81,7 @@ quiz_id               int, FK(quiz.quiz_id)
 feedback_order        int
 ```
 
-**comment** 
+**comment**
 
 ```
 comment_id            int, PK 

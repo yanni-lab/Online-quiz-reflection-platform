@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +22,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * @ClassName QuizController
+ * @Author Shirui Cheng
+ * @Description controller for quiz related events.
+ * @version: v1.0.0
+ * @Date 21:21 2021/10/16
+ **/
 @Slf4j
 @RestController
 @RequestMapping(value = "/quiz")
@@ -38,7 +44,7 @@ public class QuizController {
 
         log.info("Successfully retrieved public quiz list");
 
-        node.set("quizList",objectMapper.convertValue(quizService.getPublicQuizList(), ArrayNode.class));
+        node.set("quizList", objectMapper.convertValue(quizService.getPublicQuizList(), ArrayNode.class));
 
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
@@ -78,18 +84,18 @@ public class QuizController {
         log.debug(quizService.getSupervisorQuiz(userId).toString());
         ArrayList<Map> publicQuizList = new ArrayList<Map>();
         ArrayList<Map> privateQuizList = new ArrayList<Map>();
-        for(Map m:quizService.getSupervisorQuiz(userId)){
-            if(m.get("is_public").equals(true)){
+        for (Map m : quizService.getSupervisorQuiz(userId)) {
+            if (m.get("is_public").equals(true)) {
                 publicQuizList.add(m);
-            }else{
+            } else {
                 privateQuizList.add(m);
             }
         }
 
         log.info("Successfully retrieved quiz created by supervisor - userId: " + userId);
 
-        node.set("publicQuizList",objectMapper.convertValue(publicQuizList, ArrayNode.class));
-        node.set("privateQuizList",objectMapper.convertValue(privateQuizList, ArrayNode.class));
+        node.set("publicQuizList", objectMapper.convertValue(publicQuizList, ArrayNode.class));
+        node.set("privateQuizList", objectMapper.convertValue(privateQuizList, ArrayNode.class));
 
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
@@ -105,11 +111,11 @@ public class QuizController {
         JSONObject receivedData = new JSONObject(data);
         int quizId = receivedData.getInt("quizId");
 
-        if(quizService.deleteQuiz(quizId)==1){
+        if (quizService.deleteQuiz(quizId) == 1) {
             node.put("errorCode", "00000");
             node.put("errorMessage", "Success");
             log.info("Successfully delete quiz - quizId: " + quizId);
-        }else{
+        } else {
             node.put("errorCode", "20000");
             node.put("errorMessage", "Database CRUD failed");
             log.error("Database CRUD failed - delete quiz - quizId: " + quizId);
@@ -126,11 +132,11 @@ public class QuizController {
         JSONObject receivedData = new JSONObject(data);
         int quizId = receivedData.getInt("quizId");
 
-        if(quizService.setQuizPublic(quizId)==1){
+        if (quizService.setQuizPublic(quizId) == 1) {
             node.put("errorCode", "00000");
             node.put("errorMessage", "Success");
             log.info("Successfully set quiz to public - quizId: " + quizId);
-        }else{
+        } else {
             node.put("errorCode", "20000");
             node.put("errorMessage", "Database CRUD failed");
             log.error("Database CRUD failed - set quiz public - quizId: " + quizId);
@@ -147,11 +153,11 @@ public class QuizController {
         JSONObject receivedData = new JSONObject(data);
         int quizId = receivedData.getInt("quizId");
 
-        if(quizService.setQuizPrivate(quizId)==1){
+        if (quizService.setQuizPrivate(quizId) == 1) {
             node.put("errorCode", "00000");
             node.put("errorMessage", "Success");
             log.info("Successfully set quiz to private - quizId: " + quizId);
-        }else{
+        } else {
             node.put("errorCode", "20000");
             node.put("errorMessage", "Database CRUD failed");
             log.error("Database CRUD failed - set quiz private - quizId: " + quizId);
@@ -159,6 +165,7 @@ public class QuizController {
 
         return node;
     }
+
     @RequestMapping(value = "/set_quiz", method = RequestMethod.POST)
     public ObjectNode setQuiz(@RequestBody String data, HttpServletResponse response) throws JSONException, JsonProcessingException {
 
@@ -171,22 +178,22 @@ public class QuizController {
         log.info(data);
         log.info(quiz.toString());
         int questionCount = 1;
-        for(Question q: quiz.getQuestions()){
+        for (Question q : quiz.getQuestions()) {
             q.setQuestionOrder(questionCount);
             questionCount++;
             int choiceCount = 1;
-            for(QuestionChoice c: q.getChoices()){
+            for (QuestionChoice c : q.getChoices()) {
                 c.setQuestionChoiceOrder(choiceCount);
                 choiceCount++;
             }
         }
 
         int feedbackCount = 1;
-        for(Feedback f: quiz.getFeedback()){
+        for (Feedback f : quiz.getFeedback()) {
             f.setFeedbackOrder(feedbackCount);
             feedbackCount++;
         }
-        log.info("Receive set quiz request - quizId: "+quiz.getQuizId());
+        log.info("Receive set quiz request - quizId: " + quiz.getQuizId());
 
         int newQuizId = quizService.setQuiz(quiz);
         node.put("errorCode", "00000");

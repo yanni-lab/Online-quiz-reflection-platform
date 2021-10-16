@@ -1,10 +1,8 @@
 package com.berryst.demo.controller;
 
 import com.berryst.demo.DemoApplication;
-import com.berryst.demo.model.QuizResult;
 import com.berryst.demo.model.User;
 import com.berryst.demo.service.UserService;
-import com.berryst.demo.utils.DataProcessing;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,6 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * @ClassName UserController
+ * @Author Han Sun
+ * @Description Controller for user related events
+ * @version: v1.0.0
+ * @Date 21:19 2021/10/16
+ **/
 @RestController
 @Slf4j
 @RequestMapping(value = "/user")
@@ -178,7 +183,7 @@ public class UserController {
         userService.deleteUser(userId);
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
-        log.info("Successfully delete user - UserId:"+userId);
+        log.info("Successfully delete user - UserId:" + userId);
 
         return node;
     }

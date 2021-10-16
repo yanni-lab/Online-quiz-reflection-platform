@@ -4,7 +4,6 @@ import com.berryst.demo.model.Comment;
 import com.berryst.demo.model.QuizResult;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public interface ResultService {
     int saveResult(QuizResult result);

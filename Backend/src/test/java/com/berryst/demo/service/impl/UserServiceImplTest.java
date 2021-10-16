@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -62,12 +62,12 @@ public class UserServiceImplTest {
 
     @Test
     public void resetPassword() {
-        Assert.assertThat(userService.resetPassword(10,"reset"),
+        Assert.assertThat(userService.resetPassword(10, "reset"),
                 is(1));
     }
 
     @Test
-    public void duplicateUserName(){
+    public void duplicateUserName() {
         User user1 = new User(1, "Test", "123456", "test1@gmail.com", true);
         userService.addUser(user1);
         User user2 = new User(1, "Test", "123456", "test2@gmail.com", true);

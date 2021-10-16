@@ -6,7 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-// Dao for CRUD
+/**
+ * @ClassName UserMapper
+ * @Author Han Sun
+ * @Description Dao for CRUD on user table
+ * @version: v1.0.0
+ * @Date 20:30 2021/10/16
+ **/
 @Mapper
 @Repository
 public interface UserMapper {

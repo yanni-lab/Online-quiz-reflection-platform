@@ -10,6 +10,15 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 
+/**
+ * @ClassName ResultServiceImpl
+ * @Author Shirui Cheng
+ * @Description Implement result related service. Including save result, retrieve result list related to user, retrieve
+ * result list related to supervisor, get result detailed content, share with supervisor or via email, save new website
+ * comment and view comment.
+ * @version: v1.0.0
+ * @Date 20:48 2021/10/16
+ **/
 @Slf4j
 @Service
 public class ResultServiceImpl implements ResultService {
@@ -18,15 +27,15 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public int saveResult(QuizResult result) {
-        if(result.getUserId()==-1){
+        if (result.getUserId() == -1) {
             log.info("Save result as Anonymous user");
             saveResultAsAnonymous(result);
         }
-        QuizResult preResult = resultMapper.getLatestAttempt(result.getUserId(),result.getQuizId());
-        if(preResult==null){
+        QuizResult preResult = resultMapper.getLatestAttempt(result.getUserId(), result.getQuizId());
+        if (preResult == null) {
             result.setNumberOfAttempt(1);
-        }else{
-            result.setNumberOfAttempt(preResult.getNumberOfAttempt()+1);
+        } else {
+            result.setNumberOfAttempt(preResult.getNumberOfAttempt() + 1);
         }
         resultMapper.saveResult(result);
         //return attempt id
@@ -75,7 +84,7 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public String getFeedbackContent(int quizId, int score) {
-        return resultMapper.getFeedbackContent(quizId,score);
+        return resultMapper.getFeedbackContent(quizId, score);
     }
 
     @Override

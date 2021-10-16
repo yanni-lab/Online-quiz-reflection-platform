@@ -12,6 +12,15 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Map;
+
+/**
+ * @ClassName QuizServiceImpl
+ * @Author Shirui Cheng
+ * @Description Implement quiz related service. Including retrieve public quiz list, get detailed quiz content, get quiz
+ * list under give supervisor ID, save quiz, delete quiz and make quiz public/private.
+ * @version: v1.0.0
+ * @Date 20:33 2021/10/16
+ **/
 @Slf4j
 @Service
 public class QuizServiceImpl implements QuizService {
@@ -63,12 +72,12 @@ public class QuizServiceImpl implements QuizService {
         int quizId = quiz.getQuizId();
         quizMapper.deleteQuiz(quizId);
         quizMapper.setQuiz(quiz);
-        log.debug("Quiz ID is "+quiz.getQuizId());
-        for(Question question:quiz.getQuestions()){
+        log.debug("Quiz ID is " + quiz.getQuizId());
+        for (Question question : quiz.getQuestions()) {
             question.setQuizId(quiz.getQuizId());
             setQuestion(question);
         }
-        for(Feedback feedback:quiz.getFeedback()){
+        for (Feedback feedback : quiz.getFeedback()) {
             feedback.setQuizId(quiz.getQuizId());
             setFeedback(feedback);
         }
@@ -78,7 +87,7 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public int setQuestion(Question question) {
         int result = quizMapper.setQuestion(question);
-        for(QuestionChoice choice: question.getChoices()){
+        for (QuestionChoice choice : question.getChoices()) {
             choice.setQuestionId(question.getQuestionId());
             setChoice(choice);
         }

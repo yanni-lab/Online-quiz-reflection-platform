@@ -4,6 +4,7 @@ import com.berryst.demo.DemoApplication;
 import com.berryst.demo.mapper.UserMapper;
 import com.berryst.demo.model.User;
 import com.berryst.demo.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,6 +12,15 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @ClassName UserServiceImpl
+ * @Author Han Sun
+ * @Description Implement user related service. Including query user by email/username/Id, insert a user to DB, update
+ * user details, delete user, reset password and check login token.
+ * @version: v1.0.0
+ * @Date 21:15 2021/10/16
+ **/
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
     @Resource

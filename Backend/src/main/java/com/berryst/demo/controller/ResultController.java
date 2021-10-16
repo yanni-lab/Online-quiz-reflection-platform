@@ -1,6 +1,9 @@
 package com.berryst.demo.controller;
 
-import com.berryst.demo.model.*;
+import com.berryst.demo.model.Comment;
+import com.berryst.demo.model.Question;
+import com.berryst.demo.model.QuestionChoice;
+import com.berryst.demo.model.QuizResult;
 import com.berryst.demo.service.QuizService;
 import com.berryst.demo.service.ResultService;
 import com.berryst.demo.utils.DataProcessing;
@@ -16,12 +19,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @ClassName ResultController
+ * @Author Shirui Cheng
+ * @Description Controller for quiz result related events.
+ * @version: v1.0.0
+ * @Date 21:20 2021/10/16
+ **/
 @Slf4j
 @RestController
 @RequestMapping(value = "/result")
@@ -44,15 +53,15 @@ public class ResultController {
         JSONObject receivedData = new JSONObject(data);
 
         QuizResult result = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), QuizResult.class);
-        if(receivedData.getBoolean("isSaved")){
-            log.info("Result has already saved with attemptId: "+result.getAttemptId());
+        if (receivedData.getBoolean("isSaved")) {
+            log.info("Result has already saved with attemptId: " + result.getAttemptId());
             resultService.updateShareWithSupervisor(result);
             node.put("errorCode", "00000");
             node.put("errorMessage", "Success");
             return node;
         }
         int attemptId = resultService.saveResult(result);
-        node.put("attemptId",attemptId);
+        node.put("attemptId", attemptId);
 
         log.info("Successfully save new result");
         node.put("errorCode", "00000");
@@ -73,8 +82,8 @@ public class ResultController {
 
         QuizResult result = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), QuizResult.class);
 
-        if(receivedData.getBoolean("isSaved")){
-            log.info("Result has already saved with attemptId: "+result.getAttemptId());
+        if (receivedData.getBoolean("isSaved")) {
+            log.info("Result has already saved with attemptId: " + result.getAttemptId());
             resultService.updateShareWithSupervisor(result);
             node.put("errorCode", "00000");
             node.put("errorMessage", "Success");
@@ -86,7 +95,7 @@ public class ResultController {
         }
 
         int attemptId = resultService.saveResult(result);
-        node.put("attemptId",attemptId);
+        node.put("attemptId", attemptId);
 
         //TODO Edit email
         //emailAddr, Title, Content
@@ -108,9 +117,9 @@ public class ResultController {
         JSONObject receivedData = new JSONObject(data);
         int userId = receivedData.getInt("userId");
 
-        node.set("userResult",objectMapper.convertValue(resultService.getUserFeedback(userId), ArrayNode.class));
+        node.set("userResult", objectMapper.convertValue(resultService.getUserFeedback(userId), ArrayNode.class));
         log.info(resultService.getUserFeedback(userId).toString());
-        log.info("Successfully retrieved result on user - UserId: "+userId);
+        log.info("Successfully retrieved result on user - UserId: " + userId);
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
         return node;
@@ -125,9 +134,9 @@ public class ResultController {
         JSONObject receivedData = new JSONObject(data);
         int userId = receivedData.getInt("userId");
 
-        node.set("supervisorResult",objectMapper.convertValue(resultService.getSupervisorFeedback(userId), ArrayNode.class));
+        node.set("supervisorResult", objectMapper.convertValue(resultService.getSupervisorFeedback(userId), ArrayNode.class));
 
-        log.info("Successfully retrieved result on supervisor - SupervisorId: "+userId);
+        log.info("Successfully retrieved result on supervisor - SupervisorId: " + userId);
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
         return node;
@@ -148,26 +157,26 @@ public class ResultController {
         QuizResult result = resultService.getResultContent(attemptId);
         ObjectNode node = objectMapper.convertValue(result, ObjectNode.class);
 
-        node.put("feedback",resultService.getFeedbackContent(result.getQuizId(),result.getScore()));
+        node.put("feedback", resultService.getFeedbackContent(result.getQuizId(), result.getScore()));
 
         ArrayList<HashMap> choices = new ArrayList<>();
 
         ArrayList<Question> questionList = quizService.getQuestionList(result.getQuizId());
-        for(int i=0;i< result.getChoices().length;i++){
+        for (int i = 0; i < result.getChoices().length; i++) {
             Question q = questionList.get(i);
             QuestionChoice c = q.getChoices().get(result.getChoices()[i]);
-            choices.add(new HashMap<String,String>(){{
-                            put("question",q.getQuestion());
-                            put("choice",c.getChoice());
+            choices.add(new HashMap<String, String>() {{
+                            put("question", q.getQuestion());
+                            put("choice", c.getChoice());
                         }}
-                    );
+            );
         }
 
-        node.set("choices",objectMapper.convertValue(choices, ArrayNode.class));
+        node.set("choices", objectMapper.convertValue(choices, ArrayNode.class));
 
         node = objectMapper.readTree(DataProcessing.addLineSeparator(objectMapper.writeValueAsString(node))).deepCopy();
 
-        log.info("Successfully retrieved result content - attemptId: "+attemptId);
+        log.info("Successfully retrieved result content - attemptId: " + attemptId);
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");
         return node;
@@ -198,7 +207,7 @@ public class ResultController {
 
         log.info("Successfully retrieved comment list");
 
-        node.set("commentList",objectMapper.convertValue(resultService.getComment(), ArrayNode.class));
+        node.set("commentList", objectMapper.convertValue(resultService.getComment(), ArrayNode.class));
 
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");

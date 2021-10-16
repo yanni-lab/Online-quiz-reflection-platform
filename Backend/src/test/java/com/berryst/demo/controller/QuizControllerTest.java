@@ -6,11 +6,11 @@ import com.berryst.demo.utils.DataProcessing;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.minidev.json.JSONObject;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -19,10 +19,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.junit.Test;
 
 import java.util.*;
 
+/**
+ * @ClassName QuizControllerTest
+ * @Author Shirui Cheng
+ * @Description Automatic tests for QuizController
+ * @version: v1.0.0
+ * @Date 21:24 2021/10/16
+ **/
 @RunWith(SpringRunner.class)
 //@WebMvcTest(QuizController.class)
 @SpringBootTest
@@ -57,8 +63,8 @@ public class QuizControllerTest {
 
         JSONObject result = new JSONObject();
 //        result.put("quizList","[{quiz_id=1, quiz_title=Collaborative Learning}, {quiz_id=2, quiz_title=Leadership}, {quiz_id=3, quiz_title=Resilience}]");
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -84,11 +90,11 @@ public class QuizControllerTest {
 
         String url = "http://localhost:8080/quiz/quiz_content";
         JSONObject params = new JSONObject();
-        params.put("quizId",1);
+        params.put("quizId", 1);
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -106,7 +112,7 @@ public class QuizControllerTest {
         HashMap first = new HashMap();
         first.put("quiz_id", 1);
         first.put("quiz_title", "Collaborative Learning");
-        first.put("is_public",true);
+        first.put("is_public", true);
 
         List<Map> list = new ArrayList<Map>(Arrays.asList(first, first, first));
 
@@ -115,11 +121,11 @@ public class QuizControllerTest {
 
         String url = "http://localhost:8080/quiz/supervisor_quiz";
         JSONObject params = new JSONObject();
-        params.put("userId",1);
+        params.put("userId", 1);
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -139,11 +145,11 @@ public class QuizControllerTest {
 
         String url = "http://localhost:8080/quiz/delete_quiz";
         JSONObject params = new JSONObject();
-        params.put("quizId",1);
+        params.put("quizId", 1);
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -163,11 +169,11 @@ public class QuizControllerTest {
 
         String url = "http://localhost:8080/quiz/set_public";
         JSONObject params = new JSONObject();
-        params.put("quizId",1);
+        params.put("quizId", 1);
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -187,11 +193,11 @@ public class QuizControllerTest {
 
         String url = "http://localhost:8080/quiz/set_private";
         JSONObject params = new JSONObject();
-        params.put("quizId",1);
+        params.put("quizId", 1);
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -215,8 +221,8 @@ public class QuizControllerTest {
         org.json.JSONObject params = new org.json.JSONObject(data);
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)

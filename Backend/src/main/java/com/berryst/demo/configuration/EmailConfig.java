@@ -7,6 +7,13 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
+/**
+ * @ClassName EmailConfig
+ * @Author Shirui Cheng
+ * @Description Configuration file for SpringBoot mail service
+ * @version: v1.0.0
+ * @Date 18:25 2021/10/16
+ **/
 @Configuration
 public class EmailConfig {
 

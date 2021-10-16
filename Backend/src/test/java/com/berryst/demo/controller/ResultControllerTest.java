@@ -1,20 +1,18 @@
 package com.berryst.demo.controller;
 
 import com.berryst.demo.model.Question;
-import com.berryst.demo.model.Quiz;
 import com.berryst.demo.model.QuizResult;
 import com.berryst.demo.service.QuizService;
 import com.berryst.demo.service.ResultService;
 import com.berryst.demo.utils.DataProcessing;
-import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.minidev.json.JSONObject;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -23,10 +21,18 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+/**
+ * @ClassName ResultControllerTest
+ * @Author Shirui Cheng
+ * @Description Automatic tests for ResultController
+ * @version: v1.0.0
+ * @Date 21:24 2021/10/16
+ **/
 @RunWith(SpringRunner.class)
 //@WebMvcTest(QuizController.class)
 @SpringBootTest
@@ -66,8 +72,8 @@ public class ResultControllerTest {
         String url = "http://localhost:8080/result/save_result";
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -104,8 +110,8 @@ public class ResultControllerTest {
         String url = "http://localhost:8080/result/share_result";
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -149,8 +155,8 @@ public class ResultControllerTest {
         params.put("userId", 1);
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -195,8 +201,8 @@ public class ResultControllerTest {
         params.put("userId", 1);
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -264,12 +270,12 @@ public class ResultControllerTest {
                 "            \"questionOrder\": 1\n" +
                 "        }";
         Question questionObj = objectMapper.readValue(DataProcessing.replaceLineSeparator(questionData), Question.class);
-        List<Question> questionList = new ArrayList<Question>(Arrays.asList(questionObj,questionObj));
+        List<Question> questionList = new ArrayList<Question>(Arrays.asList(questionObj, questionObj));
 
         Mockito.when(resultServiceMock.getResultContent(1))
                 .thenReturn(resultObj);
 
-        Mockito.when(resultServiceMock.getFeedbackContent(1,10))
+        Mockito.when(resultServiceMock.getFeedbackContent(1, 10))
                 .thenReturn(feedbackData);
 
         Mockito.when(quizServiceMock.getQuestionList(1))
@@ -280,8 +286,8 @@ public class ResultControllerTest {
         params.put("attemptId", 1);
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -299,11 +305,11 @@ public class ResultControllerTest {
 
         String url = "http://localhost:8080/result/save_comment";
         JSONObject params = new JSONObject();
-        params.put("comment","Test comment\nline2");
+        params.put("comment", "Test comment\nline2");
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -323,8 +329,8 @@ public class ResultControllerTest {
         JSONObject params = new JSONObject();
 
         JSONObject result = new JSONObject();
-        result.put("errorCode","00000");
-        result.put("errorMessage","Success");
+        result.put("errorCode", "00000");
+        result.put("errorMessage", "Success");
 
         mvc.perform(MockMvcRequestBuilders.post(url) //url, value
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
