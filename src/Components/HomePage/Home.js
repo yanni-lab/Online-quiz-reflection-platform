@@ -2,11 +2,11 @@ import React from 'react';
 import logo from '../images/Welcome.png';
 import supervisor from '../images/supervisor.png';
 import lec from '../images/Lex.png';
-// import lex from '../images/Lex.png';
 import {Row,  Button,CardGroup,Card} from 'react-bootstrap';
 import './Home.css';
 import {Link} from 'react-router-dom';
 import { withRouter } from "react-router-dom";
+import cookie from 'react-cookies'
 
 
 class Home extends React.Component {
@@ -15,8 +15,13 @@ class Home extends React.Component {
 
     }
 
+    handleSelectLEC(){
+        cookie.save('identity',1)
+    }
+
 
     render(){
+        document.title = "LEx mirror"
         return(
             <div className="HomePage">
 
@@ -24,8 +29,7 @@ class Home extends React.Component {
                     <div className="container">
                         <div className="text" >
                             <Row className="header">
-                                <div >Welcome</div>
-                                {/*<div>{this.props.test}</div>*/}
+                                <div>Welcome</div>
                             </Row>
                             <Row className="paragraph">
                                 <p >
@@ -47,7 +51,7 @@ class Home extends React.Component {
                                                 <Button className="homeButton"
                                                         size="lg"
                                                         variant="outline-primary"
-                                                        onClick={this.props.setPare}
+                                                        onClick={this.handleSelectLEC}
 
                                                 >Click here</Button>
                                             </Link>
@@ -85,6 +89,7 @@ class Home extends React.Component {
 const headerStyle ={
     backgroundImage: `url(${logo})`,
     position: 'absolute',
+    // marginRight:0,
     width: '100vw',
     height: '100vh'
 }

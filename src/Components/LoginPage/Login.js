@@ -5,6 +5,7 @@ import "./Login.css";
 import {Link} from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import LoginLogo from '../images/loginLogo.png';
+import cookie from 'react-cookies'
 
 
 class Login extends React.Component {
@@ -43,11 +44,20 @@ class Login extends React.Component {
     }
 
     handleSubmit() {
+        if(this.state.username=="lec"){
+            cookie.save('identity',1)
+        }
+        if(this.state.username=="haobow1"){
+            cookie.save('identity',2)
+        }
+
+        cookie.save('username',this.state.username)
+        cookie.save('login',true)
+
         this.setState({
             successModal:true
         })
 
-        this.props.handleUserLogin(this.state.username)
 
 
 
@@ -108,13 +118,26 @@ class Login extends React.Component {
         this.setState({
             successModal:false,
         })
-        this.props.handleUserLogin(this.state.username)
-        this.props.history.push({
-            pathname: "/supervisor",
-            state:{
-                username:this.state.username
-            }
-        })
+
+        if(cookie.load("identity")==1){
+            this.props.history.push({
+                pathname: "/listQuiz",
+                state:{
+                    username:this.state.username
+                }
+            })
+        }
+
+        if(cookie.load("identity")==2){
+            this.props.history.push({
+                pathname: "/supervisor",
+                state:{
+                    username:this.state.username
+                }
+            })
+        }
+
+
     }
 
 

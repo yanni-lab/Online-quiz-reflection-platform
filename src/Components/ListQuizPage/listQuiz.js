@@ -1,8 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './listQuiz.css';
-import {Row, Col, Button,Navbar,Nav,Container} from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import {Link} from "react-router-dom";
+import cookie from 'react-cookies'
 
 class ListQuiz extends React.Component {
     constructor(props){
@@ -43,6 +44,7 @@ class ListQuiz extends React.Component {
 
 
     render(){
+        document.title = "LECs Dashboard"
 
 
 
@@ -57,9 +59,9 @@ class ListQuiz extends React.Component {
                             >Back</Button>
                         </Link>
                     </Col>
-                    <Col style={{display:this.props.login==false?"block":"none"}}>
+                    <Col style={{display:cookie.load('login')=="true"?"block":"none"}}>
                         <Link to='/MyLECs'>
-                            <Button className="feedbackButton"
+                            <Button className="my-feedback-Button"
                                     size="lg"
                                     variant="outline-primary"
                             >My feedback</Button>

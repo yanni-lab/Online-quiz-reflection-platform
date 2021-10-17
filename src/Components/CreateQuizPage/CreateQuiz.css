@@ -35,13 +35,17 @@
 .createQuizPage{
     background-color: white;
     width: 90%;
-    margin: 50px auto;
+    margin: 50px 5%;
     padding: 20px 0 40px 0;
     border-radius: 5px;
     box-shadow: 5px 5px #ddd;
     min-height: 550px;
+    height: auto;
+    position: absolute;
+
 
 }
+
 
 .myQuiz{
     margin-left: 50px;

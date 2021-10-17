@@ -4,12 +4,13 @@ import './SupervisorDashboard.css';
 import {Row, Col, Button, CardGroup,Card} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import supervisor from "../images/supervisor.png";
+import cookie from 'react-cookies'
 
 class SupervisorDashboard extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            username:props.username,
+            username:cookie.load("username"),
         };
     };
 

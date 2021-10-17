@@ -21,3 +21,7 @@
 .LEC-form{
     padding: 0 80px 40px 80px;
 }
+
+.pagination{
+    justify-content: center
+}

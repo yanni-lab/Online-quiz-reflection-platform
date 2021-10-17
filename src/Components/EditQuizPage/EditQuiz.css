@@ -2,13 +2,15 @@
 .editQuizPage{
     /*background-color:  #e8effc;*/
     /*height:100%;*/
-    margin-top: 0;
-    margin-bottom: 0;
+    /*margin-top: 0;*/
+    /*margin-bottom: 20px;*/
     left: 0;
     height: auto;
     position: absolute;
+
     /*min-height: 100%;*/
     width: 100%;
+    padding-bottom: 60px;
 }
 
 .create-quiz-form{
