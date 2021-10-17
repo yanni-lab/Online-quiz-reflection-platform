@@ -8,10 +8,11 @@
     font-family: "Arial Black", sans-serif;
 }
 
-aria-labelledby .show{
-    right:80px
+.dropdown-menu{
+    top:50px;
+    right:-40px
 }
 
 .dropdown{
-    margin-right: 100px;
+    margin-right: 50px;
 }

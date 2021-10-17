@@ -11,14 +11,12 @@
 
 .listQuizPage{
     background-color: white;
-    /*height:100%;*/
-    margin-top: 0;
-    margin-bottom: 0;
-    left: 0;
-    height: auto;
-    position: absolute;
-    min-height: 100%;
-    width: 100%;
+    width: 90%;
+    margin: 50px auto;
+    padding: 20px 0 40px 0;
+    border-radius: 5px;
+    box-shadow: 5px 5px #ddd;
+    min-height: 550px;
 }
 
 .myQuiz{
@@ -28,22 +26,30 @@
     font-size: 2.0em;
 }
 
-.QuizZone{
-    width: 350px;
-    margin: 50px;
-    height:150px;
+.listQuizPage .QuizZone{
+    width: 300px;
+    margin: 40px;
+    height:120px;
     padding: 30px;
     background-color: #e7effc;
 
     color: black;
     border: 0;
-    font-size: 25px;
+    font-size: 22px;
 
     display: inline-flex;
     flex-direction:column;
     justify-content: space-around;
     align-items: center;
 }
+
+
+.listQuizPage .QuizZone:hover{
+    background-color: #0d6efd;
+    color: white;
+}
+
+
 .quizName{
     font-family: "Arial Black", sans-serif;
     font-size: 1.5em;

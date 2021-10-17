@@ -13,12 +13,7 @@
     border: none;
 }
 
-.button-onfocus{
-    position: absolute;
-    width: 350px;
-    height: 150px;
-    padding: 12px
-}
+
 
 .transform-button{
     padding: 5px 20px
@@ -26,52 +21,60 @@
 
 .edit-button{
     float: left;
-    margin-top: 28%;
+    margin-top: 24%;
     padding:5px 18px
 }
 
 .delete-quiz-button{
     float: right;
-    margin-top: 28%;
+    margin-top: 24%;
     padding: 5px 18px
 }
 
 
 .createQuizPage{
     background-color: white;
-    /*height:100%;*/
-    margin-top: 0;
-    margin-bottom: 0;
-    left: 0;
-    height: auto;
-    position: absolute;
-    min-height: 100%;
-    width: 100%;
+    width: 90%;
+    margin: 50px auto;
+    padding: 20px 0 40px 0;
+    border-radius: 5px;
+    box-shadow: 5px 5px #ddd;
+    min-height: 550px;
+
 }
 
 .myQuiz{
     margin-left: 50px;
     margin-top: 40px;
     font-family: "Arial Black", sans-serif;
-    font-size: 2.0em;
+    font-size: 1.8em;
 }
 
-.QuizZone{
-    width: 350px;
-    margin: 30px 50px 20px 50px;
-    height:150px;
+.button-onfocus{
+    width: 300px;
+    height:120px;
+    padding: 10px;
+    position: absolute;
+
+}
+
+.createQuizPage .QuizZone{
+    width: 300px;
+    margin: 40px;
+    height:120px;
     padding: 30px;
     background-color: #e7effc;
 
-    float: left;
     color: black;
     border: 0;
-    font-size: 25px;
+    font-size: 22px;
 
     display: inline-flex;
+    flex-direction:column;
     justify-content: space-around;
     align-items: center;
 }
+
 .quizName{
     font-family: "Arial Black", sans-serif;
     font-size: 1.5em;
@@ -86,18 +89,18 @@ a{
 
 .no_private{
     padding: 20px 100px;
-    font-size: 25px;
+    font-size: 22px;
 }
 
-.button-onfocus{
+.createQuizPage .button-onfocus{
     display: none;
 }
 
-.QuizZone:hover .button-onfocus{
+.createQuizPage .QuizZone:hover .button-onfocus{
     display: block;
 }
 
-.QuizZone:hover{
+.createQuizPage .QuizZone:hover{
     background-color: #e7effc;
     color: black;
 }

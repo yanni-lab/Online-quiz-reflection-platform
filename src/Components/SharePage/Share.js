@@ -16,53 +16,14 @@ class Share extends React.Component {
             showModal: false,
             successModal:false
         };
-
-        this.handleUserChange = this.handleUserChange.bind(this);
-        this.handlePassChange = this.handlePassChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleCancelModal = this.handleCancelModal.bind(this);
-        this.handleSuccessCancelModal = this.handleSuccessCancelModal.bind(this);
-        // this.validateForm = this.validateForm.bind(this);
     };
 
 
-    handleUserChange(evt) {
-        this.setState({
-            username: evt.target.value,
-        });
-    };
-
-    handlePassChange(evt) {
-        this.setState({
-            password: evt.target.value,
-        });
-    }
-
-    handleSubmit(event) {
-        console.log(this.state);
-
-
-    }
-
-    handleCancelModal(){
-        this.setState({
-                showModal:false
-            }
-        )
-    }
-
-    handleSuccessCancelModal(){
-        this.setState({
-            successModal:false,
-        })
-        this.props.history.push("./ListQuiz")
-    }
 
 
     render(){
         return (
             <div className="Share">
-                <div className="box justify-content-center align-items-center">
                     <Form className="shareForm" onSubmit={this.handleSubmit}>
                         <Form.Group size="lg" controlId="username">
                             <Form.Label className = "label">Email</Form.Label>
@@ -73,19 +34,18 @@ class Share extends React.Component {
                                           onChange={this.handleUserChange}                            />
                         </Form.Group>
 
-                        <Row>
-                            <Button className="button"
+                        <div className="share-row">
+                            <Button className="share-button"
                                     size="lg"
                                     type="submit"
-                                // disabled={this.validateForm()}
                             >
                                 Share
                             </Button>
-                        </Row>
+                        </div>
 
 
                     </Form>
-                </div>
+
             </div>
         );
     }

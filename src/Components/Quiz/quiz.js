@@ -150,7 +150,7 @@ class Quiz extends React.Component {
                     </Col>
                 </Row>
 
-                <div className="box justify-content-center align-items-center">
+
                     <Form className="quizForm">
                         <div className = "question">
                             {this.state.quizList[this.state.currQuestion].question}
@@ -196,7 +196,7 @@ class Quiz extends React.Component {
                         </div>
 
                     </Form>
-                </div>
+
 
 
                 <div  className = "formerNextButtonRow">
@@ -233,7 +233,10 @@ class Quiz extends React.Component {
                         Are you sure you want to exit the quiz? (Have you saved / shared ?)
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button href = "./listQuiz" className = "ensureExit">Yes</Button>
+                        <Link to="./listQuiz">
+                            <Button className = "ensureExit">Yes</Button>
+                        </Link>
+
                         <Button onClick = {this.cancelLeaveQuiz} className = "cancelExit">No</Button>
                     </Modal.Footer>
 

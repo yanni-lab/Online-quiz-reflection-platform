@@ -2,15 +2,25 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './EditQuiz.css';
 import {Row, Col, Button,Form,Modal} from 'react-bootstrap';
-import {Link} from "react-router-dom";
+import quiz from "../../data/quiz_content.json"
 
 class EditQuiz extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
+
+
+
+        this.props.location.state.action=="edit"?this.state={
             cancel:false,
             flag:1,
-            title:"",
+            title:quiz.quizTitle,
+            overview:quiz.quizBackground,
+            questions:quiz.questions,
+            feedbacks:quiz.feedback
+        }:this.state = {
+            cancel:false,
+            flag:1,
+            title: "",
             overview:"",
             questions:[
                 {
@@ -31,6 +41,8 @@ class EditQuiz extends React.Component {
                 }
             ]
         };
+
+
 
 
 
@@ -211,6 +223,7 @@ class EditQuiz extends React.Component {
 
 
     render(){
+        document.title = "Create Quizzes"
         return(
             <div className="editQuizPage">
                 <div className = "heading">
@@ -474,4 +487,4 @@ class EditQuiz extends React.Component {
 
 
 
-export default EditQuiz;
+export default withRouter(EditQuiz);

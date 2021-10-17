@@ -70,7 +70,7 @@ class Communication extends React.Component {
 
 
     render() {
-
+        document.title = "Communication"
         return(
             <div className="communicationPage">
                 <Row>

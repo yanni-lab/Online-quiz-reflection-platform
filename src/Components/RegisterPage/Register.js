@@ -2,7 +2,6 @@ import React from "react";
 import {Button,Form,Row,Modal} from "react-bootstrap";
 import "./Register.css";
 import { withRouter } from "react-router-dom";
-import background from '../images/registerbackground.jpg';
 import LoginLogo from '../images/loginLogo.png';
 class Register extends React.Component {
     constructor(props){
@@ -118,10 +117,11 @@ class Register extends React.Component {
 
 
     render(){
+        document.title = "Register"
         return (
-            <div className="Register" style={backgroundStyle}>
+            <div className="Register">
                 <div className="box justify-content-center align-items-center">
-                    <div className="registerbox">
+
                         <Form className="registerForm" onSubmit={this.handleSubmit}>
                             <div className="registerlogo">
                                 <img href="/"
@@ -181,7 +181,7 @@ class Register extends React.Component {
                                     />
                                 </Form.Group>
                             </Row>
-                            <Row>
+                            <Row className="register-button-row">
                                 <Button className="button"
                                         size="lg"
                                         type="submit"
@@ -192,7 +192,7 @@ class Register extends React.Component {
                             </Row>
 
                         </Form>
-                    </div>
+
                 </div>
 
 
@@ -232,12 +232,6 @@ class Register extends React.Component {
     }
 }
 
-const backgroundStyle ={
-    backgroundImage: `url(${background})`,
-    position: 'absolute',
-    width: '100vw',
-    height: '150vh'
-}
 
 
 export default withRouter(Register)
