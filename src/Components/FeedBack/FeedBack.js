@@ -3,7 +3,7 @@ import './FeedBack.css';
 import {Row, Col, Button,Form,Modal,InputGroup} from 'react-bootstrap';
 import { withRouter } from "react-router-dom";
 import Login from '../LoginPage/Login';
-import Share from '../SharePage/Share';
+
 
 
 
@@ -76,6 +76,7 @@ class FeedBack extends React.Component {
     render() {
 
         console.log(this.state.feedbackContent)
+
         return (
             <div className="feedbackPage">
                 <Row>
@@ -136,9 +137,9 @@ class FeedBack extends React.Component {
                                 <Col className = "feedbackFormCol">
                                     <Button className="feedbackFormButton"
                                             size="lg"
-                                            //type="submit"
+
                                             onClick={this.handleShare}
-                                        // disabled={this.validateForm()}
+
                                     >
                                         Share
                                     </Button>
@@ -190,17 +191,75 @@ class FeedBack extends React.Component {
                 </Modal>
 
                 <Modal  show = {this.state.share}
-
                         className = "shareModal"
                 >
+                    <Modal.Header>
+                        Please enter the recipient's email you would like to share your feedback to!
+                        <Button onClick = {this.cancelShare}>X</Button>
+                    </Modal.Header>
+
 
                     <Modal.Body>
-                        Please enter the recipient's email you would like to share your feedback to!
-                        <Share />
+                        <div className="Share">
+                            <Form className="shareForm" onSubmit={this.handleSubmit}>
+                                <Form.Group size="lg" controlId="share-email">
+                                    <Form.Label className = "label">Email</Form.Label>
+                                    <Form.Control className = "input"
+                                                  autoFocus
+                                                  type="text"
+                                                  value={this.state.username}
+                                                  onChange={this.handleUserChange}
+                                    />
+                                </Form.Group>
+
+                                <Form.Group size="lg" controlId="username">
+                                    <Form.Check
+                                        required
+                                        name="terms"
+                                        label="Share with the supervisor"
+                                        feedbackType="invalid"
+                                        feedbackTooltip
+                                    />
+                                </Form.Group>
+
+                                <Form.Group size="lg" controlId="username">
+                                    <Form.Check
+                                        required
+                                        name="terms"
+                                        label="Include my reflection diary in sharing"
+                                        feedbackType="invalid"
+                                        feedbackTooltip
+                                    />
+                                </Form.Group>
+
+
+
+
+                            </Form>
+
+                        </div>
                     </Modal.Body>
                     <Modal.Footer>
+                        <Row className="share-row">
+                            <Col>
+                                <Button className="share-button"
+                                        size="lg"
+                                        type="submit"
+                                >
+                                    Share
+                                </Button>
+                            </Col>
+                            <Col>
+                                <Button onClick = {this.cancelShare}
+                                        className = "share-button"
+                                        size="lg"
+                                >
+                                    Cancel
+                                </Button>
+                            </Col>
 
-                        <Button onClick = {this.cancelShare} className = "cancelExit">No</Button>
+                        </Row>
+
                     </Modal.Footer>
 
 

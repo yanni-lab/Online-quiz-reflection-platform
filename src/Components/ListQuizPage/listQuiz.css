@@ -3,13 +3,14 @@
     margin-top: 50px;
 }
 
-.feedbackButton{
+.my-feedback-Button{
     float:right ;
     margin-right: 50px;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .listQuizPage{
+
     background-color: white;
     width: 90%;
     margin: 50px auto;

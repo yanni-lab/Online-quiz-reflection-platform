@@ -49,7 +49,9 @@ class ViewComments extends React.Component {
                                                                    }
                                                                    label="123"
                                                                    readOnly={true}
-                                                                   style={{height:this.state.list[index]==1?"auto":"10px"}}
+                                                                   // rows={this.state.list[index]==1?"":2}
+                                                                   style={{height:this.state.list[index]==1?"200px":"60px"}}
+
                                                     />
 
                                             </Col>
