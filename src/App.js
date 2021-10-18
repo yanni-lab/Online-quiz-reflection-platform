@@ -69,6 +69,10 @@ class App extends React.Component{
     }
 
     submitComment(){
+        this.setState({
+            commentShow:false
+        })
+
         fetch('http://localhost:8080/result/save_comment',{
             method:'post',
             headers:{"Content-Type":"application/json"},

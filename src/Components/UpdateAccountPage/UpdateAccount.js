@@ -145,6 +145,7 @@ class UpdateAccount extends React.Component {
                         </Form.Group>
                         <Form.Group size="lg" controlId="repassword">
                             <Form.Label className = "label">Repeat Password</Form.Label>
+                            <Form.Label style={{display:this.state.password!=this.state.repassword&&this.state.password!=""&&this.state.password!=""?"block":"none"}} className = "repeat-must-be-same">Repeat password must be same with password!</Form.Label>
                             <Form.Control className = "input"
                                           type="password"
                                           value={this.state.repassword}
