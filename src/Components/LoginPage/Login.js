@@ -71,14 +71,14 @@ class Login extends React.Component {
             return response.json()
         }).then((data)=>{
             console.log(data["token"]);
-            if (data["token"] != ""){
+            if (data["token"] !== ""){
                 this.token = data["token"].split(":")[1];
             }
             else{
                 this.token = "";
             }
 
-            if(this.token==""){
+            if(this.token===""){
                 this.setState({
                         showModal:true
                     }

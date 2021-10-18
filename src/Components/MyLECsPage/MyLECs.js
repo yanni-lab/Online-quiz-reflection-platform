@@ -13,6 +13,7 @@ class MyLECs extends React.Component {
         this.state = {
             username:cookie.load("username"),
             userId:cookie.load("userId"),
+            identity:cookie.load("identity"),
             results:result.supervisorResult,
             pages:[
                 [
@@ -131,25 +132,53 @@ class MyLECs extends React.Component {
             active:0,
         };
 
-        fetch('http://localhost:8080/result/get_supervisor_result',{
-            method:'post',
-            headers:{"Content-Type":"application/json"},
-            body: JSON.stringify({"userId": this.state.userId})
-        }).then((response)=>{
-            return response.json()
-        }).then((data)=>{
-            this.results=data["supervisorResult"]
-            this.pages=[]
-            while(this.results.length!=0){
-                this.pages.push(this.results.splice(0,4))
-            }
-            this.setState({
-                pages:this.pages
+        if(this.state.identity=="2"){
+            fetch('http://localhost:8080/result/get_supervisor_result',{
+                method:'post',
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify({"userId": this.state.userId})
+            }).then((response)=>{
+                return response.json()
+            }).then((data)=>{
+                this.results=data["supervisorResult"]
+                this.pages=[]
+                while(this.results.length!=0){
+                    this.pages.push(this.results.splice(0,4))
+                }
+                this.setState({
+                    pages:this.pages
+                })
+                //data from backend
+            }).catch(function(error){
+                console.log(error)
             })
-            //data from backend
-        }).catch(function(error){
-            console.log(error)
-        })
+
+        }
+
+        if(this.state.identity=="1"){
+            fetch('http://localhost:8080/result/get_user_result',{
+                method:'post',
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify({"userId": this.state.userId})
+            }).then((response)=>{
+                return response.json()
+            }).then((data)=>{
+                this.results=data["userResult"]
+                this.pages=[]
+                while(this.results.length!=0){
+                    this.pages.push(this.results.splice(0,4))
+                }
+                this.setState({
+                    pages:this.pages
+                })
+                //data from backend
+            }).catch(function(error){
+                console.log(error)
+            })
+
+        }
+
+
 
 
         console.log(this.state.pages[this.state.active])
@@ -209,7 +238,7 @@ class MyLECs extends React.Component {
                         </Col>
                         <Col>
                             <div className="header">
-                                My LECs
+                                {this.state.identity=="1"?"My feedback":"My LECs"}
                             </div>
                         </Col>
                         <Col></Col>
@@ -217,7 +246,7 @@ class MyLECs extends React.Component {
 
                     <Form className="LEC-form">
                         <Form.Label>
-                            My LECs Feedbacks
+                            {this.state.identity=="1"?"My past feedback":"My LECs Feedback"}
                         </Form.Label>
                         <Form.Group>
                             <Row className="LEC-row">

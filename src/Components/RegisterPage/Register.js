@@ -3,6 +3,7 @@ import {Button,Form,Row,Modal} from "react-bootstrap";
 import "./Register.css";
 import { withRouter } from "react-router-dom";
 import LoginLogo from '../images/loginLogo.png';
+import cookie from "react-cookies";
 class Register extends React.Component {
     constructor(props){
         super(props);
@@ -25,13 +26,9 @@ class Register extends React.Component {
     this.handleCancelModal = this.handleCancelModal.bind(this);
     this.handleSuccessCancelModal = this.handleSuccessCancelModal.bind(this);
 
-    // this.validateForm = this.validateForm.bind(this);
+
     };
-    // validateForm() {
-    //     return !this.state.username ||
-    //         ! this.state.password ||
-    //         || !this.state.repassword.length > 0;
-    // }
+
 
     handleUserChange(evt) {
         this.setState({
@@ -78,13 +75,13 @@ class Register extends React.Component {
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            if (data["token"] != ""){
+            if (data["token"] !== ""){
                 this.token = data["token"].split(":")[1];
             }
             else{
                 this.token = "";
             }
-            if(this.token == ""){
+            if(this.token === ""){
                 this.setState({
                         showModal:true
                     }
@@ -94,6 +91,17 @@ class Register extends React.Component {
                 this.setState({
                     successModal:true
                 })
+
+                if(data["isSupervisor"]==false){
+                    cookie.save('identity',1)
+                }
+                if(data["isSupervisor"]==true){
+                    cookie.save('identity',2)
+                }
+
+                cookie.save('username',data["username"])
+                cookie.save('userId',data["userId"])
+                cookie.save('login',true)
             }
             console.log(this.token)
         }).catch(function(error){
@@ -111,7 +119,23 @@ class Register extends React.Component {
         this.setState({
             successModal:false,
         })
-        this.props.history.push("./ListQuiz")
+        if(cookie.load("identity")==1){
+            this.props.history.push({
+                pathname: "/listQuiz",
+                state:{
+                    username:this.state.username
+                }
+            })
+        }
+
+        if(cookie.load("identity")==2){
+            this.props.history.push({
+                pathname: "/supervisor",
+                state:{
+                    username:this.state.username
+                }
+            })
+        }
     }
 
 
@@ -204,8 +228,7 @@ class Register extends React.Component {
                         The email has already been registered. Please use another one.
                     </Modal.Body>
                     <Modal.Footer>
-                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
-                        <Button onClick = {this.cancelModal} className = "cancelExit">Yes</Button>
+                        <Button onClick = {this.handleCancelModal} className = "cancelExit">Yes</Button>
                     </Modal.Footer>
 
 
@@ -219,8 +242,7 @@ class Register extends React.Component {
                         Successfully Registered. You will be directed to quiz Page.
                     </Modal.Body>
                     <Modal.Footer>
-                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
-                        <Button onClick = {this.cancelModal} className = "cancelSuccessExit">OK</Button>
+                        <Button onClick = {this.handleSuccessCancelModal} className = "cancelSuccessExit">OK</Button>
                     </Modal.Footer>
 
 

@@ -151,7 +151,7 @@ class FeedBack extends React.Component {
                 "choices":this.state.choices,
                 "score":this.state.score,
                 "reflection":this.state.reflection,
-                "supervisor_id":this.state.supervisorId,
+                "supervisorId":this.state.supervisorId,
                 "reflectionAvailable":this.state.reflectionFlag,
                 "email":this.state.shareEmail,
                 "isSaved":this.state.saveFlag,
