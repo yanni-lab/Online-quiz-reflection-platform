@@ -85,8 +85,8 @@ class EditQuiz extends React.Component {
                 this.setState({
                     title:this.quizData["quizTitle"],
                     overview:this.quizData["quizBackground"].replace("\\n","\n"),
-                    questions:JSON.parse(this.quizData["questions"]),
-                    feedbacks:JSON.parse(this.quizData["feedback"])
+                    questions:this.quizData["questions"],
+                    feedbacks:this.quizData["feedback"]
                 });
                 console.log(this.state.content);
                 //data from backend
@@ -455,6 +455,7 @@ class EditQuiz extends React.Component {
                                         </Col>
                                         <Col xs = {9}>
                                             <Form.Control as="textarea"
+                                                          rows={4}
                                                           placeholder ="Feedback"
                                                           value = {feedback.feedbackContent}
                                                           onChange= {this.handleFeedbackChange.bind(this, feedback_index)}
