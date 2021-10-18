@@ -38,7 +38,7 @@ class Communication extends React.Component {
         }).then((data)=>{
             this.quizData = data;
             console.log(this.quizData);
-            this.feedback = JSON.parse(this.quizData["feedback"]);
+            this.feedback = this.quizData["feedback"];
             this.quizList = this.quizData["questions"];
             this.quesNum = this.quizList.length;
             this.supervisorId = this.quizData.supervisorId
