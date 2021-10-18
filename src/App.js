@@ -30,7 +30,8 @@ class App extends React.Component{
             identity:0,
             username:"Anonymous",
             login:false,
-            commentShow:false
+            commentShow:false,
+            comment:""
         };
 
     }
@@ -63,8 +64,24 @@ class App extends React.Component{
         })
     }
 
+    handleCommentChange(event){
+        this.setState({comment:event.target.value})
+    }
 
-
+    submitComment(){
+        fetch('http://localhost:8080/result/save_comment',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({"comment": this.state.comment})
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            console.log(data["errorMessage"]);
+            //data from backend
+        }).catch(function(error){
+            console.log(error)
+        })
+    }
 
 
     render(){
@@ -160,11 +177,16 @@ class App extends React.Component{
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
-                            <Form.Control as="textarea" className="give-comment-textarea"/>
+                            <Form.Control as="textarea"
+                                          className="give-comment-textarea"
+                                          value={this.state.comment}
+                                          onChange={this.handleCommentChange.bind(this)}
+                                          placeholder="Please leave your comment here..."
+                            />
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={this.closeComment.bind(this)}>Submit</Button>
+                        <Button onClick={this.submitComment.bind(this)}>Submit</Button>
                     </Modal.Footer>
 
 

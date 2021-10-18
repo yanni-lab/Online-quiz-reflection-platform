@@ -147,7 +147,7 @@ class Register extends React.Component {
                 <div className="box justify-content-center align-items-center">
 
                         <Form className="registerForm" onSubmit={this.handleSubmit}>
-                            <div className="registerlogo">
+                            <div>
                                 <img href="/"
                                      src={LoginLogo}
                                      alt="Logo"
@@ -199,7 +199,7 @@ class Register extends React.Component {
                                     <Form.Check type="checkbox"
                                                 label="As supervisor"
                                                 value={this.state.handleIsSupervisorChange}
-                                                cheked={this.state.isSupervisor}
+                                                checked={this.state.isSupervisor}
                                                 onChange={this.handleIsSupervisorChange}
 
                                     />

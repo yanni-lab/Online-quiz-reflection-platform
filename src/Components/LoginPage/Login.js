@@ -96,6 +96,7 @@ class Login extends React.Component {
                         cookie.save('identity',2)
                 }
 
+                cookie.save('email',data['email'])
                 cookie.save('username',data["username"])
                 cookie.save('userId',data["userId"])
                 cookie.save('login',true)
