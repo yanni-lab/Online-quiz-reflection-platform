@@ -9,7 +9,6 @@ import Communication from './Components/Communication/Communication';
 import Quiz from './Components/Quiz/quiz';
 import FeedBack from './Components/FeedBack/FeedBack';
 import Supervisor from './Components/SupervisorDashboard/SupervisorDashboard';
-import LEC from './Components/LECDashboard/LECDashboard';
 import MyLECs from './Components/MyLECsPage/MyLECs';
 import ViewLECs from './Components/ViewLECsPage/ViewLECs';
 import ViewComments from './Components/ViewCommentsPage/ViewComments';
@@ -122,7 +121,7 @@ class App extends React.Component{
                         <Route path='/quiz' component={QuizPage}/>
                         <Route path='/feedback' component={FeedBackPage}/>
                         <Route path='/supervisor' render={(props) => (<Supervisor login={this.state.login} username={this.state.username} {...props}/>)}/>
-                        <Route path='/lec' component={LEC}/>
+
                         <Route path='/myLECs' render={(props) => (<MyLECs username={this.state.username} {...props}/>)}/>
                         <Route path='/viewLECs' component={ViewLECsPage}/>
                         <Route path='/viewComments' component={ViewComments}/>
@@ -195,8 +194,6 @@ const QuizPage = () => (
 const FeedBackPage = () => (
     <FeedBack />
 );
-
-
 
 
 const ViewLECsPage = () => (
