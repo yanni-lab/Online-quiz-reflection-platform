@@ -15,9 +15,9 @@ class Quiz extends React.Component {
             finishedQuestion:0,
             leave:false,
             quizList:props.location.state.quizList,
-            // feedback:JSON.parse(props.location.state.feedback),
             feedback:props.location.state.feedback,
             quizId:props.location.state.quizId,
+            supervisorId:props.location.state.supervisorId,
             score:new Array(props.location.state.quesNum).fill(0),
             options:new Array(props.location.state.quesNum).fill(0),
         };
@@ -192,7 +192,8 @@ class Quiz extends React.Component {
                                     feedback: this.feedbackContent,
                                     quizId:this.state.quizId,
                                     options:this.state.options,
-                                    score:this.sum
+                                    score:this.sum,
+                                    supervisorId: this.state.supervisorId
 
                                 }
                             }}>

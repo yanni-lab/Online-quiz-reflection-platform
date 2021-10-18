@@ -17,6 +17,7 @@ class Communication extends React.Component {
         };
 
         this.quizList = data.questions;
+        this.supervisorId = 0;
         this.quesNum = this.quizList.length;
         this.quizList.push(
             {
@@ -40,6 +41,7 @@ class Communication extends React.Component {
             this.feedback = JSON.parse(this.quizData["feedback"]);
             this.quizList = this.quizData["questions"];
             this.quesNum = this.quizList.length;
+            this.supervisorId = this.quizData.supervisorId
             console.log(this.quesNum);
             this.quizList.push(
                 {
@@ -97,7 +99,8 @@ class Communication extends React.Component {
                                 quizId:this.state.quizId,
                                 quizList:this.quizList,
                                 feedback: this.feedback,
-                                quesNum:this.quesNum
+                                quesNum:this.quesNum,
+                                supervisorId:this.supervisorId
                             }
                             }}>
                             <Button className = "start-btn">Start this quiz !</Button>

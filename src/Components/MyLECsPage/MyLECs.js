@@ -134,7 +134,7 @@ class MyLECs extends React.Component {
         fetch('http://localhost:8080/result/get_supervisor_result',{
             method:'post',
             headers:{"Content-Type":"application/json"},
-            body: JSON.stringify({"userId": this.state.quizId})
+            body: JSON.stringify({"userId": this.state.userId})
         }).then((response)=>{
             return response.json()
         }).then((data)=>{

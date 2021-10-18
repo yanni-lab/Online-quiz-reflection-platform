@@ -27,7 +27,7 @@ class ListQuiz extends React.Component {
             return response.json()
         }).then((data)=>{
 
-            this.setState({quizList:JSON.parse(data["quizList"])});
+            this.setState({quizList:data["quizList"]});
             console.log("back");
             console.log(this.state.quizList);
             //data from backend
