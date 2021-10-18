@@ -14,7 +14,7 @@ class FeedBack extends React.Component {
         this.state = {
             feedbackContent: props.location.state.feedback,
             quizId:props.location.state.quizId,
-            choices:props.location.state.choices,
+            choices:props.location.state.options,
             score:props.location.state.score,
             leave:false,
             save:0,

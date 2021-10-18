@@ -181,7 +181,7 @@ class Login extends React.Component {
                             Login
                         </div>
                         <Form.Group size="lg" controlId="username">
-                            <Form.Label className = "label">Username</Form.Label>
+                            <Form.Label className = "label">Email</Form.Label>
                             <Form.Control className = "input"
                                           autoFocus
                                           type="text"
