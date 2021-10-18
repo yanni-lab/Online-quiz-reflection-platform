@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './CreateQuiz.css';
-import {Row, Col, Button} from 'react-bootstrap';
+import {Row, Col, Button, Modal} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import cookie from 'react-cookies'
 
@@ -19,6 +19,7 @@ class CreateQuiz extends React.Component {
             privateList:[
                 {quiz_id:1, quiz_title:"newQuiz"},
             ],
+            ensureDeleteShow:false
         };
 
 
@@ -42,8 +43,6 @@ class CreateQuiz extends React.Component {
 
 
         this.handleCreateClick = this.handleCreateClick.bind(this);
-        // this.handelPrivatetoPublic = this.handelPrivatetoPublic.bind(this);
-        // this.handelPublictoPrivate = this.handelPublictoPrivate.bind(this);
 
 
     };
@@ -97,6 +96,34 @@ class CreateQuiz extends React.Component {
             //data from backend
         }).catch(function(error){
             console.log(error)
+        })
+    }
+
+    showEnsureDelete = (index,quiz_id,privateorpublic,event) => {
+        this.setState({
+            ensureDeleteShow:true,
+            delete_index:index,
+            delete_id:quiz_id,
+            pp:privateorpublic
+        })
+    }
+
+    cancelDelete(){
+        this.setState({
+            ensureDeleteShow:false
+        })
+    }
+
+    ensureDelete(){
+        if(this.state.pp=="public"){
+            this.handleDeletePublic.bind(this,this.state.delete_index,this.state.delete_index)
+        }
+        if(this.state.pp=="private"){
+            this.handleDeletePrivate.bind(this,this.state.delete_index,this.state.delete_index)
+        }
+
+        this.setState({
+            ensureDeleteShow:false
         })
     }
 
@@ -209,7 +236,8 @@ class CreateQuiz extends React.Component {
                                                 </Button>
                                             </Link>
                                             <Button className = "delete-quiz-button"
-                                                    onClick={this.handleDeletePublic.bind(this,index,quiz.quiz_id)}
+                                                    onClick={this.showEnsureDelete.bind(this,index,quiz.quiz_id,"public")}
+                                                    // onClick={this.handleDeletePublic.bind(this,index,quiz.quiz_id)}
                                             >
                                                 X
                                             </Button>
@@ -256,7 +284,8 @@ class CreateQuiz extends React.Component {
                                                     </Button>
                                                 </Link>
                                                 <Button className = "delete-quiz-button"
-                                                        onClick={this.handleDeletePrivate.bind(this,index,quiz.quiz_id)}
+                                                        onClick={this.showEnsureDelete.bind(this,index,quiz.quiz_id,"public")}
+                                                        // onClick={this.handleDeletePrivate.bind(this,index,quiz.quiz_id)}
                                                 >
                                                     X
                                                 </Button>
@@ -272,6 +301,27 @@ class CreateQuiz extends React.Component {
                         </div>
                     </div>
                 </Row>
+
+                <Modal  show = {this.state.ensureDeleteShow}>
+                    <Modal.Body>
+                        Are you sure you want to delete this quiz?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Row>
+                            <Col>
+                                <Button onClick = {this.cancelDelete.bind(this)} className = "cancelSuccessExit">
+                                    Cancel
+                                </Button>
+                            </Col>
+                            <Col>
+                                <Button onClick = {this.ensureDelete.bind(this)} className = "cancelSuccessExit">
+                                    Yes
+                                </Button>
+                            </Col>
+                        </Row>
+
+                    </Modal.Footer>
+                </Modal>
 
             </div>
         );
