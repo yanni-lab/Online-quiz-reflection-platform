@@ -22,7 +22,7 @@ class ViewComments extends React.Component {
             return response.json()
         }).then((data)=>{
             this.setState({
-                comments:JSON.parse(data)["commentList"],
+                comments:data["commentList"],
                 list:new Array(this.state.comments.length).fill(0)
             })
             //data from backend

@@ -24,7 +24,7 @@ class ViewLECs extends React.Component {
             return response.json()
         }).then((data)=>{
             this.setState({
-                result_content:JSON.parse(data),
+                result_content:data,
                 reflection:result_content.reflectionAvailable==true?result_content.reflection:"------Reflection diary not available — LEC chose not to share reflection diary------"
             })
 
