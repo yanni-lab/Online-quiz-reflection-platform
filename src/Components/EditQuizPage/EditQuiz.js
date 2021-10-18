@@ -3,22 +3,18 @@ import { withRouter } from 'react-router-dom';
 import './EditQuiz.css';
 import {Row, Col, Button,Form,Modal} from 'react-bootstrap';
 import quiz from "../../data/quiz_content.json"
+import cookie from 'react-cookies'
 
 class EditQuiz extends React.Component {
     constructor(props){
         super(props);
 
 
-
-        this.props.location.state.action=="edit"?this.state={
+        this.state = {
+            action:this.props.location.state.action,
+            userId:cookie.load("userId"),
             cancel:false,
-            flag:1,
-            title:quiz.quizTitle,
-            overview:quiz.quizBackground,
-            questions:quiz.questions,
-            feedbacks:quiz.feedback
-        }:this.state = {
-            cancel:false,
+            saveFlag:false,
             flag:1,
             title: "",
             overview:"",
@@ -41,6 +37,63 @@ class EditQuiz extends React.Component {
                 }
             ]
         };
+
+
+
+        // this.props.location.state.action=="edit"?this.state={
+        //     cancel:false,
+        //     flag:1,
+        //     title:quiz.quizTitle,
+        //     overview:quiz.quizBackground,
+        //     questions:quiz.questions,
+        //     feedbacks:quiz.feedback
+        // }:this.state = {
+        //     cancel:false,
+        //     flag:1,
+        //     title: "",
+        //     overview:"",
+        //     questions:[
+        //         {
+        //             "question": "",
+        //             "choices":[
+        //                 {
+        //                     "score": "",
+        //                     "choice": ""
+        //                 }
+        //             ]
+        //         }
+        //     ],
+        //     feedbacks:[
+        //         {
+        //             "lowerBound":"",
+        //             "upperBound":"",
+        //             "feedbackContent":""
+        //         }
+        //     ]
+        // };
+
+        if (this.props.location.state.action=="Edit"){
+            fetch('http://localhost:8080/quiz/quiz_content',{
+                method:'post',
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify({"quizId": this.props.location.state.quiz_id})//get corresponding quiz with quiz_id
+            }).then((response)=>{
+                return response.json()
+            }).then((data)=>{
+                this.quizData = data;
+                console.log(this.quizData);
+                this.setState({
+                    title:this.quizData["quizTitle"],
+                    overview:this.quizData["quizBackground"].replace("\\n","\n"),
+                    questions:JSON.parse(this.quizData["questions"]),
+                    feedbacks:JSON.parse(this.quizData["feedback"])
+                });
+                console.log(this.state.content);
+                //data from backend
+            }).catch(function(error){
+                console.log(error)
+            })
+        }
 
 
 
@@ -203,7 +256,7 @@ class EditQuiz extends React.Component {
             "quizBackground":this.state.overview,
             "questions":this.state.questions,
             "feedback":this.state.feedbacks,
-            "superviserId":1
+            "superviserId":this.state.userId
         });
         this.token = "";
         event.preventDefault();
@@ -217,8 +270,9 @@ class EditQuiz extends React.Component {
             console.log(error)
         })
 
-        //const token = "111"
-
+        this.setState({
+            saveFlag:true
+        })
     }
 
 
@@ -227,7 +281,7 @@ class EditQuiz extends React.Component {
         return(
             <div className="editQuizPage">
                 <div className = "heading">
-                    Create Quiz
+                    {this.state.action+" Quiz"}
                 </div>
 
 
@@ -442,19 +496,13 @@ class EditQuiz extends React.Component {
                         </Col>
 
                         <Col className = "button-col">
-                            {/*<Link to = {{*/}
-                            {/*    pathname:'/createQuiz',*/}
-                            {/*    state:{*/}
-                            {/*        newQuiz: this.state.title*/}
-                            {/*    }*/}
-                            {/*}}>*/}
                                 <Button className="loginButton"
                                         size="lg"
                                         onClick = {this.handleSave}
                                 >
                                     Save
                                 </Button>
-                            {/*</Link>*/}
+
                         </Col>
 
 
@@ -472,6 +520,17 @@ class EditQuiz extends React.Component {
                     <Modal.Footer>
                         <Button href = "./createQuiz" className = "ensureExit">Yes</Button>
                         <Button onClick = {this.cancelLeave} className = "cancelExit">No</Button>
+                    </Modal.Footer>
+
+
+                </Modal>
+
+                <Modal  show = {this.state.saveFlag}>
+                    <Modal.Body>
+                        This quiz has been saved successfully. You will be redirected to the "My Quiz" page.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button href = "./createQuiz" className = "ensureExit">Yes</Button>
                     </Modal.Footer>
 
 

@@ -8,6 +8,10 @@
     min-height: 650px;
 }
 
+.MyLECs .container{
+    height: 600px;
+}
+
 .form-label{
     font-size: 20px;
 }
@@ -19,9 +23,10 @@
 }
 
 .LEC-form{
+    height: 412px;
     padding: 0 80px 40px 80px;
 }
 
 .pagination{
-    justify-content: center
+    justify-content: center;
 }

@@ -15,7 +15,8 @@ class Login extends React.Component {
             username: '',
             password: '',
             showModal: false,
-            successModal:false
+            successModal:false,
+            txt:this.props.txt
         };
 
         this.handleUserChange = this.handleUserChange.bind(this);
@@ -43,27 +44,27 @@ class Login extends React.Component {
         });
     }
 
-    handleSubmit() {
-        if(this.state.username=="lec"){
-            cookie.save('identity',1)
-        }
-        if(this.state.username=="haobow1"){
-            cookie.save('identity',2)
-        }
-
-        cookie.save('username',this.state.username)
-        cookie.save('login',true)
-
-        this.setState({
-            successModal:true
-        })
-
-
+    handleSubmit(event) {
+        // if(this.state.username=="lec"){
+        //     cookie.save('identity',1)
+        // }
+        // if(this.state.username=="haobow1"){
+        //     cookie.save('identity',2)
+        // }
+        //
+        // cookie.save('username',this.state.username)
+        // cookie.save('login',true)
+        //
+        // this.setState({
+        //     successModal:true
+        // })
 
 
 
-        /**console.log(this.state);
-        var dataSent = JSON.stringify({"username": this.state.username,"password": this.state.password});
+
+
+        console.log(this.state);
+        var dataSent = JSON.stringify({"email": this.state.username,"password": this.state.password});
         this.token = "";
         event.preventDefault();
         fetch('http://localhost:8080/user/login',{
@@ -97,11 +98,22 @@ class Login extends React.Component {
                 this.setState({
                     successModal:true
                 })
+
+                if(data["isSupervisor"]=="false"){
+                        cookie.save('identity',1)
+                }
+                if(data["isSupervisor"]=="true"){
+                        cookie.save('identity',2)
+                }
+
+                cookie.save('username',data["username"])
+                cookie.save('userId',data["userId"])
+                cookie.save('login',true)
             }
             //data from backend
         }).catch(function(error){
             console.log(error)
-        })**/
+        })
 
         //const token = "111"
 
@@ -119,23 +131,32 @@ class Login extends React.Component {
             successModal:false,
         })
 
-        if(cookie.load("identity")==1){
-            this.props.history.push({
-                pathname: "/listQuiz",
-                state:{
-                    username:this.state.username
-                }
-            })
+        if(this.state.txt=="quiz"){
+            this.props.cancel()
         }
 
-        if(cookie.load("identity")==2){
-            this.props.history.push({
-                pathname: "/supervisor",
-                state:{
-                    username:this.state.username
-                }
-            })
+        else{
+            if(cookie.load("identity")==1){
+                this.props.history.push({
+                    pathname: "/listQuiz",
+                    state:{
+                        username:this.state.username
+                    }
+                })
+            }
+
+            if(cookie.load("identity")==2){
+                this.props.history.push({
+                    pathname: "/supervisor",
+                    state:{
+                        username:this.state.username
+                    }
+                })
+            }
+
         }
+
+
 
 
     }
@@ -212,7 +233,7 @@ class Login extends React.Component {
                 >
 
                     <Modal.Body>
-                        Incorrect username or password.
+                        Incorrect user Email or password.
                     </Modal.Body>
                     <Modal.Footer>
                         {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}

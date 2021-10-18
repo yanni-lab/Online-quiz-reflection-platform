@@ -5,14 +5,30 @@ import {Row, Col, Button,Form} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import view_comment from "../../data/view_comment.json"
 
+
 class ViewComments extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            username: props.location.state.username,
             comments:view_comment.commentList,
             list:new Array(view_comment.commentList.length).fill(0)
         };
+
+        fetch('http://localhost:8080/result/view_comment',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({"username": 123})
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            this.setState({
+                comments:JSON.parse(data)["commentList"],
+                list:new Array(this.state.comments.length).fill(0)
+            })
+            //data from backend
+        }).catch(function(error){
+            console.log(error)
+        })
 
         this.seeMore=this.seeMore.bind(this)
 
@@ -71,7 +87,7 @@ class ViewComments extends React.Component {
                     </Form>
 
                     <div className="box justify-content-center align-items-center">
-                        <Link to={{pathname:"./supervisor", state:{username:this.state.username}}}>
+                        <Link to={{pathname:"./supervisor"}}>
                             <Button className="backButton">Back</Button>
                         </Link>
                     </div>

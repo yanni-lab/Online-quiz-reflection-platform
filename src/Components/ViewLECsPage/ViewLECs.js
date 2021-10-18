@@ -11,9 +11,28 @@ class ViewLECs extends React.Component {
         this.state = {
             username:props.location.state.username,
             quiz_title:props.location.state.quiz_title,
+            attemptId:props.location.state.attemptId,
             result_content:result_content,
             reflection:result_content.reflectionAvailable==true?result_content.reflection:"------Reflection diary not available — LEC chose not to share reflection diary------"
         };
+
+        fetch('http://localhost:8080/result/get_result_content',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({"attemptId": this.state.attemptId})
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            this.setState({
+                result_content:JSON.parse(data),
+                reflection:result_content.reflectionAvailable==true?result_content.reflection:"------Reflection diary not available — LEC chose not to share reflection diary------"
+            })
+
+
+            //data from backend
+        }).catch(function(error){
+            console.log(error)
+        })
 
 
     };
@@ -65,7 +84,7 @@ class ViewLECs extends React.Component {
                     </div>
 
                     <div className="box justify-content-center align-items-center">
-                        <Link to={{pathname:"./MyLECs", state:{username:this.state.username}}}>
+                        <Link to={{pathname:"./MyLECs"}}>
                             <Button className="backButton">Back</Button>
                         </Link>
                     </div>
