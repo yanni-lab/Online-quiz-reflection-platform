@@ -256,7 +256,7 @@ class EditQuiz extends React.Component {
             "quizBackground":this.state.overview,
             "questions":this.state.questions,
             "feedback":this.state.feedbacks,
-            "superviserId":this.state.userId
+            "supervisorId":this.state.userId
         });
         this.token = "";
         event.preventDefault();
