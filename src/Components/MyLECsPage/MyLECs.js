@@ -4,31 +4,160 @@ import './MyLECs.css';
 import {Row, Col, Button,Form, Pagination} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import result from "../../data/get_supervisor_result.json"
+import cookie from 'react-cookies'
 
 
 class MyLECs extends React.Component {
     constructor(props){
         super(props);
-
-
-
         this.state = {
-            username:props.username,
-            // results:result.supervisorResult,
+            username:cookie.load("username"),
+            userId:cookie.load("userId"),
+            results:result.supervisorResult,
             pages:[
-
+                [
+                        {
+                            "reflection_available": false,
+                            "quiz_id": 1,
+                            "reflection_time": [
+                                2021,
+                                10,
+                                8,
+                                12,
+                                56,
+                                56
+                            ],
+                            "user_id": 1,
+                            "attempt_id": 3,
+                            "quiz_title": "Collaborative Learning",
+                            "username": "EmmaW"
+                        },
+                        {
+                            "quiz_id": 1,
+                            "reflection_time": [
+                                2021,
+                                10,
+                                8,
+                                12,
+                                15,
+                                3
+                            ],
+                            "user_id": 1,
+                            "attempt_id": 2,
+                            "quiz_title": "Collaborative Learning",
+                            "username": "EmmaW"
+                        },
+                        {
+                            "quiz_id": 1,
+                            "reflection_time": [
+                                2021,
+                                10,
+                                8,
+                                12,
+                                14,
+                                58
+                            ],
+                            "user_id": 1,
+                            "attempt_id": 1,
+                            "quiz_title": "Collaborative Learning",
+                            "username": "EmmaW"
+                        },
+                        {
+                            "reflection_available": false,
+                            "quiz_id": 1,
+                            "reflection_time": [
+                                2021,
+                                10,
+                                8,
+                                12,
+                                56,
+                                56
+                            ],
+                            "user_id": 1,
+                            "attempt_id": 3,
+                            "quiz_title": "Collaborative Learning",
+                            "username": "EmmaW"
+                        }
+                ],
+                [
+                    {
+                        "reflection_available": false,
+                        "quiz_id": 1,
+                        "reflection_time": [
+                            2021,
+                            10,
+                            8,
+                            12,
+                            56,
+                            56
+                        ],
+                        "user_id": 1,
+                        "attempt_id": 3,
+                        "quiz_title": "Collaborative Learning",
+                        "username": "EmmaW"
+                    },
+                    {
+                        "quiz_id": 1,
+                        "reflection_time": [
+                            2021,
+                            10,
+                            8,
+                            12,
+                            15,
+                            3
+                        ],
+                        "user_id": 1,
+                        "attempt_id": 2,
+                        "quiz_title": "Collaborative Learning",
+                        "username": "EmmaW"
+                    },
+                    {
+                        "quiz_id": 1,
+                        "reflection_time": [
+                            2021,
+                            10,
+                            8,
+                            12,
+                            14,
+                            58
+                        ],
+                        "user_id": 1,
+                        "attempt_id": 1,
+                        "quiz_title": "Collaborative Learning",
+                        "username": "EmmaW"
+                    }
+                ]
             ],
             active:0,
         };
 
+        fetch('http://localhost:8080/result/get_supervisor_result',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({"userId": this.state.quizId})
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            this.results=data["supervisorResult"]
+            this.pages=[]
+            while(this.results.length!=0){
+                this.pages.push(this.results.splice(0,4))
+            }
+            this.setState({
+                pages:this.pages
+            })
+            //data from backend
+        }).catch(function(error){
+            console.log(error)
+        })
 
-
-        while(result.supervisorResult.length!=0){
-            this.state.pages.push(result.supervisorResult.splice(0,4))
-        }
 
         console.log(this.state.pages[this.state.active])
     };
+
+
+
+
 
     handlePage= (index) => {
         this.setState({
@@ -124,7 +253,9 @@ class MyLECs extends React.Component {
                                                     pathname:"./ViewLECs",
                                                     state:{
                                                         username:result.username,
-                                                        quiz_title:result.quiz_title
+                                                        quiz_title:result.quiz_title,
+                                                        attemptId:result.attempt_id
+
                                                     }
                                                 }}>
                                                     <Button>
@@ -141,6 +272,7 @@ class MyLECs extends React.Component {
                     </Form>
 
 
+                    <div className="Pagination-row">
                         <Pagination>
                             <Pagination.Item
                                 onClick={this.handlePreviousPage.bind(this)}
@@ -165,6 +297,8 @@ class MyLECs extends React.Component {
                                 &gt;
                             </Pagination.Item>
                         </Pagination>
+                    </div>
+
 
 
 

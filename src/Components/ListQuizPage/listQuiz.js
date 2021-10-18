@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import './listQuiz.css';
 import {Row, Col, Button} from 'react-bootstrap';
 import {Link} from "react-router-dom";
@@ -14,6 +13,7 @@ class ListQuiz extends React.Component {
                 {quiz_id:2, quiz_title:"Leadership"},
                 {quiz_id:3, quiz_title:"Resilience"}
             ]
+
         };
 
 
@@ -26,7 +26,7 @@ class ListQuiz extends React.Component {
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            //this.state.quizList = JSON.parse(data["quizList"]);
+
             this.setState({quizList:JSON.parse(data["quizList"])});
             console.log("back");
             console.log(this.state.quizList);
@@ -35,8 +35,6 @@ class ListQuiz extends React.Component {
             console.log(error)
         })
 
-
-        //this.quizList = this.getQuizList();
 
 
 

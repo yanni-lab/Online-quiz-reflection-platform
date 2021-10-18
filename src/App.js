@@ -34,8 +34,6 @@ class App extends React.Component{
             commentShow:false
         };
 
-
-        console.log(cookie.load("login"))
     }
 
 

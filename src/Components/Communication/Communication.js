@@ -3,7 +3,7 @@ import './Communication.css';
 import {Row, Col, Button} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import { withRouter } from "react-router-dom";
-import data from "../../quiz.json"
+import data from "../../data/quiz_content.json"
 
 
 
@@ -12,8 +12,6 @@ class Communication extends React.Component {
         super(props);
         this.state = {
             quizId:props.location.state.quizId,
-            // title:"",
-            // content:"",
             title: data.quizTitle,
             content: data.quizBackground
         };
@@ -52,9 +50,10 @@ class Communication extends React.Component {
             );
 
             this.setState({
-                title:this.quizData["quizTitle"]
+                title:this.quizData["quizTitle"],
+                content:this.quizData["quizBackground"].replace("\\n","\n")
             });
-            this.setState({content:this.quizData["quizBackground"].replace("\\n","\n")});
+            // this.setState({content:this.quizData["quizBackground"].replace("\\n","\n")});
             console.log(this.state.content);
             //data from backend
         }).catch(function(error){
@@ -97,7 +96,8 @@ class Communication extends React.Component {
                             state:{
                                 quizId:this.state.quizId,
                                 quizList:this.quizList,
-                                feedback: this.feedback
+                                feedback: this.feedback,
+                                quesNum:this.quesNum
                             }
                             }}>
                             <Button className = "start-btn">Start this quiz !</Button>

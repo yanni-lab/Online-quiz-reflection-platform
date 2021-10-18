@@ -94,6 +94,7 @@ a{
 .no_private{
     padding: 20px 100px;
     font-size: 22px;
+    font-family: var(--bs-body-font-family);
 }
 
 .createQuizPage .button-onfocus{

@@ -1,8 +1,9 @@
-import React,{ Component } from 'react';
+import React from 'react';
 import './FeedBack.css';
 import {Row, Col, Button,Form,Modal,InputGroup} from 'react-bootstrap';
 import { withRouter } from "react-router-dom";
 import Login from '../LoginPage/Login';
+import cookie from 'react-cookies'
 
 
 
@@ -12,9 +13,15 @@ class FeedBack extends React.Component {
         super(props);
         this.state = {
             feedbackContent: props.location.state.feedback,
+            quizId:props.location.state.quizId,
+            choices:props.location.state.choices,
+            score:props.location.state.score,
             leave:false,
-            save:false,
-            share:false
+            save:0,
+            share:false,
+            saveFlag:false,
+            reflection:"",
+            shareEmail:"",
         };
 
         this.leaveQuiz = this.leaveQuiz.bind(this);
@@ -23,21 +30,73 @@ class FeedBack extends React.Component {
         this.cancelSave = this.cancelSave.bind(this);
         this.handleShare = this.handleShare.bind(this);
         this.cancelShare = this.cancelShare.bind(this);
+        this.submitShare = this.submitShare.bind(this);
+        this.handleReflectionChange=this.handleReflectionChange.bind(this)
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.cancelSuccessfulSave=this.cancelSuccessfulSave.bind(this)
 
     };
 
     handleSubmit(){
-        this.setState(
-            {
-                save:true
-            }
-        )
+        if(cookie.load("login")=="false"){
+            this.setState({
+                save:1
+            })
+        }
+
+        if(cookie.load("login")=="true"){
+            this.setState({
+                save:2
+            })
+        }
+
     }
 
     cancelSave(){
         this.setState(
             {
-                save:false
+                save:0
+            }
+        )
+    }
+
+    cancelSuccessfulSave(){
+        fetch('http://localhost:8080//result/save_result',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                "userId":cookie.load("userId"),
+                "quizId":this.state.quizId,
+                "choices":this.state.choices,
+                "score":this.state.score,
+                "reflection":this.state.reflection,
+                "reflectionAvailable":false,
+                "supervisorId":1,
+                "isSaved":this.state.saveFlag,
+            })
+
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            console.log(data["token"]);
+
+        }).catch(function(error){
+            console.log(error)
+        })
+
+        this.setState(
+            {
+                saveFlag:true,
+                share:false
+            }
+        )
+
+
+
+        this.setState(
+            {
+                save:0,
+                saveFlag:true
             }
         )
     }
@@ -65,16 +124,68 @@ class FeedBack extends React.Component {
         )
     }
 
+    handleReflectionChange(event){
+        this.setState({
+            reflection:event.target.value
+        })
+    }
+
+    handleEmailChange(event){
+        this.setState({
+            shareEmail:event.target.value
+        })
+    }
+
+    submitShare(){
+
+        fetch('http://localhost:8080/result/share_result',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                "userId":cookie.load("userId"),
+                "quizId":this.state.quizId,
+                "choices":this.state.choices,
+                "score":this.state.score,
+                "reflection":this.state.reflection,
+                "supervisor_id":1,
+                "reflectionAvailable":true,
+                "email":this.state.shareEmail,
+                "isSaved":this.state.saveFlag,
+
+            })
+
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            console.log(data["token"]);
+
+        }).catch(function(error){
+            console.log(error)
+        })
+
+        this.setState(
+            {
+                saveFlag:true,
+                share:false
+            }
+        )
+
+
+    }
+
+
     handleShare(){
         this.setState(
             {
                 share:true
+
             }
         )
     }
 
     render() {
 
+        document.title = "Feedback"
         console.log(this.state.feedbackContent)
 
         return (
@@ -115,8 +226,9 @@ class FeedBack extends React.Component {
                                 <Form.Control className = "reflectionInput"
                                               autoFocus
                                               type="text"
-                                             // value={this.state.username}
-                                             // onChange={this.handleUserChange}
+                                              as="textarea"
+                                              value={this.state.reflection}
+                                              onChange={this.handleReflectionChange}
                                 />
 
 
@@ -173,21 +285,29 @@ class FeedBack extends React.Component {
                 </Modal>
 
 
-                <Modal  show = {this.state.save}
-
+                {/*click save without login*/}
+                <Modal  show = {this.state.save==1}
                         className = "saveModal"
                 >
-
                     <Modal.Body>
                         It looks like you haven't signed in, please sign in to save your feedback
-                        <Login />
+                        <Login txt={"quiz"} cancel={this.cancelSuccessfulSave}/>
                     </Modal.Body>
                     <Modal.Footer>
-
                         <Button onClick = {this.cancelSave} className = "cancelExit">No</Button>
                     </Modal.Footer>
+                </Modal>
 
-
+                {/*click save with login*/}
+                <Modal  show = {this.state.save==2}
+                        className = "saveModal"
+                >
+                    <Modal.Body>
+                        Successfully saved!
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick = {this.cancelSave} className = "cancelExit">Ok</Button>
+                    </Modal.Footer>
                 </Modal>
 
                 <Modal  show = {this.state.share}
@@ -205,10 +325,11 @@ class FeedBack extends React.Component {
                                 <Form.Group size="lg" controlId="share-email">
                                     <Form.Label className = "label">Email</Form.Label>
                                     <Form.Control className = "input"
+                                                  placeholder="xxxx@xxx.com"
                                                   autoFocus
                                                   type="text"
-                                                  value={this.state.username}
-                                                  onChange={this.handleUserChange}
+                                                  value={this.state.shareEmail}
+                                                  onChange={this.handleEmailChange}
                                     />
                                 </Form.Group>
 
@@ -245,6 +366,7 @@ class FeedBack extends React.Component {
                                 <Button className="share-button"
                                         size="lg"
                                         type="submit"
+                                        onClick = {this.submitShare}
                                 >
                                     Share
                                 </Button>

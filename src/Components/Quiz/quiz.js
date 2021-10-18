@@ -17,9 +17,14 @@ class Quiz extends React.Component {
             quizList:props.location.state.quizList,
             // feedback:JSON.parse(props.location.state.feedback),
             feedback:props.location.state.feedback,
-            score:new Array(props.location.state.quizList.length-1).fill(0),
-            options:new Array(props.location.state.quizList.length-1).fill(0),
+            quizId:props.location.state.quizId,
+            score:new Array(props.location.state.quesNum).fill(0),
+            options:new Array(props.location.state.quesNum).fill(0),
         };
+
+
+
+
 
 
         //得分列表
@@ -27,14 +32,12 @@ class Quiz extends React.Component {
 
         //总得分
         this.sum = 0
-
-        console.log(this.state.feedback)
         this.feedbackContent = ''
 
 
 
 
-        this.handleChange = this.handleChange.bind(this);
+
         this.nextClick = this.nextClick.bind(this);
         this.formerClick = this.formerClick.bind(this);
         this.leaveQuiz = this.leaveQuiz.bind(this);
@@ -46,7 +49,7 @@ class Quiz extends React.Component {
 
 
 
-    handleChange(event) {
+    handleChange = (choiceId,score,event) => {
         if(this.state.currQuestion>=this.state.finishedQuestion){
             this.setState(
                 {
@@ -56,15 +59,17 @@ class Quiz extends React.Component {
 
         }
 
+        const current = this.state.currQuestion
+        const choice_id =  parseInt(choiceId)
+        const choice_score =  parseInt(score)
 
-
-        const optionId =  parseInt(event.target.value)
-
-        this.setState({
-
+        this.setState(state => {
+            this.state.options[current] = choice_id
+            this.state.score[current] = choice_score
+            return state;
         })
 
-        this.state.options[this.state.currQuestion] = optionId
+
 
         console.log(this.state)
     }
@@ -80,17 +85,17 @@ class Quiz extends React.Component {
 
         //计算总得分并匹配feedback
         if(this.state.currQuestion== this.state.quizList.length-1){
-            for(let i = 0; i<this.state.options.length;i++){
-                this.sum+=this.state.quizList[i].choices[this.state.options[i]-1].score
+            console.log(this.state.score)
+            for(let i in this.state.score){
+                this.sum+=this.state.score[i]
             }
 
             console.log("sum:"+this.sum)
             for(let interval in this.state.feedback){
-                let l = parseInt(Object.keys(this.state.feedback[interval])[0].split("-")[0])
-                let r = parseInt(Object.keys(this.state.feedback[interval])[0].split("-")[1])
-                //console.log(Object.keys(this.state.feedback[interval])[0],l,r,this.sum)
+                let l = parseInt(this.state.feedback[interval].lowerBound)
+                let r = parseInt(this.state.feedback[interval].upperBound)
                 if(l<=this.sum && this.sum<=r){
-                    this.feedbackContent = Object.values(this.state.feedback[interval])[0]
+                    this.feedbackContent = this.state.feedback[interval].feedbackContent
                     console.log(this.feedbackContent)
                     break;
                 }
@@ -166,7 +171,7 @@ class Quiz extends React.Component {
                                     <div className="option">
                                         <Button className="optionButton"
                                                 value={option.choiceId}
-                                                onClick={this.handleChange}
+                                                onClick={this.handleChange.bind(this, option.choiceId,option.score)}
                                                 style={{backgroundColor: this.state.options[this.state.currQuestion]==option.choiceId? '#0d6efd':'white',
                                                     color: this.state.options[this.state.currQuestion]==option.choiceId? 'white':'#0d6efd'
                                                 }}
@@ -181,11 +186,14 @@ class Quiz extends React.Component {
 
                         <div style={{display: this.state.currQuestion== this.state.quizList.length-1? 'block': 'none'}}>
                             <Link
-                                //onClick = {this.calculateFeedback}
                                 to={{
                                 pathname:'/feedback',
                                 state:{
-                                    feedback: this.feedbackContent
+                                    feedback: this.feedbackContent,
+                                    quizId:this.state.quizId,
+                                    options:this.state.options,
+                                    score:this.sum
+
                                 }
                             }}>
                                 <Button className = "seeFeedback" >

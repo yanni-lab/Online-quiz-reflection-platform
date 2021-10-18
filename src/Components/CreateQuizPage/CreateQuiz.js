@@ -3,43 +3,47 @@ import { withRouter } from 'react-router-dom';
 import './CreateQuiz.css';
 import {Row, Col, Button} from 'react-bootstrap';
 import {Link} from "react-router-dom";
+import cookie from 'react-cookies'
 
 class CreateQuiz extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            // newQuiz:props.location.state.newQuiz,
-            username:props.username,
-            quizList:[
+            username:cookie.load("username"),
+            userId:cookie.load("userId"),
+            publicList:[
                 {quiz_id:1, quiz_title:"Collaborative Learning"},
                 {quiz_id:2, quiz_title:"Leadership"},
                 {quiz_id:3, quiz_title:"Resilience"}
             ],
-            createList:[
+            privateList:[
                 {quiz_id:1, quiz_title:"newQuiz"},
             ],
         };
 
 
-        fetch('http://localhost:8080/quiz/available_quiz',{
+        fetch('http://localhost:8080/quiz/supervisor_quiz',{
             method:'post',
             headers:{"Content-Type":"application/json"},
-            body: JSON.stringify({"username": "111"})//this is just to send sth, meaningless
+            body: JSON.stringify({"userId": this.state.userId})//send supervisor's userId to check corresponding quiz list
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            //this.state.quizList = JSON.parse(data["quizList"]);
-            this.setState({quizList:JSON.parse(data["quizList"])});
-            console.log("back");
-            console.log(this.state.quizList);
+            this.setState({
+                    publicList:JSON.parse(data["publicQuizList"]),
+                    privateList:JSON.parse(data["privateQuizList"])
+                });
+
             //data from backend
         }).catch(function(error){
             console.log(error)
         })
 
+
+
         this.handleCreateClick = this.handleCreateClick.bind(this);
-        this.handelPrivatetoPublic = this.handelPrivatetoPublic.bind(this);
-        this.handelPublictoPrivate = this.handelPublictoPrivate.bind(this);
+        // this.handelPrivatetoPublic = this.handelPrivatetoPublic.bind(this);
+        // this.handelPublictoPrivate = this.handelPublictoPrivate.bind(this);
 
 
     };
@@ -47,40 +51,97 @@ class CreateQuiz extends React.Component {
 
     handleCreateClick(){
         this.setState({})
-        this.state.createList.push({
+        this.state.privateList.push({
             quiz_id:0,
             quiz_title:""
         })
     }
 
-    handelPrivatetoPublic(event){
+    handelPrivatetoPublic = (quiz_id,event) => {
         this.setState(state => {
-            state.quizList.push(state.createList[event.target.value]);
-            state.createList.splice(event.target.value,1)
+            state.publicList.push(state.privateList[event.target.value]);
+            state.privateList.splice(event.target.value,1)
             return state;
         });
 
+
+        fetch('http://localhost:8080/quiz/set_public',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({"quizId": quiz_id})
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            console.log(data)
+            //data from backend
+        }).catch(function(error){
+            console.log(error)
+        })
     }
 
-    handelPublictoPrivate(event){
+    handelPublictoPrivate = (quiz_id,event) => {
         this.setState(state => {
-            state.createList.push(state.quizList[event.target.value]);
-            state.quizList.splice(event.target.value,1)
+            state.privateList.push(state.publicList[event.target.value]);
+            state.publicList.splice(event.target.value,1)
             return state;
         });
+
+        fetch('http://localhost:8080/quiz/set_private',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({"quizId": quiz_id})
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            console.log(data)
+            //data from backend
+        }).catch(function(error){
+            console.log(error)
+        })
     }
 
-    handleDeletePrivate = (index) => {
+    handleDeletePrivate = (index,quiz_id,event) => {
         this.setState(state => {
-            state.createList.splice(index,1);
+            state.privateList.splice(index,1);
             return state;
         });
+
+        fetch('http://localhost:8080/quiz/delete_quiz',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({"quizId": quiz_id})
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            console.log(data)
+            //data from backend
+        }).catch(function(error){
+            console.log(error)
+        })
+    }
+
+    handleDeletePublic = (index,quiz_id,event) => {
+        this.setState(state => {
+            state.publicList.splice(index,1);
+            return state;
+        });
+
+        fetch('http://localhost:8080/quiz/delete_quiz',{
+            method:'post',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({"quizId": quiz_id})
+        }).then((response)=>{
+            return response.json()
+        }).then((data)=>{
+            console.log(data)
+            //data from backend
+        }).catch(function(error){
+            console.log(error)
+        })
     }
 
     render(){
         document.title = "My Quizzes"
-
-
 
         return(
             <div className="createQuizPage">
@@ -105,7 +166,7 @@ class CreateQuiz extends React.Component {
                     </Col>
                     <Col>
                         <Link to={{pathname:"/editQuiz",
-                            state:{action:"create"}
+                            state:{action:"Create"}
                         }}>
                             <Button className="createQuizButton"
                                     size="lg"
@@ -122,23 +183,25 @@ class CreateQuiz extends React.Component {
                     <div className="myQuiz">Public</div>
                 </Row>
                 <Row className="quizName">
+                    <div className="no_private" style={{display: this.state.publicList.length==0? "block":"none"}}>
+                        There are no public quizzes here yet!
+                    </div>
                     <div>
-
                         {
-                            this.state.quizList.map((quiz,index) =>
+                            this.state.publicList.map((quiz,index) =>
                                     <Button className="QuizZone">
                                         {quiz.quiz_title}
                                         <div className="button-onfocus">
                                             <Button className = "transform-button"
                                                     value = {index}
-                                                    onClick = {this.handelPublictoPrivate}>
+                                                    onClick = {this.handelPublictoPrivate.bind(this, quiz.quiz_id)}>
                                                 Make private
                                             </Button>
                                             <Link to={{pathname:"/editQuiz",
                                                 state:
                                                     {
                                                         quiz_id:quiz.quiz_id,
-                                                        action:"edit"
+                                                        action:"Edit"
                                                     }
                                             }}>
                                                 <Button className = "edit-button" >
@@ -146,7 +209,7 @@ class CreateQuiz extends React.Component {
                                                 </Button>
                                             </Link>
                                             <Button className = "delete-quiz-button"
-
+                                                    onClick={this.handleDeletePublic.bind(this,index,quiz.quiz_id)}
                                             >
                                                 X
                                             </Button>
@@ -165,20 +228,20 @@ class CreateQuiz extends React.Component {
                 </Row>
 
                 <Row>
-                    <div className="no_private" style={{display: this.state.createList.length==0? "block":"none"}}>
+                    <div className="no_private" style={{display: this.state.privateList.length==0? "block":"none"}}>
                         There are no private quizzes here yet!
                     </div>
                     <div>
                         <div className="quizName">
                             {
-                                this.state.createList.map((quiz,index) =>
+                                this.state.privateList.map((quiz,index) =>
 
                                         <Button className="QuizZone">
                                             {quiz.quiz_title}
                                             <div className="button-onfocus">
                                                 <Button className = "transform-button"
                                                         value = {index}
-                                                        onClick = {this.handelPrivatetoPublic}>
+                                                        onClick = {this.handelPrivatetoPublic.bind(this, quiz.quiz_id)}>
                                                     Make public
                                                 </Button>
                                                 <Link to={{pathname:"/editQuiz",
@@ -191,12 +254,13 @@ class CreateQuiz extends React.Component {
                                                     <Button className = "edit-button" >
                                                         Edit
                                                     </Button>
-                                                    <Button className = "delete-quiz-button"
-                                                            onClick={this.handleDeletePrivate.bind(this,index)}
-                                                    >
-                                                        X
-                                                    </Button>
                                                 </Link>
+                                                <Button className = "delete-quiz-button"
+                                                        onClick={this.handleDeletePrivate.bind(this,index,quiz.quiz_id)}
+                                                >
+                                                    X
+                                                </Button>
+
                                             </div>
 
                                         </Button>

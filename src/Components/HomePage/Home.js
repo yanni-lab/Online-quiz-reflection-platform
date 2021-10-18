@@ -17,6 +17,9 @@ class Home extends React.Component {
 
     handleSelectLEC(){
         cookie.save('identity',1)
+        cookie.save('login',false)
+        cookie.save('userId',-1)
+        cookie.save('username',"Anonymous")
     }
 
 
