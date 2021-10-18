@@ -30,8 +30,8 @@ class CreateQuiz extends React.Component {
             return response.json()
         }).then((data)=>{
             this.setState({
-                    publicList:JSON.parse(data["publicQuizList"]),
-                    privateList:JSON.parse(data["privateQuizList"])
+                    publicList:data["publicQuizList"],
+                    privateList:data["privateQuizList"]
                 });
 
             //data from backend

@@ -16,12 +16,15 @@ class FeedBack extends React.Component {
             quizId:props.location.state.quizId,
             choices:props.location.state.options,
             score:props.location.state.score,
+            supervisorId:props.location.state.supervisorId,
             leave:false,
             save:0,
             share:false,
             saveFlag:false,
             reflection:"",
             shareEmail:"",
+            supervisorFlag:false,
+            reflectionFlag:false
         };
 
         this.leaveQuiz = this.leaveQuiz.bind(this);
@@ -70,8 +73,8 @@ class FeedBack extends React.Component {
                 "choices":this.state.choices,
                 "score":this.state.score,
                 "reflection":this.state.reflection,
-                "reflectionAvailable":false,
-                "supervisorId":1,
+                "reflectionAvailable":this.state.reflectionFlag,
+                "supervisorId":this.state.supervisorId,
                 "isSaved":this.state.saveFlag,
             })
 
@@ -122,6 +125,7 @@ class FeedBack extends React.Component {
                 share:false
             }
         )
+        console.log(this.state)
     }
 
     handleReflectionChange(event){
@@ -147,8 +151,8 @@ class FeedBack extends React.Component {
                 "choices":this.state.choices,
                 "score":this.state.score,
                 "reflection":this.state.reflection,
-                "supervisor_id":1,
-                "reflectionAvailable":true,
+                "supervisor_id":this.state.supervisorId,
+                "reflectionAvailable":this.state.reflectionFlag,
                 "email":this.state.shareEmail,
                 "isSaved":this.state.saveFlag,
 
@@ -173,7 +177,6 @@ class FeedBack extends React.Component {
 
     }
 
-
     handleShare(){
         this.setState(
             {
@@ -181,6 +184,14 @@ class FeedBack extends React.Component {
 
             }
         )
+    }
+
+    checkSupervisor(event){
+        this.setState({supervisorFlag:event.target.checked})
+    }
+
+    checkReflection(event){
+        this.setState({reflectionFlag:event.target.checked})
     }
 
     render() {
@@ -306,7 +317,7 @@ class FeedBack extends React.Component {
                         Successfully saved!
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick = {this.cancelSave} className = "cancelExit">Ok</Button>
+                        <Button onClick = {this.cancelSuccessfulSave} className = "cancelExit">Ok</Button>
                     </Modal.Footer>
                 </Modal>
 
@@ -340,7 +351,10 @@ class FeedBack extends React.Component {
                                         label="Share with the supervisor"
                                         feedbackType="invalid"
                                         feedbackTooltip
+                                        checked={this.state.supervisorFlag}
+                                        onChange={this.checkSupervisor.bind(this)}
                                     />
+
                                 </Form.Group>
 
                                 <Form.Group size="lg" controlId="username">
@@ -350,6 +364,8 @@ class FeedBack extends React.Component {
                                         label="Include my reflection diary in sharing"
                                         feedbackType="invalid"
                                         feedbackTooltip
+                                        checked={this.state.reflectionFlag}
+                                        onChange={this.checkReflection.bind(this)}
                                     />
                                 </Form.Group>
 

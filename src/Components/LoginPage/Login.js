@@ -59,10 +59,6 @@ class Login extends React.Component {
         //     successModal:true
         // })
 
-
-
-
-
         console.log(this.state);
         var dataSent = JSON.stringify({"email": this.state.username,"password": this.state.password});
         this.token = "";
@@ -81,13 +77,7 @@ class Login extends React.Component {
             else{
                 this.token = "";
             }
-            if(this.token == ""){
-                this.setState({
-                        showModal:true
-                    }
-                )
-            }
-            console.log(this.token);
+
             if(this.token==""){
                 this.setState({
                         showModal:true
@@ -99,10 +89,10 @@ class Login extends React.Component {
                     successModal:true
                 })
 
-                if(data["isSupervisor"]=="false"){
+                if(data["isSupervisor"]==false){
                         cookie.save('identity',1)
                 }
-                if(data["isSupervisor"]=="true"){
+                if(data["isSupervisor"]==true){
                         cookie.save('identity',2)
                 }
 
@@ -248,7 +238,8 @@ class Login extends React.Component {
                 >
 
                     <Modal.Body>
-                        Successfully logged in. You will be directed to quiz Page.
+                        {this.state.txt=="quiz"?"Successfully logged in and saved. You will be redirected to quiz Page.":"Successfully logged in. You will be redirected to quiz Page."}
+
                     </Modal.Body>
                     <Modal.Footer>
                         {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
