@@ -29,7 +29,7 @@ class ListQuiz extends React.Component {
 
             this.setState({quizList:data["quizList"]});
             console.log("back");
-            console.log(this.state.quizList);
+
             //data from backend
         }).catch(function(error){
             console.log(error)
@@ -50,12 +50,7 @@ class ListQuiz extends React.Component {
             <div className="listQuizPage">
                 <Row>
                     <Col>
-                        <Link to='/'>
-                            <Button className="backButton"
-                                    size="lg"
-                                    variant="outline-primary"
-                            >Back</Button>
-                        </Link>
+
                     </Col>
                     <Col style={{display:cookie.load('login')=="true"?"block":"none"}}>
                         <Link to='/MyLECs'>

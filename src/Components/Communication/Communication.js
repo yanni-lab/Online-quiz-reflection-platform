@@ -32,7 +32,7 @@ class Communication extends React.Component {
         fetch('http://localhost:8080/quiz/quiz_content',{
             method:'post',
             headers:{"Content-Type":"application/json"},
-            body: JSON.stringify({"quizId": this.state.quizId})//这个要从listQuiz页面传过来
+            body: JSON.stringify({"quizId": this.state.quizId})
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
@@ -55,14 +55,14 @@ class Communication extends React.Component {
                 title:this.quizData["quizTitle"],
                 content:this.quizData["quizBackground"].replace("\\n","\n")
             });
-            // this.setState({content:this.quizData["quizBackground"].replace("\\n","\n")});
+
             console.log(this.state.content);
             //data from backend
         }).catch(function(error){
             console.log(error)
         })
 
-        console.log(this.state.quizId)
+
 
 
 

@@ -179,9 +179,6 @@ class MyLECs extends React.Component {
         }
 
 
-
-
-        console.log(this.state.pages[this.state.active])
     };
 
 
@@ -225,7 +222,7 @@ class MyLECs extends React.Component {
                     <Row>
                         <Col>
                             <Link to={{
-                                pathname:'./supervisor',
+                                pathname:this.state.identity=="1"?'./listQuiz':'./supervisor',
                                 state:{
                                     username: this.state.username
                                 }

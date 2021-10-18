@@ -3,6 +3,7 @@ import {Button,Form,Row,Modal} from "react-bootstrap";
 import "./UpdateAccount.css";
 import { withRouter } from "react-router-dom";
 import LoginLogo from '../images/loginLogo.png';
+import cookie from 'react-cookies'
 
 class UpdateAccount extends React.Component {
     constructor(props){
@@ -11,9 +12,8 @@ class UpdateAccount extends React.Component {
             username: '',
             password: '',
             repassword:'',
-            email:'',
-            isSupervisor:false,
-            showModal:false,
+            email:cookie.load('email'),
+            isSupervisor:cookie.load('identity')=='2'?true:false,
             successModal:false
         };
 
@@ -23,7 +23,6 @@ class UpdateAccount extends React.Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleIsSupervisorChange = this.handleIsSupervisorChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleCancelModal = this.handleCancelModal.bind(this);
         this.handleSuccessCancelModal = this.handleSuccessCancelModal.bind(this);
 
     };
@@ -58,57 +57,52 @@ class UpdateAccount extends React.Component {
     }
 
     handleSubmit(event) {
-        /**console.log(this.state);
+        console.log(this.state);
         var dataSent = JSON.stringify({
+            "userId":cookie.load("userId"),
             "username": this.state.username,
             "password": this.state.password,
-            "email":this.state.email,
+            "email":cookie.load("email"),
             "isSupervisor":this.state.isSupervisor
-            //
+
         });
         event.preventDefault();
-        fetch('http://localhost:8080/user/register',{
+        fetch('http://localhost:8080/user/update_user',{
             method:'post',
             headers:{"Content-Type":"application/json"},
             body:dataSent
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            if (data["token"] != ""){
-                this.token = data["token"].split(":")[1];
-            }
-            else{
-                this.token = "";
-            }
-            if(this.token == ""){
-                this.setState({
-                        showModal:true
-                    }
-                )
-            }
-            else{
-                this.setState({
-                    successModal:true
-                })
-            }
-            console.log(this.token)
+            console.log(data['errorMessage'])
         }).catch(function(error){
             console.log(error)
-        })**/
+        })
         this.setState({successModal:true})
     }
 
-    handleCancelModal(){
-        this.setState({
-            showModal:false
-        })
-    }
 
     handleSuccessCancelModal(){
         this.setState({
             successModal:false,
         })
-        this.props.history.push("./ListQuiz")
+        if(cookie.load("identity")==1){
+            this.props.history.push({
+                pathname: "/listQuiz",
+                state:{
+                    username:this.state.username
+                }
+            })
+        }
+
+        if(cookie.load("identity")==2){
+            this.props.history.push({
+                pathname: "/supervisor",
+                state:{
+                    username:this.state.username
+                }
+            })
+        }
     }
 
 
@@ -120,7 +114,7 @@ class UpdateAccount extends React.Component {
                 <div className="box justify-content-center align-items-center">
 
                     <Form className="registerForm">
-                        <div className="registerlogo">
+                        <div>
                             <img href="/"
                                  src={LoginLogo}
                                  alt="Logo"
@@ -165,7 +159,7 @@ class UpdateAccount extends React.Component {
                                           readOnly={true}
                                           value={this.state.email}
                                           onChange={this.handleEmailChange}
-                                          placeholder="xxx@xxx.com"
+
                             />
                         </Form.Group>
                         <Row>
@@ -173,7 +167,7 @@ class UpdateAccount extends React.Component {
                                 <Form.Check type="checkbox"
                                             label="As supervisor"
                                             value={this.state.handleIsSupervisorChange}
-                                            cheked={this.state.isSupervisor}
+                                            checked={this.state.isSupervisor}
                                             onChange={this.handleIsSupervisorChange}
 
                                 />
@@ -182,9 +176,7 @@ class UpdateAccount extends React.Component {
                         <Row className="update-button-row">
                             <Button className="button"
                                     size="lg"
-                                    // type="submit"
                                     onClick={this.handleSubmit}
-                                // disabled={this.validateForm()}
                             >
                                 Update account
                             </Button>
@@ -195,34 +187,14 @@ class UpdateAccount extends React.Component {
                 </div>
 
 
-                <Modal  show = {this.state.showModal}
-                        onClick =  {this.handleCancelModal}
-                >
 
-                    <Modal.Body>
-                        The email has already been registered. Please use another one.
-                    </Modal.Body>
-                    <Modal.Footer>
-                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
-                        <Button onClick = {this.handleCancelModal} className = "cancelExit">Yes</Button>
-                    </Modal.Footer>
-
-
-                </Modal>
-
-                <Modal  show = {this.state.successModal}
-                        // onClick =  {this.handleSuccessCancelModal}
-                >
-
+                <Modal  show = {this.state.successModal}>
                     <Modal.Body>
                         Successfully updated. You will be directed to quiz Page.
                     </Modal.Body>
                     <Modal.Footer>
-                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
                         <Button onClick = {this.handleSuccessCancelModal} className = "cancelSuccessExit">OK</Button>
                     </Modal.Footer>
-
-
                 </Modal>
 
 
