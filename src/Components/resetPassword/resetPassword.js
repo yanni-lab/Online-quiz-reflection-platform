@@ -12,18 +12,15 @@ class ResetPassword extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            username: '',
+            email: '',
             password: '',
-            showModal: false,
-            successModal:false,
-            txt:this.props.txt
+            confirmPassword:''
         };
 
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handlePassChange = this.handlePassChange.bind(this);
+        this.handleConfirmPassChange = this.handleConfirmPassChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleCancelModal = this.handleCancelModal.bind(this);
-        this.handleSuccessCancelModal = this.handleSuccessCancelModal.bind(this);
         // this.validateForm = this.validateForm.bind(this);
     };
     // validateForm() {
@@ -34,13 +31,19 @@ class ResetPassword extends React.Component {
 
     handleUserChange(evt) {
         this.setState({
-            username: evt.target.value,
+            email: evt.target.value,
         });
     };
 
     handlePassChange(evt) {
         this.setState({
             password: evt.target.value,
+        });
+    }
+
+    handleConfirmPassChange(evt) {
+        this.setState({
+            confirmPassword: evt.target.value,
         });
     }
 
@@ -60,7 +63,7 @@ class ResetPassword extends React.Component {
         // })
 
         console.log(this.state);
-        var dataSent = JSON.stringify({"email": this.state.username,"password": this.state.password});
+        var dataSent = JSON.stringify({"email": this.state.email,"password": this.state.password});
         this.token = "";
         event.preventDefault();
         fetch('http://localhost:8080/user/login',{
@@ -71,36 +74,6 @@ class ResetPassword extends React.Component {
             return response.json()
         }).then((data)=>{
             console.log(data["token"]);
-            if (data["token"] !== ""){
-                this.token = data["token"].split(":")[1];
-            }
-            else{
-                this.token = "";
-            }
-
-            if(this.token===""){
-                this.setState({
-                        showModal:true
-                    }
-                )
-            }
-            else{
-                this.setState({
-                    successModal:true
-                })
-
-                if(data["isSupervisor"]==false){
-                    cookie.save('identity',1)
-                }
-                if(data["isSupervisor"]==true){
-                    cookie.save('identity',2)
-                }
-
-                cookie.save('email',data['email'])
-                cookie.save('username',data["username"])
-                cookie.save('userId',data["userId"])
-                cookie.save('login',true)
-            }
             //data from backend
         }).catch(function(error){
             console.log(error)
@@ -110,55 +83,15 @@ class ResetPassword extends React.Component {
 
     }
 
-    handleCancelModal(){
-        this.setState({
-                showModal:false
-            }
-        )
-    }
 
-    handleSuccessCancelModal(){
-        this.setState({
-            successModal:false,
-        })
-
-        if(this.state.txt=="quiz"){
-            this.props.cancel()
-        }
-
-        else{
-            if(cookie.load("identity")==1){
-                this.props.history.push({
-                    pathname: "/listQuiz",
-                    state:{
-                        username:this.state.username
-                    }
-                })
-            }
-
-            if(cookie.load("identity")==2){
-                this.props.history.push({
-                    pathname: "/supervisor",
-                    state:{
-                        username:this.state.username
-                    }
-                })
-            }
-
-        }
-
-
-
-
-    }
 
 
     render(){
-        document.title = "Login"
+        document.title = "ResetPassword"
         return (
-            <div className="Login">
+            <div className="ResetPassword">
                 <div className="box justify-content-center align-items-center">
-                    <Form className="loginForm"
+                    <Form className="resetPasswordForm"
                         // onSubmit={this.handleSubmit}
                     >
                         <div className="loginlogo">
@@ -171,12 +104,12 @@ class ResetPassword extends React.Component {
                         <div className = "heading">
                             Reset Password
                         </div>
-                        <Form.Group size="lg" controlId="username">
+                        <Form.Group size="lg" controlId="email">
                             <Form.Label className = "label">Email</Form.Label>
                             <Form.Control className = "input"
                                           autoFocus
-                                          type="text"
-                                          value={this.state.username}
+                                          type="email"
+                                          value={this.state.email}
                                           onChange={this.handleUserChange}                            />
                         </Form.Group>
                         <Form.Group size="lg" controlId="password">
@@ -188,18 +121,18 @@ class ResetPassword extends React.Component {
                             />
                         </Form.Group>
 
-                        <Form.Group size="lg" controlId="password">
-                            <Form.Label className = "label">Repeat Password</Form.Label>
+                        <Form.Group size="lg" controlId="comfirmPassword">
+                            <Form.Label className = "label">Confirm Password</Form.Label>
                             <Form.Control className = "input"
                                           type="password"
-                                          value={this.state.password}
-                                          onChange={this.handlePassChange}
+                                          value={this.state.confirmPassword}
+                                          onChange={this.handleConfirmPassChange}
                             />
                         </Form.Group>
 
                         <Row>
                             {/*<Link>*/}
-                            <Button className="loginButton"
+                            <Button className="resetButton"
                                     size="lg"
                                 // type="submit"
                                     onClick = {this.handleSubmit}
