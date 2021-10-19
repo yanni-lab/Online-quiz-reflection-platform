@@ -14,6 +14,7 @@ class ResetPassword extends React.Component {
         this.state = {
             username: '',
             password: '',
+            comfirmPassword:'',
             showModal: false,
             successModal:false,
             txt:this.props.txt
@@ -89,13 +90,6 @@ class ResetPassword extends React.Component {
                     successModal:true
                 })
 
-                if(data["isSupervisor"]==false){
-                    cookie.save('identity',1)
-                }
-                if(data["isSupervisor"]==true){
-                    cookie.save('identity',2)
-                }
-
                 cookie.save('email',data['email'])
                 cookie.save('username',data["username"])
                 cookie.save('userId',data["userId"])
@@ -154,11 +148,11 @@ class ResetPassword extends React.Component {
 
 
     render(){
-        document.title = "Login"
+        document.title = "ResetPassword"
         return (
-            <div className="Login">
+            <div className="ResetPassword">
                 <div className="box justify-content-center align-items-center">
-                    <Form className="loginForm"
+                    <Form className="resetPasswordForm"
                         // onSubmit={this.handleSubmit}
                     >
                         <div className="loginlogo">
@@ -188,11 +182,11 @@ class ResetPassword extends React.Component {
                             />
                         </Form.Group>
 
-                        <Form.Group size="lg" controlId="password">
+                        <Form.Group size="lg" controlId="comfirmPassword">
                             <Form.Label className = "label">Repeat Password</Form.Label>
                             <Form.Control className = "input"
                                           type="password"
-                                          value={this.state.password}
+                                          value={this.state.comfirmPassword}
                                           onChange={this.handlePassChange}
                             />
                         </Form.Group>
