@@ -215,7 +215,7 @@ class Login extends React.Component {
                         </Row>
                         <Row>
                             <Link to='/resetPassword'>
-                                <a href='#'>Lost your password ?</a>
+                            <a href='#'>Lost your password ?</a>
                             </Link>
                         </Row>
                     </Form>
