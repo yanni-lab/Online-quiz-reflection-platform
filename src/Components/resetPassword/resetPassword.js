@@ -14,18 +14,13 @@ class ResetPassword extends React.Component {
         this.state = {
             email: '',
             password: '',
-            confirmPassword:'',
-            showModal: false,
-            successModal:false,
-            txt:this.props.txt
+            confirmPassword:''
         };
 
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handlePassChange = this.handlePassChange.bind(this);
         this.handleConfirmPassChange = this.handleConfirmPassChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleCancelModal = this.handleCancelModal.bind(this);
-        this.handleSuccessCancelModal = this.handleSuccessCancelModal.bind(this);
         // this.validateForm = this.validateForm.bind(this);
     };
     // validateForm() {
@@ -68,7 +63,7 @@ class ResetPassword extends React.Component {
         // })
 
         console.log(this.state);
-        var dataSent = JSON.stringify({"email": this.state.username,"password": this.state.password});
+        var dataSent = JSON.stringify({"email": this.state.email,"password": this.state.password});
         this.token = "";
         event.preventDefault();
         fetch('http://localhost:8080/user/login',{
@@ -79,29 +74,6 @@ class ResetPassword extends React.Component {
             return response.json()
         }).then((data)=>{
             console.log(data["token"]);
-            if (data["token"] !== ""){
-                this.token = data["token"].split(":")[1];
-            }
-            else{
-                this.token = "";
-            }
-
-            if(this.token===""){
-                this.setState({
-                        showModal:true
-                    }
-                )
-            }
-            else{
-                this.setState({
-                    successModal:true
-                })
-
-                cookie.save('email',data['email'])
-                cookie.save('username',data["username"])
-                cookie.save('userId',data["userId"])
-                cookie.save('login',true)
-            }
             //data from backend
         }).catch(function(error){
             console.log(error)
@@ -111,47 +83,7 @@ class ResetPassword extends React.Component {
 
     }
 
-    handleCancelModal(){
-        this.setState({
-                showModal:false
-            }
-        )
-    }
 
-    handleSuccessCancelModal(){
-        this.setState({
-            successModal:false,
-        })
-
-        if(this.state.txt=="quiz"){
-            this.props.cancel()
-        }
-
-        else{
-            if(cookie.load("identity")==1){
-                this.props.history.push({
-                    pathname: "/listQuiz",
-                    state:{
-                        username:this.state.username
-                    }
-                })
-            }
-
-            if(cookie.load("identity")==2){
-                this.props.history.push({
-                    pathname: "/supervisor",
-                    state:{
-                        username:this.state.username
-                    }
-                })
-            }
-
-        }
-
-
-
-
-    }
 
 
     render(){
@@ -193,7 +125,7 @@ class ResetPassword extends React.Component {
                             <Form.Label className = "label">Confirm Password</Form.Label>
                             <Form.Control className = "input"
                                           type="password"
-                                          value={this.state.comfirmPassword}
+                                          value={this.state.confirmPassword}
                                           onChange={this.handleConfirmPassChange}
                             />
                         </Form.Group>
