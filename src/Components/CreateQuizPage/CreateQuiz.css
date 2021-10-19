@@ -109,3 +109,19 @@ a{
     background-color: #e7effc;
     color: black;
 }
+
+.cancelDel{
+    width: 78px;
+}
+
+.ensureDel{
+    width: 78px;
+    background-color: orangered;
+    border: orangered;
+}
+
+.ensureDel:hover{
+    width: 78px;
+    background-color: firebrick;
+    border: orangered;
+}

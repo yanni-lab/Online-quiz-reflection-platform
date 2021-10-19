@@ -99,12 +99,12 @@ class CreateQuiz extends React.Component {
         })
     }
 
-    showEnsureDelete = (index,quiz_id,privateorpublic,event) => {
+    showEnsureDelete = (index,quiz_id,private_or_public,event) => {
         this.setState({
             ensureDeleteShow:true,
             delete_index:index,
             delete_id:quiz_id,
-            pp:privateorpublic
+            pp:private_or_public
         })
     }
 
@@ -116,47 +116,28 @@ class CreateQuiz extends React.Component {
 
     ensureDelete(){
         if(this.state.pp=="public"){
-            this.handleDeletePublic.bind(this,this.state.delete_index,this.state.delete_index)
+            this.setState(state => {
+                state.publicList.splice(this.state.delete_index,1);
+                return state;
+            });
+
         }
         if(this.state.pp=="private"){
-            this.handleDeletePrivate.bind(this,this.state.delete_index,this.state.delete_index)
+            this.setState(state => {
+                state.privateList.splice(this.state.delete_index,1);
+                return state;
+            });
+
         }
 
         this.setState({
             ensureDeleteShow:false
         })
-    }
-
-    handleDeletePrivate = (index,quiz_id,event) => {
-        this.setState(state => {
-            state.privateList.splice(index,1);
-            return state;
-        });
 
         fetch('http://localhost:8080/quiz/delete_quiz',{
             method:'post',
             headers:{"Content-Type":"application/json"},
-            body: JSON.stringify({"quizId": quiz_id})
-        }).then((response)=>{
-            return response.json()
-        }).then((data)=>{
-            console.log(data)
-            //data from backend
-        }).catch(function(error){
-            console.log(error)
-        })
-    }
-
-    handleDeletePublic = (index,quiz_id,event) => {
-        this.setState(state => {
-            state.publicList.splice(index,1);
-            return state;
-        });
-
-        fetch('http://localhost:8080/quiz/delete_quiz',{
-            method:'post',
-            headers:{"Content-Type":"application/json"},
-            body: JSON.stringify({"quizId": quiz_id})
+            body: JSON.stringify({"quizId": this.state.delete_id})
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
@@ -237,7 +218,6 @@ class CreateQuiz extends React.Component {
                                             </Link>
                                             <Button className = "delete-quiz-button"
                                                     onClick={this.showEnsureDelete.bind(this,index,quiz.quiz_id,"public")}
-                                                    // onClick={this.handleDeletePublic.bind(this,index,quiz.quiz_id)}
                                             >
                                                 X
                                             </Button>
@@ -284,8 +264,7 @@ class CreateQuiz extends React.Component {
                                                     </Button>
                                                 </Link>
                                                 <Button className = "delete-quiz-button"
-                                                        onClick={this.showEnsureDelete.bind(this,index,quiz.quiz_id,"public")}
-                                                        // onClick={this.handleDeletePrivate.bind(this,index,quiz.quiz_id)}
+                                                        onClick={this.showEnsureDelete.bind(this,index,quiz.quiz_id,"private")}
                                                 >
                                                     X
                                                 </Button>
@@ -303,18 +282,18 @@ class CreateQuiz extends React.Component {
                 </Row>
 
                 <Modal  show = {this.state.ensureDeleteShow}>
-                    <Modal.Body>
+                    <Modal.Body className="modal-body">
                         Are you sure you want to delete this quiz?
                     </Modal.Body>
                     <Modal.Footer>
                         <Row>
                             <Col>
-                                <Button onClick = {this.cancelDelete.bind(this)} className = "cancelSuccessExit">
+                                <Button onClick = {this.cancelDelete.bind(this)} className = "cancelDel">
                                     Cancel
                                 </Button>
                             </Col>
                             <Col>
-                                <Button onClick = {this.ensureDelete.bind(this)} className = "cancelSuccessExit">
+                                <Button onClick = {this.ensureDelete.bind(this)} className = "ensureDel">
                                     Yes
                                 </Button>
                             </Col>
