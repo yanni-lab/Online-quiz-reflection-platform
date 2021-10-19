@@ -1,5 +1,6 @@
 import Home from './Components/HomePage/Home';
 import Login from './Components/LoginPage/Login';
+import ResetPassword from './Components/resetPassword/resetPassword';
 import Register from './Components/RegisterPage/Register';
 import UpdateAccount from './Components/UpdateAccountPage/UpdateAccount';
 import ListQuiz from './Components/ListQuizPage/listQuiz';
@@ -133,6 +134,7 @@ class App extends React.Component{
                 <div className="App-container">
                     <Switch>
                         <Route path='/login' component={Login}/>)}/>
+                        <Route path='/resetPassword' component={ResetPassword}/>)}/>
                         <Route path='/register' component={RegisterPage}/>
                         <Route path='/updateAccount' component={UpdateAccount}/>
                         <Route path='/listQuiz' render={(props) => (<ListQuiz login={this.state.login} username={this.state.username} {...props}/>)}/>
