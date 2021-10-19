@@ -14,7 +14,7 @@ class ResetPassword extends React.Component {
         this.state = {
             email: '',
             password: '',
-            comfirmPassword:'',
+            confirmPassword:'',
             showModal: false,
             successModal:false,
             txt:this.props.txt
@@ -22,6 +22,7 @@ class ResetPassword extends React.Component {
 
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handlePassChange = this.handlePassChange.bind(this);
+        this.handleConfirmPassChange = this.handleConfirmPassChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancelModal = this.handleCancelModal.bind(this);
         this.handleSuccessCancelModal = this.handleSuccessCancelModal.bind(this);
@@ -42,6 +43,12 @@ class ResetPassword extends React.Component {
     handlePassChange(evt) {
         this.setState({
             password: evt.target.value,
+        });
+    }
+
+    handleConfirmPassChange(evt) {
+        this.setState({
+            confirmPassword: evt.target.value,
         });
     }
 
@@ -165,12 +172,12 @@ class ResetPassword extends React.Component {
                         <div className = "heading">
                             Reset Password
                         </div>
-                        <Form.Group size="lg" controlId="username">
+                        <Form.Group size="lg" controlId="email">
                             <Form.Label className = "label">Email</Form.Label>
                             <Form.Control className = "input"
                                           autoFocus
-                                          type="text"
-                                          value={this.state.username}
+                                          type="email"
+                                          value={this.state.email}
                                           onChange={this.handleUserChange}                            />
                         </Form.Group>
                         <Form.Group size="lg" controlId="password">
@@ -187,7 +194,7 @@ class ResetPassword extends React.Component {
                             <Form.Control className = "input"
                                           type="password"
                                           value={this.state.comfirmPassword}
-                                          onChange={this.handlePassChange}
+                                          onChange={this.handleConfirmPassChange}
                             />
                         </Form.Group>
 
