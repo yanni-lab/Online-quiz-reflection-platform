@@ -12,6 +12,7 @@
         <result column="attempt_times" property="numberOfAttempt" jdbcType="INTEGER"/>
         <result column="score" property="score" jdbcType="INTEGER"/>
         <result column="reflection" property="reflection" jdbcType="VARCHAR"/>
+        <result column="reflection_available" property="reflectionAvailable" jdbcType="VARCHAR"/>
         <result column="reflection_time" property="attemptTime" jdbcType="TIMESTAMP"/>
         <result column="supervisor_id" property="supervisorId" jdbcType="INTEGER"/>
 

@@ -51,7 +51,7 @@ public class ResultController {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ObjectNode node = objectMapper.createObjectNode();
         JSONObject receivedData = new JSONObject(data);
-
+        System.out.println(data);
         QuizResult result = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), QuizResult.class);
         if (receivedData.getBoolean("isSaved")) {
             log.info("Result has already saved with attemptId: " + result.getAttemptId());
@@ -81,19 +81,21 @@ public class ResultController {
         String email = receivedData.getString("email");
 
         QuizResult result = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), QuizResult.class);
+        //TODO Edit email
+
+        //emailAddr, Title, Content
+        emailService.sendMail(email,"Berry Street Quiz Result", result);
 
         if (receivedData.getBoolean("isSaved")) {
             log.info("Result has already saved with attemptId: " + result.getAttemptId());
             resultService.updateShareWithSupervisor(result);
             node.put("errorCode", "00000");
             node.put("errorMessage", "Success");
-            //TODO Edit email
 
-            //emailAddr, Title, Content
-//        emailService.sendMail("email","Berry Street Quiz Result", "Here is your quiz result");
+
             return node;
         }
-
+        System.out.println(result);
         int attemptId = resultService.saveResult(result);
         node.put("attemptId", attemptId);
 
@@ -155,6 +157,7 @@ public class ResultController {
         int attemptId = receivedData.getInt("attemptId");
 
         QuizResult result = resultService.getResultContent(attemptId);
+
         ObjectNode node = objectMapper.convertValue(result, ObjectNode.class);
 
         node.put("feedback", resultService.getFeedbackContent(result.getQuizId(), result.getScore()));
@@ -162,17 +165,27 @@ public class ResultController {
         ArrayList<HashMap> choices = new ArrayList<>();
 
         ArrayList<Question> questionList = quizService.getQuestionList(result.getQuizId());
+
         for (int i = 0; i < result.getChoices().length; i++) {
             Question q = questionList.get(i);
-            QuestionChoice c = q.getChoices().get(result.getChoices()[i]);
+            QuestionChoice c = q.getChoices().get(0);
+            for (QuestionChoice j:q.getChoices()){
+                if (j.getChoiceId() == result.getChoices()[i]){
+                    c = j;
+                    break;
+                }
+            }
+            QuestionChoice finalC = c;
             choices.add(new HashMap<String, String>() {{
                             put("question", q.getQuestion());
-                            put("choice", c.getChoice());
+                            put("choice", finalC.getChoice());
                         }}
             );
         }
 
         node.set("choices", objectMapper.convertValue(choices, ArrayNode.class));
+
+        System.out.println(node);
 
         node = objectMapper.readTree(DataProcessing.addLineSeparator(objectMapper.writeValueAsString(node))).deepCopy();
 

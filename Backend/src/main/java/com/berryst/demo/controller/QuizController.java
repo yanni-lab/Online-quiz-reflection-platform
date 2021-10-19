@@ -62,7 +62,6 @@ public class QuizController {
                 true
         );
         Quiz thequiz = quizService.getQuizContent(quizId);
-
         ObjectNode node = objectMapper.readTree(DataProcessing.addLineSeparator(objectMapper.writeValueAsString(thequiz))).deepCopy();
 
         log.info("Successfully retrieved quiz content - quizId: " + quizId);
@@ -194,7 +193,6 @@ public class QuizController {
             feedbackCount++;
         }
         log.info("Receive set quiz request - quizId: " + quiz.getQuizId());
-
         int newQuizId = quizService.setQuiz(quiz);
         node.put("errorCode", "00000");
         node.put("errorMessage", "Success");

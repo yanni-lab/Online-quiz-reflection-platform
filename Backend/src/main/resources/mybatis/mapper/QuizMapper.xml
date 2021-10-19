@@ -9,6 +9,7 @@
         <id column="quiz_id" property="quizId" jdbcType="INTEGER"/>
         <result column="quiz_title" property="quizTitle" jdbcType="VARCHAR"/>
         <result column="quiz_background" property="quizBackground" jdbcType="VARCHAR"/>
+        <result column="created_by" property="supervisorId" jdbcType="INTEGER"/>
         <result column="is_public" property="isPublic" jdbcType="BOOLEAN"/>
     </resultMap>
 
@@ -42,7 +43,7 @@
     </select>
 
     <select id="getQuizContent" parameterType="int" resultMap="Quiz">
-        select quiz_id, quiz_title, quiz_background, is_public
+        select quiz_id, quiz_title, quiz_background, created_by, is_public
         from quiz
         where quiz_id = #{quizId}
     </select>
