@@ -1,14 +1,14 @@
 import React from "react";
 import {Button,Form,Row,Modal} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./Login.css";
+import "./resetPassword.css";
 import {Link} from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import LoginLogo from '../images/loginLogo.png';
 import cookie from 'react-cookies'
 
 
-class Login extends React.Component {
+class ResetPassword extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -90,10 +90,10 @@ class Login extends React.Component {
                 })
 
                 if(data["isSupervisor"]==false){
-                        cookie.save('identity',1)
+                    cookie.save('identity',1)
                 }
                 if(data["isSupervisor"]==true){
-                        cookie.save('identity',2)
+                    cookie.save('identity',2)
                 }
 
                 cookie.save('email',data['email'])
@@ -159,7 +159,7 @@ class Login extends React.Component {
             <div className="Login">
                 <div className="box justify-content-center align-items-center">
                     <Form className="loginForm"
-                          // onSubmit={this.handleSubmit}
+                        // onSubmit={this.handleSubmit}
                     >
                         <div className="loginlogo">
                             <img href="/"
@@ -169,7 +169,7 @@ class Login extends React.Component {
                             />
                         </div>
                         <div className = "heading">
-                            Login
+                            Reset Password
                         </div>
                         <Form.Group size="lg" controlId="username">
                             <Form.Label className = "label">Email</Form.Label>
@@ -188,36 +188,29 @@ class Login extends React.Component {
                             />
                         </Form.Group>
 
+                        <Form.Group size="lg" controlId="password">
+                            <Form.Label className = "label">Repeat Password</Form.Label>
+                            <Form.Control className = "input"
+                                          type="password"
+                                          value={this.state.password}
+                                          onChange={this.handlePassChange}
+                            />
+                        </Form.Group>
+
                         <Row>
                             {/*<Link>*/}
                             <Button className="loginButton"
                                     size="lg"
-                                    // type="submit"
+                                // type="submit"
                                     onClick = {this.handleSubmit}
                                 // disabled={this.validateForm()}
                             >
-                                Login
+                                Update Password
                             </Button>
                             {/*</Link>*/}
 
                         </Row>
 
-                        <Row>
-                            <Link to='/register'>
-                                <Button className="loginButton"
-                                        size="lg"
-                                        // type="submit"
-                                    // disabled={this.validateForm()}
-                                >
-                                    Create Account
-                                </Button>
-                            </Link>
-                        </Row>
-                        <Row>
-                            <Link to='/resetPassword'>
-                                <a href='#'>Lost your password ?</a>
-                            </Link>
-                        </Row>
                     </Form>
                 </div>
 
@@ -237,7 +230,7 @@ class Login extends React.Component {
                 </Modal>
 
                 <Modal  show = {this.state.successModal}
-                        // onClick =  {this.handleSuccessCancelModal}
+                    // onClick =  {this.handleSuccessCancelModal}
                 >
 
                     <Modal.Body>
@@ -258,4 +251,4 @@ class Login extends React.Component {
 }
 
 
-export default withRouter(Login)
+export default withRouter(ResetPassword)
