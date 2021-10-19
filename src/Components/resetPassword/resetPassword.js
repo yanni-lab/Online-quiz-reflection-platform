@@ -12,7 +12,7 @@ class ResetPassword extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            username: '',
+            email: '',
             password: '',
             comfirmPassword:'',
             showModal: false,
@@ -35,7 +35,7 @@ class ResetPassword extends React.Component {
 
     handleUserChange(evt) {
         this.setState({
-            username: evt.target.value,
+            email: evt.target.value,
         });
     };
 
@@ -183,7 +183,7 @@ class ResetPassword extends React.Component {
                         </Form.Group>
 
                         <Form.Group size="lg" controlId="comfirmPassword">
-                            <Form.Label className = "label">Repeat Password</Form.Label>
+                            <Form.Label className = "label">Confirm Password</Form.Label>
                             <Form.Control className = "input"
                                           type="password"
                                           value={this.state.comfirmPassword}
@@ -193,7 +193,7 @@ class ResetPassword extends React.Component {
 
                         <Row>
                             {/*<Link>*/}
-                            <Button className="loginButton"
+                            <Button className="resetButton"
                                     size="lg"
                                 // type="submit"
                                     onClick = {this.handleSubmit}
