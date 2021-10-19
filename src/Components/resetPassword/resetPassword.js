@@ -30,7 +30,7 @@ class ResetPassword extends React.Component {
 
     handleUserChange(evt) {
         this.setState({
-            user: evt.target.value,
+            username: evt.target.value,
         });
     };
     handleEmailChange(evt) {
