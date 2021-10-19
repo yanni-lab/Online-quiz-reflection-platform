@@ -6,8 +6,6 @@ import {Link} from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import LoginLogo from '../images/loginLogo.png';
 import cookie from 'react-cookies';
-//import { Formik } from 'formik';
-import Alert from './Alert';
 
 class ResetPassword extends React.Component {
     constructor(props){
@@ -17,13 +15,18 @@ class ResetPassword extends React.Component {
             email: '',
             password: '',
             confirmPassword:'',
-            passChangeSuccess: false
+            passChangeSuccess: false,
+            show: false
+
         };
 
         this.handleUserChange = this.handleUserChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePassChange = this.handlePassChange.bind(this);
         this.handleConfirmPassChange = this.handleConfirmPassChange.bind(this);
+        this.changePassword = this.changePassword.bind(this);
+        this.handleclose = this.handleclose.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         // this.validateForm = this.validateForm.bind(this);
     };
@@ -35,7 +38,7 @@ class ResetPassword extends React.Component {
 
     handleUserChange(evt) {
         this.setState({
-            user: evt.target.value,
+            username: evt.target.value,
         });
     };
     handleEmailChange(evt) {
@@ -56,6 +59,23 @@ class ResetPassword extends React.Component {
         });
     }
 
+    changePassword(){
+        this.setState({
+            passChangeSuccess: true,
+        })
+    }
+
+    handleclose() {
+        this.setState({
+            show: false,
+        })
+    }
+
+    handleOpen(){
+        this.setState({
+            show: true,
+        })
+    }
     handleSubmit(event) {
 
         console.log(this.state);
@@ -81,22 +101,6 @@ class ResetPassword extends React.Component {
 
     }
 
-    renderModal = () => {
-        const onClick = () => {
-            this.setState(() => ({ passChangeSuccess: false }))
-        }
-
-        return (
-            <Alert
-                isOpen={this.state.passChangeSuccess}
-                onClose={this._handleClose}
-                handleSubmit={onClick}
-                title="Password Reset"
-                text="Your password was changed successfully"
-                submitButtonText="Done"
-            />
-        )
-    }
 
 
     render(){
@@ -155,14 +159,25 @@ class ResetPassword extends React.Component {
 
                             <Button className="resetButton"
                                     size="lg"
-                                    onClick = {this.handleSubmit}
+                                    onClick = {this.handleSubmit && this.handleOpen}
                             >
                                 Update Password
                             </Button>
                         </Row>
-
                     </Form>
-                    {this.renderModal()}
+
+                    <Modal show={this.state.show} >
+                        <Modal.Header >
+                            <Modal.Title>Reset Password</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Woohoo, you're updating password!</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={this.handleclose}>
+                                Close
+                            </Button>
+
+                        </Modal.Footer>
+                    </Modal>
                 </div>
             </div>
         );
