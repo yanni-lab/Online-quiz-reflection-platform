@@ -5,13 +5,21 @@
     padding: 20px 0 20px 0;
     border-radius: 5px;
     box-shadow: 5px 5px #ddd;
-    min-height: 600px;
+    min-height: 624px;
+    background-color:#FFFCF9;
 }
 
 .backButton {
-
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color:#1198AB;
+    border:#1198AB 2px solid;
     margin-left: 50px;
     margin-top: 30px;
+}
+
+.backButton:hover{
+    background-color: #1198AB;
+    border:#1198AB 2px solid;
 }
 
 
@@ -22,6 +30,12 @@
     margin-top: 10px;
     font-weight: bold;
     border:None;
+    color:#1198AB;
+    padding: 0 16px;
+}
+
+.formerButton:hover{
+    background-color: #1198AB;
 }
 
 .nextButton {
@@ -32,6 +46,13 @@
     margin-right: 100px;
     border:None;
     float:right;
+    color:#1198AB;
+    padding: 0 16px;
+}
+
+
+.nextButton:hover{
+    background-color: #1198AB;
 }
 
 
@@ -41,28 +62,39 @@
 }
 
 .optionButton {
-    width: 400px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    width: 420px;
+    padding: 10px 25px;
+    border: #FFFCF9 2px solid;
+    background-color: #E5F4F6;
+    color: black;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 1.1rem;
+}
+
+.optionButton:focus{
+    /*border: #FFFCF9 2px solid;*/
+    background-color: #1198AB;
+    color: white;
+}
+
+.optionButton:hover{
+    border: #7DC2C7 2px solid!important;
 }
 
 
-
-.quizPage{
-    background-color: white;
-}
 
 .question{
     padding: 20px 10px 30px 10px ;
     text-align: center;
     color: black;
     font-size: 30px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
 .quizForm{
     padding: 30px 10px 30px 10px ;
     text-align: center;
-
+    min-height: 419px;
 
 }
 
@@ -70,7 +102,15 @@
     padding: 20px 30px 20px 30px;
     margin: 60px 0;
     font-size: 20px;
+    background-color: #1198AB;
+    border: #1198AB;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 
+}
+
+.seeFeedback:hover{
+
+    background-color: #1180AB;
 }
 
 .Quiz .modal-body{
@@ -78,10 +118,7 @@
     font-size: 20px;
 }
 
-.modal-content{
-    margin-top: 300px;
 
-}
 
 .modal-footer{
     justify-content: space-evenly;
@@ -96,6 +133,8 @@
 .cancelExit{
     padding: 5px 25px;
 }
+
+
 
 
 

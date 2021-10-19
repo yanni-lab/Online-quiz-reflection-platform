@@ -62,7 +62,9 @@ class ListQuiz extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <div className="myQuiz">My Quizzes</div>
+                    <Col></Col>
+                    <Col><div className="myQuiz">My Quizzes</div></Col>
+                    <Col></Col>
                 </Row>
                 <Row className="quizName">
 

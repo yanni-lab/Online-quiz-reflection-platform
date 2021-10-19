@@ -6,27 +6,20 @@ import { withRouter } from "react-router-dom";
 import data from "../../data/quiz_content.json"
 
 
-
 class Communication extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             quizId:props.location.state.quizId,
             title: data.quizTitle,
-            content: data.quizBackground
+            content: data.quizBackground,
+            quizList: data.questions,
+            supervisorId: 0,
+            quesNum: data.questions.length,
+            feedback: data.feedback
         };
 
-        this.quizList = data.questions;
-        this.supervisorId = 0;
-        this.quesNum = this.quizList.length;
-        this.quizList.push(
-            {
-                "question":'Congrats! You have reached the end!',
-                "choices": [
-                ]
-            }
-        );
-        this.feedback = data.feedback
+
 
 
         fetch('http://localhost:8080/quiz/quiz_content',{
@@ -36,33 +29,22 @@ class Communication extends React.Component {
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            this.quizData = data;
-            console.log(this.quizData);
-            this.feedback = this.quizData["feedback"];
-            this.quizList = this.quizData["questions"];
-            this.quesNum = this.quizList.length;
-            this.supervisorId = this.quizData.supervisorId
-            console.log(this.quesNum);
-            this.quizList.push(
-                {
-                    "question":'Congrats! You have reached the end!',
-                    "choices": [
-                    ]
-                }
-            );
+
 
             this.setState({
-                title:this.quizData["quizTitle"],
-                content:this.quizData["quizBackground"].replace("\\n","\n")
+                title:data["quizTitle"],
+                content:data["quizBackground"].replace("\\n","\n"),
+                feedback:data["feedback"],
+                quizList:data["questions"],
+                quesNum:data["questions"].length,
+                supervisorId:data["supervisorId"]
+
             });
 
-            console.log(this.state.content);
             //data from backend
         }).catch(function(error){
             console.log(error)
         })
-
-
 
 
 
@@ -86,22 +68,26 @@ class Communication extends React.Component {
 
                 </Row>
 
-                <form>
+                <form className="communication-form">
                     <div>
                         <div className="text-container"><span className="title">{this.state.title}</span></div>
                         <div className="text-container"><span className="sub-title">Overview</span></div>
                         <div className="text-container"><span style={{"white-space": "pre-line"}} className="content">{this.state.content}</span></div>
                     </div>
 
-                    <div className="box">
+                    <div className="start-box">
                         <Link to={{pathname: "/quiz",
                             state:{
                                 quizId:this.state.quizId,
-                                quizList:this.quizList,
-                                feedback: this.feedback,
-                                quesNum:this.quesNum,
-                                supervisorId:this.supervisorId
-                            }
+                                quizList:this.state.quizList.concat([{
+                                    "question":'Congrats! You have reached the end!',
+                                    "choices": [
+                                    ]
+                                }]),
+
+                                feedback: this.state.feedback,
+                                quesNum:this.state.quesNum,
+                                supervisorId:this.state.supervisorId}
                             }}>
                             <Button className = "start-btn">Start this quiz !</Button>
                         </Link>
