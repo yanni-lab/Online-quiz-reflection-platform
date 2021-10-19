@@ -289,8 +289,8 @@ class FeedBack extends React.Component {
                         Are you sure you want to exit the quiz? (Have you saved / shared ?)
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button href = "./listQuiz" className = "ensureExit">Yes</Button>
-                        <Button onClick = {this.cancelLeaveQuiz} className = "cancelExit">No</Button>
+                        <Button href = "./listQuiz" className = "feedbackFormButton">Yes</Button>
+                        <Button onClick = {this.cancelLeaveQuiz} className = "feedbackFormButton">No</Button>
                     </Modal.Footer>
 
 

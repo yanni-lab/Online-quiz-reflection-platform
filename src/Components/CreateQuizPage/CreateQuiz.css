@@ -9,31 +9,42 @@
     margin-top: 50px;
     width:160px;
     color: black;
-    background-color: palegoldenrod;
+    background-color: #FBDE91;
     border: none;
+
+}
+
+.createQuizButton:hover{
+    background-color: palegoldenrod;
+    color: black;
+    border: none;
+
 }
 
 
 
 .transform-button{
-    padding: 5px 20px
+    padding: 5px 20px;
+
 }
 
 .edit-button{
     float: left;
     margin-top: 24%;
-    padding:5px 18px
+    padding:5px 18px;
+
 }
 
 .delete-quiz-button{
     float: right;
     margin-top: 24%;
-    padding: 5px 18px
+    padding: 5px 18px;
+
 }
 
 
 .createQuizPage{
-    background-color: white;
+    background-color:#FFFCF9;
     width: 90%;
     margin: 50px 5%;
     padding: 20px 0 40px 0;
@@ -41,17 +52,22 @@
     box-shadow: 5px 5px #ddd;
     min-height: 550px;
     height: auto;
-    position: absolute;
-
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 
 }
 
+.createQuizPage .header{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-weight: bold;
+}
 
-.myQuiz{
+
+.createQuizPage .myQuiz{
     margin-left: 50px;
     margin-top: 40px;
-    font-family: "Arial Black", sans-serif;
-    font-size: 1.8em;
+    font-weight: bold;
+
+    font-size: 2em;
 }
 
 .button-onfocus{
@@ -59,7 +75,15 @@
     height:120px;
     padding: 10px;
     position: absolute;
+}
 
+.button-onfocus button{
+    background-color: #1198AB;
+    border: #1198AB;
+}
+
+.button-onfocus button:hover{
+    background-color: #1180AB;
 }
 
 .createQuizPage .QuizZone{
@@ -67,11 +91,12 @@
     margin: 40px;
     height:120px;
     padding: 30px;
-    background-color: #e7effc;
+    background-color: #E5F4F6;
 
     color: black;
     border: 0;
     font-size: 22px;
+    font-weight: bold;
 
     display: inline-flex;
     flex-direction:column;
@@ -80,7 +105,7 @@
 }
 
 .quizName{
-    font-family: "Arial Black", sans-serif;
+
     font-size: 1.5em;
     width:100%
 }
@@ -106,7 +131,7 @@ a{
 }
 
 .createQuizPage .QuizZone:hover{
-    background-color: #e7effc;
+    background-color: #E5F4F6;
     color: black;
 }
 

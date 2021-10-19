@@ -284,7 +284,7 @@ class MyLECs extends React.Component {
 
                                                     }
                                                 }}>
-                                                    <Button>
+                                                    <Button className="view-lec-btn">
                                                         View
                                                     </Button>
                                                 </Link>

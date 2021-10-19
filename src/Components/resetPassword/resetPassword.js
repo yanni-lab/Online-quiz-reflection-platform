@@ -2,12 +2,10 @@ import React from "react";
 import {Button,Form,Row,Modal} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./resetPassword.css";
-import {Link} from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import LoginLogo from '../images/loginLogo.png';
-import cookie from 'react-cookies';
-//import { Formik } from 'formik';
-import Alert from './Alert';
+
+
 
 class ResetPassword extends React.Component {
     constructor(props){
@@ -17,7 +15,8 @@ class ResetPassword extends React.Component {
             email: '',
             password: '',
             confirmPassword:'',
-            passChangeSuccess: false
+            passChangeSuccess: false,
+            passChangeFail:false
         };
 
         this.handleUserChange = this.handleUserChange.bind(this);
@@ -25,13 +24,9 @@ class ResetPassword extends React.Component {
         this.handlePassChange = this.handlePassChange.bind(this);
         this.handleConfirmPassChange = this.handleConfirmPassChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.validateForm = this.validateForm.bind(this);
+
     };
-    // validateForm() {
-    //     return !this.state.username ||
-    //         ! this.state.password ||
-    //         || !this.state.repassword.length > 0;
-    // }
+
 
     handleUserChange(evt) {
         this.setState({
@@ -73,7 +68,18 @@ class ResetPassword extends React.Component {
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            console.log(data["token"]);
+            if(data["errorCode"]=="00000"){
+                this.setState({
+                    passChangeSuccess:true
+                })
+            }
+            else{
+                this.setState({
+                    passChangeFail:true
+                })
+            }
+
+
             //data from backend
         }).catch(function(error){
             console.log(error)
@@ -81,23 +87,20 @@ class ResetPassword extends React.Component {
 
     }
 
-    renderModal = () => {
-        const onClick = () => {
-            this.setState(() => ({ passChangeSuccess: false }))
-        }
-
-        return (
-            <Alert
-                isOpen={this.state.passChangeSuccess}
-                onClose={this._handleClose}
-                handleSubmit={onClick}
-                title="Password Reset"
-                text="Your password was changed successfully"
-                submitButtonText="Done"
-            />
-        )
+    handleSuccessCancelModal(){
+        this.props.history.push({
+            pathname: "/login",
+        })
+        this.setState({
+            passChangeSuccess:false
+        })
     }
 
+    handleCancelModal(){
+        this.setState({
+            passChangeFail:false
+        })
+    }
 
     render(){
         document.title = "ResetPassword"
@@ -122,6 +125,7 @@ class ResetPassword extends React.Component {
                             <Form.Control className = "input"
                                           autoFocus
                                           type="text"
+                                          placeHolder="Username"
                                           value={this.state.username}
                                           onChange={this.handleUserChange}                            />
                         </Form.Group>
@@ -130,6 +134,7 @@ class ResetPassword extends React.Component {
                             <Form.Control className = "input"
                                           autoFocus
                                           type="email"
+                                          placeHolder="xxx@xxx.com"
                                           value={this.state.email}
                                           onChange={this.handleEmailChange}                            />
                         </Form.Group>
@@ -137,6 +142,7 @@ class ResetPassword extends React.Component {
                             <Form.Label className = "label">Password</Form.Label>
                             <Form.Control className = "input"
                                           type="password"
+                                          placeHolder="****"
                                           value={this.state.password}
                                           onChange={this.handlePassChange}
                             />
@@ -146,6 +152,7 @@ class ResetPassword extends React.Component {
                             <Form.Label className = "label">Confirm Password</Form.Label>
                             <Form.Control className = "input"
                                           type="password"
+                                          placeHolder="****"
                                           value={this.state.confirmPassword}
                                           onChange={this.handleConfirmPassChange}
                             />
@@ -162,8 +169,32 @@ class ResetPassword extends React.Component {
                         </Row>
 
                     </Form>
-                    {this.renderModal()}
+
                 </div>
+
+                <Modal  show = {this.state.passChangeSuccess}>
+
+                    <Modal.Body>
+                        Reset password successfully! You will be redirected to the login page.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick = {this.handleSuccessCancelModal.bind(this)} className = "cancelSuccessExit">OK</Button>
+                    </Modal.Footer>
+
+
+                </Modal>
+
+                <Modal  show = {this.state.passChangeFail}>
+
+                    <Modal.Body>
+                        Reset password fail. Please check the email and username again.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick = {this.handleCancelModal.bind(this)} className = "cancelSuccessExit">OK</Button>
+                    </Modal.Footer>
+
+
+                </Modal>
             </div>
         );
     }
