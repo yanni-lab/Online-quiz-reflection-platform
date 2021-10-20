@@ -4,6 +4,9 @@ import './SupervisorDashboard.css';
 import {Row, Col, Button, CardGroup,Card} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import supervisor from "../images/supervisor.png";
+import quizIcon from "../images/question.png";
+import commentIcon from "../images/comment.png";
+import lecIcon from "../images/lec.png";
 import cookie from 'react-cookies'
 
 class SupervisorDashboard extends React.Component {
@@ -33,7 +36,7 @@ class SupervisorDashboard extends React.Component {
                         <Row className="roleContent">
                             <CardGroup>
                                 <Card className="cardRole">
-                                    <Card.Img className="supervisor-img" variant="top" src={supervisor}/>
+                                    <Card.Img className="supervisor-dashboard-img" variant="top" src={quizIcon}/>
                                     <Card.Body>
                                         <Card.Title>My Quizzes</Card.Title>
                                     </Card.Body>
@@ -52,7 +55,7 @@ class SupervisorDashboard extends React.Component {
                                     </Card.Footer>
                                 </Card>
                                 <Card className="cardRole">
-                                    <Card.Img className="supervisor-img" variant="top" src={supervisor} />
+                                    <Card.Img className="supervisor-dashboard-img" variant="top" src={lecIcon} />
                                     <Card.Body>
                                         <Card.Title>My LECs</Card.Title>
                                     </Card.Body>
@@ -72,7 +75,7 @@ class SupervisorDashboard extends React.Component {
                                     </Card.Footer>
                                 </Card>
                                 <Card className="cardRole">
-                                    <Card.Img className="supervisor-img" variant="top" src={supervisor} />
+                                    <Card.Img className="supervisor-dashboard-img" variant="top" src={commentIcon} />
                                     <Card.Body>
                                         <Card.Title>User Experience Comments</Card.Title>
                                     </Card.Body>
