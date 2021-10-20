@@ -18,7 +18,7 @@ class EditQuiz extends React.Component {
             flag:1,
             title: "",
             overview:"",
-            quizId:props.location.state.quizId,
+            quizId:props.location.state.quiz_id,
             questions:[
                 {
                     "question": "",
