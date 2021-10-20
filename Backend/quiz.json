@@ -1,0 +1,97 @@
+{
+  "quizId": 2,
+  "quizTitle": "Leadership",
+  "quizBackground": "What is your leadership style? This quiz will help you to identify the style that you naturally lean toward, and introduce you to alternative approaches that you might find it helpful to develop, and the occasions when they may be appropriate.",
+  "supervisorId": 0,
+  "questions": [
+    {
+      "questionId": 6,
+      "question": "If there is serious conflict within my team...",
+      "choices": [
+        {
+          "choiceId": 18,
+          "score": 1,
+          "choice": "I remind everyone that we have goals to meet",
+          "questionId": 0,
+          "questionChoiceOrder": 1
+        },
+        {
+          "choiceId": 19,
+          "score": 3,
+          "choice": "I bring my people together so that we can talk it through",
+          "questionId": 0,
+          "questionChoiceOrder": 2
+        },
+        {
+          "choiceId": 20,
+          "score": 4,
+          "choice": "I let them work by themselves so that they don't have to bother one another",
+          "questionId": 0,
+          "questionChoiceOrder": 3
+        }
+      ],
+      "quizId": 0,
+      "questionOrder": 1
+    },
+    {
+      "questionId": 7,
+      "question": "I trust my team members...",
+      "choices": [
+        {
+          "choiceId": 21,
+          "score": 1,
+          "choice": "Very much",
+          "questionId": 0,
+          "questionChoiceOrder": 1
+        },
+        {
+          "choiceId": 22,
+          "score": 3,
+          "choice": "A fair amount",
+          "questionId": 0,
+          "questionChoiceOrder": 2
+        },
+        {
+          "choiceId": 23,
+          "score": 4,
+          "choice": "Not at all",
+          "questionId": 0,
+          "questionChoiceOrder": 3
+        }
+      ],
+      "quizId": 0,
+      "questionOrder": 2
+    },
+    {
+      "questionId": 8,
+      "question": "The best way for me to ensure that my team meets its goals is to...",
+      "choices": [
+        {
+          "choiceId": 24,
+          "score": 1,
+          "choice": "Lead from the front",
+          "questionId": 0,
+          "questionChoiceOrder": 1
+        },
+        {
+          "choiceId": 25,
+          "score": 3,
+          "choice": "Encourage participation from everyone",
+          "questionId": 0,
+          "questionChoiceOrder": 2
+        },
+        {
+          "choiceId": 26,
+          "score": 4,
+          "choice": "Delegate often and widely",
+          "questionId": 0,
+          "questionChoiceOrder": 3
+        }
+      ],
+      "quizId": 0,
+      "questionOrder": 3
+    }
+  ],
+  "feedback": "{\"1-8\":\"You most commonly adopt an authoritarian or autocratic leadership style. You rarely consult your team members and, instead, tend to tell them what you want, when you want it, and how you want it done.\\n This style works well in a crisis, when a task must be completed quickly. However, you will likely demoralize, demotivate and aggravate people if you use it all the time. This can translate into high absenteeism and turnover rates. You will also miss out on a wealth of ideas, thereby stifling innovation and creativity.\",\"9-16\":\"You lean toward a democratic or participative style of leadership. You tend to set the parameters for the work and have the final say on decisions, but you actively involve your team members in the process.\\n This style can build trust between you and your people, as they will likely feel engaged and valued. But it is not great in a high-pressure situation that requires a fast turnaround, as it will slow you down. And, if you dislike disagreement or conflict, you might struggle with how people respond to consultation.\",\"17-25\":\"Your default leadership style is probably delegating or laissez faire. You give your team members free rein in how they work toward their goals.\\n This is an ideal approach when your people are highly skilled and motivated, and when you're working with contractors and freelancers who you trust. But if a team member is inexperienced or untrustworthy, or if you lose sight of what's going on, this approach can backfire catastrophically.\"}",
+  "public": true
+}

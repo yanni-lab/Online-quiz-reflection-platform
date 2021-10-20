@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.berryst.demo.mapper.QuizMapper">
+
+    <resultMap id="Quiz" type="com.berryst.demo.model.Quiz">
+        <id column="quiz_id" property="quizId" jdbcType="INTEGER"/>
+        <result column="quiz_title" property="quizTitle" jdbcType="VARCHAR"/>
+        <result column="quiz_background" property="quizBackground" jdbcType="VARCHAR"/>
+        <result column="created_by" property="supervisorId" jdbcType="INTEGER"/>
+        <result column="is_public" property="isPublic" jdbcType="BOOLEAN"/>
+    </resultMap>
+
+    <resultMap id="Question" type="com.berryst.demo.model.Question">
+        <id column="question_id" property="questionId" jdbcType="INTEGER"/>
+        <result column="question" property="question" jdbcType="VARCHAR"/>
+        <result column="question_order" property="questionOrder" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="QuestionChoice" type="com.berryst.demo.model.QuestionChoice">
+        <id column="choice_id" property="choiceId" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+        <result column="choice" property="choice" jdbcType="VARCHAR"/>
+        <result column="question_choice_order" property="questionChoiceOrder" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="Feedback" type="com.berryst.demo.model.Feedback">
+        <id column="feedback_id" property="feedbackId" jdbcType="INTEGER"/>
+        <result column="lower_bound" property="lowerBound" jdbcType="INTEGER"/>
+        <result column="upper_bound" property="upperBound" jdbcType="INTEGER"/>
+        <result column="feedback_content" property="feedbackContent" jdbcType="VARCHAR"/>
+        <result column="feedback_order" property="feedbackOrder" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <select id="getPublicQuiz" resultType="map">
+        select quiz_id, quiz_title
+        from quiz
+        where is_public = true
+          and is_available = true
+    </select>
+
+    <select id="getQuizContent" parameterType="int" resultMap="Quiz">
+        select quiz_id, quiz_title, quiz_background, created_by, is_public
+        from quiz
+        where quiz_id = #{quizId}
+    </select>
+
+    <select id="getQuestionList" parameterType="int" resultMap="Question">
+        select question_id, question, question_order
+        from question
+        where quiz_id = #{quizId}
+        order by question_order ASC
+    </select>
+
+    <select id="getChoiceList" parameterType="int" resultMap="QuestionChoice">
+        select *
+        from question_choices
+        where question_id = #{questionId}
+        order by question_choice_order ASC
+    </select>
+
+    <select id="getFeedbackList" parameterType="int" resultMap="Feedback">
+        select feedback_id, lower_bound, upper_bound, feedback_content, feedback_order
+        from feedback
+        where quiz_id = #{quizId}
+        order by feedback_order ASC
+    </select>
+
+    <select id="getSupervisorQuiz" parameterType="int" resultType="map">
+        select quiz_id, quiz_title, is_public
+        from quiz
+        where created_by = #{userId}
+          and is_available = 1
+    </select>
+
+    <!--    <delete id="deleteQuiz" parameterType="int">-->
+    <!--        delete from quiz where quiz_id = #{quizId}-->
+    <!--    </delete>-->
+
+    <update id="deleteQuiz">
+        update quiz
+        set is_available = false
+        where quiz_id = #{quizId}
+    </update>
+
+    <update id="setQuizPublic">
+        update quiz
+        set is_public = true
+        where quiz_id = #{quizId}
+    </update>
+
+    <update id="setQuizPrivate">
+        update quiz
+        set is_public = false
+        where quiz_id = #{quizId}
+    </update>
+
+    <insert id="setQuiz" parameterType="com.berryst.demo.model.Quiz" useGeneratedKeys="true" keyProperty="quizId">
+        insert into quiz (quiz_title, quiz_background, created_by, is_public, is_available)
+        values (#{quizTitle}, #{quizBackground}, #{supervisorId}, #{isPublic}, 1)
+    </insert>
+
+    <insert id="setQuestion" parameterType="com.berryst.demo.model.Question" useGeneratedKeys="true"
+            keyProperty="questionId">
+        insert into question (question, quiz_id, question_order)
+        values (#{question}, #{quizId}, #{questionOrder})
+    </insert>
+
+    <insert id="setChoice" parameterType="com.berryst.demo.model.QuestionChoice">
+        insert into question_choices (score, choice, question_id, question_choice_order)
+        values (#{score}, #{choice}, #{questionId}, #{questionChoiceOrder})
+    </insert>
+
+    <insert id="setFeedback" parameterType="com.berryst.demo.model.Feedback" useGeneratedKeys="true"
+            keyProperty="feedbackId">
+        insert into feedback (lower_bound, upper_bound, feedback_content, feedback_order, quiz_id)
+        values (#{lowerBound}, #{upperBound}, #{feedbackContent}, #{feedbackOrder}, #{quizId})
+    </insert>
+</mapper>
