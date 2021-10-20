@@ -18,6 +18,7 @@ class EditQuiz extends React.Component {
             flag:1,
             title: "",
             overview:"",
+            quizId:props.location.state.quizId,
             questions:[
                 {
                     "question": "",
@@ -259,6 +260,7 @@ class EditQuiz extends React.Component {
         console.log(1)
         console.log(this.state);
         var dataSent = JSON.stringify({
+            "quizId":this.state.quizId,
             "quizTitle": this.state.title,
             "quizBackground":this.state.overview,
             "questions":this.state.questions,

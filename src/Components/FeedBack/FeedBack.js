@@ -152,7 +152,7 @@ class FeedBack extends React.Component {
                 "score":this.state.score,
                 "reflection":this.state.reflection,
                 "supervisorId":this.state.supervisorId,
-                "reflectionAvailable":this.state.reflectionFlag,
+                "reflectionAvailable":this.state.supervisorFlag,
                 "email":this.state.shareEmail,
                 "isSaved":this.state.saveFlag,
 
@@ -358,17 +358,17 @@ class FeedBack extends React.Component {
 
                                 </Form.Group>
 
-                                <Form.Group size="lg" controlId="username">
-                                    <Form.Check
-                                        required
-                                        name="terms"
-                                        label="Include my reflection diary in sharing"
-                                        feedbackType="invalid"
-                                        feedbackTooltip
-                                        checked={this.state.reflectionFlag}
-                                        onChange={this.checkReflection.bind(this)}
-                                    />
-                                </Form.Group>
+                                {/*<Form.Group size="lg" controlId="username">*/}
+                                {/*    <Form.Check*/}
+                                {/*        required*/}
+                                {/*        name="terms"*/}
+                                {/*        label="Include my reflection diary in sharing"*/}
+                                {/*        feedbackType="invalid"*/}
+                                {/*        feedbackTooltip*/}
+                                {/*        checked={this.state.supervisorFlag}*/}
+                                {/*        onChange={this.checkSupervisor.bind(this)}*/}
+                                {/*    />*/}
+                                {/*</Form.Group>*/}
 
 
 

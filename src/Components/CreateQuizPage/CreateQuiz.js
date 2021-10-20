@@ -174,7 +174,9 @@ class CreateQuiz extends React.Component {
                     </Col>
                     <Col>
                         <Link to={{pathname:"/editQuiz",
-                            state:{action:"Create"}
+                            state:{action:"Create",
+                                quizId:0
+                            }
                         }}>
                             <Button className="createQuizButton"
                                     size="lg"
@@ -256,7 +258,7 @@ class CreateQuiz extends React.Component {
                                                     state:
                                                         {
                                                             quiz_id:quiz.quiz_id,
-                                                            action:"edit"
+                                                            action:"Edit"
                                                         }
                                                 }}>
                                                     <Button className = "edit-button" >

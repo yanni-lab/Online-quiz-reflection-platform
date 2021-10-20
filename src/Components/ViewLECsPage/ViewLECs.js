@@ -13,7 +13,7 @@ class ViewLECs extends React.Component {
             quiz_title:props.location.state.quiz_title,
             attemptId:props.location.state.attemptId,
             result_content:result_content,
-            reflection:result_content.reflectionAvailable==true?result_content["reflection"]:"------Reflection diary not available — LEC chose not to share reflection diary------"
+            reflection:result_content["reflection"]
         };
 
         fetch('http://localhost:8080/result/get_result_content',{
@@ -25,7 +25,7 @@ class ViewLECs extends React.Component {
         }).then((data)=>{
             this.setState({
                 result_content:data,
-                reflection:data.reflectionAvailable==true?data["reflection"]:"------Reflection diary not available — LEC chose not to share reflection diary------"
+                reflection:data["reflection"]
             })
 
 
@@ -78,7 +78,7 @@ class ViewLECs extends React.Component {
                         <div className="title">
                             Reflection Diary
                         </div>
-                        <div className={this.state.result_content.reflectionAvailable==true?"reflection":"default-reflection"}>
+                        <div className="reflection">
                             {this.state.reflection}
                         </div>
                     </div>
