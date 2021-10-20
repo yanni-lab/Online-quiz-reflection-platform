@@ -101,7 +101,7 @@ comment_time          datetime
 
 4. `npm start` to start the project
 
-5. The website will be open at localhost:3000
+5. Runs the app in the development mode.\ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
 # Berry Street Project - Boxjelly
