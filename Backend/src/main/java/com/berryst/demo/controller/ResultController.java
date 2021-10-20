@@ -81,7 +81,6 @@ public class ResultController {
         String email = receivedData.getString("email");
 
         QuizResult result = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), QuizResult.class);
-        //TODO Edit email
 
         //emailAddr, Title, Content
         emailService.sendMail(email,"Berry Street Quiz Result", result);
@@ -99,7 +98,6 @@ public class ResultController {
         int attemptId = resultService.saveResult(result);
         node.put("attemptId", attemptId);
 
-        //TODO Edit email
         //emailAddr, Title, Content
 //        emailService.sendMail("email","Berry Street Quiz Result", "Here is your quiz result");
 

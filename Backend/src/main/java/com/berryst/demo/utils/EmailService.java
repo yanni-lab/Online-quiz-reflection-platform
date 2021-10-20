@@ -26,7 +26,7 @@ public class EmailService {
 //    @Value("${spring.mail.username}")
 //    private String from;
 
-    public void sendMail(String to, String subject, QuizResult result) {
+    public int sendMail(String to, String subject, QuizResult result) {
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setFrom("BerryStreet_Boxjelly@outlook.com");
@@ -41,5 +41,6 @@ public class EmailService {
         message.setText(messageBody);
         System.out.println(messageBody);
         javaMailSender.send(message);
+        return 1;
     }
 }

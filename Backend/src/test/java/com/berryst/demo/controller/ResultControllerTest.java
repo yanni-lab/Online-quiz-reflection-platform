@@ -5,6 +5,7 @@ import com.berryst.demo.model.QuizResult;
 import com.berryst.demo.service.QuizService;
 import com.berryst.demo.service.ResultService;
 import com.berryst.demo.utils.DataProcessing;
+import com.berryst.demo.utils.EmailService;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.minidev.json.JSONObject;
@@ -47,6 +48,9 @@ public class ResultControllerTest {
 
     @MockBean
     private QuizService quizServiceMock;
+
+    @MockBean
+    private EmailService emailServiceMock;
 
     @Test
     public void saveResultTest()
@@ -105,6 +109,9 @@ public class ResultControllerTest {
         QuizResult testResult = objectMapper.readValue(DataProcessing.replaceLineSeparator(data), QuizResult.class);
 
         Mockito.when(resultServiceMock.saveResult(testResult))
+                .thenReturn(1);
+
+        Mockito.when(emailServiceMock.sendMail("test@gmail.com","title",testResult))
                 .thenReturn(1);
 
         String url = "http://localhost:8080/result/share_result";
