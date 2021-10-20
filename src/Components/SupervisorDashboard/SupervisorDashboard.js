@@ -35,65 +35,93 @@ class SupervisorDashboard extends React.Component {
 
                         <Row className="roleContent">
                             <CardGroup>
-                                <Card className="cardRole">
-                                    <Card.Img className="supervisor-dashboard-img" variant="top" src={quizIcon}/>
-                                    <Card.Body>
-                                        <Card.Title>My Quizzes</Card.Title>
-                                    </Card.Body>
-                                    <Card.Footer>
-                                        <Link to={{
-                                            pathname:'/createQuiz',
-                                            state:{
-                                                username: this.state.username
-                                            }
-                                        }}>
-                                            <Button
-                                                    size="lg"
-                                                    variant="outline-primary"
-                                            >Click here</Button>
-                                        </Link>
-                                    </Card.Footer>
-                                </Card>
-                                <Card className="cardRole">
-                                    <Card.Img className="supervisor-dashboard-img" variant="top" src={lecIcon} />
-                                    <Card.Body>
-                                        <Card.Title>My LECs</Card.Title>
-                                    </Card.Body>
-                                    <Card.Footer>
-                                        <Link to={{
-                                            pathname:'/myLECs',
-                                            state:{
-                                                username: this.state.username
-                                            }
-                                        }}>
-                                            <Button
-                                                    size="lg"
-                                                    variant="outline-primary"
-                                            >Click here</Button>
-                                        </Link>
+                                <Link  to={{
+                                    pathname:'/createQuiz',
+                                    state:{
+                                        username: this.state.username
+                                    }
+                                }}>
+                                    <Card className="cardRole">
+                                        <Card.Body>
+                                            <Card.Img className="supervisor-dashboard-img" variant="top" src={quizIcon}/>
 
-                                    </Card.Footer>
-                                </Card>
-                                <Card className="cardRole">
-                                    <Card.Img className="supervisor-dashboard-img" variant="top" src={commentIcon} />
-                                    <Card.Body>
-                                        <Card.Title>User Experience Comments</Card.Title>
-                                    </Card.Body>
-                                    <Card.Footer>
-                                        <Link to={{
-                                            pathname:'/viewComments',
-                                            state:{
-                                                username: this.state.username
-                                            }
-                                        }}>
-                                            <Button
-                                                    size="lg"
-                                                    variant="outline-primary"
-                                            >Click here</Button>
-                                        </Link>
+                                        </Card.Body>
+                                        <Card.Footer>
+                                            <Card.Title>My Quizzes</Card.Title>
+                                            {/*<Link to={{*/}
+                                            {/*    pathname:'/createQuiz',*/}
+                                            {/*    state:{*/}
+                                            {/*        username: this.state.username*/}
+                                            {/*    }*/}
+                                            {/*}}>*/}
+                                            {/*    <Button*/}
+                                            {/*        size="lg"*/}
+                                            {/*        variant="outline-primary"*/}
+                                            {/*    >Click here</Button>*/}
+                                            {/*</Link>*/}
+                                        </Card.Footer>
+                                    </Card>
+                                </Link>
 
-                                    </Card.Footer>
-                                </Card>
+                                <Link  to={{
+                                    pathname:'/myLECs',
+                                    state:{
+                                        username: this.state.username
+                                    }
+                                }}>
+                                    <Card className="cardRole">
+
+                                        <Card.Body>
+                                            <Card.Img className="supervisor-dashboard-img" variant="top" src={lecIcon} />
+                                        </Card.Body>
+                                        <Card.Footer>
+                                            <Card.Title>My LECs</Card.Title>
+                                            {/*<Link to={{*/}
+                                            {/*    pathname:'/myLECs',*/}
+                                            {/*    state:{*/}
+                                            {/*        username: this.state.username*/}
+                                            {/*    }*/}
+                                            {/*}}>*/}
+                                            {/*    <Button*/}
+                                            {/*        size="lg"*/}
+                                            {/*        variant="outline-primary"*/}
+                                            {/*    >Click here</Button>*/}
+                                            {/*</Link>*/}
+
+                                        </Card.Footer>
+                                    </Card>
+                                </Link>
+
+
+                                <Link to={{
+                                    pathname:'/viewComments',
+                                    state:{
+                                        username: this.state.username
+                                    }
+                                }}>
+                                    <Card className="cardRole">
+                                        <Card.Body>
+                                            <Card.Img className="supervisor-dashboard-img" variant="top" src={commentIcon} />
+
+                                        </Card.Body>
+                                        <Card.Footer>
+                                            <Card.Title>User Experience Comments</Card.Title>
+                                            {/*<Link to={{*/}
+                                            {/*    pathname:'/viewComments',*/}
+                                            {/*    state:{*/}
+                                            {/*        username: this.state.username*/}
+                                            {/*    }*/}
+                                            {/*}}>*/}
+                                            {/*    <Button*/}
+                                            {/*        size="lg"*/}
+                                            {/*        variant="outline-primary"*/}
+                                            {/*    >Click here</Button>*/}
+                                            {/*</Link>*/}
+
+                                        </Card.Footer>
+                                    </Card>
+                                </Link>
+
                             </CardGroup>
                         </Row>
                 </div>

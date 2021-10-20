@@ -32,3 +32,18 @@
     width: 130px!important;
     align-self: center!important;
 }
+
+.SupervisorDashboard .cardRole{
+    color: black;
+    width: 300px !important;
+    margin: 0 45px;
+}
+
+.SupervisorDashboard .card-footer{
+    height: 73px;
+    vertical-align: middle;
+}
+
+.card-group{
+    justify-content: center;
+}
