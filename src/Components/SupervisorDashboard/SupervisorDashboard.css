@@ -1,14 +1,28 @@
 .SupervisorDashboard{
-    background-color: white;
+
     width: 86%;
     margin: 50px auto 0 auto;
     padding: 20px 0 100px 0;
     border-radius: 6px;
     box-shadow: 5px 5px #ddd;
+    background-color:#FFFCF9;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
 .header{
     margin-top: 0;
     font-size: 2.0em;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
 
+.SupervisorDashboard button{
+    color:#1198AB;
+    border:#1198AB 2px solid;
+
+}
+
+
+.SupervisorDashboard button:hover{
+    background-color: #1198AB;
+    border:#1198AB 2px solid;
 }

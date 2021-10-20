@@ -2,34 +2,38 @@ import React from "react";
 import {Button,Form,Row,Modal} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./resetPassword.css";
-import {Link} from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import LoginLogo from '../images/loginLogo.png';
-import cookie from 'react-cookies'
+
 
 
 class ResetPassword extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            username:'',
             email: '',
             password: '',
-            confirmPassword:''
+            confirmPassword:'',
+            passChangeSuccess: false,
+            passChangeFail:false
         };
 
         this.handleUserChange = this.handleUserChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePassChange = this.handlePassChange.bind(this);
         this.handleConfirmPassChange = this.handleConfirmPassChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.validateForm = this.validateForm.bind(this);
+
     };
-    // validateForm() {
-    //     return !this.state.username ||
-    //         ! this.state.password ||
-    //         || !this.state.repassword.length > 0;
-    // }
+
 
     handleUserChange(evt) {
+        this.setState({
+            username: evt.target.value,
+        });
+    };
+    handleEmailChange(evt) {
         this.setState({
             email: evt.target.value,
         });
@@ -48,43 +52,55 @@ class ResetPassword extends React.Component {
     }
 
     handleSubmit(event) {
-        // if(this.state.username=="lec"){
-        //     cookie.save('identity',1)
-        // }
-        // if(this.state.username=="haobow1"){
-        //     cookie.save('identity',2)
-        // }
-        //
-        // cookie.save('username',this.state.username)
-        // cookie.save('login',true)
-        //
-        // this.setState({
-        //     successModal:true
-        // })
 
         console.log(this.state);
-        var dataSent = JSON.stringify({"email": this.state.email,"password": this.state.password});
+        var dataSent = JSON.stringify({
+            "email": this.state.email,
+            "username":this.state.username,
+            "password": this.state.password
+        });
         this.token = "";
         event.preventDefault();
-        fetch('http://localhost:8080/user/login',{
+        fetch('http://localhost:8080/user/reset_password',{
             method:'post',
             headers:{"Content-Type":"application/json"},
             body:dataSent
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            console.log(data["token"]);
+            if(data["errorCode"]=="00000"){
+                this.setState({
+                    passChangeSuccess:true
+                })
+            }
+            else{
+                this.setState({
+                    passChangeFail:true
+                })
+            }
+
+
             //data from backend
         }).catch(function(error){
             console.log(error)
         })
 
-        //const token = "111"
-
     }
 
+    handleSuccessCancelModal(){
+        this.props.history.push({
+            pathname: "/login",
+        })
+        this.setState({
+            passChangeSuccess:false
+        })
+    }
 
-
+    handleCancelModal(){
+        this.setState({
+            passChangeFail:false
+        })
+    }
 
     render(){
         document.title = "ResetPassword"
@@ -104,18 +120,29 @@ class ResetPassword extends React.Component {
                         <div className = "heading">
                             Reset Password
                         </div>
+                        <Form.Group size="lg" controlId="username">
+                            <Form.Label className = "label">Username</Form.Label>
+                            <Form.Control className = "input"
+                                          autoFocus
+                                          type="text"
+                                          placeHolder="Username"
+                                          value={this.state.username}
+                                          onChange={this.handleUserChange}                            />
+                        </Form.Group>
                         <Form.Group size="lg" controlId="email">
                             <Form.Label className = "label">Email</Form.Label>
                             <Form.Control className = "input"
                                           autoFocus
                                           type="email"
+                                          placeHolder="xxx@xxx.com"
                                           value={this.state.email}
-                                          onChange={this.handleUserChange}                            />
+                                          onChange={this.handleEmailChange}                            />
                         </Form.Group>
                         <Form.Group size="lg" controlId="password">
                             <Form.Label className = "label">Password</Form.Label>
                             <Form.Control className = "input"
                                           type="password"
+                                          placeHolder="****"
                                           value={this.state.password}
                                           onChange={this.handlePassChange}
                             />
@@ -125,63 +152,52 @@ class ResetPassword extends React.Component {
                             <Form.Label className = "label">Confirm Password</Form.Label>
                             <Form.Control className = "input"
                                           type="password"
+                                          placeHolder="****"
                                           value={this.state.confirmPassword}
                                           onChange={this.handleConfirmPassChange}
                             />
                         </Form.Group>
 
                         <Row>
-                            {/*<Link>*/}
+
                             <Button className="resetButton"
                                     size="lg"
-                                // type="submit"
                                     onClick = {this.handleSubmit}
-                                // disabled={this.validateForm()}
                             >
                                 Update Password
                             </Button>
-                            {/*</Link>*/}
-
                         </Row>
 
                     </Form>
+
                 </div>
 
-                <Modal  show = {this.state.showModal}
-                        onClick =  {this.handleCancelModal}
-                >
+                <Modal  show = {this.state.passChangeSuccess}>
 
                     <Modal.Body>
-                        Incorrect user Email or password.
+                        Reset password successfully! You will be redirected to the login page.
                     </Modal.Body>
                     <Modal.Footer>
-                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
-                        <Button onClick = {this.handleCancelModal} className = "cancelExit">Yes</Button>
+                        <Button onClick = {this.handleSuccessCancelModal.bind(this)} className = "cancelSuccessExit">OK</Button>
                     </Modal.Footer>
 
 
                 </Modal>
 
-                <Modal  show = {this.state.successModal}
-                    // onClick =  {this.handleSuccessCancelModal}
-                >
+                <Modal  show = {this.state.passChangeFail}>
 
                     <Modal.Body>
-                        {this.state.txt=="quiz"?"Successfully logged in and saved. You will be redirected to quiz Page.":"Successfully logged in. You will be redirected to quiz Page."}
-
+                        Reset password fail. Please check the email and username again.
                     </Modal.Body>
                     <Modal.Footer>
-                        {/*<Button href = "./listQuiz" className = "ensureExit">Yes</Button>*/}
-                        <Button onClick = {this.handleSuccessCancelModal} className = "cancelSuccessExit">OK</Button>
+                        <Button onClick = {this.handleCancelModal.bind(this)} className = "cancelSuccessExit">OK</Button>
                     </Modal.Footer>
 
 
                 </Modal>
-
             </div>
         );
     }
 }
-
 
 export default withRouter(ResetPassword)

@@ -122,7 +122,7 @@ class App extends React.Component{
                             {"Welcome "+ cookie.load("username")+"!"}
                         </Navbar.Text>
                         <NavDropdown title="User" style={{display: cookie.load("login")=="true"? "block":"none"}} id="dropdown">
-                            <NavDropdown.Item href="#action/3.1">Dashboard</NavDropdown.Item>
+                            <NavDropdown.Item><Link to={cookie.load("identity")=="1"? "/listQuiz":"/supervisor"}>Dashboard</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to="/updateAccount">Update account detail</Link> </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item onClick={this.handleUserLogout.bind(this)} href="/" >Logout</NavDropdown.Item>

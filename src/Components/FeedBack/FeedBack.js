@@ -215,7 +215,7 @@ class FeedBack extends React.Component {
                 </Row>
 
 
-
+                <div className="feedback-container">
                     <div className="text-container">
                         <span className="title">Feedback</span>
                     </div>
@@ -250,9 +250,8 @@ class FeedBack extends React.Component {
                                 <Col className = "feedbackFormCol">
                                     <Button className="feedbackFormButton"
                                             size="lg"
-                                            //type="submit"
                                             onClick={this.handleSubmit}
-                                        // disabled={this.validateForm()}
+
                                     >
                                         Save
                                     </Button>
@@ -260,9 +259,7 @@ class FeedBack extends React.Component {
                                 <Col className = "feedbackFormCol">
                                     <Button className="feedbackFormButton"
                                             size="lg"
-
                                             onClick={this.handleShare}
-
                                     >
                                         Share
                                     </Button>
@@ -274,6 +271,10 @@ class FeedBack extends React.Component {
 
                         </Form>
                     </div>
+
+                </div>
+
+
 
 
 
@@ -288,8 +289,8 @@ class FeedBack extends React.Component {
                         Are you sure you want to exit the quiz? (Have you saved / shared ?)
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button href = "./listQuiz" className = "ensureExit">Yes</Button>
-                        <Button onClick = {this.cancelLeaveQuiz} className = "cancelExit">No</Button>
+                        <Button href = "./listQuiz" className = "feedbackFormButton">Yes</Button>
+                        <Button onClick = {this.cancelLeaveQuiz} className = "feedbackFormButton">No</Button>
                     </Modal.Footer>
 
 
@@ -300,13 +301,13 @@ class FeedBack extends React.Component {
                 <Modal  show = {this.state.save==1}
                         className = "saveModal"
                 >
-                    <Modal.Body>
+                    <Modal.Header>
                         It looks like you haven't signed in, please sign in to save your feedback
+                        <Button onClick = {this.cancelSave}>X</Button>
+                    </Modal.Header>
+                    <Modal.Body>
                         <Login txt={"quiz"} cancel={this.cancelSuccessfulSave}/>
                     </Modal.Body>
-                    <Modal.Footer>
-                        <Button onClick = {this.cancelSave} className = "cancelExit">No</Button>
-                    </Modal.Footer>
                 </Modal>
 
                 {/*click save with login*/}

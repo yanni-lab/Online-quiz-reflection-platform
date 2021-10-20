@@ -31,7 +31,7 @@ class Home extends React.Component {
                 <div id="background" style={headerStyle}>
                     <div className="container">
                         <div className="text" >
-                            <Row className="header">
+                            <Row className="home-header">
                                 <div>Welcome</div>
                             </Row>
                             <Row className="paragraph">

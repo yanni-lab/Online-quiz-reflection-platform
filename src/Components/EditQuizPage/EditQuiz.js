@@ -313,7 +313,7 @@ class EditQuiz extends React.Component {
 
                     <Row>
                         <Col className = "button-col">
-                            <Button className="loginButton"
+                            <Button className="page-button"
                                     size="lg"
                                     onClick = {this.handleCancel}
                             >
@@ -322,7 +322,7 @@ class EditQuiz extends React.Component {
                         </Col>
 
                         <Col className = "button-col">
-                            <Button className="loginButton"
+                            <Button className="page-button"
                                     size="lg"
                                     onClick = {this.handleContinue}
                             >
@@ -406,7 +406,7 @@ class EditQuiz extends React.Component {
 
                     <Row>
                         <Col className = "button-col">
-                            <Button className="loginButton"
+                            <Button className="page-button"
                                     size="lg"
                                     onClick = {this.handleCancel}>
                                 Cancel
@@ -414,7 +414,7 @@ class EditQuiz extends React.Component {
                         </Col>
 
                         <Col className = "button-col">
-                            <Button className="loginButton"
+                            <Button className="page-button"
                                     size="lg"
                                     onClick = {this.handleContinue}>
                                 Continue
@@ -487,7 +487,7 @@ class EditQuiz extends React.Component {
 
                     <Row>
                         <Col className = "button-col">
-                            <Button className="loginButton"
+                            <Button className="page-button"
                                     size="lg"
                                 //type="submit"
                                     onClick = {this.handleCancel}
@@ -497,7 +497,7 @@ class EditQuiz extends React.Component {
                         </Col>
 
                         <Col className = "button-col">
-                                <Button className="loginButton"
+                                <Button className="page-button"
                                         size="lg"
                                         onClick = {this.handleSave}
                                 >

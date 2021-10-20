@@ -1,11 +1,12 @@
 .ViewLECs{
-    background-color: white;
+    background-color:#FFFCF9;
     width: 65%;
     margin: 50px auto;
     padding: 20px 0 40px 0;
     border-radius: 5px;
     box-shadow: 5px 5px #ddd;
     min-height: 550px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 
 }
 
@@ -20,6 +21,8 @@
 }
 
 .ViewLECs .optionButton{
+    color: white;
+    background-color: #1198AB;
     width:480px
 }
 
@@ -33,9 +36,28 @@
 }
 
 .ViewLECs .reflection{
-    white-space:pre-line
+    white-space:pre-line;
+
 }
 
 .default-reflection{
     text-align: center;
 }
+
+.ViewLECs .box{
+    text-align: center;
+}
+
+.ViewLECs .backButton {
+    width: 100px;
+    color: white;
+    background-color: #1198AB;
+}
+
+.ViewLECs .backButton:hover {
+
+    color: white;
+    background-color: #1180AB;
+    border:#1180AB 2px solid;
+}
+

@@ -188,7 +188,7 @@ class Login extends React.Component {
                             />
                         </Form.Group>
 
-                        <Row>
+                        <Row className="login-row">
                             {/*<Link>*/}
                             <Button className="loginButton"
                                     size="lg"
@@ -203,7 +203,7 @@ class Login extends React.Component {
                         </Row>
 
                         <Row>
-                            <Link to='/register'>
+                            <Link to='/register' className="create-link">
                                 <Button className="loginButton"
                                         size="lg"
                                         // type="submit"
@@ -215,7 +215,7 @@ class Login extends React.Component {
                         </Row>
                         <Row>
                             <Link to='/resetPassword'>
-                                <a href='#'>Lost your password ?</a>
+                            <a href='#'>Lost your password ?</a>
                             </Link>
                         </Row>
                     </Form>

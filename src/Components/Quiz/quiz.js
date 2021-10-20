@@ -22,6 +22,8 @@ class Quiz extends React.Component {
             options:new Array(props.location.state.quesNum).fill(0),
         };
 
+        console.log(this.state.quizList)
+
 
 
 
@@ -72,6 +74,7 @@ class Quiz extends React.Component {
 
 
         console.log(this.state)
+
     }
 
 
@@ -172,8 +175,8 @@ class Quiz extends React.Component {
                                         <Button className="optionButton"
                                                 value={option.choiceId}
                                                 onClick={this.handleChange.bind(this, option.choiceId,option.score)}
-                                                style={{backgroundColor: this.state.options[this.state.currQuestion]==option.choiceId? '#0d6efd':'white',
-                                                    color: this.state.options[this.state.currQuestion]==option.choiceId? 'white':'#0d6efd'
+                                                style={{backgroundColor: this.state.options[this.state.currQuestion]==option.choiceId? '#1198AB':'#E5F4F6',
+                                                    color: this.state.options[this.state.currQuestion]==option.choiceId? 'white':'#385254'
                                                 }}
 
                                         >{option.choice}</Button>
