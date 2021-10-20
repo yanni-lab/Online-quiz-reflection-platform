@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './ViewComments.css';
-import {Row, Col, Button,Form} from 'react-bootstrap';
+import {Row, Col, Button, Form, Pagination} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import view_comment from "../../data/view_comment.json"
 
@@ -10,8 +10,81 @@ class ViewComments extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            active:0,
             comments:view_comment.commentList,
-            list:new Array(view_comment.commentList.length).fill(0)
+            list:[0,0,0,0],
+            pages:[
+                [
+                    {
+                        "comment_time": [
+                            2021,
+                            9,
+                            12,
+                            1,
+                            53,
+                            56
+                        ],
+                        "comment": "4. This is a test user comment.\n4. This is a test user comment.\n4. This is a test user comment."
+                    },
+                    {
+                        "comment_time": [
+                            2021,
+                            9,
+                            11,
+                            1,
+                            53,
+                            56
+                        ],
+                        "comment": "3. This is a test user comment.\n3. This is a test user comment.\n3. This is a test user comment."
+                    },
+                    ,
+                    {
+                        "comment_time": [
+                            2021,
+                            9,
+                            10,
+                            1,
+                            53,
+                            56
+                        ],
+                        "comment": "2. This is a test user comment."
+                    },
+                    {
+                        "comment_time": [
+                            2021,
+                            9,
+                            9,
+                            1,
+                            53,
+                            56
+                        ],
+                        "comment": "1. This is a test user comment."
+                    }
+                ],
+                [{
+                    "comment_time": [
+                        2021,
+                        9,
+                        10,
+                        1,
+                        53,
+                        56
+                    ],
+                    "comment": "2. This is a test user comment."
+                },
+                    {
+                        "comment_time": [
+                            2021,
+                            9,
+                            9,
+                            1,
+                            53,
+                            56
+                        ],
+                        "comment": "1. This is a test user comment."
+                    }
+                    ]
+            ]
         };
 
         fetch('http://localhost:8080/result/view_comment',{
@@ -23,7 +96,14 @@ class ViewComments extends React.Component {
         }).then((data)=>{
             this.setState({
                 comments:data["commentList"],
-                list:new Array(this.state.comments.length).fill(0)
+            })
+            this.comments=data["commentList"]
+            this.pages=[]
+            while(this.comments.length!=0){
+                this.pages.push(this.results.splice(0,4))
+            }
+            this.setState({
+                pages:this.pages
             })
             //data from backend
         }).catch(function(error){
@@ -43,6 +123,38 @@ class ViewComments extends React.Component {
     }
 
 
+    handlePage= (index) => {
+        if(this.state.active!=index){
+            this.setState({
+                active:index,
+                list:[0,0,0,0]
+            })
+        }
+
+    }
+
+    handlePreviousPage(){
+        if(this.state.active!=0){
+            this.setState(
+            {
+                active:this.state.active==0?0:this.state.active-1,
+                list:[0,0,0,0]
+            }
+        )}
+    }
+
+    handleNextPage(){
+        if(this.state.active!=this.state.pages.length-1){
+            this.setState(
+                {
+                    active:this.state.active+1,
+                    list:[0,0,0,0]
+                }
+            )
+        }
+    }
+
+
     render(){
         document.title = "User Experience Comments"
         return(
@@ -53,7 +165,7 @@ class ViewComments extends React.Component {
                     </div>
                     <Form>
                         {
-                            this.state.comments.map((comment,index)=>(
+                            this.state.pages[this.state.active].map((comment,index)=>(
                                     <Form.Group>
                                         <Row className="comment-row">
                                             <Col xs={10}>
@@ -65,7 +177,6 @@ class ViewComments extends React.Component {
                                                                    }
                                                                    label="123"
                                                                    readOnly={true}
-                                                                   // rows={this.state.list[index]==1?"":2}
                                                                    style={{height:this.state.list[index]==1?"200px":"60px"}}
 
                                                     />
@@ -86,9 +197,36 @@ class ViewComments extends React.Component {
                         }
                     </Form>
 
+                    <div className="Pagination-row">
+                        <Pagination>
+                            <Pagination.Item
+                                onClick={this.handlePreviousPage.bind(this)}
+                            >
+                                &lt;
+                            </Pagination.Item>
+                            {
+                                this.state.pages.map((page,index)=>
+                                    <Pagination.Item
+                                        key={index}
+                                        activeLabel=""
+                                        active={index == this.state.active}
+                                        onClick={this.handlePage.bind(this,index)}
+                                    >
+                                        {index+1}
+                                    </Pagination.Item>
+                                )
+                            }
+                            <Pagination.Item
+                                onClick={this.handleNextPage.bind(this)}
+                            >
+                                &gt;
+                            </Pagination.Item>
+                        </Pagination>
+                    </div>
+
                     <div className="box justify-content-center align-items-center">
                         <Link to={{pathname:"./supervisor"}}>
-                            <Button className="backButton">Back</Button>
+                            <Button >Back</Button>
                         </Link>
                     </div>
                 </div>
