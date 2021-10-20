@@ -24,7 +24,7 @@ class EditQuiz extends React.Component {
                     "question": "",
                     "choices":[
                         {
-                            "score": "",
+                            "score": 1,
                             "choice": ""
                         }
                     ]
@@ -41,38 +41,6 @@ class EditQuiz extends React.Component {
 
 
 
-        // this.props.location.state.action=="edit"?this.state={
-        //     cancel:false,
-        //     flag:1,
-        //     title:quiz.quizTitle,
-        //     overview:quiz.quizBackground,
-        //     questions:quiz.questions,
-        //     feedbacks:quiz.feedback
-        // }:this.state = {
-        //     cancel:false,
-        //     flag:1,
-        //     title: "",
-        //     overview:"",
-        //     questions:[
-        //         {
-        //             "question": "",
-        //             "choices":[
-        //                 {
-        //                     "score": "",
-        //                     "choice": ""
-        //                 }
-        //             ]
-        //         }
-        //     ],
-        //     feedbacks:[
-        //         {
-        //             "lowerBound":"",
-        //             "upperBound":"",
-        //             "feedbackContent":""
-        //         }
-        //     ]
-        // };
-
         if (this.props.location.state.action=="Edit"){
             fetch('http://localhost:8080/quiz/quiz_content',{
                 method:'post',
@@ -82,14 +50,13 @@ class EditQuiz extends React.Component {
                 return response.json()
             }).then((data)=>{
                 this.quizData = data;
-                console.log(this.quizData);
                 this.setState({
                     title:this.quizData["quizTitle"],
                     overview:this.quizData["quizBackground"].replace("\\n","\n"),
                     questions:this.quizData["questions"],
                     feedbacks:this.quizData["feedback"]
                 });
-                console.log(this.state.content);
+
                 //data from backend
             }).catch(function(error){
                 console.log(error)
@@ -139,7 +106,7 @@ class EditQuiz extends React.Component {
         this.setState({
             flag: this.state.flag+1,
         })
-        console.log(this.state.questions)
+
     }
 
     handleBack(){
@@ -167,7 +134,7 @@ class EditQuiz extends React.Component {
                 "question": "",
                 "choices":[
                     {
-                        "score": "",
+                        "score": 1,
                         "choice": "",
                     }
                 ]
@@ -192,7 +159,7 @@ class EditQuiz extends React.Component {
         this.setState({})
         this.state.questions[event.target.value].choices.push(
             {
-                "score": "",
+                "score": this.state.questions[event.target.value].choices.length>0?parseInt(this.state.questions[event.target.value].choices[this.state.questions[event.target.value].choices.length-1].score)+1:1,
                 "choice": ""
             })
     }
@@ -257,8 +224,6 @@ class EditQuiz extends React.Component {
     }
 
     handleSave(event) {
-        console.log(1)
-        console.log(this.state);
         var dataSent = JSON.stringify({
             "quizId":this.state.quizId,
             "quizTitle": this.state.title,
