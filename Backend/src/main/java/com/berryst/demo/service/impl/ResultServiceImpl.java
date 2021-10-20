@@ -29,7 +29,7 @@ public class ResultServiceImpl implements ResultService {
     public int saveResult(QuizResult result) {
         if (result.getUserId() == -1) {
             log.info("Save result as Anonymous user");
-            saveResultAsAnonymous(result);
+            return saveResultAsAnonymous(result);
         }
         QuizResult preResult = resultMapper.getLatestAttempt(result.getUserId(), result.getQuizId());
         if (preResult == null) {
@@ -38,8 +38,9 @@ public class ResultServiceImpl implements ResultService {
             result.setNumberOfAttempt(preResult.getNumberOfAttempt() + 1);
         }
         resultMapper.saveResult(result);
+        QuizResult newResult = resultMapper.getLatestAttempt(result.getUserId(), result.getQuizId());
         //return attempt id
-        return result.getAttemptId();
+        return newResult.getAttemptId();
     }
 
 //    @Override
