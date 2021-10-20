@@ -166,5 +166,81 @@ setup and configuration details to install/run your code
 
 ## Changelog
 
+#Backend
+##Project Structure
+```markdown
+├─Backend/src
+│ ├─main
+│ │  ├─java/com/berryst/demo
+│ │  │              ├─DemoApplication.java
+│ │  │              │  
+│ │  │              ├─configuration
+│ │  │              │      EmailConfig.java
+│ │  │              │      JacksonConfig.java
+│ │  │              │      
+│ │  │              ├─controller
+│ │  │              │      QuizController.java
+│ │  │              │      ResultController.java
+│ │  │              │      UserController.java
+│ │  │              │      
+│ │  │              ├─exception
+│ │  │              │      GlobalExceptionHandler.java
+│ │  │              │      
+│ │  │              ├─mapper
+│ │  │              │      QuizMapper.java
+│ │  │              │      ResultMapper.java
+│ │  │              │      UserMapper.java
+│ │  │              │      
+│ │  │              ├─model
+│ │  │              │      Comment.java
+│ │  │              │      Feedback.java
+│ │  │              │      Question.java
+│ │  │              │      QuestionChoice.java
+│ │  │              │      Quiz.java
+│ │  │              │      QuizResult.java
+│ │  │              │      User.java
+│ │  │              │      
+│ │  │              ├─service
+│ │  │              │  │  QuizService.java
+│ │  │              │  │  ResultService.java
+│ │  │              │  │  UserService.java
+│ │  │              │  │  
+│ │  │              │  └─impl
+│ │  │              │          QuizServiceImpl.java
+│ │  │              │          ResultServiceImpl.java
+│ │  │              │          UserServiceImpl.java
+│ │  │              │          
+│ │  │              └─utils
+│ │  │                      DataProcessing.java
+│ │  │                      EmailService.java
+│ │  │                      StringToIntArrayHandler.java
+│ │  │                      
+│ │  └─resources
+│ │      │  application .yml
+│ │      │  application.properties
+│ │      │  
+│ │      └─mybatis
+│ │          └─mapper
+│ │                  QuizMapper.xml
+│ │                  ResultMapper.xml
+│ │                  UserMapper.xml
+│ │                  
+│ └─test/java/com/berryst/demo
+│                     ├─DemoApplicationTests.java
+│                     │  
+│                     └─controller
+│                            QuizControllerTest.java
+│                            ResultControllerTest.java
+│                            UserControllerTest.java
+└─data
+```
+##User Guide
+1. Make sure you have a working `Java 11` environment. 
+   (Open a shell and run `java --version` to check your Java version.)
+2. Make sure you have your `MySQL server` running.
+3. On [release](https://github.com/yanni-lab/COMP90082-2021-SM2-ST-Boxjelly/releases)
+page download `berryst-1.0.0.jar` file.
+4. On shell run `java -jar <path-to-file>berryst-1.0.0.jar`.
+
 
 
