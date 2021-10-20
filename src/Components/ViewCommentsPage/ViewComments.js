@@ -100,7 +100,7 @@ class ViewComments extends React.Component {
             this.comments=data["commentList"]
             this.pages=[]
             while(this.comments.length!=0){
-                this.pages.push(this.results.splice(0,4))
+                this.pages.push(this.comments.splice(0,4))
             }
             this.setState({
                 pages:this.pages
