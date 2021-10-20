@@ -89,7 +89,19 @@ comment               varchar
 comment_time          datetime
 ```
 
+# Frontend
 
+**Steps to initialise react:**
+
+1. `git clone` the frontend folder
+
+2. `cd /Frontend`
+
+3. `npx install react-bootstrap`
+
+4. `npm start`
+
+5. The website will be open at localhost:3000
 
 
 # Berry Street Project - Boxjelly
