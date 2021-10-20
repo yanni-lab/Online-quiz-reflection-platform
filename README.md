@@ -95,11 +95,11 @@ comment_time          datetime
 
 1. `git clone` the frontend folder
 
-2. `cd /Frontend`
+2. `cd /Frontend` to get access to this frontend folder
 
-3. `npx install react-bootstrap`
+3. `npx install react-bootstrap` to load the ui-related package, install the node_modules before run the project
 
-4. `npm start`
+4. `npm start` to start the project
 
 5. The website will be open at localhost:3000
 
