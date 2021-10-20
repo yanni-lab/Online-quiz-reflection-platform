@@ -141,6 +141,17 @@ class MyLECs extends React.Component {
                 return response.json()
             }).then((data)=>{
                 this.results=data["supervisorResult"]
+                let i = 0;
+                while (i<this.results.length){
+                    console.log(this.results[2])
+                    if (this.results[i]["reflection_available"] === false){
+                        this.results.splice(i,1);
+                    }
+                    else{
+                        i++;
+                    }
+                }
+
                 this.pages=[]
                 while(this.results.length!=0){
                     this.pages.push(this.results.splice(0,4))
