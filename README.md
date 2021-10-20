@@ -36,12 +36,15 @@ The organized user stories in sprint 2 are: US05, US06, US07, US12, US13, US14, 
 
 ## Documentation
 
-- `docs/` (process documentation)
-  - [Project Background](./docs/ProjectBackground.pdf)
-  - [Project Requirements](./docs/ProjectRequirements.pdf)
-  - [Motivational Model](./docs/MotivationalModel.pdf)
-  - [User stories](./docs/UsersStories.pdf)
-  - [Final presentation slides]()
+`docs/` (process documentation)
+
+- [Project Background](./docs/ProjectBackground.pdf)
+- [Project Requirements](./docs/ProjectRequirements.pdf)
+- [Motivational Model](./docs/MotivationalModel.pdf)
+- [User stories](./docs/UsersStories.pdf)
+- [High Level Component Diagram](./docs/ComponentDiagram.pdf)
+- [Database ER Diagram](./docs/ERDiagram.pdf)
+- [Sequence Diagram](./docs/SequenceDiagram.pdf)
 
 ## System Requirements
 
