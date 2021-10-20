@@ -150,6 +150,8 @@ class ResetPassword extends React.Component {
 
                         <Form.Group size="lg" controlId="comfirmPassword">
                             <Form.Label className = "label">Confirm Password</Form.Label>
+                            <Form.Label style={{display:this.state.password!=this.state.confirmPassword&&this.state.password!=""&&this.state.confirmPassword!=""?"block":"none"}} className = "repeat-must-be-same">Confirm password must be same with password!</Form.Label>
+
                             <Form.Control className = "input"
                                           type="password"
                                           placeHolder="****"

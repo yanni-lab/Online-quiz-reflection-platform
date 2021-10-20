@@ -104,6 +104,7 @@ class EditQuiz extends React.Component {
         this.handleCancel = this.handleCancel.bind(this);
         this.cancelLeave = this.cancelLeave.bind(this);
         this.handleContinue = this.handleContinue.bind(this);
+        this.handleBack = this.handleBack.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleOverviewChange = this.handleOverviewChange.bind(this);
 
@@ -138,6 +139,12 @@ class EditQuiz extends React.Component {
             flag: this.state.flag+1,
         })
         console.log(this.state.questions)
+    }
+
+    handleBack(){
+        this.setState({
+            flag: this.state.flag-1,
+        })
     }
 
     handleTitleChange(evt) {
@@ -322,6 +329,9 @@ class EditQuiz extends React.Component {
                         </Col>
 
                         <Col className = "button-col">
+
+                        </Col>
+                        <Col className = "button-col">
                             <Button className="page-button"
                                     size="lg"
                                     onClick = {this.handleContinue}
@@ -412,7 +422,13 @@ class EditQuiz extends React.Component {
                                 Cancel
                             </Button>
                         </Col>
-
+                        <Col className = "button-col">
+                            <Button className="page-button"
+                                    size="lg"
+                                    onClick = {this.handleBack}>
+                                Back
+                            </Button>
+                        </Col>
                         <Col className = "button-col">
                             <Button className="page-button"
                                     size="lg"
@@ -495,7 +511,13 @@ class EditQuiz extends React.Component {
                                 Cancel
                             </Button>
                         </Col>
-
+                        <Col className = "button-col">
+                            <Button className="page-button"
+                                    size="lg"
+                                    onClick = {this.handleBack}>
+                                Back
+                            </Button>
+                        </Col>
                         <Col className = "button-col">
                                 <Button className="page-button"
                                         size="lg"
@@ -531,7 +553,7 @@ class EditQuiz extends React.Component {
                         This quiz has been saved successfully. You will be redirected to the "My Quiz" page.
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button href = "./createQuiz" className = "ensureExit">Yes</Button>
+                        <Button href = "./createQuiz" >Yes</Button>
                     </Modal.Footer>
 
 

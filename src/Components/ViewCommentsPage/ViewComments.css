@@ -53,3 +53,7 @@
 .ViewComments .box{
     text-align: center;
 }
+
+.ViewComments form{
+    min-height: 360px;
+}
