@@ -97,12 +97,11 @@ comment_time          datetime
 
 2. `cd /Frontend` to get access to this frontend folder
 
-3. `npx install react-bootstrap` to load the ui-related package, install the node_modules before run the project
+3. `npx install react-bootstrap` to load the ui-related package, install the `node_modules` before run the project
 
 4. `npm start` to start the project
 
-5. Runs the app in the development mode.\ 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+5. Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
 # Berry Street Project - Boxjelly
