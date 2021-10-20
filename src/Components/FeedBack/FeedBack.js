@@ -24,7 +24,8 @@ class FeedBack extends React.Component {
             reflection:"",
             shareEmail:"",
             supervisorFlag:false,
-            reflectionFlag:false
+            reflectionFlag:false,
+            attemptId:0
         };
 
         this.leaveQuiz = this.leaveQuiz.bind(this);
@@ -76,12 +77,13 @@ class FeedBack extends React.Component {
                 "reflectionAvailable":this.state.reflectionFlag,
                 "supervisorId":this.state.supervisorId,
                 "isSaved":this.state.saveFlag,
+                "attemptId":this.state.attemptId
             })
 
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            console.log(data["token"]);
+            this.state.attemptId = data["attemptId"]
 
         }).catch(function(error){
             console.log(error)
@@ -141,7 +143,7 @@ class FeedBack extends React.Component {
     }
 
     submitShare(){
-
+        console.log(this.state.attemptId);
         fetch('http://localhost:8080/result/share_result',{
             method:'post',
             headers:{"Content-Type":"application/json"},
@@ -155,13 +157,13 @@ class FeedBack extends React.Component {
                 "reflectionAvailable":this.state.supervisorFlag,
                 "email":this.state.shareEmail,
                 "isSaved":this.state.saveFlag,
-
+                "attemptId":this.state.attemptId
             })
 
         }).then((response)=>{
             return response.json()
         }).then((data)=>{
-            console.log(data["token"]);
+            this.state.attemptId = data["attemptId"]
 
         }).catch(function(error){
             console.log(error)
@@ -197,7 +199,6 @@ class FeedBack extends React.Component {
     render() {
 
         document.title = "Feedback"
-        console.log(this.state.feedbackContent)
 
         return (
             <div className="feedbackPage">
