@@ -122,7 +122,7 @@ A self-reflection online platform for young people with lived experiences from d
 
 ## Demo
 
-The demo video will be uploaded after the final presentation.
+Check out our [live demo](./docs/LiveDemo.mp4) for a complete walkthrough of the platform.
 
 ## Features
 
@@ -142,7 +142,7 @@ The organized user stories in sprint 2 are: US05, US06, US07, US12, US13, US14, 
 
 ## Documentation
 
-`docs/` (process documentation)
+`docs/` 
 
 - [Project Background](./docs/ProjectBackground.pdf)
 - [Project Requirements](./docs/ProjectRequirements.pdf)
@@ -151,6 +151,8 @@ The organized user stories in sprint 2 are: US05, US06, US07, US12, US13, US14, 
 - [High Level Component Diagram](./docs/ComponentDiagram.pdf)
 - [Database ER Diagram](./docs/ERDiagram.pdf)
 - [Sequence Diagram](./docs/SequenceDiagram.pdf)
+- [Final Presentation Slides](./docs/FinalPresentation.pptx)
+- [Live Demo](./docs/LiveDemo.mp4)
 
 ## System Requirements
 
