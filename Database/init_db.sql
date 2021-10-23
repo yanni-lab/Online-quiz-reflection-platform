@@ -1,5 +1,7 @@
 /*Data for the table `user` */
 insert into `user`(`user_id`, `username`, `password`, `email`, `is_supervisor`)
+values (-1, 'Anonymous', '123456', 'anonymous@gmail.com', false);
+insert into `user`(`user_id`, `username`, `password`, `email`, `is_supervisor`)
 values (1, 'EmmaW', '123456', 'emmaw@gmail.com', true);
 insert into `user`(`user_id`, `username`, `password`, `email`, `is_supervisor`)
 values (2, 'jasonwork', '123456', 'jasonx@firefox.com', true);
