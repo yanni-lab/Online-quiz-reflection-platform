@@ -65,7 +65,7 @@ The organized user stories in sprint 2 are: US05, US06, US07, US12, US13, US14, 
 
 ## User Guide
 
-**Backend**
+**Run Backend Program**
 
 1. Make sure you have a working `Java 11` environment. 
    (Open a shell and run `java --version` to check your Java version.)
@@ -73,6 +73,10 @@ The organized user stories in sprint 2 are: US05, US06, US07, US12, US13, US14, 
 3. On [release](https://github.com/yanni-lab/COMP90082-2021-SM2-ST-Boxjelly/releases)
    page download `berryst-1.0.0.jar` file.
 4. On shell run `java -jar <path-to-file>berryst-1.0.0.jar`.
+
+**Config Sharing Email**
+1. Open file on `Backend/src/main/java/com/berryst/demo/configuration/EmailConfig.java`
+2. Change value of `setHost`, `setPort`, `setUsername` and `setPassword`
 
 **Database**
 
@@ -259,6 +263,74 @@ Frontend/src
 - [Acceptance tests](./tests/UserAcceptanceTests.pdf)
 
 ## Changelog
+###[2.0] - 2021-10-23
+#### Added
+* Frontend: Create quiz page
+* Frontend: Edit quiz page
+* Frontend: Make comment page
+* Frontend: Input validation
+* Frontend: Reset Password
+* Frontend: Automatic increase score in create/edit quiz
+* Backend: Reset password
+* Backend: Global exception handler
+* Backend: Supervisor quiz list
+* Backend: Set quiz public/private
+* Backend: Add/edit/delete quiz
+* Backend: Save result
+* Backend: Share result
+* Backend: View result LEC
+* Backend: View result supervisor
+* Backend: Comment on website
+* Backend: View website comment
+* Backend: Delete user account
+* Backend: Edit user profile
+* Backend: Format log output
+* Backend: Controller mock test
+* Database: Cascade Delete
+#### Changed
+* Frontend: Add user info to cookie
+* Frontend: Remove LEC dashboard
+* Frontend: UI design
+* Frontend: Button redirection
+* Backend: Feedback related functions
+* Backend: Share with supervisor
+* Backend: Return user detail on login and register
+* Database: Add Feedback table
+#### Fixed
+* Frontend: url to backend controller
+* Backend: Duplicate username in DB
+* Backend: Error in reset password
+* Backend: Format return type JSON array
+
+## Changelog
+###[1.0] - 2021-09-19
+#### Added
+* Frontend: Initialize project using Create React App
+* Frontend: Home page
+* Frontend: Navigation bar link
+* Frontend: Register page
+* Frontend: List quiz page
+* Frontend: Take quiz page
+* Backend: Add SpringBoot Structure
+* Backend: Register function
+* Backend: Login function
+* Backend: MySQL connection
+* Backend: Add model corresponding to database design
+* Backend: Add mapper interface
+* Backend: Retrieve public quiz list
+* Backend: Retrieve detailed quiz content
+* Backend: Unit test template
+* Database: Implement database structure
+#### Changed
+* Frontend: Navigation bar UI
+* Backend: Use new version of Mybatis
+* Backend: Controller return ObjectNode
+* Database: Database structure
+#### Fixed
+* Frontend: Connection to backend
+* Backend: Remove MapperImpl
+* Backend: Remove supervisor login
+* Database: Line separator on input
 
 
 
