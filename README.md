@@ -24,7 +24,7 @@ Check out our [live demo](./docs/LiveDemo.mp4) for a complete walkthrough of the
 
 **Sprint 1**
 
-For sprint 1, we plan to focus on developing the functionality for LECs  to take quizzes. The user should be able to complete the entire workflow as an LEC, meaning he/she can choose which quiz to take, select the  answers to each quiz, check and edit previous answers, see feedback, and write user experience comments.
+For sprint 1, we focus on developing the functionality for LECs  to take quizzes. The user should be able to complete the entire workflow as an LEC, meaning he/she can choose which quiz to take, select the answers to each quiz, check and edit previous answers, see feedback, and write user experience comments.
 
 The organized user stories in sprint 1 are: US01, US02, US03, US04, US08, US09, US10, US11
 
@@ -32,7 +32,7 @@ The organized user stories in sprint 1 are: US01, US02, US03, US04, US08, US09, 
 
 **Sprint 2**
 
-For sprint 2, we plan to focus on developing the functionality for  Supervisors to create and manage quizzes, as well as ensuring that LECs  can view the quizzes they have taken. The supervisor should be able to  complete the entire workflow as a supervisor, meaning he/she can create  the quiz, set the quiz public or private, edit the quiz, delete the  quiz, view the feedback and user experience of LECs who chose to share  with them. 
+For sprint 2, we focus on developing the functionality for Supervisors to create and manage quizzes, as well as ensuring that LECs can view the quizzes they have taken. The supervisor should be able to complete the entire workflow as a supervisor, meaning he/she can create the quiz, set the quiz public or private, edit the quiz, delete the quiz, view the feedback and user experience of LECs who chose to share  with them. 
 
 The organized user stories in sprint 2 are: US05, US06, US07, US12, US13, US14, US15, US16, US17, US18, US19, US20, US21
 
@@ -101,7 +101,7 @@ Steps to initialise react:
 
 5. Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-##Project Structure
+## Project Structure
 
 ```markdown
 ├─Backend/src
