@@ -170,6 +170,87 @@ Steps to initialise react:
 └─data
 ```
 
+```markdown
+frontend/src
+    │  App.css
+    │  App.js
+    │  index.css
+    │  index.js
+    │  NavBar.css
+    │  quiz.json
+    │  
+    ├─Components
+    │  ├─Communication
+    │  │      Communication.css
+    │  │      Communication.js
+    │  │      
+    │  ├─CreateQuizPage
+    │  │      CreateQuiz.css
+    │  │      CreateQuiz.js
+    │  │      
+    │  ├─EditQuizPage
+    │  │      EditQuiz.css
+    │  │      EditQuiz.js
+    │  │      
+    │  ├─FeedBack
+    │  │      FeedBack.css
+    │  │      FeedBack.js
+    │  │      
+    │  ├─HomePage
+    │  │      Home.css
+    │  │      Home.js
+    │  │      
+    │  ├─images
+    │  │  
+    │  │      
+    │  ├─ListQuizPage
+    │  │      listQuiz.css
+    │  │      listQuiz.js
+    │  │      
+    │  ├─LoginPage
+    │  │      Login.css
+    │  │      Login.js
+    │  │      
+    │  ├─MyLECsPage
+    │  │      MyLECs.css
+    │  │      MyLECs.js
+    │  │      
+    │  ├─NavBar
+    │  │      NavBar.css
+    │  │      NavBar.js
+    │  │      
+    │  ├─Quiz
+    │  │      Quiz.css
+    │  │      quiz.js
+    │  │      quiz1.js
+    │  │      
+    │  ├─RegisterPage
+    │  │      Register.css
+    │  │      Register.js
+    │  │      
+    │  ├─resetPassword
+    │  │      resetPassword.css
+    │  │      resetPassword.js
+    │  │      
+    │  ├─SupervisorDashboard
+    │  │      SupervisorDashboard.css
+    │  │      SupervisorDashboard.js
+    │  │      
+    │  ├─UpdateAccountPage
+    │  │      UpdateAccount.css
+    │  │      UpdateAccount.js
+    │  │      
+    │  ├─ViewCommentsPage
+    │  │      ViewComments.css
+    │  │      ViewComments.js
+    │  │      
+    │  └─ViewLECsPage
+    │          ViewLECs.css
+    │          ViewLECs.js
+    │          
+    └─data
+```
+
 ## Testing
 
 `tests/`
