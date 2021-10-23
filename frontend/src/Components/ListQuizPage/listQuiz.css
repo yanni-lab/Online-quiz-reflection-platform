@@ -1,0 +1,66 @@
+.backButton {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.my-feedback-Button{
+    float:right ;
+    margin-right: 50px;
+    margin-top: 30px;
+}
+
+.listQuizPage{
+    background-color:#FFFCF9;
+    width: 90%;
+    margin: 50px auto;
+    padding: 20px 0 40px 0;
+    border-radius: 5px;
+    box-shadow: 5px 5px #ddd;
+    min-height: 550px;
+    text-align: center;
+}
+
+.listQuizPage .myQuiz{
+    margin-left: 50px;
+    margin-top: 50px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 2.3em;
+    text-align: center;
+}
+
+.listQuizPage .QuizZone{
+    width: 300px;
+    margin: 40px;
+    height:120px;
+    padding: 30px;
+    background-color: #E5F4F6;
+
+    color: black;
+    font-family: "Comic Sans MS", "Comic Sans";
+    font-weight: bolder;
+    border: 0;
+    font-size: 22px;
+
+    display: inline-flex;
+    flex-direction:column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.listQuizPage .QuizZone:hover{
+    background-color: #1198AB;
+    color: white;
+}
+
+
+.quizName{
+    font-size: 1.5em;
+    width:100%
+}
+
+a{
+
+    text-decoration:none;
+
+}

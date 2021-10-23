@@ -1,0 +1,152 @@
+.backButton {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.createQuizButton{
+    float:right ;
+    margin-right: 50px;
+    margin-top: 50px;
+    width:160px;
+    color: black;
+    background-color: #FBDE91;
+    border: none;
+
+}
+
+.createQuizButton:hover{
+    background-color: palegoldenrod;
+    color: black;
+    border: none;
+
+}
+
+
+
+.transform-button{
+    padding: 5px 20px;
+
+}
+
+.edit-button{
+    float: left;
+    margin-top: 24%;
+    padding:5px 18px;
+
+}
+
+.delete-quiz-button{
+    float: right;
+    margin-top: 24%;
+    padding: 5px 18px;
+
+}
+
+
+.createQuizPage{
+    background-color:#FFFCF9;
+    width: 90%;
+    margin: 50px 5%;
+    padding: 20px 0 40px 0;
+    border-radius: 5px;
+    box-shadow: 5px 5px #ddd;
+    min-height: 550px;
+    height: auto;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+}
+
+.createQuizPage .header{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-weight: bold;
+}
+
+
+.createQuizPage .myQuiz{
+    margin-left: 50px;
+    margin-top: 40px;
+    font-weight: bold;
+
+    font-size: 2em;
+}
+
+.button-onfocus{
+    width: 300px;
+    height:120px;
+    padding: 10px;
+    position: absolute;
+}
+
+.button-onfocus button{
+    background-color: #1198AB;
+    border: #1198AB;
+}
+
+.button-onfocus button:hover{
+    background-color: #1180AB;
+}
+
+.createQuizPage .QuizZone{
+    width: 300px;
+    margin: 40px;
+    height:120px;
+    padding: 30px;
+    background-color: #E5F4F6;
+
+    color: black;
+    border: 0;
+    font-size: 22px;
+    font-weight: bold;
+
+    display: inline-flex;
+    flex-direction:column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.quizName{
+
+    font-size: 1.5em;
+    width:100%
+}
+
+a{
+
+    text-decoration:none;
+
+}
+
+.no_private{
+    padding: 20px 100px;
+    font-size: 22px;
+    font-family: var(--bs-body-font-family);
+}
+
+.createQuizPage .button-onfocus{
+    display: none;
+}
+
+.createQuizPage .QuizZone:hover .button-onfocus{
+    display: block;
+}
+
+.createQuizPage .QuizZone:hover{
+    background-color: #E5F4F6;
+    color: black;
+}
+
+.cancelDel{
+    width: 78px;
+}
+
+.ensureDel{
+    width: 78px;
+    background-color: orangered;
+    border: orangered;
+}
+
+.ensureDel:hover{
+    width: 78px;
+    background-color: firebrick;
+    border: orangered;
+}

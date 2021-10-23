@@ -1,0 +1,90 @@
+
+.editQuizPage{
+    background-color:#FFFCF9;
+    width: 86%;
+    margin: 50px 7%;
+    height: auto;
+    padding-bottom: 60px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+    box-shadow: 5px 5px #ddd;
+    min-height: 550px;
+    border-radius: 5px;
+}
+
+.create-quiz-form{
+    padding: 0 150px 15px 150px;
+}
+
+
+.overview{
+    height: 200px;
+    word-break:break-all
+}
+
+.button-col{
+    padding: 10px 20px;
+}
+
+.form-group-custom{
+    border-radius: 5px;
+    background-color: white;
+    padding: 15px 25px;
+    margin-bottom: 15px;
+    box-shadow: 5px 5px #ddd;
+    border: #9198AB 1px solid;
+}
+
+.quiz-row{
+    padding: 10px 10px;
+    /*margin-left: 10%;*/
+    /*margin-right: 10%;*/
+}
+
+.question-input{
+    width: 89%;
+    margin-right: 2%;
+}
+
+.question-cancel-button{
+    width: 9%;
+}
+
+.option-input{
+    width:75%;
+    margin-right: 2%;
+}
+
+.option-score{
+    width:12%;
+    margin-right: 2%;
+}
+
+.option-cancel-button{
+    width:9%;
+
+}
+
+.delete-button{
+    width:100%
+}
+
+.feedback-input{
+    width: 60%;
+    margin-right: 2%;
+    height:auto;
+}
+
+.editQuizPage button{
+    background-color: #1198AB;
+    border: #1198AB;
+}
+
+.editQuizPage button:hover{
+    background-color: #1180AB;
+}
+
+.editQuizPage button:focus{
+    background-color: #1198AB;
+    border: #1198AB;
+}

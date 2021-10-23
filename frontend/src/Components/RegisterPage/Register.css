@@ -1,0 +1,60 @@
+.Register{
+    width: 500px;
+    /*height: 750px;*/
+    background-color: whitesmoke;
+    margin: 10px auto 10px auto;
+    /*padding: 50px 70px;*!*/
+    box-shadow: 5px 5px #ddd;
+    border-radius: 5px;
+    text-align: center;
+
+
+}
+
+
+.login-img{
+    height:60px;
+    width:60px;
+}
+.registerForm{
+    margin:auto;
+    padding: 50px 50px 30px 50px;
+    border-radius:10px;
+    border: 3px;
+
+}
+.heading{
+    padding: 30px 10px 30px 10px ;
+    text-align: center;
+    color: black;
+    font-size: 30px;
+}
+
+.label{
+    display: inline-block;
+    test-align:right;
+}
+.input{
+    vertical-align:top;
+}
+
+.inputContent{
+    padding: 10px 10px 10px 10px;
+}
+
+.Register .button{
+    border-radius: 10px;
+    /*background-color: #e7effc;*/
+    justify-content: center;
+    width: 80%;
+    margin: 10px 10px 30px;
+    box-shadow:5px 5px 10px gray;
+
+}
+
+.register-button-row{
+    justify-content: space-evenly;
+    margin-right: 0;
+    margin-left: 0;
+    text-align: center;
+}

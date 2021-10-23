@@ -1,0 +1,64 @@
+.MyLECs{
+    background-color: white;
+    width: 90%;
+    margin: 50px auto;
+    padding: 20px 0;
+    border-radius: 5px;
+    box-shadow: 5px 5px #ddd;
+    min-height: 650px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.MyLECs .container{
+    height: 600px;
+}
+
+.form-label{
+    font-size: 20px;
+}
+
+.LEC-row{
+    font-size: 18px;
+    padding: 15px 20px;
+    border-bottom: black 1px solid;
+}
+
+.LEC-form{
+    height: 412px;
+    padding: 0 80px 40px 80px;
+}
+
+.pagination{
+    justify-content: center;
+}
+
+.view-lec-btn{
+    background-color: #1198AB;
+    border: #1198AB;
+}
+
+.view-lec-btn:hover{
+    background-color: #1180AB;
+}
+
+.page-link{
+    color: #1198AB;
+}
+
+.page-link:hover{
+    background-color: #7DC2C7;
+    color: white;
+}
+
+.page-link:focus{
+    color: #1198AB;
+}
+
+.page-item.active .page-link{
+    background-color: #1198AB;
+    border: #1198AB 1px solid;
+}
+
+.MyLECs .header{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
