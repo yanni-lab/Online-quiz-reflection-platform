@@ -62,7 +62,7 @@ public class UserServiceImplTest {
 
     @Test
     public void resetPassword() {
-        Assert.assertThat(userService.resetPassword(10, "reset"),
+        Assert.assertThat(userService.resetPassword(20, "reset"),
                 is(1));
     }
 
