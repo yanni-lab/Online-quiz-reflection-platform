@@ -8,7 +8,7 @@
 4. [Documentation](#documentation)
 5. [System Requirements](#system-requirements)
 6. [User Guide](#user-guide)
-7. [Project Structure](#project_structure)
+7. [Project Structure](#project-structure)
 8. [Testing](#testing)
 9. [Changelog](#changelog)
 
