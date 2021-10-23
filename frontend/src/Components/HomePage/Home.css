@@ -1,0 +1,106 @@
+.HomePage{
+    width: 100vw;
+    height: 100vw;
+    position: fixed;
+    color: black;
+}
+
+#background{
+    /*background-repeat: no-repeat center center fixed;*/
+
+    background-repeat: no-repeat;
+    /*background-size:100%;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+}
+.text{
+    color: white;
+    font-family: "Arial Black", sans-serif;
+}
+.container{
+    margin: auto;
+    width: 80%;
+}
+
+.header{
+    font-family: "Arial Black", sans-serif;
+    font-size: 4.5em;
+    text-align: center;
+    letter-spacing: -1px;
+    margin-top: 200px;
+    padding: 45px 0;
+}
+
+.home-header{
+    font-family: "Arial Black", sans-serif;
+    font-size: 4.5em;
+    text-align: center;
+    letter-spacing: -1px;
+    margin-top: 200px;
+    padding: 45px 0 30px 0;
+}
+
+.paragraph{
+    font-family: "Arial Black", sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 120px;
+}
+
+.HomePage .card-group{
+    justify-content: center;
+}
+
+.roleContent{
+    padding: 0px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.cardRole{
+    height: 309px;
+    width: 350px!important;
+    text-align: center;
+    margin:0px 50px 0px 50px;
+    color: white;
+    padding: 15px 0;
+    position: relative;
+    background-color: transparent!important;
+    background-clip: border-box;
+    border: 10px solid rgba(0,0,0,.125)!important;
+    border-radius: .25rem!important;;
+}
+
+.cardRole:hover{
+    background-color:  rgba(0,0,0,.125)!important;;
+}
+
+.HomePage .card-footer{
+    height: 65px;
+    vertical-align: center;
+}
+
+.supervisor-img{
+    height:130px!important;
+    width:100px!important;
+    align-self: center!important;
+}
+
+.lec-img{
+    height:130px!important;
+    width:160px!important;
+    align-self: center!important;
+}
+
+.homeButton{
+    align-self: center!important;
+    text-align: center!important;
+    color: white!important;
+    border-color:rgba(0,0,0,.125)!important;
+    font-family: "Arial Black", sans-serif;
+}

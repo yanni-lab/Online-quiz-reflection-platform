@@ -1,0 +1,116 @@
+
+.feedbackPage{
+    background-color:#FFFCF9;
+    width: 90%;
+    margin: 50px auto;
+    padding: 20px 0;
+    border-radius: 5px;
+    box-shadow: 5px 5px #ddd;
+    min-height: 600px;
+}
+
+.feedback-container{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    padding-top: 20px;
+}
+
+.backButton {
+
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.text-container{
+    padding: 5px 80px;
+
+}
+
+.reflectionInput{
+
+    height: 200px;
+}
+
+.title{
+    font-size: 30px;
+}
+
+.feedbackContent{
+    height: 200px;
+    font-size: 20px;
+
+}
+
+.content{
+    font-size: 20px;
+}
+
+.feedbackFormCol{
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+.feedbackFormButton{
+    background-color: #1198AB;
+    border:#1198AB;
+    width: 120px;
+}
+
+.feedbackFormButton:hover{
+    background-color: #1180AB;
+}
+
+.feedbackFormButton:focus{
+    background-color: #1198AB;
+}
+
+
+.modal-content{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    width: 580px;
+}
+
+
+
+
+.label{margin-left: 0}
+
+.Share{
+    margin: 10px auto;
+    padding: 20px 10px 20px 10px;
+    width: 450px;
+    background-color: whitesmoke;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 5px 5px #ddd;
+}
+
+.share-button{
+    width: 150px;
+}
+
+.share-row{
+    text-align: center;
+    padding: 20px 0 20px 0;
+}
+
+#share-email,.form-check{
+    width: 80%!important;
+    margin: 10px auto;
+}
+
+.shareForm{
+    text-align: center;
+}
+
+.Share .form-check-label{
+    float:left;
+}
+
+.saveModal{
+    position: fixed;
+}
+
+.feedbackPage .modal-content{
+    margin-head:100px;
+}
