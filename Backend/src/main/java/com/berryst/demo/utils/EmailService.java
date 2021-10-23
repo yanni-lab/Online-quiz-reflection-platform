@@ -37,7 +37,7 @@ public class EmailService {
         String messageBody = "";
         messageBody = messageBody.concat("Dear user,\n");
         messageBody = messageBody.concat("Here is your feedback:\n\n");
-        messageBody = messageBody.concat(resultService.getFeedbackContent(result.getQuizId(), result.getScore()));
+        messageBody = messageBody.concat(DataProcessing.addLineSeparator(resultService.getFeedbackContent(result.getQuizId(), result.getScore())));
         message.setText(messageBody);
         System.out.println(messageBody);
         javaMailSender.send(message);
