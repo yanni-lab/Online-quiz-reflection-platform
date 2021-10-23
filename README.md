@@ -171,7 +171,7 @@ Steps to initialise react:
 ```
 
 ```markdown
-frontend/src
+Frontend/src
     │  App.css
     │  App.js
     │  index.css
