@@ -261,6 +261,7 @@ Frontend/src
 
 - [Acceptance criteria](./tests/AcceptanceCriteria.pdf)
 - [Acceptance tests](./tests/UserAcceptanceTests.pdf)
+- [Testing document](./tests/Testing document.pdf)
 
 ## Changelog
 ###[2.0] - 2021-10-23
